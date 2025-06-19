@@ -57,6 +57,4 @@ composer.phar
 .Trashes
 ehthumbs.db
 Thumbs.db
-*.jpg
-*.png
 vendor/
