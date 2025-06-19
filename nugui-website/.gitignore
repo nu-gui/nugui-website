@@ -1,0 +1,62 @@
+# CodeIgniter4 .gitignore
+
+# Vendor directory (Composer dependencies)
+/vendor/
+
+# Environment files
+/.env
+/.env.*
+!/.env.example
+
+# Database configuration with credentials
+app/Config/Database.php.backup
+
+# Cache and logs
+/writable/cache/*
+!/writable/cache/index.html
+/writable/logs/*
+!/writable/logs/index.html
+/writable/session/*
+!/writable/session/index.html
+/writable/uploads/*
+!/writable/uploads/index.html
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build files
+/builds/
+/dist/
+
+# Temporary files
+*.tmp
+*.temp
+/info.php
+/phpinfo.php
+/php.ini.bak
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Composer
+composer.phar
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.jpg
+*.png
+vendor/
