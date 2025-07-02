@@ -41,7 +41,7 @@ class Kint
     */
     public string $richTheme = 'aante-light.css';
     public bool $richFolder  = false;
-    public int $richSort     = AbstractRenderer::SORT_FULL;
+    public int $richSort     = 0; // Use 0 instead of SORT_FULL constant
 
     /**
      * @var array<string, class-string<ValuePluginInterface>>|null

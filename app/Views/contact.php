@@ -21,6 +21,17 @@
 
         <form action="<?= base_url('/submit_contact_form') ?>" method="post">
             <?= csrf_field() ?>
+            
+            <!-- Honeypot fields - hidden from users but visible to bots -->
+            <div style="display:none;">
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+                <input type="text" name="phone" tabindex="-1" autocomplete="off">
+                <input type="email" name="email_verify" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <!-- Time-based validation -->
+            <input type="hidden" name="form_start_time" value="<?= time() ?>">
+            <input type="hidden" name="form_token" value="<?= md5(uniqid() . session_id()) ?>">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" value="<?= old('name') ?>" required>
@@ -43,24 +54,4 @@
         </form>
     </section>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', (e) => {
-            let isValid = true;
-            form.querySelectorAll('input, textarea').forEach(field => {
-                if (!field.checkValidity()) {
-                    field.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('is-invalid');
-                }
-            });
-            if (!isValid) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
 <?= $this->endSection() ?>

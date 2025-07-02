@@ -14,10 +14,10 @@ class Database extends BaseConfig
 
     public array $default = [
         'DSN'          => '',
-        'hostname'     => env('database.default.hostname', 'localhost'),
-        'username'     => env('database.default.username', ''),
-        'password'     => env('database.default.password', ''),
-        'database'     => env('database.default.database', ''),
+        'hostname'     => 'localhost',
+        'username'     => '',
+        'password'     => '',
+        'database'     => '',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -29,7 +29,7 @@ class Database extends BaseConfig
         'compress'     => false,
         'strictOn'     => false,
         'failover'     => [],
-        'port'         => env('database.default.port', 3306),
+        'port'         => 3306,
         'numberNative' => false,
         'dateFormat'   => [
             'date'     => 'Y-m-d',
@@ -68,6 +68,14 @@ class Database extends BaseConfig
     public function __construct()
     {
         parent::__construct();
+        
+        // Set database values from environment
+        $this->default['hostname'] = env('database.default.hostname', 'localhost');
+        $this->default['username'] = env('database.default.username', '');
+        $this->default['password'] = env('database.default.password', '');
+        $this->default['database'] = env('database.default.database', '');
+        $this->default['port']     = (int)env('database.default.port', 3306);
+        
         if (ENVIRONMENT === 'testing') {
             $this->defaultGroup = 'tests';
         }

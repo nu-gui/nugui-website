@@ -21,6 +21,17 @@
 
         <form action="<?= base_url('/submit_support_form') ?>" method="post">
             <?= csrf_field() ?>
+            
+            <!-- Honeypot fields - hidden from users but visible to bots -->
+            <div style="display:none;">
+                <input type="text" name="website" tabindex="-1" autocomplete="off">
+                <input type="text" name="company_name" tabindex="-1" autocomplete="off">
+                <input type="email" name="backup_email" tabindex="-1" autocomplete="off">
+            </div>
+            
+            <!-- Time-based validation -->
+            <input type="hidden" name="form_start_time" value="<?= time() ?>">
+            <input type="hidden" name="form_token" value="<?= md5(uniqid() . session_id()) ?>">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" value="<?= old('name') ?>" required>

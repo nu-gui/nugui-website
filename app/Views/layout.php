@@ -33,6 +33,6 @@
 
     <?= $this->include('templates/footer') ?>
 
-    <script src="<?= base_url('assets/js/script.js') ?>"></script>
+    <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
 </body>
 </html>

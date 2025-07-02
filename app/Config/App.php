@@ -241,4 +241,18 @@ class App extends BaseConfig
     public bool $cookieSecure = true;
     public bool $cookieHTTPOnly = true;
     public string $cookieSameSite = 'Lax';
+
+    public function __construct()
+    {
+        parent::__construct();
+        
+        // Override settings from environment
+        if ($baseURL = env('app.baseURL')) {
+            $this->baseURL = $baseURL;
+        }
+        
+        if ($forceHTTPS = env('app.forceGlobalSecureRequests')) {
+            $this->forceGlobalSecureRequests = $forceHTTPS === 'true';
+        }
+    }
 }
