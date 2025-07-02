@@ -3,18 +3,21 @@
 namespace App\Libraries;
 
 use CodeIgniter\HTTP\RequestInterface;
+use App\Config\AntiBotConfig;
 
 class AntiBotProtection
 {
     protected $request;
     protected $session;
     protected $logger;
+    protected $config;
 
     public function __construct()
     {
         $this->request = service('request');
         $this->session = service('session');
         $this->logger = service('logger');
+        $this->config = new AntiBotConfig();
     }
 
     /**
@@ -25,8 +28,7 @@ class AntiBotProtection
         $errors = [];
         
         // 1. Honeypot validation - Check if any honeypot fields are filled
-        $honeypotFields = ['website', 'email_confirm', 'company', 'comments', 'phone', 'email_verify', 'company_name', 'backup_email'];
-        foreach ($honeypotFields as $field) {
+        foreach ($this->config->honeypotFields as $field) {
             if (!empty($postData[$field])) {
                 $this->logger->warning('Bot detected: Honeypot field filled', [
                     'field' => $field,
@@ -45,7 +47,7 @@ class AntiBotProtection
             $currentTime = time();
             $timeTaken = $currentTime - $formStartTime;
             
-            if ($timeTaken < 3) {
+            if ($timeTaken < $this->config->minimumFormTime) {
                 $this->logger->warning('Bot detected: Form submitted too quickly', [
                     'time_taken' => $timeTaken,
                     'ip' => $this->request->getIPAddress(),
@@ -54,8 +56,8 @@ class AntiBotProtection
                 $errors[] = 'Form submitted too quickly. Please try again.';
             }
             
-            // Also check if form is too old (more than 1 hour)
-            if ($timeTaken > 3600) {
+            // Also check if form is too old
+            if ($timeTaken > $this->config->maximumFormTime) {
                 $this->logger->warning('Form session expired', [
                     'time_taken' => $timeTaken,
                     'ip' => $this->request->getIPAddress()
@@ -66,16 +68,16 @@ class AntiBotProtection
 
         // 3. Rate limiting - Check submission frequency from same IP
         $ipAddress = $this->request->getIPAddress();
-        $rateLimitKey = 'rate_limit_' . md5($ipAddress);
+        $rateLimitKey = 'rate_limit_' . hash('sha256', $ipAddress);
         $submissions = $this->session->get($rateLimitKey) ?: [];
         
-        // Clean old submissions (older than 1 hour)
+        // Clean old submissions
         $submissions = array_filter($submissions, function($timestamp) {
-            return (time() - $timestamp) < 3600;
+            return (time() - $timestamp) < $this->config->rateLimitWindow;
         });
         
-        // Check if more than 5 submissions in last hour
-        if (count($submissions) >= 5) {
+        // Check if exceeded maximum submissions
+        if (count($submissions) >= $this->config->maxSubmissionsPerHour) {
             $this->logger->warning('Rate limit exceeded', [
                 'ip' => $ipAddress,
                 'submissions_count' => count($submissions),
@@ -99,7 +101,12 @@ class AntiBotProtection
         }
 
         // 5. Form token validation (basic CSRF alternative)
-        if (isset($postData['form_token'])) {
+        if (!isset($postData['form_token']) || empty($postData['form_token'])) {
+            $this->logger->warning('Missing form token', [
+                'ip' => $ipAddress
+            ]);
+            $errors[] = 'Security token missing. Please refresh the page and try again.';
+        } else {
             $tokenKey = 'form_tokens';
             $tokens = $this->session->get($tokenKey) ?: [];
             
@@ -124,21 +131,8 @@ class AntiBotProtection
      */
     private function isKnownBot($userAgent): bool
     {
-        $botPatterns = [
-            'curl',
-            'wget',
-            'python',
-            'scrapy',
-            'bot',
-            'crawler',
-            'spider',
-            'headless',
-            'phantom',
-            'selenium'
-        ];
-
         $userAgentLower = strtolower($userAgent);
-        foreach ($botPatterns as $pattern) {
+        foreach ($this->config->botPatterns as $pattern) {
             if (strpos($userAgentLower, $pattern) !== false) {
                 return true;
             }
@@ -155,8 +149,8 @@ class AntiBotProtection
         $tokenKey = 'form_tokens';
         $tokens = $this->session->get($tokenKey) ?: [];
         
-        // Keep only last 10 tokens to prevent memory issues
-        if (count($tokens) >= 10) {
+        // Keep only last N tokens to prevent memory issues
+        if (count($tokens) >= $this->config->maxTokensInSession) {
             array_shift($tokens);
         }
         
@@ -180,9 +174,13 @@ class AntiBotProtection
     /**
      * Add IP to temporary blacklist
      */
-    public function addToBlacklist($ip, $duration = 3600): void
+    public function addToBlacklist($ip, $duration = null): void
     {
-        $blacklistKey = 'blacklist_' . md5($ip);
+        if ($duration === null) {
+            $duration = $this->config->defaultBlacklistDuration;
+        }
+        
+        $blacklistKey = 'blacklist_' . hash('sha256', $ip);
         $this->session->set($blacklistKey, time() + $duration);
         
         $this->logger->info('IP added to temporary blacklist', [
@@ -196,7 +194,7 @@ class AntiBotProtection
      */
     public function isTemporarilyBlacklisted($ip): bool
     {
-        $blacklistKey = 'blacklist_' . md5($ip);
+        $blacklistKey = 'blacklist_' . hash('sha256', $ip);
         $blacklistUntil = $this->session->get($blacklistKey);
         
         if ($blacklistUntil && time() < $blacklistUntil) {

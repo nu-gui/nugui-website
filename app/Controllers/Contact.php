@@ -35,7 +35,7 @@ class Contact extends BaseController {
         $botErrors = $antiBotProtection->validateSubmission($postData);
         
         if (!empty($botErrors)) {
-            $antiBotProtection->addToBlacklist($clientIP, 1800); // 30 minutes
+            $antiBotProtection->addToBlacklist($clientIP);
             return redirect()->back()->withInput()->with('errors', $botErrors);
         }
 

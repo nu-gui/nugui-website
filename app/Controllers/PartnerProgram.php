@@ -52,7 +52,7 @@ class PartnerProgram extends BaseController {
         
         if (!empty($botErrors)) {
             // Add IP to temporary blacklist for repeated violations
-            $antiBotProtection->addToBlacklist($clientIP, 1800); // 30 minutes
+            $antiBotProtection->addToBlacklist($clientIP);
             
             return $this->response->setJSON([
                 'status' => 'error',

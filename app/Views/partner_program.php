@@ -222,7 +222,7 @@ Partner Program
                 
                 <!-- Time-based validation -->
                 <input type="hidden" name="form_start_time" value="<?= time() ?>">
-                <input type="hidden" name="form_token" value="<?= md5(uniqid() . session_id()) ?>">
+                <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
                 <div id="step1" class="wizard-step active">
                     <h2>Step 1: Business Information</h2>
                     <div class="form-group">

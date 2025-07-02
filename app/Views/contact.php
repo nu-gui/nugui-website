@@ -31,7 +31,7 @@
             
             <!-- Time-based validation -->
             <input type="hidden" name="form_start_time" value="<?= time() ?>">
-            <input type="hidden" name="form_token" value="<?= md5(uniqid() . session_id()) ?>">
+            <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" value="<?= old('name') ?>" required>
