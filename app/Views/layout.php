@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= $description ?? 'NU GUI - Innovative business solutions including VoIP, direct messaging, and data enrichment services.' ?>">
     <title>NU GUI - <?= $this->renderSection('title') ?></title>
+    <link rel="stylesheet" href="<?= base_url('assets/css/tailwind.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/nugui-icon-white.png') ?>">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
@@ -27,12 +28,15 @@
 <body>
     <?= $this->include('templates/header') ?>
 
-    <div class="main-content">
+    <main class="pt-16">
         <?= $this->renderSection('content') ?>
-    </div>
+    </main>
 
     <?= $this->include('templates/footer') ?>
 
     <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
+    <script src="<?= base_url('assets/js/modern.js?v=' . time()) ?>"></script>
+    <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script>
+    <?= $this->renderSection('scripts') ?>
 </body>
 </html>
