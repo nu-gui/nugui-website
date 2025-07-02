@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Libraries\CustomEmail;
+use App\Libraries\AntiBotProtection;
 
 class Support extends BaseController {
     public function index() {
@@ -21,6 +22,23 @@ class Support extends BaseController {
     }
 
     public function submit_support_form() {
+        $antiBotProtection = new AntiBotProtection();
+        $clientIP = $this->request->getIPAddress();
+        
+        // Check if IP is temporarily blacklisted
+        if ($antiBotProtection->isTemporarilyBlacklisted($clientIP)) {
+            return redirect()->back()->withInput()->with('errors', 'Your IP is temporarily blocked. Please try again later.');
+        }
+        
+        // Anti-bot validation
+        $postData = $this->request->getPost();
+        $botErrors = $antiBotProtection->validateSubmission($postData);
+        
+        if (!empty($botErrors)) {
+            $antiBotProtection->addToBlacklist($clientIP);
+            return redirect()->back()->withInput()->with('errors', $botErrors);
+        }
+
         $validation = \Config\Services::validation();
 
         $validation->setRules([
@@ -125,5 +143,6 @@ class Support extends BaseController {
             return redirect()->back()->withInput()->with('errors', ['Email could not be sent.']);
         }
     }
+
 }
 ?>

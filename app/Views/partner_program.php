@@ -169,7 +169,7 @@ Partner Program
         <p>Join the NU GUI Partner Program and unlock exclusive benefits designed to propel your business to new heights. As a valued partner, you will receive personalized support, cutting-edge marketing materials, and comprehensive training programs that ensure your success.</p>
         <p>At NU GUI, we focus on building long-lasting partnerships with businesses in the telecommunications and direct marketing industries. We do not service the end-user clients directly but pride ourselves on the success of our partners, which is our preferred business model. Our solutions are tailored to meet the specific needs of our business partners, offering co-branding and white labeling options for each of our services.</p>
         <div class="button-wrapper">
-            <button onclick="validateCaptchaBeforeOpening()">Apply Now</button>
+            <button onclick="openPopup()">Apply Now</button>
         </div>
     </section>
 
@@ -211,6 +211,18 @@ Partner Program
         <div id="popup-form-content">
             <form id="partner-form" method="post" enctype="multipart/form-data" action="<?= base_url('submit_partner_form') ?>">
                 <?= csrf_field() ?>
+                
+                <!-- Honeypot fields - hidden from users but visible to bots -->
+                <div style="display:none;">
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                    <input type="email" name="email_confirm" tabindex="-1" autocomplete="off">
+                    <input type="text" name="company" tabindex="-1" autocomplete="off">
+                    <textarea name="comments" tabindex="-1" autocomplete="off"></textarea>
+                </div>
+                
+                <!-- Time-based validation -->
+                <input type="hidden" name="form_start_time" value="<?= time() ?>">
+                <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
                 <div id="step1" class="wizard-step active">
                     <h2>Step 1: Business Information</h2>
                     <div class="form-group">
@@ -355,135 +367,13 @@ Partner Program
     </div>
 </div>
 
-<!-- Add this reCAPTCHA script to load the Google API -->
-<script src="https://www.google.com/recaptcha/api.js?render=6LeFaLYqAAAAAG7nmm6vUjjC16Ah_hUo4rQhPZTs"></script>
-
 <script>
-    function validateCaptchaBeforeOpening() {
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6LeFaLYqAAAAAG7nmm6vUjjC16Ah_hUo4rQhPZTs', { action: 'validate' }).then(function (token) {
-                // Send the token to the server for verification
-                fetch('<?= base_url('validate-recaptcha') ?>', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify({ token: token }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        openPopup(); // Open the popup if reCAPTCHA is valid
-                    } else {
-                        alert('CAPTCHA validation failed. Please try again.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error during CAPTCHA validation:', error);
-                    alert('An unexpected error occurred. Please try again.');
-                });
-            });
-        });
-    }
-
-    function openPopup() {
-        document.getElementById('popup-modal').style.display = 'block';
-    }
-
-    function closePopup() {
-        document.getElementById('popup-modal').style.display = 'none';
-    }
-
-    function nextStep(step) {
-        document.querySelector('.wizard-step.active').classList.remove('active');
-        document.getElementById('step' + step).classList.add('active');
-    }
-
-    function prevStep(step) {
-        document.querySelector('.wizard-step.active').classList.remove('active');
-        document.getElementById('step' + step).classList.add('active');
-    }
-
-    window.onclick = function(event) {
-        var modal = document.getElementById('popup-modal');
-        if (event.target == modal) {
-            modal.style.display = 'none';
+    // Initialize partner form once DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Use the functions from script.js which should already be loaded
+        if (typeof initializePartnerForm === 'function') {
+            initializePartnerForm();
         }
-    }
-
-    document.getElementById('partner-form').addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the default form submission
-
-        const formData = new FormData(this);
-        const actionUrl = this.action;
-
-        fetch(actionUrl, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                // Show the confirmation message
-                const confirmationMessage = document.getElementById('confirmation-message');
-                confirmationMessage.innerHTML = `<p>Dear ${formData.get('contactName')},</p>
-                    <p>Thank you for applying to the NU GUI Partner Program. Your application has been received and is currently under review.</p>
-                    <p>Your Reference Number: <strong>${data.reference}</strong></p>
-                    <p>We will contact you shortly with the next steps.</p>
-                    <p>Best regards,<br>NU GUI Team</p>`;
-                confirmationMessage.style.display = 'block';
-                // Hide the form
-                document.getElementById('popup-form-content').style.display = 'none';
-            } else {
-                console.error('Error response from server:', data);
-                alert('There was an error submitting your application. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            alert('There was an error submitting your application. Please try again.');
-        });
-    });
-
-    document.getElementById('step2NextButton').addEventListener('click', function() {
-        const emailField = document.getElementById('contactEmail');
-        if (emailField.value === '') {
-            document.getElementById('emailError').style.display = 'block';
-        } else {
-            document.getElementById('emailError').style.display = 'none';
-            nextStep(3);
-        }
-    });
-
-    const countryList = [
-        "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
-        "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
-        "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde",
-        "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)",
-        "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
-        "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini (fmr. Swaziland)", "Ethiopia", "Fiji", "Finland",
-        "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
-        "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan",
-        "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya",
-        "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands",
-        "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique",
-        "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea",
-        "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru",
-        "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
-        "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
-        "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka",
-        "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo",
-        "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
-        "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
-    ];
-
-    const countryDropdown = document.getElementById('countryBusiness');
-    countryList.sort().forEach(country => {
-        const option = document.createElement('option');
-        option.value = country;
-        option.text = country;
-        countryDropdown.add(option);
     });
 </script>
 <?= $this->endSection() ?>

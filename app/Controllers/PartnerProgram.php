@@ -5,6 +5,7 @@ use App\Models\PartnerModel;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use App\Libraries\CustomEmail;
+use App\Libraries\AntiBotProtection;
 
 class PartnerProgram extends BaseController {
     public function index() {
@@ -22,47 +23,43 @@ class PartnerProgram extends BaseController {
         return view('partner_program', $data);
     }
 
-    /**
-     * Validate reCAPTCHA v3 token before opening the form.
-     */
-    public function validate_recaptcha() {
-        $token = $this->request->getPost('token');
-        $logger = service('logger');
-
-        // Log the token for debugging purposes
-        $logger->info('Validating reCAPTCHA token: ' . $token);
-
-        if (empty($token)) {
-            $logger->error('CAPTCHA token not provided.');
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'CAPTCHA token is missing.'
-            ]);
-        }
-
-        if (!$this->verifyCaptcha($token)) {
-            $logger->error('CAPTCHA validation failed.');
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'CAPTCHA validation failed. Please refresh the page and try again.'
-            ]);
-        }
-
-        $logger->info('CAPTCHA validation passed.');
-        return $this->response->setJSON([
-            'status' => 'success',
-            'message' => 'CAPTCHA validated successfully.'
-        ]);
-    }
 
     /**
      * Handle partner form submission.
      */
     public function submit_partner_form() {
         $partnerModel = new PartnerModel();
+        $antiBotProtection = new AntiBotProtection();
         $logger = service('logger');
-
-        $logger->info('Form submission started.');
+        
+        // Get client IP
+        $clientIP = $this->request->getIPAddress();
+        
+        $logger->info('Form submission started.', ['ip' => $clientIP]);
+        
+        // Check if IP is temporarily blacklisted
+        if ($antiBotProtection->isTemporarilyBlacklisted($clientIP)) {
+            $logger->warning('Submission blocked: IP temporarily blacklisted', ['ip' => $clientIP]);
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Your IP is temporarily blocked. Please try again later.'
+            ]);
+        }
+        
+        // Anti-bot validation
+        $postData = $this->request->getPost();
+        $botErrors = $antiBotProtection->validateSubmission($postData);
+        
+        if (!empty($botErrors)) {
+            // Add IP to temporary blacklist for repeated violations
+            $antiBotProtection->addToBlacklist($clientIP);
+            
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Submission validation failed.',
+                'errors' => $botErrors
+            ]);
+        }
 
         // Validate form input
         $rules = [
@@ -79,8 +76,8 @@ class PartnerProgram extends BaseController {
             'question4' => 'string|max_length[50]',
             'question5' => 'string|max_length[255]',
             'question6' => 'string|max_length[1000]',
-            'question7' => 'string|max_length[1000]',
-            'g-recaptcha-response' => 'required' // Ensure CAPTCHA is submitted
+            'question7' => 'string|max_length[1000]'
+            // Note: g-recaptcha-response is optional for fallback mode
         ];
 
         if (!$this->validate($rules)) {

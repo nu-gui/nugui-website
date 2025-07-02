@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: nugui-web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./writable:/var/www/html/writable
+      - session_data:/var/www/html/writable/session
+    environment:
+      - CI_ENVIRONMENT=development
+    depends_on:
+      - db
+    networks:
+      - nugui-network
+
+  db:
+    image: mysql:8.0
+    container_name: nugui-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nugui_website}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secure_root_password_change_me}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - nugui-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: nugui-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secure_root_password_change_me}
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - nugui-network
+
+volumes:
+  db_data:
+  session_data:
+
+networks:
+  nugui-network:
+    driver: bridge
