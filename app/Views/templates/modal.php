@@ -9,7 +9,7 @@
  *     'content' => '<p>Are you sure you want to continue?</p>',
  *     'size' => 'medium', // small, medium, large, full
  *     'showCloseButton' => true,
- *     'footer' => '<button class="btn-primary">Confirm</button>',
+ *     'footer' => '<button class="btn btn--primary">Confirm</button>',
  *     'class' => 'additional-classes' // optional
  * ]) ?>
  */

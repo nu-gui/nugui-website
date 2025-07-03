@@ -228,16 +228,10 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
             Join 200+ operators who've scaled their business with NU GUI.
         </p>
         <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
-            <a href="/contact" 
-               style="display: inline-flex; align-items: center; padding: var(--spacing-md) var(--spacing-xl); background: white; color: var(--color-primary); text-decoration: none; border-radius: var(--border-radius); font-weight: 600; transition: all var(--transition-base);"
-               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large" style="background: white; color: var(--color-primary);">
                 Contact Sales
             </a>
-            <a href="/partner-program" 
-               style="display: inline-flex; align-items: center; padding: var(--spacing-md) var(--spacing-xl); background: transparent; color: white; text-decoration: none; border: 2px solid white; border-radius: var(--border-radius); font-weight: 600; transition: all var(--transition-base);"
-               onmouseover="this.style.background='white'; this.style.color='var(--color-primary)'"
-               onmouseout="this.style.background='transparent'; this.style.color='white'">
+            <a href="<?= base_url('/partner-program') ?>" class="btn btn--secondary btn--large" style="background: transparent; color: white; border: 2px solid white;">
                 Partner Program
             </a>
         </div>
@@ -259,22 +253,6 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
         margin-bottom: 10px;
         color: var(--color-primary);
         letter-spacing: -0.01em;
-    }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
     }
 @media (max-width: 768px) {
     .product-grid {

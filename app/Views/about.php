@@ -27,22 +27,6 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
-    }
     /* Custom styles for the about page to align with the Apple design system */
     .hero-section {
         background-color: var(--color-background);
@@ -308,8 +292,8 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         <p>From startups to tier-1 carriers, we power telecommunications success stories worldwide.
            Start with our free trial - no credit card required, no setup fees.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-            <a href="<?= base_url('/contact') ?>" class="btn-primary">Start Free Trial</a>
-            <a href="<?= base_url('/solutions') ?>" class="btn-secondary" style="background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); padding: 15px 40px; border-radius: 999px; font-size: 1.15rem; font-weight: 600; text-decoration: none;">View Case Studies</a>
+            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large">Start Free Trial</a>
+            <a href="<?= base_url('/solutions') ?>" class="btn btn--secondary btn--large">View Case Studies</a>
         </div>
     </div>
 </section>

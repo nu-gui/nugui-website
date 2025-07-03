@@ -16,22 +16,6 @@
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
-    }
     /* Custom styles for the partner program page */
     .hero-section {
         background-color: var(--color-background);
@@ -153,20 +137,6 @@
         max-w-2xl mx-auto;
         margin-bottom: 30px;
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: none;
-        background-color: var(--color-accent);
-        color: white;
-        transition: background-color 0.3s ease;
-    }
-    .btn-primary:hover {
-        background-color: var(--color-accent-hover);
-    }
     
     /* Popup Modal Styles */
     .popup-modal {
@@ -275,7 +245,7 @@
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
             Grow your business with our innovative solutions, dedicated support, and exclusive resources.
         </p>
-        <a href="#application-form" class="btn-primary">Apply Now</a>
+        <a href="#application-form" class="btn btn--primary btn--large">Apply Now</a>
     </div>
 </section>
 
@@ -331,7 +301,7 @@
     <div class="max-w-4xl mx-auto">
         <h2>Ready to Get Started?</h2>
         <p>Fill out the application form below to take the first step towards a successful partnership.</p>
-        <button onclick="openPopup()" class="btn-primary">Open Application Form</button>
+        <button onclick="openPopup()" class="btn btn--primary btn--large">Open Application Form</button>
     </div>
 </section>
 
@@ -368,7 +338,7 @@
                             <select id="countryBusiness" name="countryBusiness" required></select>
                         </div>
                         <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
-                            <button type="button" class="btn-primary" onclick="nextStep(2)">Next</button>
+                            <button type="button" class="btn btn--primary" onclick="nextStep(2)">Next</button>
                         </div>
                     </div>
                     <div id="step2" class="wizard-step">
@@ -390,8 +360,8 @@
                             <input type="text" id="Skype_Teams" name="Skype_Teams" required>
                         </div>
                         <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
-                            <button type="button" class="btn-primary" onclick="prevStep(1)">Previous</button>
-                            <button type="button" class="btn-primary" id="step2NextButton">Next</button>
+                            <button type="button" class="btn btn--secondary" onclick="prevStep(1)">Previous</button>
+                            <button type="button" class="btn btn--primary" id="step2NextButton">Next</button>
                         </div>
                         <div class="error" id="emailError" style="display: none;">Email is required.</div>
                     </div>
@@ -487,8 +457,8 @@
                             <textarea id="question7" name="question7" required></textarea>
                         </div>
                         <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
-                            <button type="button" class="btn-primary" onclick="prevStep(2)">Previous</button>
-                            <button type="submit" class="btn-primary">Submit</button>
+                            <button type="button" class="btn btn--secondary" onclick="prevStep(2)">Previous</button>
+                            <button type="submit" class="btn btn--primary">Submit</button>
                         </div>
                     </div>
                 </form>

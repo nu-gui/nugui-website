@@ -138,22 +138,6 @@ $this->setVar('twitterDescription', 'Scale your telecom operations with carrier-
         margin: 0 auto 30px;
         color: var(--color-text-secondary);
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
-    }
     .feature-card {
         background-color: var(--color-background);
         border-radius: 20px;
@@ -245,7 +229,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-sip-icon.jpg') ?>" alt="NU SIP Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU SIP - VoIP Platform</h3>
                 <p><strong>195+ countries</strong> coverage. <strong>0.001¢/min</strong> wholesale rates. HD voice quality with <strong>99.99% uptime</strong>.</p>
-                <button class="btn-primary" onclick="toggleDetails('sip-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('sip-details')">Details</button>
                 <div id="sip-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>High-Quality Voice & Global Coverage</li>
@@ -259,7 +243,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p><strong>98% delivery rates</strong>. Send <strong>1M+ messages/hour</strong>. Direct routes to <strong>200+ countries</strong>.</p>
-                <button class="btn-primary" onclick="toggleDetails('sms-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('sms-details')">Details</button>
                 <div id="sms-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Bulk Messaging & Two-Way SMS</li>
@@ -273,7 +257,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU CCS - Call Control</h3>
                 <p>AI fraud detection reduces losses by <strong>40%</strong>. Handle <strong>10,000+ CPS</strong>. Real-time billing integration.</p>
-                <button class="btn-primary" onclick="toggleDetails('ccs-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('ccs-details')">Details</button>
                 <div id="ccs-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Traffic Filtering & Management</li>
@@ -287,7 +271,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU DATA - Intelligence</h3>
                 <p><strong>99.5% accuracy</strong> in validation. Process <strong>100M+ records daily</strong>. Real-time HLR/MNP lookups.</p>
-                <button class="btn-primary" onclick="toggleDetails('data-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('data-details')">Details</button>
                 <div id="data-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Phone Validation & HLR Lookup</li>
@@ -300,7 +284,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-gui-banner.jpg') ?>" alt="NU GUI Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU GUI - Management Portal</h3>
                 <p>White-label ready. <strong>React + Node.js</strong> stack. Real-time dashboards with <strong>sub-second updates</strong>.</p>
-                <button class="btn-primary" onclick="toggleDetails('gui-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('gui-details')">Details</button>
                 <div id="gui-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Custom UI/UX & White-Label Solutions</li>
@@ -313,7 +297,7 @@ function toggleDetails(id) {
                 <img src="<?= base_url('assets/images/nu-ccs-banner.jpg') ?>" alt="Telecom Infrastructure Icon" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>Complete Infrastructure</h3>
                 <p>Turnkey deployment in <strong>48 hours</strong>. Includes servers, interconnects, and <strong>24/7 NOC support</strong>.</p>
-                <button class="btn-primary" onclick="toggleDetails('infra-details')">Details</button>
+                <button class="btn btn--primary" onclick="toggleDetails('infra-details')">Details</button>
                 <div id="infra-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Carrier Integration</li>
@@ -528,8 +512,8 @@ function toggleDetails(id) {
         <p>Join 200+ operators worldwide. No credit card required. Full platform access.<br>
            Average time to first revenue: 15 days. ROI guarantee or money back.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-            <a href="<?= base_url('/contact'); ?>" class="btn-primary">Start Free Trial</a>
-            <a href="<?= base_url('/contact'); ?>" class="btn-secondary" style="background: transparent; color: var(--color-primary); border: 2px solid var(--color-primary); padding: 15px 40px; border-radius: 999px; font-size: 1.15rem; font-weight: 600; text-decoration: none;">Schedule Demo</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Start Free Trial</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Schedule Demo</a>
         </div>
     </div>
 </section>

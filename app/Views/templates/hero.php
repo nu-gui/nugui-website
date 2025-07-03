@@ -56,7 +56,7 @@ $contentAlignment = isset($centered) && $centered ? 'text-center' : '';
             <?php if (isset($primaryButton) || isset($secondaryButton)): ?>
             <div class="flex flex-col sm:flex-row gap-4 <?= $centered ? 'justify-center' : '' ?> fade-in animate-on-scroll" style="animation-delay: 0.4s;">
                 <?php if (isset($primaryButton)): ?>
-                <a href="<?= esc($primaryButton['link'], 'attr') ?>" class="btn-modern btn-primary">
+                <a href="<?= esc($primaryButton['link'], 'attr') ?>" class="btn btn--primary btn--large">
                     <?= esc($primaryButton['text']) ?>
                 </a>
                 <?php endif; ?>

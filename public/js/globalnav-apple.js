@@ -111,9 +111,16 @@ class GlobalNav {
 
       // Auto-hide navigation on scroll down (except when menu is open)
       if (!this.isMenuOpen) {
-        if (this.scrollDirection === 'down' && currentScrollY > 100) {
+        // Always show nav when near the top
+        if (currentScrollY <= 150) {
+          this.globalnav.classList.remove('globalnav-hidden');
+        } 
+        // Hide when scrolling down past 300px
+        else if (this.scrollDirection === 'down' && currentScrollY > 300) {
           this.globalnav.classList.add('globalnav-hidden');
-        } else if (this.scrollDirection === 'up') {
+        } 
+        // Show when scrolling up (and not near top)
+        else if (this.scrollDirection === 'up' && currentScrollY > 150) {
           this.globalnav.classList.remove('globalnav-hidden');
         }
       }

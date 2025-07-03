@@ -42,32 +42,6 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         background-clip: text;
         color: transparent;
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #fff;
-        border: 2.5px solid transparent;
-        box-shadow:
-            0 0 0 3px rgba(0,0,0,0.18),
-            0 0 12px 2px var(--color-accent),
-            0 4px 16px rgba(0,0,0,0.22);
-        position: relative;
-        transition: background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
-        border-color: var(--color-primary);
-        box-shadow:
-            0 0 0 3px var(--color-primary),
-            0 0 18px 4px var(--color-accent),
-            0 8px 32px rgba(0,0,0,0.32);
-    }
     /* Custom styles for the home page to align with the Apple design system */
     .hero-section {
         background-color: var(--color-background);
@@ -172,31 +146,6 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         margin-bottom: 30px;
         color: var(--color-text-secondary);
     }
-    .btn-primary, .btn-secondary {
-        display: inline-block;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        margin: 0 10px;
-    }
-    .btn-primary {
-        background-color: var(--color-accent);
-        color: white;
-    }
-    .btn-primary:hover {
-        background-color: var(--color-accent-hover);
-    }
-    .btn-secondary {
-        background-color: var(--color-background-secondary);
-        color: var(--color-text-primary);
-        border: 1px solid var(--color-border);
-    }
-    .btn-secondary:hover {
-        background-color: var(--color-border);
-    }
 </style>
 
 <!-- Hero Section -->
@@ -225,8 +174,8 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
             </div>
         </div>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="<?= base_url('/solutions'); ?>" class="btn-primary">Get Started Free</a>
-            <a href="<?= base_url('/contact'); ?>" class="btn-secondary">Request Demo</a>
+            <a href="<?= base_url('/solutions'); ?>" class="btn btn--primary btn--large">Get Started Free</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Request Demo</a>
         </div>
     </div>
 </section>
@@ -247,28 +196,28 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
                 <h3>NU SIP - VoIP Platform</h3>
                 <p>Enterprise VoIP solution with HD voice quality, global coverage in 195+ countries,
                    and seamless PBX integration. Perfect for call centers and enterprises.</p>
-                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn-primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
                 <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon">
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p>Bulk SMS platform with 98% delivery rates, real-time analytics, and RESTful APIs.
                    Send millions of messages instantly to 200+ countries.</p>
-                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn-primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
                 <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon">
                 <h3>NU CCS - Call Control System</h3>
                 <p>Next-gen call management with real-time billing, AI-powered fraud detection,
                    and comprehensive CDR analytics. Reduce revenue leakage by up to 40%.</p>
-                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn-primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
                 <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon">
                 <h3>NU DATA - Intelligence Platform</h3>
                 <p>Telecom data validation and enrichment with 99.5% accuracy. HLR lookups,
                    number portability checks, and real-time verification APIs.</p>
-                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn-primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--primary">Learn More</a>
             </div>
         </div>
     </div>
@@ -364,8 +313,8 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
             with 24/7 support, dedicated account management, and no setup fees.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="<?= base_url('/contact'); ?>" class="btn-primary">Start Free Trial</a>
-            <a href="<?= base_url('/partner-program'); ?>" class="btn-secondary">Become a Partner</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Start Free Trial</a>
+            <a href="<?= base_url('/partner-program'); ?>" class="btn btn--secondary btn--large">Become a Partner</a>
         </div>
     </div>
 </section>

@@ -240,7 +240,7 @@ $this->setVar('twitterDescription', 'Latest telecom trends, technical guides, an
             <?= csrf_field() ?>
             <input type="email" name="email" placeholder="Enter your email" required
                    style="flex: 1; min-width: 250px; padding: 1rem; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-primary);">
-            <button type="submit" class="btn-primary" style="padding: 1rem 2rem;">
+            <button type="submit" class="btn btn--primary" style="padding: 1rem 2rem;">
                 Subscribe
             </button>
         </form>
