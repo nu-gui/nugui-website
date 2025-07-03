@@ -1,0 +1,32 @@
+{
+  "name": "nugui-website",
+  "version": "1.0.0",
+  "description": "A professional business website built with CodeIgniter4 framework, featuring partner program registration, responsive design, and comprehensive business solutions showcase.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./public/assets/css/tailwind.css --watch",
+    "build-css-prod": "tailwindcss -i ./src/input.css -o ./public/assets/css/tailwind.css --minify",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nu-gui/nugui-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nu-gui/nugui-website/issues"
+  },
+  "homepage": "https://github.com/nu-gui/nugui-website#readme",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

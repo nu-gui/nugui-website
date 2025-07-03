@@ -60,3 +60,6 @@ composer.phar
 ehthumbs.db
 Thumbs.db
 vendor/
+# CodeIgniter Debug Toolbar cache files
+writable/debugbar/
+!writable/debugbar/.gitkeep
