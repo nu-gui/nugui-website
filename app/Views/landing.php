@@ -309,6 +309,12 @@
     </style>
 </head>
 <body>
+    <!-- Preloaded home page container (behind landing page) -->
+    <div class="home-page-container" id="homePageContainer">
+        <iframe class="home-page-iframe" id="homePageIframe" src="<?= base_url('/home') ?>" title="Home Page"></iframe>
+    </div>
+
+    <!-- Landing page overlay -->
     <div class="landing-container" id="landingContainer">
         <div class="logo-animation-container">
             <img src="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png') ?>" alt="NU GUI Icon" class="logo-icon" id="logoIcon">
@@ -339,10 +345,13 @@
             constructor() {
                 this.audioEnabled = true;
                 this.landingContainer = document.getElementById('landingContainer');
+                this.homePageContainer = document.getElementById('homePageContainer');
+                this.homePageIframe = document.getElementById('homePageIframe');
                 this.audioToggle = document.getElementById('audioToggle');
                 this.skipButton = document.getElementById('skipIntro');
                 this.logoSpinSound = document.getElementById('logoSpinSound');
                 this.logoTransformSound = document.getElementById('logoTransformSound');
+                this.homePageLoaded = false;
                 
                 this.init();
             }
@@ -351,6 +360,9 @@
                 // Set initial audio volume
                 this.logoSpinSound.volume = 0.3;
                 this.logoTransformSound.volume = 0.3;
+
+                // Setup home page preloading
+                this.setupHomePagePreloading();
 
                 // Event listeners
                 this.audioToggle.addEventListener('click', () => this.toggleAudio());
@@ -363,7 +375,24 @@
                 this.startAnimationSequence();
 
                 // Fallback redirect in case animation event doesn't fire
-                setTimeout(() => this.redirectToHome(), 6000);
+                setTimeout(() => this.transitionToHomePage(), 6000);
+            }
+
+            setupHomePagePreloading() {
+                // Monitor iframe loading
+                this.homePageIframe.addEventListener('load', () => {
+                    console.log('Home page preloaded successfully');
+                    this.homePageLoaded = true;
+                });
+
+                // Handle iframe loading errors
+                this.homePageIframe.addEventListener('error', () => {
+                    console.warn('Home page preloading failed, will use traditional redirect');
+                    this.homePageLoaded = false;
+                });
+
+                // Start preloading immediately
+                console.log('Starting home page preload...');
             }
 
             setupAnimationListener() {
@@ -372,9 +401,9 @@
                 // Listen for animation end event
                 logoContainer.addEventListener('animationend', (event) => {
                     if (event.animationName === 'logoGrowMoveAndFade' || event.animationName === 'logoGrowMoveAndFadeMobile') {
-                        console.log('Logo animation completed, starting redirect...');
-                        // Start redirect immediately when logo finishes fading
-                        this.redirectToHome();
+                        console.log('Logo animation completed, starting transition...');
+                        // Start transition immediately when logo finishes fading
+                        this.transitionToHomePage();
                     }
                 });
 
@@ -390,11 +419,11 @@
                     const computedStyle = window.getComputedStyle(logoContainer);
                     const opacity = parseFloat(computedStyle.opacity);
                     
-                    // Trigger redirect when logo is nearly invisible (opacity < 0.05)
+                    // Trigger transition when logo is nearly invisible (opacity < 0.05)
                     if (opacity < 0.05) {
-                        console.log('Logo opacity below threshold, starting redirect...');
+                        console.log('Logo opacity below threshold, starting transition...');
                         redirectTriggered = true;
-                        this.redirectToHome();
+                        this.transitionToHomePage();
                         return;
                     }
                     
@@ -431,20 +460,32 @@
             }
 
             skipIntro() {
-                this.redirectToHome();
+                this.transitionToHomePage();
             }
 
-            redirectToHome() {
-                // Add fade out class
-                this.landingContainer.classList.add('fade-out');
+            transitionToHomePage() {
+                console.log('Starting transition to home page...');
                 
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
-                
-                // Redirect after shorter fade completes
-                setTimeout(() => {
-                    window.location.href = '<?= base_url('/home') ?>';
-                }, 800);
+
+                if (this.homePageLoaded) {
+                    // Seamless transition: fade out landing page while revealing home page
+                    this.homePageContainer.classList.add('visible');
+                    this.landingContainer.classList.add('fade-out');
+                    
+                    // After landing page fades out, navigate to actual home page
+                    setTimeout(() => {
+                        window.location.replace('<?= base_url('/home') ?>');
+                    }, 800);
+                } else {
+                    // Fallback: traditional redirect if preload failed
+                    console.log('Using fallback redirect method');
+                    this.landingContainer.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = '<?= base_url('/home') ?>';
+                    }, 800);
+                }
             }
         }
 
