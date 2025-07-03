@@ -1,208 +1,274 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>
-Partner Program
-<?= $this->endSection() ?>
-
-<?= $this->section('styles') ?>
+<?= $this->section('content') ?>
 <style>
-    .partner-overview, .why-partner, .exclusive-benefits, .how-to-partner {
-        text-align: left;
-        margin-bottom: 2rem;
-        padding: 0 20px;
+    /* Custom styles for the partner program page */
+    .hero-section {
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        text-align: center;
+        padding: 80px 20px;
     }
-
-    .partner-overview h2, .why-partner h2, .exclusive-benefits h2, .how-to-partner h2 {
-        font-size: 2rem;
-        color: #00A2E8;
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
     }
-
-    .partner-overview p, .why-partner p, .exclusive-benefits ul, .how-to-partner ol {
-        color: #e0e0e0;
+    .hero-section p {
+        font-size: 1.5rem;
+        max-w-3xl mx-auto;
+        color: var(--color-text-secondary);
+        margin-bottom: 30px;
     }
-
-    .partner-overview ul, .exclusive-benefits ul, .how-to-partner ol {
-        list-style: none;
-        padding: 0;
+    .section {
+        padding: 80px 20px;
+        background-color: var(--color-background-secondary);
     }
-
-    .partner-overview ul li, .exclusive-benefits ul li, .how-to-partner ol li {
-        margin-bottom: 1rem;
+    .section.alt {
+        background-color: var(--color-background);
     }
-
-    .button-wrapper {
-        margin-top: 1rem;
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .section-header p {
+        font-size: 1.2rem;
+        max-w-3xl mx-auto;
+        color: var(--color-text-secondary);
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .benefit-card {
+        background-color: var(--color-background);
+        border-radius: 20px;
+        padding: 40px;
         text-align: center;
     }
-
-    .button-wrapper button {
-        margin: 10px 0;
+    .benefit-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
     }
-
-    .image-frame {
-        position: relative;
-        width: 100%;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        overflow: hidden;
-        margin: 20px 0;
-        border: 10px solid #333; /* Frame for the image */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add some shadow for better effect */
+    .benefit-card p {
+        color: var(--color-text-secondary);
     }
-
-    .image-frame img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Ensure the image covers the area and maintains aspect ratio */
-        object-position: center; /* Center the image within the frame */
+    .how-it-works-steps {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        gap: 30px;
     }
-
-    /* Media Queries */
-    @media (max-width: 1200px) {
-        .image-frame {
-            padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
-        }
+    .step {
+        max-width: 300px;
     }
-
-    @media (max-width: 768px) {
-        .image-frame {
-            padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
-        }
+    .step h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
     }
-
-    @media (max-width: 480px) {
-        .image-frame {
-            padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
-        }
+    .step p {
+        color: var(--color-text-secondary);
     }
-
+    .cta-section {
+        background: var(--color-background);
+        padding: 80px 20px;
+        text-align: center;
+    }
+    .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .cta-section p {
+        font-size: 1.2rem;
+        max-w-2xl mx-auto;
+        margin-bottom: 30px;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        background-color: var(--color-accent);
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: var(--color-accent-hover);
+    }
+    
     /* Popup Modal Styles */
     .popup-modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1000; /* Sit on top */
-        left: 0;
+        display: none;
+        position: fixed;
         top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    }
-
-    .popup-content {
-        background-color: #1a1a1a;
-        margin: 15% auto; /* 15% from the top and centered */
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        overflow-y: auto;
         padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Could be more or less, depending on screen size */
-        border-radius: 10px;
     }
-
-    .popup-content h2 {
-        color: #00A2E8;
+    
+    .popup-content {
+        background-color: var(--color-background);
+        margin: 50px auto;
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 600px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
-
-    .form-group {
-        margin-bottom: 1rem;
+    
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 30px;
+        font-weight: 300;
+        cursor: pointer;
+        color: var(--color-text-secondary);
+        transition: color 0.3s ease;
     }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: #e0e0e0;
+    
+    .close:hover {
+        color: var(--color-text-primary);
     }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 0.75rem;
-        border-radius: 4px;
-        border: 1px solid #333;
-        background-color: #2a2a2a;
-        color: #e0e0e0;
-        font-size: 1rem;
-        box-sizing: border-box;
-    }
-
-    .button-container {
-        text-align: right;
-        margin-top: 1rem;
-    }
-
+    
+    /* Wizard Steps */
     .wizard-step {
         display: none;
     }
-
+    
     .wizard-step.active {
         display: block;
     }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
+    
+    .wizard-step h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        color: var(--color-text-primary);
     }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
+    
+    .button-container {
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+    
+    .button-container button {
+        padding: 12px 24px;
+        border-radius: 10px;
+        border: none;
+        font-size: 1rem;
+        font-weight: 500;
         cursor: pointer;
+        transition: all 0.3s ease;
     }
-
+    
+    .button-container button[type="button"] {
+        background-color: var(--color-background-secondary);
+        color: var(--color-text-primary);
+        border: 1px solid var(--color-border);
+    }
+    
+    .button-container button[type="button"]:hover {
+        background-color: var(--color-border);
+    }
+    
+    .button-container button[type="submit"] {
+        background-color: var(--color-accent);
+        color: white;
+    }
+    
+    .button-container button[type="submit"]:hover {
+        background-color: var(--color-accent-hover);
+    }
+    
     .error {
-        color: red;
-        font-size: 0.9rem;
+        color: #ff3b30;
+        font-size: 0.875rem;
+        margin-top: 5px;
     }
 </style>
-<?= $this->endSection() ?>
 
-<?= $this->section('content') ?>
-<div class="top-border"></div>
-<div class="main-content">
-    <section class="partner-overview container">
-        <h2>Partner with Us</h2>
-        <p>Join the NU GUI Partner Program and unlock exclusive benefits designed to propel your business to new heights. As a valued partner, you will receive personalized support, cutting-edge marketing materials, and comprehensive training programs that ensure your success.</p>
-        <p>At NU GUI, we focus on building long-lasting partnerships with businesses in the telecommunications and direct marketing industries. We do not service the end-user clients directly but pride ourselves on the success of our partners, which is our preferred business model. Our solutions are tailored to meet the specific needs of our business partners, offering co-branding and white labeling options for each of our services.</p>
-        <div class="button-wrapper">
-            <button onclick="openPopup()">Apply Now</button>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="max-w-4xl mx-auto">
+        <h1>Join the NU GUI Partner Program</h1>
+        <p>Grow your business with our innovative solutions, dedicated support, and exclusive resources.</p>
+        <a href="#application-form" class="btn-primary">Apply Now</a>
+    </div>
+</section>
+
+<!-- Why Partner With Us -->
+<section class="section alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Why Partner with NU GUI?</h2>
+            <p>Gain a competitive edge with our carrier-grade solutions and collaborative approach.</p>
         </div>
-    </section>
-
-    <section class="why-partner container">
-        <h2>Why Partner with NU GUI?</h2>
-        <p>By partnering with us, you'll gain access to a range of exclusive benefits and resources tailored to help you grow and succeed in a competitive market. Our program is designed to provide you with everything you need to enhance your business operations and achieve your goals.</p>
-        <p>NU GUI has helped build niche software solutions that cater specifically to the needs of our partners. Our expertise in telecommunications and direct marketing allows us to deliver high-quality, reliable, and scalable solutions that drive business growth. Additionally, our co-branding and white labeling options enable our partners to offer these solutions under their own brand, strengthening their market presence.</p>
-        <div class="image-frame">
-            <img src="<?= base_url('assets/images/why-partner.jpg') ?>" alt="Image representing the benefits of partnership with NU GUI">
+        <div class="card-grid">
+            <div class="benefit-card">
+                <h3>Exclusive Resources</h3>
+                <p>Access our latest tools, technologies, and industry insights to stay ahead of the curve.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Dedicated Support</h3>
+                <p>Enjoy personalized support from our expert team, dedicated to your success.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Co-Branding Options</h3>
+                <p>Offer our solutions under your own brand with our white-labeling and co-branding opportunities.</p>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="exclusive-benefits container">
-        <h2>Exclusive Benefits</h2>
-        <ul>
-            <li><strong>Access to Exclusive Resources:</strong> Get privileged access to our latest tools, technologies, and industry insights to stay ahead of the curve.</li>
-            <li><strong>Dedicated Support:</strong> Enjoy personalized support from our expert team, dedicated to assisting you with any challenges you may face.</li>
-            <li><strong>Marketing Materials:</strong> Receive high-quality marketing materials to effectively promote our solutions and drive your business growth.</li>
-            <li><strong>Training Programs:</strong> Participate in comprehensive training programs to enhance your skills and knowledge, ensuring you can make the most of our partnership.</li>
-            <li><strong>Co-Branding and White Labeling:</strong> Offer our solutions under your brand to strengthen your market presence and build customer loyalty.</li>
-            <li><strong>Tailored Solutions:</strong> Leverage our expertise to develop niche software solutions that meet the specific needs of your business.</li>
-        </ul>
-    </section>
+<!-- How It Works -->
+<section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>How to Become a Partner</h2>
+        </div>
+        <div class="how-it-works-steps">
+            <div class="step">
+                <h3>1. Apply</h3>
+                <p>Complete our straightforward application form to express your interest.</p>
+            </div>
+            <div class="step">
+                <h3>2. Get Approved</h3>
+                <p>Our team will review your application and get back to you promptly.</p>
+            </div>
+            <div class="step">
+                <h3>3. Start Growing</h3>
+                <p>Leverage our resources and solutions to accelerate your business growth.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section class="how-to-partner container">
-        <h2>How to Become a Partner</h2>
-        <ol>
-            <li><strong>Fill Out the Application Form:</strong> Complete our straightforward application form to express your interest in becoming a partner.</li>
-            <li><strong>Receive Approval and Onboarding:</strong> Once approved, you'll undergo a seamless onboarding process to get you up and running quickly.</li>
-            <li><strong>Start Benefiting from the Program:</strong> Begin leveraging the exclusive benefits and resources available to you as a NU GUI partner to accelerate your business growth.</li>
-        </ol>
-    </section>
-</div>
+<!-- Application Form CTA -->
+<section id="application-form" class="cta-section">
+    <div class="max-w-4xl mx-auto">
+        <h2>Ready to Get Started?</h2>
+        <p>Fill out the application form below to take the first step towards a successful partnership.</p>
+        <button onclick="openPopup()" class="btn-primary">Open Application Form</button>
+    </div>
+</section>
 
 <!-- Popup Modal -->
 <div id="popup-modal" class="popup-modal" role="dialog" aria-labelledby="form-title" aria-hidden="true">
@@ -368,11 +434,70 @@ Partner Program
 </div>
 
 <script>
+    // Popup functions
+    function openPopup() {
+        const modal = document.getElementById('popup-modal');
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closePopup() {
+        const modal = document.getElementById('popup-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('popup-modal');
+        if (event.target === modal) {
+            closePopup();
+        }
+    }
+    
+    // Wizard navigation functions
+    function nextStep(step) {
+        const currentStep = document.querySelector('.wizard-step.active');
+        const nextStep = document.getElementById('step' + step);
+        
+        if (currentStep && nextStep) {
+            currentStep.classList.remove('active');
+            nextStep.classList.add('active');
+        }
+    }
+    
+    function prevStep(step) {
+        const currentStep = document.querySelector('.wizard-step.active');
+        const prevStep = document.getElementById('step' + step);
+        
+        if (currentStep && prevStep) {
+            currentStep.classList.remove('active');
+            prevStep.classList.add('active');
+        }
+    }
+    
     // Initialize partner form once DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
         // Use the functions from script.js which should already be loaded
         if (typeof initializePartnerForm === 'function') {
             initializePartnerForm();
+        }
+        
+        // Handle step 2 next button
+        const step2NextButton = document.getElementById('step2NextButton');
+        if (step2NextButton) {
+            step2NextButton.addEventListener('click', function() {
+                const email = document.getElementById('contactEmail').value;
+                if (email) {
+                    nextStep(3);
+                } else {
+                    document.getElementById('emailError').style.display = 'block';
+                }
+            });
         }
     });
 </script>

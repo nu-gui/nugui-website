@@ -1,265 +1,244 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-20 lg:py-28">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Our <span class="text-gradient">Products</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
-                Discover the innovative telecommunications solutions offered by NU GUI, each designed to enhance your business operations and drive growth.
-            </p>
-            
-            <!-- Quick Navigation -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                <a href="#nu-sip" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-white hover:bg-white/20 transition-all duration-200 group">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                            </svg>
-                        </div>
-                        <span class="font-semibold">NU SIP</span>
-                        <span class="text-sm text-gray-300">VoIP Services</span>
-                    </div>
-                </a>
-                
-                <a href="#nu-sms" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-white hover:bg-white/20 transition-all duration-200 group">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                        </div>
-                        <span class="font-semibold">NU SMS</span>
-                        <span class="text-sm text-gray-300">Messaging</span>
-                    </div>
-                </a>
-                
-                <a href="#nu-ccs" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-white hover:bg-white/20 transition-all duration-200 group">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                            </svg>
-                        </div>
-                        <span class="font-semibold">NU CCS</span>
-                        <span class="text-sm text-gray-300">Call Control</span>
-                    </div>
-                </a>
-                
-                <a href="#nu-data" class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-white hover:bg-white/20 transition-all duration-200 group">
-                    <div class="flex flex-col items-center">
-                        <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                            </svg>
-                        </div>
-                        <span class="font-semibold">NU DATA</span>
-                        <span class="text-sm text-gray-300">Data Services</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NU SIP Product -->
-<section id="nu-sip" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="lg:pr-8">
-                <img src="<?= base_url('assets/images/nu-sip-banner.jpg') ?>" alt="NU SIP VoIP Services" class="w-full rounded-xl shadow-xl">
-            </div>
-            <div>
-                <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-4">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                    VoIP Services
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">NU SIP</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    NU SIP offers advanced VoIP services designed to streamline your business communications. Our VoIP solutions provide crystal-clear voice quality, reliable connectivity, and comprehensive features that enhance productivity and collaboration.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Advanced Proxy Interconnect</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Enhanced RTP Media</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">DID Database Management</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Smart CLI Management</span>
-                    </div>
-                </div>
-                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn-primary text-lg px-8 py-3">
-                    Learn More About NU SIP
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NU SMS Product -->
-<section id="nu-sms" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 text-sm font-medium rounded-full mb-4">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                    Messaging Platform
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">NU SMS</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    NU SMS provides a comprehensive direct messaging service that enables businesses to communicate effectively with their customers. Our platform supports bulk SMS, automated messaging, and real-time delivery tracking.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">RESTful API Integration</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Bulk SMS Campaigns</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Real-time Delivery</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-green-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Delivery Reports</span>
-                    </div>
-                </div>
-                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn-primary text-lg px-8 py-3">
-                    Learn More About NU SMS
-                </a>
-            </div>
-            <div class="lg:pl-8">
-                <img src="<?= base_url('assets/images/nu-sms-banner.jpg') ?>" alt="NU SMS Messaging Services" class="w-full rounded-xl shadow-xl">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NU CCS Product -->
-<section id="nu-ccs" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="lg:pr-8">
-                <img src="<?= base_url('assets/images/nu-ccs-banner.jpg') ?>" alt="NU CCS Call Control Server" class="w-full rounded-xl shadow-xl">
-            </div>
-            <div>
-                <div class="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 text-sm font-medium rounded-full mb-4">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                    </svg>
-                    Call Control Server
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">NU CCS</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    NU CCS is a robust telecoms software call control server that provides comprehensive call management solutions. Designed for telecom operators and large enterprises, NU CCS offers advanced features to manage, monitor, and optimize voice communications.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Traffic Filtering</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Security & Monitoring</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Advanced Reporting</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-purple-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">API Integration</span>
-                    </div>
-                </div>
-                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn-primary text-lg px-8 py-3">
-                    Learn More About NU CCS
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- NU DATA Product -->
-<section id="nu-data" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <div class="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-800 text-sm font-medium rounded-full mb-4">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                    Data Enrichment
-                </div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">NU DATA</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    NU DATA offers state-of-the-art data enrichment services that help businesses enhance their data quality and gain valuable insights. Our services ensure your business decisions are based on accurate and comprehensive information.
-                </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Data Cleansing</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Data Validation</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">Real-Time Processing</span>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-orange-600 rounded-full mr-3"></div>
-                        <span class="text-gray-700 font-medium">GDPR Compliant</span>
-                    </div>
-                </div>
-                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn-primary text-lg px-8 py-3">
-                    Learn More About NU DATA
-                </a>
-            </div>
-            <div class="lg:pl-8">
-                <img src="<?= base_url('assets/images/nu-data-banner.jpg') ?>" alt="NU DATA Enrichment Services" class="w-full rounded-xl shadow-xl">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action -->
-<section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
-            Ready to Get Started?
-        </h2>
-        <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Choose the telecommunications solution that best fits your business needs, or contact us to discuss a custom implementation.
+<!-- Apple-Style Products Hero -->
+<section class="hero-section" style="padding-top: calc(44px + var(--spacing-5xl)); background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 100%);">
+    <div class="container" style="max-width: 980px; text-align: center; padding: var(--spacing-5xl) var(--spacing-lg);">
+        <h1 style="font-family: var(--font-family-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-lg); line-height: 1.1;">
+            Our Products
+        </h1>
+        <p style="font-size: var(--font-size-xl); color: var(--color-text-secondary); margin-bottom: var(--spacing-3xl); max-width: 680px; margin-left: auto; margin-right: auto; line-height: var(--line-height-relaxed);">
+            Discover innovative telecommunications solutions designed to enhance your business operations and drive growth in the digital era.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="<?= base_url('/contact'); ?>" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                Contact Sales Team
+    </div>
+</section>
+
+<!-- Product Grid -->
+<section style="padding: var(--spacing-5xl) 0; background: var(--color-background);">
+    <div class="container" style="max-width: 1024px;">
+        <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-3xl);">
+            
+            <!-- NU SIP Product -->
+            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
+                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">
+                        NU SIP
+                    </h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+                        Advanced VoIP Services
+                    </p>
+                </div>
+                <p style="color: var(--color-text-secondary); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-lg);">
+                    NU SIP offers advanced VoIP services designed to streamline your business communications. Enjoy crystal-clear voice quality, reliable connectivity, and features that enhance productivity.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-xl);">
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Advanced Proxy Interconnect
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Enhanced RTP Media Interconnect
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Advanced DID Database Management
+                    </li>
+                </ul>
+                <a href="/solutions#nu-sip" 
+                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-primary); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
+                   onmouseover="this.style.background='var(--color-primary-hover)'"
+                   onmouseout="this.style.background='var(--color-primary)'">
+                    Learn More
+                    <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- NU SMS Product -->
+            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
+                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-success), #4ade80); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">
+                        NU SMS
+                    </h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+                        Direct Messaging Services
+                    </p>
+                </div>
+                <p style="color: var(--color-text-secondary); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-lg);">
+                    NU SMS provides comprehensive direct messaging services that enable businesses to communicate effectively with their customers through reliable SMS delivery.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-xl);">
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Bulk SMS Services
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Automated Messaging
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Real-time Delivery Tracking
+                    </li>
+                </ul>
+                <a href="/solutions#nu-sms" 
+                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-success); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
+                   onmouseover="this.style.background='#16a34a'"
+                   onmouseout="this.style.background='var(--color-success)'">
+                    Learn More
+                    <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- NU CCS Product -->
+            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
+                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-secondary), #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">
+                        NU CCS
+                    </h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+                        Call Control Server
+                    </p>
+                </div>
+                <p style="color: var(--color-text-secondary); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-lg);">
+                    NU CCS provides advanced call control and routing capabilities for telecommunications providers, enabling efficient call management and billing.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-xl);">
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Advanced Call Routing
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Real-time Billing
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Traffic Management
+                    </li>
+                </ul>
+                <a href="/solutions#nu-ccs" 
+                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-secondary); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
+                   onmouseover="this.style.background='#7c3aed'"
+                   onmouseout="this.style.background='var(--color-secondary)'">
+                    Learn More
+                    <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- NU DATA Product -->
+            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
+                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
+                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                <div style="text-align: center; margin-bottom: var(--spacing-xl);">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-warning), #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-family: var(--font-family-display); font-size: var(--font-size-xl); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-sm);">
+                        NU DATA
+                    </h3>
+                    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+                        Data Enrichment Services
+                    </p>
+                </div>
+                <p style="color: var(--color-text-secondary); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-lg);">
+                    NU DATA offers state-of-the-art data enrichment services that help businesses enhance their data quality and gain valuable insights for better decision making.
+                </p>
+                <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-xl);">
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Data Cleansing & Validation
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Phone Number Verification
+                    </li>
+                    <li style="color: var(--color-text-secondary); margin-bottom: var(--spacing-xs); display: flex; align-items: center;">
+                        <span style="color: var(--color-success); margin-right: var(--spacing-sm);">✓</span>
+                        Right Party Contact (RPC)
+                    </li>
+                </ul>
+                <a href="/solutions#nu-data" 
+                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-warning); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
+                   onmouseover="this.style.background='#d97706'"
+                   onmouseout="this.style.background='var(--color-warning)'">
+                    Learn More
+                    <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section style="padding: var(--spacing-5xl) 0; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);">
+    <div class="container" style="max-width: 680px; text-align: center;">
+        <h2 style="font-family: var(--font-family-display); font-size: var(--font-size-3xl); font-weight: 600; color: white; margin-bottom: var(--spacing-lg);">
+            Ready to Transform Your Business?
+        </h2>
+        <p style="font-size: var(--font-size-lg); color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-2xl); line-height: var(--line-height-relaxed);">
+            Discover how our products can streamline your operations and drive growth. Contact our team to learn more about our solutions.
+        </p>
+        <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
+            <a href="/contact" 
+               style="display: inline-flex; align-items: center; padding: var(--spacing-md) var(--spacing-xl); background: white; color: var(--color-primary); text-decoration: none; border-radius: var(--border-radius); font-weight: 600; transition: all var(--transition-base);"
+               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                Contact Sales
             </a>
-            <a href="<?= base_url('/solutions'); ?>" class="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200">
-                View Detailed Solutions
+            <a href="/partner-program" 
+               style="display: inline-flex; align-items: center; padding: var(--spacing-md) var(--spacing-xl); background: transparent; color: white; text-decoration: none; border: 2px solid white; border-radius: var(--border-radius); font-weight: 600; transition: all var(--transition-base);"
+               onmouseover="this.style.background='white'; this.style.color='var(--color-primary)'"
+               onmouseout="this.style.background='transparent'; this.style.color='white'">
+                Partner Program
             </a>
         </div>
     </div>
 </section>
+
+<!-- Responsive Styles -->
+<style>
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-xl) !important;
+    }
+    
+    .product-card {
+        text-align: center;
+    }
+}
+</style>
+
 <?= $this->endSection() ?>
