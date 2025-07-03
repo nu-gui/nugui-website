@@ -5,14 +5,17 @@
 
 :root {
   /* Colors - Apple-inspired palette */
-  --color-primary: #007aff;
-  --color-primary-hover: #0056b3;
-  --color-primary-light: #5ac8fa;
-  --color-secondary: #5856d6;
-  --color-accent: #ff3b30;
-  --color-success: #34c759;
-  --color-warning: #ff9500;
-  --color-info: #5ac8fa;
+  /* BRAND COLORS - Replace with your logo's hex codes */
+  --color-primary: #00b894; /* Example: teal (replace with your brand) */
+  --color-primary-hover: #00997a;
+  --color-primary-light: #26e6a6;
+  --color-secondary: #0984e3; /* Example: blue (replace with your brand) */
+  --color-accent: #fdcb6e; /* Example: gold accent (replace with your brand) */
+  --color-accent-secondary: #e17055; /* Example: coral accent */
+  --color-accent-hover: #ffeaa7;
+  --color-success: #00cec9;
+  --color-warning: #fdcb6e;
+  --color-info: #74b9ff;
   
   /* Text Colors */
   --color-text-primary: #1d1d1f;
@@ -135,18 +138,18 @@
     --color-text-tertiary: #86868b;
     --color-text-quaternary: #6d6d70;
     
-    --color-background: #000000;
-    --color-background-secondary: #1c1c1e;
-    --color-background-tertiary: #2c2c2e;
-    --color-background-elevated: #1c1c1e;
+    --color-background: #18181A;
+    --color-background-secondary: #232326;
+    --color-background-tertiary: #232326;
+    --color-background-elevated: #232326;
     
     --color-border: #38383a;
     --color-separator: #48484a;
     --color-divider: #3a3a3c;
     
-    --color-surface: #1c1c1e;
-    --color-surface-secondary: #2c2c2e;
-    --color-surface-tertiary: #3a3a3c;
+    --color-surface: #232326;
+    --color-surface-secondary: #232326;
+    --color-surface-tertiary: #232326;
   }
 }
 

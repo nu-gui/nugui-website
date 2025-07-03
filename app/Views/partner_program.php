@@ -2,6 +2,36 @@
 
 <?= $this->section('content') ?>
 <style>
+    body {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-primary);
+        margin: 0;
+        padding: 0;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--color-primary);
+        letter-spacing: -0.01em;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 999px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        text-decoration: none;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        color: #18181A;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: background 0.3s, color 0.3s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        color: #fff;
+    }
     /* Custom styles for the partner program page */
     .hero-section {
         background-color: var(--color-background);
@@ -47,35 +77,66 @@
         gap: 30px;
     }
     .benefit-card {
-        background-color: var(--color-background);
-        border-radius: 20px;
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
         padding: 40px;
         text-align: center;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
+    }
+    .benefit-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border-color: var(--color-primary);
     }
     .benefit-card h3 {
         font-size: 1.5rem;
         font-weight: 600;
         margin-bottom: 10px;
+        color: var(--color-text-primary);
     }
     .benefit-card p {
         color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 0;
     }
     .how-it-works-steps {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         text-align: center;
-        gap: 30px;
+        gap: 2rem;
+        flex-wrap: wrap;
     }
     .step {
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
+        padding: 32px 24px 28px 24px;
+        text-align: center;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        margin-bottom: 0;
         max-width: 300px;
+        min-width: 220px;
+        flex: 1 1 220px;
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
+    }
+    .step:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.22);
+        border-color: var(--color-primary);
     }
     .step h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
     }
     .step p {
         color: var(--color-text-secondary);
+        font-size: 1.05rem;
+        font-weight: 500;
+        margin-bottom: 0;
     }
     .cta-section {
         background: var(--color-background);
@@ -206,10 +267,14 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
-    <div class="max-w-4xl mx-auto">
-        <h1>Join the NU GUI Partner Program</h1>
-        <p>Grow your business with our innovative solutions, dedicated support, and exclusive resources.</p>
+<section class="hero-section" style="background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%); color: var(--color-text-primary); text-align: center; padding: 100px 20px 80px 20px; border-radius: 0 0 48px 48px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+    <div class="max-w-7xl mx-auto">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
+            Join the <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI Partner Program</span>
+        </h1>
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
+            Grow your business with our innovative solutions, dedicated support, and exclusive resources.
+        </p>
         <a href="#application-form" class="btn-primary">Apply Now</a>
     </div>
 </section>

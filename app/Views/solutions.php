@@ -6,23 +6,35 @@
 
 <?= $this->section('content') ?>
 <style>
+    body {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-primary);
+        margin: 0;
+        padding: 0;
+    }
     /* Custom styles for the solutions page to align with the Apple design system */
     .hero-section {
-        background-color: var(--color-background);
+        background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
         color: var(--color-text-primary);
         text-align: center;
-        padding: 80px 20px;
+        padding: 100px 20px 80px 20px;
+        border-radius: 0 0 48px 48px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
     .hero-section h1 {
         font-size: 3.5rem;
-        font-weight: 700;
+        font-weight: 800;
         margin-bottom: 20px;
         letter-spacing: -0.02em;
+        line-height: 1.1;
     }
     .hero-section .text-gradient {
-        background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
     }
     .hero-section p {
         font-size: 1.5rem;
@@ -43,9 +55,10 @@
     }
     .section-header h2 {
         font-size: 2.5rem;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 10px;
-        color: var(--color-text-primary);
+        color: var(--color-primary);
+        letter-spacing: -0.01em;
     }
     .section-header p {
         font-size: 1.2rem;
@@ -55,19 +68,23 @@
     }
     .card-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+        align-items: stretch;
     }
     .solution-card {
-        background-color: var(--color-background);
-        border-radius: 20px;
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
         padding: 40px;
         text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
     }
     .solution-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border-color: var(--color-primary);
     }
     .solution-card h3 {
         font-size: 1.5rem;
@@ -116,17 +133,19 @@
     }
     .btn-primary {
         display: inline-block;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 500;
+        padding: 15px 40px;
+        border-radius: 999px;
+        font-size: 1.15rem;
+        font-weight: 600;
         text-decoration: none;
-        background-color: var(--color-accent);
-        color: white;
-        transition: background-color 0.3s ease;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        color: #18181A;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: background 0.3s, color 0.3s;
     }
     .btn-primary:hover {
-        background-color: var(--color-accent-hover);
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        color: #fff;
     }
     .feature-card {
         background-color: var(--color-background);
@@ -177,6 +196,35 @@
         scroll-margin-top: 60px;
     }
 </style>
+<script>
+function toggleDetails(id) {
+    var el = document.getElementById(id);
+    if (el.style.display === 'none' || el.style.display === '') {
+        el.style.display = 'block';
+    } else {
+        el.style.display = 'none';
+    }
+}
+</script>
+    .solution-card img {
+        display: block;
+        margin: 0 auto 1rem auto;
+        border-radius: 12px;
+        background: var(--color-background-secondary);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .solution-details {
+        font-size: 1rem;
+        color: var(--color-text-secondary);
+        background: var(--color-background-secondary);
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        margin-top: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .btn-primary {
+        margin-top: 1rem;
+    }
 
 <!-- Hero Section -->
 <section class="hero-section">
@@ -201,87 +249,121 @@
             </p>
         </div>
         <div class="card-grid">
-            <!-- NU SIP -->
+            <!-- Modern, compact solution cards with expandable details -->
             <div class="solution-card">
-                <h3>NU SIP - VoIP Services</h3>
-                <p>
-                    Advanced VoIP infrastructure with carrier-grade routing, media handling, and comprehensive SIP trunking solutions.
-                </p>
-                <p><strong>Features:</strong> High-Quality Voice, Global Coverage, Real-time Monitoring, SIP Trunking</p>
+                <img src="<?= base_url('assets/images/nu-sip-icon.jpg') ?>" alt="NU SIP Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>NU SIP</h3>
+                <p>Carrier-grade VoIP services for global voice connectivity and SIP trunking.</p>
+                <button class="btn-primary" onclick="toggleDetails('sip-details')">Details</button>
+                <div id="sip-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>High-Quality Voice & Global Coverage</li>
+                        <li>Real-time Monitoring & Analytics</li>
+                        <li>Advanced SIP Trunking</li>
+                        <li>Intelligent Routing & Failover</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- NU SMS -->
             <div class="solution-card">
-                <h3>NU SMS - Direct Messaging Services</h3>
-                <p>
-                    Enterprise-grade messaging platform with bulk SMS capabilities, API integration, and comprehensive delivery tracking.
-                </p>
-                <p><strong>Features:</strong> Bulk Messaging, API Integration, Real-time Tracking, Global Delivery</p>
+                <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>NU SMS</h3>
+                <p>Enterprise messaging platform for bulk SMS, APIs, and global delivery.</p>
+                <button class="btn-primary" onclick="toggleDetails('sms-details')">Details</button>
+                <div id="sms-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>Bulk Messaging & Two-Way SMS</li>
+                        <li>API Integration</li>
+                        <li>Real-time Tracking & Reports</li>
+                        <li>Global Coverage</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- NU CCS -->
             <div class="solution-card">
-                <h3>NU CCS - Call Control Server</h3>
-                <p>
-                    Robust telecommunications software for call control, traffic filtering, advanced billing, and comprehensive monitoring.
-                </p>
-                <p><strong>Features:</strong> Traffic Filtering, Advanced Billing, Real-time Monitoring, Fraud Prevention</p>
+                <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>NU CCS</h3>
+                <p>Advanced call control, billing, and fraud prevention for telecom operators.</p>
+                <button class="btn-primary" onclick="toggleDetails('ccs-details')">Details</button>
+                <div id="ccs-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>Traffic Filtering & Management</li>
+                        <li>Flexible Billing Integration</li>
+                        <li>Fraud Detection & Prevention</li>
+                        <li>CDR Management</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- NU DATA -->
             <div class="solution-card">
-                <h3>NU DATA - Data Enrichment Services</h3>
-                <p>
-                    Comprehensive data validation, cleansing, and enrichment services including phone number verification and validation.
-                </p>
-                <p><strong>Features:</strong> Data Validation, Phone Verification, Data Cleansing, Real-time API</p>
+                <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>NU DATA</h3>
+                <p>Data validation, cleansing, and enrichment for accurate telecom operations.</p>
+                <button class="btn-primary" onclick="toggleDetails('data-details')">Details</button>
+                <div id="data-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>Phone Validation & HLR Lookup</li>
+                        <li>Data Cleansing & Batch Processing</li>
+                        <li>Real-time API</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- NU GUI -->
             <div class="solution-card">
-                <h3>NU GUI - Custom Portal Development</h3>
-                <p>
-                    Custom-built user interfaces and management portals for telecom operations, billing, and customer management.
-                </p>
-                <p><strong>Features:</strong> Custom UI/UX, White-Label Solutions, API Integration, Real-time Dashboards</p>
+                <img src="<?= base_url('assets/images/nu-gui-banner.jpg') ?>" alt="NU GUI Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>NU GUI</h3>
+                <p>Custom portals and management UIs for telecom operations and billing.</p>
+                <button class="btn-primary" onclick="toggleDetails('gui-details')">Details</button>
+                <div id="gui-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>Custom UI/UX & White-Label Solutions</li>
+                        <li>API Integration</li>
+                        <li>Real-time Dashboards</li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- Telecom Infrastructure -->
             <div class="solution-card">
-                <h3>Telecom Infrastructure Solutions</h3>
-                <p>
-                    Complete telecommunications infrastructure setup including VoIP servers, SMS gateways, and carrier interconnects.
-                </p>
-                <p><strong>Features:</strong> Carrier Integration, Scalable Architecture, 24/7 Support, Global Connectivity</p>
+                <img src="<?= base_url('assets/images/nu-ccs-banner.jpg') ?>" alt="Telecom Infrastructure Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <h3>Telecom Infrastructure</h3>
+                <p>Complete setup: VoIP servers, SMS gateways, and carrier interconnects.</p>
+                <button class="btn-primary" onclick="toggleDetails('infra-details')">Details</button>
+                <div id="infra-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>Carrier Integration</li>
+                        <li>Scalable Architecture</li>
+                        <li>24/7 Support</li>
+                        <li>Global Connectivity</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Process Section -->
+
 <section class="process-section">
     <div class="max-w-7xl">
         <div class="section-header">
             <h2>Our Process</h2>
             <p>A proven methodology that delivers results</p>
         </div>
-        
-        <div class="card-grid">
-            <div class="process-step">
-                <h3>1. Discovery</h3>
-                <p>Understanding your business needs and objectives</p>
+        <div class="process-cards-row" style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;align-items:stretch;">
+            <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+                <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">1</div>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Discovery</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Understanding your business needs and objectives</p>
             </div>
-            <div class="process-step">
-                <h3>2. Planning</h3>
-                <p>Creating a strategic roadmap for implementation</p>
+            <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+                <div style="width:48px;height:48px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">2</div>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Planning</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Creating a strategic roadmap for implementation</p>
             </div>
-            <div class="process-step">
-                <h3>3. Development</h3>
-                <p>Building and testing your solution</p>
+            <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+                <div style="width:48px;height:48px;background:var(--color-accent-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">3</div>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Development</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Building and testing your solution</p>
             </div>
-            <div class="process-step">
-                <h3>4. Deployment</h3>
-                <p>Launching and providing ongoing support</p>
+            <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
+                <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">4</div>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Deployment</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Launching and providing ongoing support</p>
             </div>
         </div>
     </div>
@@ -291,29 +373,38 @@
 <!-- NU SIP Details -->
 <section id="nu-sip" class="section alt">
     <div class="max-w-7xl">
-        <div class="section-header">
-            <h2>NU SIP - Advanced VoIP Services</h2>
-            <p>Carrier-grade VoIP infrastructure designed for telecommunications operators and enterprises</p>
-        </div>
-        <div style="text-align: center; margin-bottom: 40px;">
-            <img src="<?= base_url('assets/images/nu-sip.jpg') ?>" alt="NU SIP VoIP Services" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-        </div>
-        <div class="card-grid">
-            <div class="feature-card">
-                <h3>SIP Trunking</h3>
-                <p>High-quality voice connectivity with global reach, supporting both inbound and outbound calling with competitive rates.</p>
+        <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
+            <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
+                <img src="<?= base_url('assets/images/nu-sip.jpg') ?>" alt="NU SIP VoIP Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
             </div>
-            <div class="feature-card">
-                <h3>Media Handling</h3>
-                <p>Advanced media processing including transcoding, recording, and real-time analytics for quality monitoring.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Carrier Routing</h3>
-                <p>Intelligent least-cost routing with failover capabilities, ensuring optimal call quality and reliability.</p>
-            </div>
-            <div class="feature-card">
-                <h3>API Integration</h3>
-                <p>RESTful APIs for seamless integration with your existing systems, including real-time call control and monitoring.</p>
+            <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SIP <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Advanced VoIP Services</span></h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-secondary); font-size: 1.1rem;">Carrier-grade VoIP infrastructure for seamless, secure, and scalable business communications.</p>
+                <div class="product-feature-list" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem;">
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">SIP Trunking</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Global reach, inbound/outbound, competitive rates.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Media Handling</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Transcoding, recording, and real-time quality analytics.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Carrier Routing</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Least-cost, failover, and quality-optimized routing.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">API Integration</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">RESTful APIs for seamless system integration.</p>
+                    </div>
+                </div>
+                <ul style="color:var(--color-text-secondary);font-size:1.05rem;line-height:1.6;margin-bottom:0.5rem;list-style:square inside;">
+                    <li>Crystal-clear global voice connectivity for enterprises and carriers</li>
+                    <li>Carrier-grade reliability, security, and uptime</li>
+                    <li>Flexible SIP trunking and intelligent routing</li>
+                    <li>Real-time analytics and monitoring dashboard</li>
+                    <li>Easy API integration for automation</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -322,29 +413,37 @@
 <!-- NU SMS Details -->
 <section id="nu-sms" class="section">
     <div class="max-w-7xl">
-        <div class="section-header">
-            <h2>NU SMS - Enterprise Messaging Platform</h2>
-            <p>Reliable bulk SMS and messaging services with global delivery and real-time tracking</p>
-        </div>
-        <div style="text-align: center; margin-bottom: 40px;">
-            <img src="<?= base_url('assets/images/nu-sms.jpg') ?>" alt="NU SMS Messaging Services" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-        </div>
-        <div class="card-grid">
-            <div class="feature-card">
-                <h3>Bulk Messaging</h3>
-                <p>Send thousands of messages simultaneously with our high-throughput platform, perfect for marketing campaigns and notifications.</p>
+        <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
+            <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
+                <img src="<?= base_url('assets/images/nu-sms.jpg') ?>" alt="NU SMS Messaging Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
             </div>
-            <div class="feature-card">
-                <h3>Two-Way Messaging</h3>
-                <p>Enable customer engagement with two-way SMS capabilities, including auto-responders and keyword campaigns.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Delivery Reports</h3>
-                <p>Real-time delivery tracking and comprehensive reporting to monitor campaign performance and message status.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Global Coverage</h3>
-                <p>Reach customers worldwide with our extensive network of carrier connections and competitive international rates.</p>
+            <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SMS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Enterprise Messaging Platform</span></h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-secondary); font-size: 1.1rem;">Reliable bulk SMS and messaging services with global delivery and real-time tracking.</p>
+                <div class="product-feature-list" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem;">
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Bulk Messaging</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Send thousands of messages simultaneously for campaigns and notifications.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Two-Way Messaging</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Engage customers with two-way SMS, auto-responders, and keyword campaigns.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Delivery Reports</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Real-time delivery tracking and comprehensive reporting.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Global Coverage</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Worldwide reach with competitive international rates.</p>
+                    </div>
+                </div>
+                <ul style="color:var(--color-text-secondary);font-size:1.05rem;line-height:1.6;margin-bottom:0.5rem;list-style:square inside;">
+                    <li>Bulk Messaging & Two-Way SMS</li>
+                    <li>API Integration</li>
+                    <li>Real-time Tracking & Reports</li>
+                    <li>Global Coverage</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -353,29 +452,37 @@
 <!-- NU CCS Details -->
 <section id="nu-ccs" class="section alt">
     <div class="max-w-7xl">
-        <div class="section-header">
-            <h2>NU CCS - Call Control Server</h2>
-            <p>Comprehensive telecommunications software for call management, billing, and fraud prevention</p>
-        </div>
-        <div style="text-align: center; margin-bottom: 40px;">
-            <img src="<?= base_url('assets/images/nu-ccs.jpg') ?>" alt="NU CCS Call Control Server" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-        </div>
-        <div class="card-grid">
-            <div class="feature-card">
-                <h3>Traffic Management</h3>
-                <p>Advanced traffic filtering and routing capabilities with real-time monitoring and automatic failover mechanisms.</p>
+        <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
+            <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
+                <img src="<?= base_url('assets/images/nu-ccs.jpg') ?>" alt="NU CCS Call Control Server" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
             </div>
-            <div class="feature-card">
-                <h3>Billing Integration</h3>
-                <p>Flexible billing system supporting prepaid and postpaid models with real-time rating and charging capabilities.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Fraud Prevention</h3>
-                <p>Built-in fraud detection algorithms with customizable rules to protect your network from fraudulent activities.</p>
-            </div>
-            <div class="feature-card">
-                <h3>CDR Management</h3>
-                <p>Comprehensive Call Detail Record generation and management with export capabilities for billing and analytics.</p>
+            <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU CCS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Call Control Server</span></h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-secondary); font-size: 1.1rem;">Comprehensive software for call management, billing, and fraud prevention.</p>
+                <div class="product-feature-list" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem;">
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Traffic Management</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Advanced filtering, routing, and real-time monitoring.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Billing Integration</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Prepaid/postpaid, real-time rating and charging.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Fraud Prevention</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Customizable rules and detection algorithms.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">CDR Management</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Call Detail Record generation and analytics.</p>
+                    </div>
+                </div>
+                <ul style="color:var(--color-text-secondary);font-size:1.05rem;line-height:1.6;margin-bottom:0.5rem;list-style:square inside;">
+                    <li>Traffic Filtering & Management</li>
+                    <li>Flexible Billing Integration</li>
+                    <li>Fraud Detection & Prevention</li>
+                    <li>CDR Management</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -384,29 +491,36 @@
 <!-- NU DATA Details -->
 <section id="nu-data" class="section">
     <div class="max-w-7xl">
-        <div class="section-header">
-            <h2>NU DATA - Data Enrichment Services</h2>
-            <p>Enhance your data quality with our comprehensive validation and enrichment services</p>
-        </div>
-        <div style="text-align: center; margin-bottom: 40px;">
-            <img src="<?= base_url('assets/images/nu-data.jpg') ?>" alt="NU DATA Enrichment Services" style="max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
-        </div>
-        <div class="card-grid">
-            <div class="feature-card">
-                <h3>Phone Validation</h3>
-                <p>Real-time phone number validation including carrier lookup, line type detection, and porting status verification.</p>
+        <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
+            <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
+                <img src="<?= base_url('assets/images/nu-data.jpg') ?>" alt="NU DATA Enrichment Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
             </div>
-            <div class="feature-card">
-                <h3>Data Cleansing</h3>
-                <p>Remove duplicates, standardize formats, and correct errors in your customer data for improved accuracy.</p>
-            </div>
-            <div class="feature-card">
-                <h3>HLR Lookup</h3>
-                <p>Home Location Register lookups to verify mobile number status, roaming information, and network details.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Batch Processing</h3>
-                <p>Process large datasets efficiently with our batch processing capabilities and downloadable results.</p>
+            <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU DATA <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Data Enrichment Services</span></h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-secondary); font-size: 1.1rem;">Enhance your data quality with our comprehensive validation and enrichment services.</p>
+                <div class="product-feature-list" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem;">
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Phone Validation</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Real-time validation, carrier lookup, and porting status.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Data Cleansing</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Remove duplicates, standardize formats, correct errors.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">HLR Lookup</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Verify mobile number status, roaming, and network.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Batch Processing</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Efficiently process large datasets, downloadable results.</p>
+                    </div>
+                </div>
+                <ul style="color:var(--color-text-secondary);font-size:1.05rem;line-height:1.6;margin-bottom:0.5rem;list-style:square inside;">
+                    <li>Phone Validation & HLR Lookup</li>
+                    <li>Data Cleansing & Batch Processing</li>
+                    <li>Real-time API</li>
+                </ul>
             </div>
         </div>
     </div>

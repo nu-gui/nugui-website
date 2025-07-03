@@ -6,6 +6,51 @@
     <title>NU GUI - Welcome</title>
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png') ?>">
     <style>
+        body {
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            font-family: var(--font-family-primary);
+            margin: 0;
+            padding: 0;
+        }
+        .hero-section {
+            background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
+            color: var(--color-text-primary);
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            border-radius: 0 0 48px 48px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .hero-section .text-gradient {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 999px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            color: #18181A;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            color: #fff;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -40,7 +85,32 @@
         .landing-container.fade-out {
             opacity: 0;
             pointer-events: none;
-            transition: opacity 2s ease-out;
+            transition: opacity 0.8s ease-out;
+            z-index: 8999; /* Lower than normal to allow home page to show through */
+        }
+
+        /* Preloaded home page container */
+        .home-page-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 8998; /* Behind landing page initially */
+            opacity: 0;
+            transition: opacity 0.8s ease-in;
+            overflow: hidden;
+        }
+
+        .home-page-container.visible {
+            opacity: 1;
+        }
+
+        .home-page-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
         }
 
         .logo-animation-container {
@@ -286,11 +356,56 @@
                 this.audioToggle.addEventListener('click', () => this.toggleAudio());
                 this.skipButton.addEventListener('click', () => this.skipIntro());
 
+                // Listen for animation completion
+                this.setupAnimationListener();
+
                 // Start animation sequence
                 this.startAnimationSequence();
 
-                // Auto-redirect after animation completes (6 seconds for animation + 2 second pause)
-                setTimeout(() => this.redirectToHome(), 8000);
+                // Fallback redirect in case animation event doesn't fire
+                setTimeout(() => this.redirectToHome(), 6000);
+            }
+
+            setupAnimationListener() {
+                const logoContainer = document.querySelector('.logo-animation-container');
+                
+                // Listen for animation end event
+                logoContainer.addEventListener('animationend', (event) => {
+                    if (event.animationName === 'logoGrowMoveAndFade' || event.animationName === 'logoGrowMoveAndFadeMobile') {
+                        console.log('Logo animation completed, starting redirect...');
+                        // Start redirect immediately when logo finishes fading
+                        this.redirectToHome();
+                    }
+                });
+
+                // Also track opacity during animation to redirect when logo becomes invisible
+                this.trackLogoOpacity(logoContainer);
+            }
+
+            trackLogoOpacity(logoContainer) {
+                let redirectTriggered = false;
+                const checkOpacity = () => {
+                    if (redirectTriggered) return;
+                    
+                    const computedStyle = window.getComputedStyle(logoContainer);
+                    const opacity = parseFloat(computedStyle.opacity);
+                    
+                    // Trigger redirect when logo is nearly invisible (opacity < 0.05)
+                    if (opacity < 0.05) {
+                        console.log('Logo opacity below threshold, starting redirect...');
+                        redirectTriggered = true;
+                        this.redirectToHome();
+                        return;
+                    }
+                    
+                    // Continue checking during animation
+                    requestAnimationFrame(checkOpacity);
+                };
+                
+                // Start checking after 2 seconds (when fading begins)
+                setTimeout(() => {
+                    checkOpacity();
+                }, 2000);
             }
 
             startAnimationSequence() {
@@ -326,10 +441,10 @@
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
                 
-                // Redirect after fade completes (longer fade for smoother transition)
+                // Redirect after shorter fade completes
                 setTimeout(() => {
                     window.location.href = '<?= base_url('/home') ?>';
-                }, 2000);
+                }, 800);
             }
         }
 

@@ -2,6 +2,51 @@
 
 <?= $this->section('content') ?>
 <style>
+    body {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-primary);
+        margin: 0;
+        padding: 0;
+    }
+    .hero-section {
+        background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
+        color: var(--color-text-primary);
+        text-align: center;
+        padding: 100px 20px 80px 20px;
+        border-radius: 0 0 48px 48px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+    }
+    .hero-section .text-gradient {
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 999px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        text-decoration: none;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        color: #18181A;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: background 0.3s, color 0.3s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        color: #fff;
+    }
     /* Custom styles for the home page to align with the Apple design system */
     .hero-section {
         background-color: var(--color-background);
@@ -51,19 +96,28 @@
         gap: 30px;
     }
     .feature-card {
-        background-color: var(--color-background);
-        border-radius: 20px;
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
         padding: 40px;
         text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
     }
     .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border-color: var(--color-primary);
     }
     .feature-card img {
-        height: 80px;
-        margin: 0 auto 20px;
+        display: block;
+        margin: 0 auto 1rem auto;
+        border-radius: 12px;
+        background: var(--color-background-secondary);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
     }
     .feature-card h3 {
         font-size: 1.5rem;
@@ -74,6 +128,7 @@
     .feature-card p {
         color: var(--color-text-secondary);
         line-height: 1.6;
+        margin-bottom: 20px;
     }
     .cta-section {
         background: var(--color-background);
@@ -146,33 +201,29 @@
             </p>
         </div>
         <div class="card-grid">
-            <!-- NU SIP -->
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/nu-sip-icon.jpg') ?>" alt="NU SIP Icon" class="h-20 mx-auto mb-5">
+                <img src="<?= base_url('assets/images/nu-sip-icon.jpg') ?>" alt="NU SIP Icon">
                 <h3>NU SIP</h3>
-                <p>Advanced VoIP services with carrier-grade routing and media handling.</p>
-                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Learn More</a>
+                <p>Carrier-grade VoIP services for global voice connectivity and SIP trunking.</p>
+                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn-primary">Learn More</a>
             </div>
-            <!-- NU SMS -->
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon" class="h-20 mx-auto mb-5">
+                <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon">
                 <h3>NU SMS</h3>
-                <p>Enterprise messaging platform with bulk SMS, API integration, and real-time tracking.</p>
-                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Learn More</a>
+                <p>Enterprise messaging platform for bulk SMS, APIs, and global delivery.</p>
+                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn-primary">Learn More</a>
             </div>
-            <!-- NU CCS -->
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon" class="h-20 mx-auto mb-5">
+                <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon">
                 <h3>NU CCS</h3>
-                <p>Robust call control server with traffic filtering, advanced billing, and monitoring.</p>
-                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Learn More</a>
+                <p>Advanced call control, billing, and fraud prevention for telecom operators.</p>
+                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn-primary">Learn More</a>
             </div>
-            <!-- NU DATA -->
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon" class="h-20 mx-auto mb-5">
+                <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon">
                 <h3>NU DATA</h3>
-                <p>Data enrichment services including validation, cleansing, and phone verification.</p>
-                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn-secondary" style="margin-top: 20px; display: inline-block;">Learn More</a>
+                <p>Data validation, cleansing, and enrichment for accurate telecom operations.</p>
+                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn-primary">Learn More</a>
             </div>
         </div>
     </div>
