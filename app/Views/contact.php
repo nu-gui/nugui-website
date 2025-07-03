@@ -1,8 +1,15 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>Contact | NuGui<?= $this->endSection() ?>
+<?= $this->section('title') ?>Contact NU GUI | Get Your Free Telecom Consultation<?= $this->endSection() ?>
 
-<?= $this->section('meta_description') ?>Get in touch with NuGui. Contact our team of experts for web development, digital transformation, and technology consulting services.<?= $this->endSection() ?>
+<?php
+// SEO Meta Tags for Contact Page
+$this->setVar('description', 'Contact NU GUI for carrier-grade telecom solutions. Free consultation, 24/7 support, 30-day free trial. VoIP, SMS, call control & billing experts ready to help.');
+$this->setVar('ogTitle', 'Contact NU GUI - Free Telecom Consultation | 24/7 Expert Support');
+$this->setVar('ogDescription', 'Get expert telecom consultation from NU GUI. Free trial setup, migration assistance, 24/7 support. Contact us for VoIP, SMS, billing solutions.');
+$this->setVar('twitterTitle', 'Contact NU GUI - Free Telecom Consultation');
+$this->setVar('twitterDescription', 'Expert telecom consultation, free trial setup, 24/7 support. Contact NU GUI for VoIP, SMS & billing solutions.');
+?>
 
 <?= $this->section('content') ?>
 <style>
