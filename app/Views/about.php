@@ -1,190 +1,298 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
+<style>
+    body {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-primary);
+        margin: 0;
+        padding: 0;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--color-primary);
+        letter-spacing: -0.01em;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 999px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        text-decoration: none;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        color: #18181A;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: background 0.3s, color 0.3s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        color: #fff;
+    }
+    /* Custom styles for the about page to align with the Apple design system */
+    .hero-section {
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        text-align: center;
+        padding: 80px 20px;
+    }
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+    }
+    .hero-section p {
+        font-size: 1.5rem;
+        max-w-3xl mx-auto;
+        color: var(--color-text-secondary);
+    }
+    .section {
+        padding: 80px 20px;
+        background-color: var(--color-background-secondary);
+    }
+    .section.alt {
+        background-color: var(--color-background);
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+    }
+    .section-header p {
+        font-size: 1.2rem;
+        max-w-3xl mx-auto;
+        color: var(--color-text-secondary);
+    }
+    .story-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    .story-section img {
+        border-radius: 20px;
+        max-width: 100%;
+    }
+    .story-content h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .story-content p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .value-card {
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
+        padding: 40px;
+        text-align: center;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
+    }
+    .value-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border-color: var(--color-primary);
+    }
+    .value-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+    }
+    .value-card p {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+    .team-card {
+        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
+        border-radius: 24px;
+        padding: 32px 24px 28px 24px;
+        text-align: center;
+        border: 2px solid var(--color-accent);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        margin-bottom: 0;
+        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
+    }
+    .team-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.22);
+        border-color: var(--color-primary);
+    }
+    .team-card img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin: 0 auto 18px auto;
+        object-fit: cover;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        background: var(--color-background-secondary);
+    }
+    .team-card h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        color: var(--color-primary);
+    }
+    .team-card p {
+        color: var(--color-accent);
+        margin-bottom: 8px;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+    .team-card .bio {
+        color: var(--color-text-secondary);
+        font-size: 0.98rem;
+        line-height: 1.6;
+        margin-top: 0.5rem;
+    }
+    .cta-section {
+        background: var(--color-background);
+        padding: 80px 20px;
+        text-align: center;
+    }
+    .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .cta-section p {
+        font-size: 1.2rem;
+        max-width: 42rem;
+        margin: 0 auto 30px auto;
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-20 lg:py-28">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                About <span class="text-gradient">NU GUI</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
-                Leading telecommunications infrastructure provider established in 2018, specializing in carrier-grade VoIP services and enterprise communication solutions.
-            </p>
-        </div>
+<section class="hero-section" style="background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%); color: var(--color-text-primary); text-align: center; padding: 100px 20px 80px 20px; border-radius: 0 0 48px 48px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+    <div class="max-w-7xl mx-auto">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
+            About <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
+        </h1>
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
+            Leading the telecommunications industry with innovative solutions, exceptional service, and a commitment to excellence since 2005.
+        </p>
     </div>
 </section>
 
-<!-- Company Story -->
-<section class="py-16 bg-white">
+<!-- Our Story Section -->
+<section class="section alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="story-section">
+            <div class="story-content">
+                <h3>Our Story</h3>
+                <p>Founded in 2005, NU GUI has grown from a small startup to a leading provider of telecommunications infrastructure solutions. Our journey began with a simple vision: to make advanced telecom technology accessible and reliable for businesses worldwide.</p>
+                <p>Today, we serve hundreds of telecommunications operators and enterprises across the globe, providing carrier-grade VoIP services, call control systems, SMS solutions, and data enrichment services that power millions of connections daily.</p>
+            </div>
             <div>
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
-                <p class="text-lg text-gray-600 mb-6">
-                    NU GUI began with a vision to revolutionize telecommunications infrastructure for the modern digital age. Founded in 2018, we recognized the growing need for reliable, scalable, and secure communication solutions in an increasingly connected world.
-                </p>
-                <p class="text-lg text-gray-600">
-                    Today, we serve telecommunications operators, enterprises, and service providers across multiple continents, delivering mission-critical infrastructure that powers millions of communications daily.
-                </p>
-            </div>
-            <div class="lg:pl-8">
-                <img src="<?= base_url('assets/images/our-story.jpg') ?>" alt="NU GUI telecommunications infrastructure" class="rounded-xl shadow-xl">
+                <img src="<?= base_url('assets/images/our-story.jpg') ?>" alt="Our Story" />
             </div>
         </div>
     </div>
 </section>
 
-<!-- Company Overview -->
-<section class="py-16 bg-gray-50">
+<!-- Vision, Mission & Values -->
+<section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Telecommunications Excellence</h2>
-            <p class="text-xl text-gray-600 max-w-4xl mx-auto">
-                NU GUI was founded with the vision of transforming telecommunications infrastructure through innovative technology solutions. We specialize in carrier-grade services that enable seamless communication across global networks.
-            </p>
+        <div class="section-header">
+            <h2>Our Vision, Mission & Values</h2>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Vision -->
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Our Vision</h3>
-                <p class="text-gray-600">To be the leading provider of telecommunications infrastructure solutions that enable seamless global communication and drive digital transformation.</p>
+        <div class="card-grid">
+            <div class="value-card">
+                <h3>Our Vision</h3>
+                <p>To be the global leader in telecommunications infrastructure, connecting businesses and communities through innovative, reliable technology solutions.</p>
             </div>
-            
-            <!-- Mission -->
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Our Mission</h3>
-                <p class="text-gray-600">To deliver carrier-grade telecommunications solutions that exceed expectations through innovation, reliability, and exceptional technical support.</p>
+            <div class="value-card">
+                <h3>Our Mission</h3>
+                <p>Empowering telecommunications providers with cutting-edge solutions that enhance connectivity, drive growth, and deliver exceptional value.</p>
             </div>
-            
-            <!-- Values -->
-            <div class="bg-white p-8 rounded-xl shadow-lg">
-                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Our Values</h3>
-                <p class="text-gray-600">Technical Excellence, Customer Partnership, Security Focus, Continuous Innovation, and Operational Integrity.</p>
+            <div class="value-card">
+                <h3>Our Values</h3>
+                <p>Innovation, Integrity, Excellence, Customer Focus, and Teamwork guide everything we do, ensuring we deliver the best solutions and service.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Leadership Team -->
-<section class="py-16 bg-white">
+<section class="section alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Leadership Team</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Meet the telecommunications experts and technical leaders driving innovation at NU GUI.
-            </p>
+        <div class="section-header">
+            <h2>Leadership Team</h2>
+            <p>Our experienced leadership team brings together decades of expertise in telecommunications, technology, and business management.</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- CEO & Founder -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/wes-profile.jpg') ?>" alt="Wesley - CEO and Founder" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Wesley</h3>
-                <p class="text-blue-600 font-medium mb-4">CEO & Founder</p>
-                <p class="text-gray-600">
-                    Visionary leader with extensive experience in telecommunications infrastructure. Wesley founded NU GUI with the mission to deliver enterprise-grade communication solutions that scale with business growth.
-                </p>
+        <div class="card-grid">
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/wes-profile.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" />
+                <h3>Wes</h3>
+                <p>CEO & Founder</p>
+                <span class="bio">Wes is the visionary founder and CEO of NU GUI. With a passion for innovative design and user experience, Wes leads the team in creating stunning and functional interfaces that set new standards in the industry.</span>
             </div>
-            
-            <!-- CTO -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/suren-profile.jpg') ?>" alt="Suren - Chief Technology Officer" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Suren</h3>
-                <p class="text-blue-600 font-medium mb-4">Chief Technology Officer</p>
-                <p class="text-gray-600">
-                    Technical architect overseeing our telecommunications infrastructure. Suren ensures our platforms maintain carrier-grade reliability while incorporating cutting-edge innovations in VoIP and data processing.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/suren-profile.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" />
+                <h3>Suren</h3>
+                <p>CTO</p>
+                <span class="bio">Suren, our CTO, brings extensive technical expertise to the team. He oversees all technological developments at NU GUI, ensuring that our solutions are cutting-edge and reliable.</span>
             </div>
-            
-            <!-- Senior Executive Assistant -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/gali-profile.jpg') ?>" alt="Gali - Senior Executive Assistant" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Gali</h3>
-                <p class="text-blue-600 font-medium mb-4">Senior Executive Assistant</p>
-                <p class="text-gray-600">
-                    Operations coordinator ensuring seamless business operations and client relationship management. Gali's attention to detail keeps our telecommunications services running smoothly.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/gali-profile.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" />
+                <h3>Gali</h3>
+                <p>Sr Executive Assistant</p>
+                <span class="bio">Gali is the Senior Executive Assistant at NU GUI. With exceptional organizational skills and attention to detail, she ensures that all executive operations run smoothly and efficiently.</span>
             </div>
-            
-            <!-- Senior Infrastructure Developer -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/ajay-profile.jpg') ?>" alt="Ajay - Senior Infrastructure Developer" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Ajay</h3>
-                <p class="text-blue-600 font-medium mb-4">Senior Infrastructure Developer</p>
-                <p class="text-gray-600">
-                    Backend systems specialist focusing on scalable telecommunications infrastructure. Ajay develops and maintains the core systems that power our VoIP and messaging platforms.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/pavan-profile.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" />
+                <h3>Pavan</h3>
+                <p>Jr Full Stack Developer</p>
+                <span class="bio">Pavan is a Junior Full Stack Developer at NU GUI. He brings fresh perspectives and innovative ideas to the team, contributing to the development of our dynamic web solutions.</span>
             </div>
-            
-            <!-- Systems Integration Specialist -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/pavan-profile.jpg') ?>" alt="Pavan - Systems Integration Specialist" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Pavan</h3>
-                <p class="text-blue-600 font-medium mb-4">Systems Integration Specialist</p>
-                <p class="text-gray-600">
-                    Integration expert specializing in API development and third-party system connectivity. Pavan ensures seamless integration between our platforms and client infrastructure.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/ajay-profile.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" />
+                <h3>Ajay</h3>
+                <p>Sr Full Stack Developer</p>
+                <span class="bio">Ajay is a Senior Full Stack Developer with a wealth of experience in both front-end and back-end development. His expertise ensures that our applications are robust and user-friendly.</span>
             </div>
-            
-            <!-- Platform Interface Designer -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/ankit-profile.jpg') ?>" alt="Ankit - Platform Interface Designer" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Ankit</h3>
-                <p class="text-blue-600 font-medium mb-4">Platform Interface Designer</p>
-                <p class="text-gray-600">
-                    Interface designer creating intuitive management dashboards for our telecommunications platforms. Ankit focuses on user-centered design for complex technical systems.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/ankit-profile.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" />
+                <h3>Ankit</h3>
+                <p>UI UX Web Designer</p>
+                <span class="bio">Ankit is our UI/UX Web Designer who crafts visually appealing and highly functional designs. His work enhances user experience and ensures our interfaces are intuitive and engaging.</span>
             </div>
-            
-            <!-- Technical Project Manager -->
-            <div class="card text-center hover:scale-105 transition-transform duration-200">
-                <img src="<?= base_url('assets/images/mihir-profile.jpg') ?>" alt="Mihir - Technical Project Manager" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover">
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Mihir</h3>
-                <p class="text-blue-600 font-medium mb-4">Technical Project Manager</p>
-                <p class="text-gray-600">
-                    Project coordinator bridging technical development and client delivery. Mihir ensures telecommunications projects are delivered on time with complete technical specifications.
-                </p>
+            <div class="team-card">
+                <img src="<?= base_url('assets/images/mihir-profile.jpg') ?>" alt="Profile picture of Mihir, Project Manager and Full Stack Developer at NU GUI" />
+                <h3>Mihir</h3>
+                <p>PM & Full Stack Developer</p>
+                <span class="bio">Mihir serves as both a Project Manager and Full Stack Developer. His dual role helps bridge the gap between project planning and execution, ensuring timely and successful project completions.</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Call to Action -->
-<section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Communications?
-        </h2>
-        <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Discover how our telecommunications infrastructure solutions can enhance your business operations and drive growth.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="<?= base_url('/solutions'); ?>" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                Explore Our Solutions
-            </a>
-            <a href="<?= base_url('/contact'); ?>" class="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200">
-                Contact Our Team
-            </a>
-        </div>
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="max-w-4xl mx-auto">
+        <h2>Ready to Transform Your Telecommunications?</h2>
+        <p>Join hundreds of satisfied clients who trust NU GUI for their telecommunications infrastructure needs.</p>
+        <a href="<?= base_url('/contact') ?>" class="btn-primary">Get in Touch</a>
     </div>
 </section>
+
 <?= $this->endSection() ?>

@@ -194,18 +194,23 @@ class AntiBotProtection
      */
     public function isTemporarilyBlacklisted($ip): bool
     {
+        // Always allow localhost IPs for local development/testing
+        if (in_array($ip, ['127.0.0.1', '::1'])) {
+            return false;
+        }
+
         $blacklistKey = 'blacklist_' . hash('sha256', $ip);
         $blacklistUntil = $this->session->get($blacklistKey);
-        
+
         if ($blacklistUntil && time() < $blacklistUntil) {
             return true;
         }
-        
+
         // Clean expired blacklist entry
         if ($blacklistUntil) {
             $this->session->remove($blacklistKey);
         }
-        
+
         return false;
     }
 }

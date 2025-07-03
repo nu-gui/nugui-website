@@ -12,6 +12,8 @@ services:
       - session_data:/var/www/html/writable/session
     environment:
       - CI_ENVIRONMENT=development
+    env_file:
+      - .env
     depends_on:
       - db
     networks:

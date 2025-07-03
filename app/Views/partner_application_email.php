@@ -6,6 +6,36 @@
     <title>Partner Application Confirmation</title>
     <style>
         body {
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            font-family: var(--font-family-primary);
+            margin: 0;
+            padding: 0;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+            letter-spacing: -0.01em;
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 999px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            color: #18181A;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: background 0.3s, color 0.3s;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+            color: #fff;
+        }
+        body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;

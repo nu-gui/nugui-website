@@ -1,65 +1,232 @@
 <?= $this->extend('layout') ?>
 
+<?= $this->section('title') ?>Contact | NuGui<?= $this->endSection() ?>
+
+<?= $this->section('meta_description') ?>Get in touch with NuGui. Contact our team of experts for web development, digital transformation, and technology consulting services.<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
+<style>
+    body {
+        background: var(--color-background);
+        color: var(--color-text-primary);
+        font-family: var(--font-family-primary);
+        margin: 0;
+        padding: 0;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--color-primary);
+        letter-spacing: -0.01em;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 40px;
+        border-radius: 999px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        text-decoration: none;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+        color: #18181A;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        transition: background 0.3s, color 0.3s;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+        color: #fff;
+    }
+    /* Custom styles for the contact page to align with the Apple design system */
+    .hero-section {
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        text-align: center;
+        padding: 80px 20px;
+    }
+    .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+    }
+    .hero-section .text-gradient {
+        background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero-section p {
+        font-size: 1.5rem;
+        max-width: 48rem;
+        margin: 0 auto 30px;
+        color: var(--color-text-secondary);
+    }
+    .section {
+        padding: 80px 20px;
+        background-color: var(--color-background-secondary);
+    }
+    .section.alt {
+        background-color: var(--color-background);
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+    }
+    .section-header p {
+        font-size: 1.2rem;
+        max-width: 42rem;
+        margin: 0 auto;
+        color: var(--color-text-secondary);
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+    .contact-card {
+        background-color: var(--color-background);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .contact-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--color-text-primary);
+    }
+    .contact-card p {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    .contact-form {
+        background-color: var(--color-background);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 56rem;
+        margin: 0 auto;
+    }
+    .btn-primary {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        background-color: var(--color-accent);
+        color: white;
+        transition: background-color 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+    .btn-primary:hover {
+        background-color: var(--color-accent-hover);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--color-text-primary);
+    }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        background-color: var(--color-background-secondary);
+        color: var(--color-text-primary);
+        font-size: 1rem;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+    .max-w-7xl {
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+        .max-w-7xl {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+    @media (min-width: 1024px) {
+        .max-w-7xl {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+</style>
+
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 py-16 lg:py-20">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Contact <span class="text-gradient">NU GUI</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Ready to transform your telecommunications infrastructure? Get in touch with our team of experts.
-            </p>
-        </div>
+<section class="hero-section">
+    <div class="max-w-7xl">
+        <h1>
+            Let's
+            <span class="text-gradient">Connect</span>
+        </h1>
+        <p>
+            Ready to transform your business with innovative technology solutions? Our team of experts is here to help you succeed.
+        </p>
     </div>
 </section>
 
 <!-- Contact Form Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="section">
+    <div class="max-w-7xl">
+        <div class="section-header">
+            <h2>Send us a Message</h2>
+            <p>We'd love to hear about your project and how we can help</p>
+        </div>
         <?php if (session()->getFlashdata('success')): ?>
-            <div class="mb-8 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm font-medium text-green-800">
-                            <?= session()->getFlashdata('success') ?>
-                        </p>
-                    </div>
+            <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-green-800 dark:text-green-200 font-medium"><?= session()->getFlashdata('success') ?></span>
                 </div>
             </div>
         <?php endif; ?>
 
         <?php if (session()->getFlashdata('errors')): ?>
-            <div class="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="ml-3">
-                        <div class="text-sm font-medium text-red-800">
-                            <?php foreach (session()->getFlashdata('errors') as $error): ?>
-                                <p class="mb-1"><?= $error ?></p>
-                            <?php endforeach; ?>
-                        </div>
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-6 mb-8">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-red-600 dark:text-red-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-red-800 dark:text-red-200">
+                        <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                            <p class="font-medium"><?= $error ?></p>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
         <?php endif; ?>
 
-        <div class="bg-white shadow-xl rounded-2xl overflow-hidden">
-            <div class="px-6 py-8 sm:p-10">
-                <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Send us a Message</h2>
-                
-                <form action="<?= base_url('/submit_contact_form') ?>" method="post" class="space-y-6">
+        <div class="contact-form">
+                <form action="<?= base_url('/submit_contact_form') ?>" method="post">
                     <?= csrf_field() ?>
                     
                     <!-- Honeypot fields - hidden from users but visible to bots -->
@@ -73,120 +240,117 @@
                     <input type="hidden" name="form_start_time" value="<?= time() ?>">
                     <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Full Name *
-                            </label>
+                    <div class="card-grid">
+                        <div class="form-group">
+                            <label>Full Name *</label>
                             <input type="text" 
                                    name="name" 
-                                   id="name" 
                                    value="<?= old('name') ?>" 
                                    required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                                   placeholder="John Doe">
                         </div>
                         
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address *
-                            </label>
+                        <div class="form-group">
+                            <label>Email Address *</label>
                             <input type="email" 
                                    name="email" 
-                                   id="email" 
                                    value="<?= old('email') ?>" 
                                    required
-                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                                   placeholder="john@example.com">
                         </div>
                     </div>
                     
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                            Subject *
-                        </label>
+                    <div class="form-group">
+                        <label>Subject *</label>
                         <input type="text" 
                                name="subject" 
-                               id="subject" 
                                value="<?= old('subject') ?>" 
                                required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200">
+                               placeholder="How can we help?">
                     </div>
                     
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                            Message *
-                        </label>
+                    <div class="form-group">
+                        <label>Message *</label>
                         <textarea name="message" 
-                                  id="message" 
                                   rows="6" 
                                   required
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 resize-vertical"><?= old('message') ?></textarea>
+                                  placeholder="Tell us about your project and requirements..."><?= old('message') ?></textarea>
                     </div>
                     
-                    <div class="text-center">
-                        <button type="submit" 
-                                class="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                            </svg>
-                            Send Message
-                        </button>
+                    <div class="form-group">
+                        <button type="submit" class="btn-primary">Send Message</button>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 </section>
 
 <!-- Contact Information -->
-<section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our team is ready to help you implement the right telecommunications solutions for your business.
+<section class="section alt">
+    <div class="max-w-7xl">
+        <div class="section-header">
+            <h2>Get in Touch</h2>
+            <p>
+                Our team is ready to help you implement the right technology solutions for your business.
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Email Us</h3>
-                <p class="text-gray-600">
-                    <a href="mailto:info@nugui.co.za" class="text-blue-600 hover:text-blue-700 transition-colors duration-200">
-                        info@nugui.co.za
-                    </a>
-                </p>
+        <div class="card-grid">
+            <!-- Email -->
+            <div class="contact-card">
+                <h3>Email Us</h3>
+                <p>Send us an email and we'll get back to you within 24 hours</p>
+                <a href="mailto:info@nugui.co.za" style="color: var(--color-accent); font-weight: 600;">
+                    info@nugui.co.za
+                </a>
             </div>
             
-            <div class="text-center">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Call Us</h3>
-                <p class="text-gray-600">
-                    <a href="tel:+27123456789" class="text-green-600 hover:text-green-700 transition-colors duration-200">
-                        +27 12 345 6789
-                    </a>
-                </p>
+            <!-- Phone -->
+            <div class="contact-card">
+                <h3>Call Us</h3>
+                <p>Speak directly with our team during business hours</p>
+                <a href="tel:+27123456789" style="color: var(--color-accent); font-weight: 600;">
+                    +27 12 345 6789
+                </a>
             </div>
             
-            <div class="text-center">
-                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-2">Visit Us</h3>
-                <p class="text-gray-600">
-                    Cape Town, South Africa
-                </p>
+            <!-- Location -->
+            <div class="contact-card">
+                <h3>Visit Us</h3>
+                <p>Located in the beautiful Mother City of South Africa</p>
+                <span style="color: var(--color-accent); font-weight: 600;">Cape Town, South Africa</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section">
+    <div class="max-w-7xl">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Quick answers to common questions</p>
+        </div>
+        
+        <div class="card-grid">
+            <div class="contact-card">
+                <h3>What services do you offer?</h3>
+                <p>We offer web development, mobile app development, digital transformation consulting, e-commerce solutions, cloud services, and IT consulting.</p>
+            </div>
+            
+            <div class="contact-card">
+                <h3>How long does a typical project take?</h3>
+                <p>Project timelines vary depending on complexity and scope. Simple websites can take 2-4 weeks, while complex applications may take 3-6 months. We'll provide a detailed timeline during our initial consultation.</p>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Do you provide ongoing support?</h3>
+                <p>Yes, we offer comprehensive maintenance and support packages to ensure your solution continues to perform optimally after launch.</p>
+            </div>
+            
+            <div class="contact-card">
+                <h3>What technologies do you work with?</h3>
+                <p>We work with modern technologies including React, Vue.js, Node.js, PHP, Python, cloud platforms (AWS, Azure), and mobile frameworks (React Native, Flutter).</p>
             </div>
         </div>
     </div>

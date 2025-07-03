@@ -29,7 +29,8 @@ $routes->setAutoRoute(false); // Disable auto routing for security
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Landing::index');
+$routes->get('/landing', 'Landing::index');
 $routes->get('/home', 'Home::index');
 $routes->get('about', 'About::index');
 $routes->get('products', 'Products::index');
