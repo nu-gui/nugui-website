@@ -1,0 +1,425 @@
+/**
+ * Page-Specific Gradient Backgrounds
+ * Each page gets its own unique gradient identity
+ */
+
+/* ===== Base Hero Section Styling ===== */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px 80px 20px;
+  text-align: center;
+  color: white;
+  /* Default gradient - can be overridden */
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, #000000 100%);
+  /* Add depth with subtle overlay */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 48px 48px;
+  /* Smooth transition for hover effects */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Smooth hover effect on hero sections */
+.hero-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure text is always readable */
+.hero-section h1,
+.hero-section p {
+  position: relative;
+  z-index: 2;
+  /* Smooth text animation */
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Fix paragraph text visibility on problematic pages */
+.page-home .hero-section p,
+.page-contact .hero-section p,
+.page-support .hero-section p {
+  color: #FFFFFF !important;
+  opacity: 0.95;
+}
+
+/* Ensure h1 text is also visible on these pages */
+.page-home .hero-section h1,
+.page-contact .hero-section h1,
+.page-support .hero-section h1 {
+  color: #FFFFFF !important;
+}
+
+/* Hero section buttons - 50% transparent with unique hover colors */
+.hero-section .btn-primary,
+.hero-section .btn-secondary {
+  background: rgba(255, 255, 255, 0.5) !important;
+  color: #1a1a1a !important;
+  border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+/* Primary button hover - Blue */
+.hero-section .btn-primary:hover {
+  background: rgba(0, 162, 232, 0.9) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(0, 162, 232, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 162, 232, 0.4);
+}
+
+/* Secondary button hover - Gold */
+.hero-section .btn-secondary:hover {
+  background: rgba(255, 193, 7, 0.9) !important;
+  color: #1a1a1a !important;
+  border-color: rgba(255, 193, 7, 0.9) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 193, 7, 0.4);
+}
+
+/* Text fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Remove conflicting hero section gradient text style - handled by page-specific styles below */
+
+/* Fallback for better visibility */
+@supports not (-webkit-background-clip: text) {
+  .hero-section .text-gradient {
+    background: none;
+    color: #FFC107;
+  }
+}
+
+/* Base gradient text style - SOLID COLORS ONLY */
+.text-gradient {
+  display: inline-block;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  /* Default bright gold color */
+  color: #FFC107 !important;
+  /* Remove any gradient effects */
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+}
+
+/* ===== Page-Specific Gradients ===== */
+
+/* Home Page - Dynamic Blue to Gold to Dark */
+.page-home .hero-section,
+.hero-gradient-home {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #33B5ED 15%, 
+    #FFC107 35%, 
+    #FFB000 50%, 
+    #1a1a1a 65%,
+    #0a0a0a 85%,
+    #000000 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* About Page - Professional Blue to Purple to Dark */
+.page-about .hero-section,
+.hero-gradient-about {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #0082BB 20%, 
+    #9C4DCC 40%, 
+    #B86CE8 50%, 
+    #2a1a3a 65%,
+    #151020 85%,
+    #000000 100%
+  );
+}
+
+/* Products Page - Multi-color Showcase to Dark */
+.page-products .hero-section,
+.hero-gradient-products {
+  background: linear-gradient(45deg, 
+    #FFB000 0%,    /* Gold - CCS */
+    #FFC107 10%,
+    #9C4DCC 20%,   /* Purple - Data */
+    #00E676 30%,   /* Green - SIP */
+    #FF5722 40%,   /* Orange - SMS */
+    #FF8A65 50%,
+    #2a1a1a 65%,
+    #151515 85%,
+    #000000 100%
+  );
+  background-size: 300% 300%;
+  animation: gradientWave 20s ease infinite;
+}
+
+/* Solutions Page - Tech Green to Blue to Dark */
+.page-solutions .hero-section,
+.hero-gradient-solutions {
+  background: linear-gradient(135deg, 
+    #00E676 0%, 
+    #00C853 15%, 
+    #00A2E8 35%, 
+    #0082BB 50%, 
+    #0a1a2a 65%,
+    #051015 85%,
+    #000000 100%
+  );
+}
+
+/* Support Page - Trustworthy Blue to Green to Dark */
+.page-support .hero-section,
+.hero-gradient-support {
+  background: linear-gradient(135deg, 
+    #0082BB 0%, 
+    #00A2E8 15%, 
+    #00C853 35%, 
+    #69F0AE 50%, 
+    #0a2a1a 65%,
+    #051510 85%,
+    #000000 100%
+  );
+}
+
+/* Contact Page - Warm Orange to Gold to Dark */
+.page-contact .hero-section,
+.hero-gradient-contact {
+  background: linear-gradient(135deg, 
+    #FF5722 0%, 
+    #FF8A65 15%, 
+    #FFC107 35%, 
+    #FFD54F 50%, 
+    #2a1a0a 65%,
+    #151005 85%,
+    #000000 100%
+  );
+}
+
+/* Partner Program - Premium Purple to Gold to Dark */
+.page-partner .hero-section,
+.page-partner_program .hero-section,
+.hero-gradient-partner {
+  background: linear-gradient(135deg, 
+    #7B2D99 0%, 
+    #9C4DCC 15%, 
+    #FFB000 35%, 
+    #FFC847 50%, 
+    #2a1a2a 65%,
+    #151015 85%,
+    #000000 100%
+  );
+}
+
+/* ===== Individual Product/Solution Gradients ===== */
+
+/* CCS (Call Control System) - Gold Theme to Dark */
+.hero-gradient-ccs {
+  background: linear-gradient(135deg, 
+    #E69500 0%, 
+    #FFB000 15%, 
+    #FFC107 30%, 
+    #FFD54F 50%, 
+    #2a1a0a 65%,
+    #151005 85%,
+    #000000 100%
+  );
+}
+
+/* Data Processing - Purple Theme to Dark */
+.hero-gradient-data {
+  background: linear-gradient(135deg, 
+    #7B2D99 0%, 
+    #9C4DCC 20%, 
+    #B86CE8 35%, 
+    #d8b4fe 50%, 
+    #2a1a3a 65%,
+    #151020 85%,
+    #000000 100%
+  );
+}
+
+/* SIP/Voice - Green Theme to Dark */
+.hero-gradient-sip {
+  background: linear-gradient(135deg, 
+    #00C853 0%, 
+    #00E676 15%, 
+    #69F0AE 35%, 
+    #a5d6a7 50%, 
+    #0a2a1a 65%,
+    #051510 85%,
+    #000000 100%
+  );
+}
+
+/* SMS Gateway - Orange Theme to Dark */
+.hero-gradient-sms {
+  background: linear-gradient(135deg, 
+    #E64A19 0%, 
+    #FF5722 15%, 
+    #FF8A65 35%, 
+    #ffcc82 50%, 
+    #2a1a0a 65%,
+    #151005 85%,
+    #000000 100%
+  );
+}
+
+/* ===== Gradient Animations ===== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientWave {
+  0% { background-position: 0% 0%; }
+  25% { background-position: 50% 50%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 50% 50%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* ===== Dark Mode Adjustments ===== */
+.dark .hero-section {
+  /* Add darker overlay for better text contrast in dark mode */
+  position: relative;
+}
+
+.dark .hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dark .hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Special Effects ===== */
+
+/* Animated gradient border */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--color-primary) 0%, 
+    var(--color-accent) 25%, 
+    var(--color-primary) 50%, 
+    var(--color-accent) 75%, 
+    var(--color-primary) 100%
+  );
+  background-size: 200% 100%;
+  animation: borderFlow 3s linear infinite;
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* Mesh gradient overlay for depth */
+.hero-mesh-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  z-index: 1;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 20px 60px 20px;
+    border-radius: 0 0 32px 32px;
+  }
+  
+  /* Simplify gradients on mobile for performance */
+  .page-products .hero-section {
+    background: linear-gradient(135deg, #FFB000 0%, #9C4DCC 50%, #00E676 100%);
+    animation: none;
+  }
+}
+
+/* ===== Utility Classes ===== */
+
+/* Quick gradient application */
+.gradient-blue-gold {
+  background: linear-gradient(135deg, #00A2E8 0%, #FFC107 100%);
+}
+
+.gradient-purple-green {
+  background: linear-gradient(135deg, #9C4DCC 0%, #00E676 100%);
+}
+
+.gradient-orange-blue {
+  background: linear-gradient(135deg, #FF5722 0%, #00A2E8 100%);
+}
+
+.gradient-gold-purple {
+  background: linear-gradient(135deg, #FFB000 0%, #9C4DCC 100%);
+}
+
+/* Page-specific solid text colors - NO GRADIENTS */
+/* Updated for better contrast against backgrounds */
+.page-home .text-gradient {
+  /* Changed from gold to white for contrast against blue/gold gradient */
+  color: #FFFFFF !important;
+}
+
+.page-products .text-gradient {
+  color: #FFB000 !important;
+}
+
+.page-solutions .text-gradient {
+  color: #00E676 !important;
+}
+
+.page-support .text-gradient {
+  /* Using bright yellow/gold for contrast against blue/green gradient */
+  color: #FFD54F !important;
+}
+
+.page-contact .text-gradient {
+  /* Using deep purple for contrast against orange/gold gradient */
+  color: #7B2D99 !important;
+}
+
+.page-about .text-gradient {
+  color: #9C4DCC !important;
+}
+
+.page-partner .text-gradient,
+.page-partner-program .text-gradient {
+  color: #FFB000 !important;
+}

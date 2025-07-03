@@ -39,13 +39,23 @@
         font-weight: 600;
         text-decoration: none;
         background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
+        color: #fff;
+        border: 2.5px solid transparent;
+        box-shadow:
+            0 0 0 3px rgba(0,0,0,0.18),
+            0 0 12px 2px var(--color-accent),
+            0 4px 16px rgba(0,0,0,0.22);
+        position: relative;
+        transition: background 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
     }
     .btn-primary:hover {
         background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
         color: #fff;
+        border-color: var(--color-primary);
+        box-shadow:
+            0 0 0 3px var(--color-primary),
+            0 0 18px 4px var(--color-accent),
+            0 8px 32px rgba(0,0,0,0.32);
     }
     /* Custom styles for the home page to align with the Apple design system */
     .hero-section {
@@ -100,14 +110,18 @@
         border-radius: 24px;
         padding: 40px;
         text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
+        box-shadow:
+            0 0 0 2.5px var(--color-accent),
+            0 4px 32px 0 rgba(0,0,0,0.22),
+            0 0 18px 2px var(--color-primary);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .feature-card:hover {
         transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        border-color: var(--color-primary);
+        box-shadow:
+            0 0 0 3px var(--color-primary),
+            0 20px 48px 0 rgba(0,0,0,0.28),
+            0 0 24px 4px var(--color-accent);
     }
     .feature-card img {
         display: block;

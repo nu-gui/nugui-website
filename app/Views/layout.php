@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/utilities-apple.css') ?>">
     
+    <!-- Product Colors and Page Gradients -->
+    <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>">
+    
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -40,7 +45,12 @@
 
     <?= $this->renderSection('styles') ?>
 </head>
-<body>
+<?php
+    // Get current page name for page-specific styling
+    $currentPage = service('router')->getMatchedRoute()[0] ?? 'home';
+    $pageClass = 'page-' . str_replace(['/', '_'], '-', strtolower($currentPage));
+?>
+<body class="<?= $pageClass ?> <?= $bodyClass ?? '' ?>">
     <?= $this->include('templates/header-apple') ?>
 
     <main>
@@ -56,6 +66,9 @@
     <!-- Legacy scripts for backward compatibility -->
     <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
     <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script>
+    
+    <!-- Page Gradient Enhancement -->
+    <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>
     <?= $this->renderSection('scripts') ?>
 </body>
 </html>

@@ -340,159 +340,159 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">&times;</span>
         <div id="popup-form-content">
-            <form id="partner-form" method="post" enctype="multipart/form-data" action="<?= base_url('submit_partner_form') ?>">
-                <?= csrf_field() ?>
-                
-                <!-- Honeypot fields - hidden from users but visible to bots -->
-                <div style="display:none;">
-                    <input type="text" name="website" tabindex="-1" autocomplete="off">
-                    <input type="email" name="email_confirm" tabindex="-1" autocomplete="off">
-                    <input type="text" name="company" tabindex="-1" autocomplete="off">
-                    <textarea name="comments" tabindex="-1" autocomplete="off"></textarea>
-                </div>
-                
-                <!-- Time-based validation -->
-                <input type="hidden" name="form_start_time" value="<?= time() ?>">
-                <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
-                <div id="step1" class="wizard-step active">
-                    <h2>Step 1: Business Information</h2>
-                    <div class="form-group">
-                        <label for="businessName">Business Name</label>
-                        <input type="text" id="businessName" name="businessName" required>
+            <div class="form-card" style="max-width: 600px; margin: 0 auto; background: var(--color-surface); border-radius: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); padding: 2.5rem 2rem;">
+                <form id="partner-form" method="post" enctype="multipart/form-data" action="<?= base_url('submit_partner_form') ?>">
+                    <?= csrf_field() ?>
+                    <!-- Honeypot fields - hidden from users but visible to bots -->
+                    <div style="display:none;">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        <input type="email" name="email_confirm" tabindex="-1" autocomplete="off">
+                        <input type="text" name="company" tabindex="-1" autocomplete="off">
+                        <textarea name="comments" tabindex="-1" autocomplete="off"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="registrationNumber">Registration Number</label>
-                        <input type="text" id="registrationNumber" name="registrationNumber" required>
+                    <!-- Time-based validation -->
+                    <input type="hidden" name="form_start_time" value="<?= time() ?>">
+                    <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
+                    <div id="step1" class="wizard-step active">
+                        <h2 style="font-size:2rem;font-weight:700;margin-bottom:1.5rem;color:var(--color-primary)">Step 1: Business Information</h2>
+                        <div class="form-group">
+                            <label for="businessName">Business Name</label>
+                            <input type="text" id="businessName" name="businessName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registrationNumber">Registration Number</label>
+                            <input type="text" id="registrationNumber" name="registrationNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="countryBusiness">Country of Business</label>
+                            <select id="countryBusiness" name="countryBusiness" required></select>
+                        </div>
+                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" onclick="nextStep(2)">Next</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="countryBusiness">Country of Business</label>
-                        <select id="countryBusiness" name="countryBusiness" required></select>
+                    <div id="step2" class="wizard-step">
+                        <h2 style="font-size:2rem;font-weight:700;margin-bottom:1.5rem;color:var(--color-primary)">Step 2: Contact Information</h2>
+                        <div class="form-group">
+                            <label for="contactName">Contact Name</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Contact Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Contact Phone</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Skype_Teams">Skype/Teams</label>
+                            <input type="text" id="Skype_Teams" name="Skype_Teams" required>
+                        </div>
+                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" onclick="prevStep(1)">Previous</button>
+                            <button type="button" class="btn-primary" id="step2NextButton">Next</button>
+                        </div>
+                        <div class="error" id="emailError" style="display: none;">Email is required.</div>
                     </div>
-                    <div class="button-container">
-                        <button type="button" onclick="nextStep(2)">Next</button>
+                    <div id="step3" class="wizard-step">
+                        <h2 style="font-size:2rem;font-weight:700;margin-bottom:1.5rem;color:var(--color-primary)">Step 3: Questionnaire</h2>
+                        <div class="form-group">
+                            <label for="question1">What is your annual turnover for the last financial year?</label>
+                            <select id="question1" name="question1" required>
+                                <option value="">Select an option</option>
+                                <option value="100k-500k">100k - 500k</option>
+                                <option value="500k-1mil">500k - 1mil</option>
+                                <option value="1mil-5mil">1mil - 5mil</option>
+                                <option value="5mil-10mil">5mil - 10mil</option>
+                                <option value="10mil+">10mil+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question2">Do you have financial statements for the last two years?</label>
+                            <select id="question2" name="question2" required>
+                                <option value="">Select an option</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question3">What industry does your business primarily operate in?</label>
+                            <select id="question3" name="question3" required>
+                                <option value="">Select an option</option>
+                                <option value="VoIP Wholesale">VoIP Wholesale</option>
+                                <option value="Contact Center">Contact Center</option>
+                                <option value="BPO">BPO (Business Process Outsourcing)</option>
+                                <option value="PBX">PBX (Private Branch Exchange)</option>
+                                <option value="SMS">SMS Services</option>
+                                <option value="CRM">CRM (Customer Relationship Management)</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Lead Generation">Lead Generation</option>
+                                <option value="Software Development">Software Development</option>
+                                <option value="Telecom Equipment">Telecom Equipment</option>
+                                <option value="Telecom Infrastructure">Telecom Infrastructure</option>
+                                <option value="Telecom Carrier">Telecom Carrier</option>
+                                <option value="Internet Service Provider">Internet Service Provider</option>
+                                <option value="Unified Communications">Unified Communications</option>
+                                <option value="Cloud Services">Cloud Services</option>
+                                <option value="Data Center Services">Data Center Services</option>
+                                <option value="IT Services">IT Services</option>
+                                <option value="Network Security">Network Security</option>
+                                <option value="Managed Services">Managed Services</option>
+                                <option value="Mobile Network Operator">Mobile Network Operator</option>
+                                <option value="Satellite Communications">Satellite Communications</option>
+                                <option value="IoT (Internet of Things)">IoT (Internet of Things)</option>
+                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                <option value="Big Data">Big Data</option>
+                                <option value="Enterprise Solutions">Enterprise Solutions</option>
+                                <option value="Consulting Services">Consulting Services</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="E-commerce">E-commerce</option>
+                                <option value="Financial Services">Financial Services</option>
+                                <option value="Healthcare Technology">Healthcare Technology</option>
+                                <option value="Education Technology">Education Technology</option>
+                                <option value="Media and Entertainment">Media and Entertainment</option>
+                                <option value="Retail Technology">Retail Technology</option>
+                                <option value="Travel and Hospitality">Travel and Hospitality</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question4">What type of partnership are you interested in?</label>
+                            <select id="question4" name="question4" required>
+                                <option value="">Select an option</option>
+                                <option value="reseller">Reseller</option>
+                                <option value="distributor">Distributor</option>
+                                <option value="service">Service Provider</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question5">Which of our products are you most interested in?</label>
+                            <select id="question5" name="question5" required>
+                                <option value="">Select an option</option>
+                                <option value="NU SIP">NU SIP - VoIP Services</option>
+                                <option value="NU SMS">NU SMS - Direct Messaging Services</option>
+                                <option value="NU CCS">NU CCS - Telecoms Software Call Control Server</option>
+                                <option value="NU DATA">NU DATA - Data Enrichment Services</option>
+                                <option value="NU GUI">NU GUI - Custom Build UI UX Portal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="question6">How do you plan to market our solutions to your customers?</label>
+                            <textarea id="question6" name="question6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="question7">Describe your current customer base and target market.</label>
+                            <textarea id="question7" name="question7" required></textarea>
+                        </div>
+                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" class="btn-primary" onclick="prevStep(2)">Previous</button>
+                            <button type="submit" class="btn-primary">Submit</button>
+                        </div>
                     </div>
-                </div>
-                <div id="step2" class="wizard-step">
-                    <h2>Step 2: Contact Information</h2>
-                    <div class="form-group">
-                        <label for="contactName">Contact Name</label>
-                        <input type="text" id="contactName" name="contactName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactEmail">Contact Email</label>
-                        <input type="email" id="contactEmail" name="contactEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="contactPhone">Contact Phone</label>
-                        <input type="tel" id="contactPhone" name="contactPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="Skype_Teams">Skype/Teams</label>
-                        <input type="text" id="Skype_Teams" name="Skype_Teams" required>
-                    </div>
-                    <div class="button-container">
-                        <button type="button" onclick="prevStep(1)">Previous</button>
-                        <button type="button" id="step2NextButton">Next</button>
-                    </div>
-                    <div class="error" id="emailError" style="display: none;">Email is required.</div>
-                </div>
-                <div id="step3" class="wizard-step">
-                    <h2>Step 3: Questionnaire</h2>
-                    <div class="form-group">
-                        <label for="question1">What is your annual turnover for the last financial year?</label>
-                        <select id="question1" name="question1" required>
-                            <option value="">Select an option</option>
-                            <option value="100k-500k">100k - 500k</option>
-                            <option value="500k-1mil">500k - 1mil</option>
-                            <option value="1mil-5mil">1mil - 5mil</option>
-                            <option value="5mil-10mil">5mil - 10mil</option>
-                            <option value="10mil+">10mil+</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="question2">Do you have financial statements for the last two years?</label>
-                        <select id="question2" name="question2" required>
-                            <option value="">Select an option</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="question3">What industry does your business primarily operate in?</label>
-                        <select id="question3" name="question3" required>
-                            <option value="">Select an option</option>
-                            <option value="VoIP Wholesale">VoIP Wholesale</option>
-                            <option value="Contact Center">Contact Center</option>
-                            <option value="BPO">BPO (Business Process Outsourcing)</option>
-                            <option value="PBX">PBX (Private Branch Exchange)</option>
-                            <option value="SMS">SMS Services</option>
-                            <option value="CRM">CRM (Customer Relationship Management)</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Lead Generation">Lead Generation</option>
-                            <option value="Software Development">Software Development</option>
-                            <option value="Telecom Equipment">Telecom Equipment</option>
-                            <option value="Telecom Infrastructure">Telecom Infrastructure</option>
-                            <option value="Telecom Carrier">Telecom Carrier</option>
-                            <option value="Internet Service Provider">Internet Service Provider</option>
-                            <option value="Unified Communications">Unified Communications</option>
-                            <option value="Cloud Services">Cloud Services</option>
-                            <option value="Data Center Services">Data Center Services</option>
-                            <option value="IT Services">IT Services</option>
-                            <option value="Network Security">Network Security</option>
-                            <option value="Managed Services">Managed Services</option>
-                            <option value="Mobile Network Operator">Mobile Network Operator</option>
-                            <option value="Satellite Communications">Satellite Communications</option>
-                            <option value="IoT (Internet of Things)">IoT (Internet of Things)</option>
-                            <option value="Artificial Intelligence">Artificial Intelligence</option>
-                            <option value="Big Data">Big Data</option>
-                            <option value="Enterprise Solutions">Enterprise Solutions</option>
-                            <option value="Consulting Services">Consulting Services</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="E-commerce">E-commerce</option>
-                            <option value="Financial Services">Financial Services</option>
-                            <option value="Healthcare Technology">Healthcare Technology</option>
-                            <option value="Education Technology">Education Technology</option>
-                            <option value="Media and Entertainment">Media and Entertainment</option>
-                            <option value="Retail Technology">Retail Technology</option>
-                            <option value="Travel and Hospitality">Travel and Hospitality</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="question4">What type of partnership are you interested in?</label>
-                        <select id="question4" name="question4" required>
-                            <option value="">Select an option</option>
-                            <option value="reseller">Reseller</option>
-                            <option value="distributor">Distributor</option>
-                            <option value="service">Service Provider</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="question5">Which of our products are you most interested in?</label>
-                        <select id="question5" name="question5" required>
-                            <option value="">Select an option</option>
-                            <option value="NU SIP">NU SIP - VoIP Services</option>
-                            <option value="NU SMS">NU SMS - Direct Messaging Services</option>
-                            <option value="NU CCS">NU CCS - Telecoms Software Call Control Server</option>
-                            <option value="NU DATA">NU DATA - Data Enrichment Services</option>
-                            <option value="NU GUI">NU GUI - Custom Build UI UX Portal</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="question6">How do you plan to market our solutions to your customers?</label>
-                        <textarea id="question6" name="question6" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="question7">Describe your current customer base and target market.</label>
-                        <textarea id="question7" name="question7" required></textarea>
-                    </div>
-                    <div class="button-container">
-                        <button type="button" onclick="prevStep(2)">Previous</button>
-                        <button type="submit">Submit</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div id="confirmation-message" style="display: none;"></div>
     </div>

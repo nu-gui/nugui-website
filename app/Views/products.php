@@ -2,12 +2,12 @@
 
 <?= $this->section('content') ?>
 <!-- Apple-Style Products Hero -->
-<section class="hero-section" style="padding-top: calc(44px + var(--spacing-5xl)); background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 100%);">
-    <div class="container" style="max-width: 980px; text-align: center; padding: var(--spacing-5xl) var(--spacing-lg);">
-        <h1 style="font-family: var(--font-family-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--spacing-lg); line-height: 1.1;">
-            Our Products
+<section class="hero-section">
+    <div class="container" style="max-width: 980px;">
+        <h1>
+            Our <span class="text-gradient">Products</span>
         </h1>
-        <p style="font-size: var(--font-size-xl); color: var(--color-text-secondary); margin-bottom: var(--spacing-3xl); max-width: 680px; margin-left: auto; margin-right: auto; line-height: var(--line-height-relaxed);">
+        <p style="font-size: var(--font-size-xl); max-width: 680px; margin-left: auto; margin-right: auto;">
             Discover innovative telecommunications solutions designed to enhance your business operations and drive growth in the digital era.
         </p>
     </div>
@@ -270,5 +270,55 @@
     }
 }
 </style>
+
+<!-- Individual Product Showcases with Unique Gradients -->
+
+<!-- NU SIP Section with Green Gradient -->
+<section data-product-theme="sip" style="margin-top: var(--spacing-5xl);">
+    <div class="hero-section hero-gradient-sip" style="padding: var(--spacing-4xl) var(--spacing-lg);">
+        <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md);">
+            NU SIP - <span class="text-gradient">Voice Solutions</span>
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+            Enterprise-grade VoIP services with crystal-clear quality
+        </p>
+    </div>
+</section>
+
+<!-- NU DATA Section with Purple Gradient -->
+<section data-product-theme="data" style="margin-top: var(--spacing-3xl);">
+    <div class="hero-section hero-gradient-data" style="padding: var(--spacing-4xl) var(--spacing-lg);">
+        <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md);">
+            NU DATA - <span class="text-gradient">Data Services</span>
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+            Advanced data processing and enrichment solutions
+        </p>
+    </div>
+</section>
+
+<!-- CCS Section with Gold Gradient -->
+<section data-product-theme="ccs" style="margin-top: var(--spacing-3xl);">
+    <div class="hero-section hero-gradient-ccs" style="padding: var(--spacing-4xl) var(--spacing-lg);">
+        <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md);">
+            CCS - <span class="text-gradient">Call Control</span>
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+            Comprehensive call control and management systems
+        </p>
+    </div>
+</section>
+
+<!-- SMS Section with Orange Gradient -->
+<section data-product-theme="sms" style="margin-top: var(--spacing-3xl);">
+    <div class="hero-section hero-gradient-sms" style="padding: var(--spacing-4xl) var(--spacing-lg);">
+        <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md);">
+            SMS Gateway - <span class="text-gradient">Messaging</span>
+        </h2>
+        <p style="max-width: 600px; margin: 0 auto;">
+            Reliable SMS gateway services for business communications
+        </p>
+    </div>
+</section>
 
 <?= $this->endSection() ?>

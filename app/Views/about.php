@@ -176,25 +176,8 @@
     }
     .cta-section p {
         font-size: 1.2rem;
-        max-w-2xl mx-auto;
-        margin-bottom: 30px;
-    }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-        margin-top: 1rem;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
+        max-width: 42rem;
+        margin: 0 auto 30px auto;
     }
 </style>
 

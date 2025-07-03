@@ -195,6 +195,7 @@
     section[id] {
         scroll-margin-top: 60px;
     }
+
 </style>
 <script>
 function toggleDetails(id) {
@@ -206,25 +207,6 @@ function toggleDetails(id) {
     }
 }
 </script>
-    .solution-card img {
-        display: block;
-        margin: 0 auto 1rem auto;
-        border-radius: 12px;
-        background: var(--color-background-secondary);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .solution-details {
-        font-size: 1rem;
-        color: var(--color-text-secondary);
-        background: var(--color-background-secondary);
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
-        margin-top: 1rem;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .btn-primary {
-        margin-top: 1rem;
-    }
 
 <!-- Hero Section -->
 <section class="hero-section">
