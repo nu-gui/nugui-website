@@ -40,7 +40,7 @@ npm install
 npm run build:css
 
 # Create production .env file
-cp env .env.production
+cp .env .env.production
 ```
 
 ### Step 2: Configure Production Environment

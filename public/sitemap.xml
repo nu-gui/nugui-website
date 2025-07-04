@@ -37,33 +37,6 @@
     </url>
     
     <!-- Individual Solution Pages -->
-    <url>
-        <loc>https://nugui.co.za/solutions#nu-sip</loc>
-        <lastmod>2025-01-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://nugui.co.za/solutions#nu-sms</loc>
-        <lastmod>2025-01-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://nugui.co.za/solutions#nu-ccs</loc>
-        <lastmod>2025-01-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://nugui.co.za/solutions#nu-data</loc>
-        <lastmod>2025-01-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
     
     <!-- Contact Page -->
     <url>

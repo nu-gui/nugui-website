@@ -134,14 +134,14 @@
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+27-XXX-XXX-XXXX",
+          "telephone": "+27-81-304-0278",
           "contactType": "sales",
           "areaServed": "Worldwide",
           "availableLanguage": ["English", "Afrikaans"]
         },
         {
           "@type": "ContactPoint",
-          "telephone": "+27-XXX-XXX-XXXX",
+          "telephone": "+27-21-110-0555",
           "contactType": "technical support",
           "areaServed": "Worldwide",
           "availableLanguage": "English",
@@ -163,13 +163,15 @@
     </script>
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <?php if (getenv('GA_MEASUREMENT_ID')): ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= esc(getenv('GA_MEASUREMENT_ID')) ?>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
+      gtag('config', '<?= esc(getenv('GA_MEASUREMENT_ID')) ?>');
     </script>
+    <?php endif; ?>
     
     <?= $this->renderSection('scripts') ?>
 </body>

@@ -39,9 +39,14 @@ class Blog extends BaseController
             ]
         ];
         
+        // Check if category exists
+        if (!isset($categories[$category])) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Category '{$category}' not found");
+        }
+        
         $data = [
             'category' => $category,
-            'categoryInfo' => $categories[$category] ?? null
+            'categoryInfo' => $categories[$category]
         ];
         
         return view('blog/category', $data);

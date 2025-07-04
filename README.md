@@ -172,7 +172,7 @@ All static assets are organized in the `public/assets/` directory:
 
 Afrihost provides cPanel with the following tools for deployment:
 
-1. **Using CP File Manager**:
+1. **Using cPanel File Manager**:
    - Upload your project files via File Manager
    - Ensure `public` directory contents are in `public_html`
    - Keep application files outside `public_html` for security
