@@ -7,7 +7,7 @@
     <meta name="keywords" content="telecom solutions, VoIP platform, SMS gateway, call control system, billing integration, carrier grade, wholesale voip, bulk sms, HLR lookup, MNP database, fraud prevention">
     <meta name="author" content="NU GUI">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="<?= current_url() ?>">
+    <link rel="canonical" href="<?= base_url(uri_string()) ?>">
     <title><?= $this->renderSection('title') ? $this->renderSection('title') . ' | ' : '' ?>NU GUI - Enterprise Telecom Solutions</title>
     
     <!-- Apple-Inspired Modern CSS Framework -->
