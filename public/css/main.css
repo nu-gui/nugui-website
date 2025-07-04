@@ -148,7 +148,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 30px;
+  padding: var(--spacing-btn-vertical) var(--spacing-btn-horizontal);
   border: none;
   border-radius: 999px;
   font-family: var(--font-family-primary);
