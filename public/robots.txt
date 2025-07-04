@@ -36,10 +36,6 @@ User-agent: MJ12bot
 Disallow: /
 
 # Allow search engines to access CSS and JS files
-User-agent: *
-Allow: /css/
-Allow: /js/
-Allow: /assets/
 
 # Sitemap location
 Sitemap: https://nugui.co.za/sitemap.xml
