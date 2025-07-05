@@ -219,32 +219,32 @@
 }
 
 .btn--large {
-  padding: 18px 40px;
-  font-size: 1.15rem;
+  padding: var(--btn-large-padding);
+  font-size: var(--btn-large-font-size);
 }
 
 /* Enhanced styling for large buttons - same as feature card buttons */
 .btn--large.btn--primary {
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: white;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.2);
+  border: var(--btn-border);
+  box-shadow: var(--btn-box-shadow);
 }
 
 .btn--large.btn--primary:hover {
   background: linear-gradient(135deg, #007BFF, #0056B3);
   color: white;
-  border-color: #007BFF;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.4);
+  border-color: var(--btn-hover-border-color);
+  transform: var(--btn-hover-transform);
+  box-shadow: var(--btn-hover-box-shadow);
 }
 
 .btn--large.btn--secondary {
   background: rgba(255, 255, 255, 0.5);
   color: var(--color-text-primary);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: var(--btn-secondary-border);
+  backdrop-filter: var(--btn-secondary-backdrop-filter);
+  box-shadow: var(--btn-secondary-box-shadow);
 }
 
 .btn--large.btn--secondary:hover {
