@@ -106,11 +106,11 @@
                     </div>
                     <div>
                         <h4 style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Phone</h4>
-                        <a href="tel:+27211100565" 
+                        <a href="tel:+27813040278" 
                            style="color: var(--color-text-secondary); transition: color var(--transition-fast); text-decoration: none;"
                            onmouseover="this.style.color='var(--color-primary)'"
                            onmouseout="this.style.color='var(--color-text-secondary)'">
-                            +27 21 110 0565
+                            +27 81 304 0278
                         </a>
                     </div>
                     <div>
@@ -124,19 +124,19 @@
         <!-- Footer Bottom -->
         <div style="margin-top: var(--spacing-3xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--color-separator); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-lg);">
             <div style="display: flex; gap: var(--spacing-xl); flex-wrap: wrap;">
-                <a href="<?= base_url('/privacy-policy'); ?>" 
+                <a href="javascript:void(0)" onclick="showPrivacyPopup()" 
                    style="color: var(--color-text-secondary); font-size: var(--font-size-sm); transition: color var(--transition-fast); text-decoration: none;"
                    onmouseover="this.style.color='var(--color-text-primary)'"
                    onmouseout="this.style.color='var(--color-text-secondary)'">
                     Privacy Policy
                 </a>
-                <a href="<?= base_url('/terms-of-service'); ?>" 
+                <a href="javascript:void(0)" onclick="showTermsPopup()" 
                    style="color: var(--color-text-secondary); font-size: var(--font-size-sm); transition: color var(--transition-fast); text-decoration: none;"
                    onmouseover="this.style.color='var(--color-text-primary)'"
                    onmouseout="this.style.color='var(--color-text-secondary)'">
                     Terms of Service
                 </a>
-                <a href="<?= base_url('/cookie-policy'); ?>" 
+                <a href="javascript:void(0)" onclick="showCookiePopup()" 
                    style="color: var(--color-text-secondary); font-size: var(--font-size-sm); transition: color var(--transition-fast); text-decoration: none;"
                    onmouseover="this.style.color='var(--color-text-primary)'"
                    onmouseout="this.style.color='var(--color-text-secondary)'">
@@ -200,4 +200,221 @@
         gap: var(--spacing-sm) !important;
     }
 }
+
+/* Modal Popup Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--color-background);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: var(--spacing-2xl);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-separator);
+    padding-bottom: var(--spacing-md);
+}
+
+.modal-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+}
+
+.modal-content {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+}
+
+.modal-content h3 {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    margin: var(--spacing-lg) 0 var(--spacing-sm) 0;
+}
+
+.modal-content p {
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-content ul {
+    margin: var(--spacing-sm) 0 var(--spacing-md) var(--spacing-lg);
+}
+
+.modal-content li {
+    margin-bottom: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+    .modal {
+        max-width: calc(100vw - var(--spacing-lg));
+        margin: var(--spacing-md);
+    }
+}
 </style>
+
+<!-- Modal Popups -->
+<div id="privacyModal" class="modal-overlay" onclick="closeModal('privacyModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2 class="modal-title">Privacy Policy</h2>
+            <button class="modal-close" onclick="closeModal('privacyModal')">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p><strong>Effective Date:</strong> <?= date('F j, Y') ?></p>
+            
+            <h3>Information We Collect</h3>
+            <p>We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+            
+            <h3>How We Use Your Information</h3>
+            <p>We use the information we collect to provide, maintain, and improve our telecommunications services, process transactions, and communicate with you.</p>
+            
+            <h3>Information Sharing</h3>
+            <p>We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+            
+            <h3>Data Security</h3>
+            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+            
+            <h3>Contact Us</h3>
+            <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:privacy@nugui.co.za">privacy@nugui.co.za</a>.</p>
+        </div>
+    </div>
+</div>
+
+<div id="termsModal" class="modal-overlay" onclick="closeModal('termsModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2 class="modal-title">Terms of Service</h2>
+            <button class="modal-close" onclick="closeModal('termsModal')">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p><strong>Effective Date:</strong> <?= date('F j, Y') ?></p>
+            
+            <h3>Acceptance of Terms</h3>
+            <p>By accessing or using NU GUI's telecommunications services, you agree to be bound by these Terms of Service.</p>
+            
+            <h3>Service Description</h3>
+            <p>NU GUI provides enterprise telecommunications solutions including VoIP services, SMS platforms, call control systems, and data management services.</p>
+            
+            <h3>User Responsibilities</h3>
+            <ul>
+                <li>Comply with all applicable laws and regulations</li>
+                <li>Provide accurate and complete information</li>
+                <li>Maintain the security of your account credentials</li>
+                <li>Use services in accordance with acceptable use policies</li>
+            </ul>
+            
+            <h3>Service Availability</h3>
+            <p>We strive to maintain 99.99% uptime but cannot guarantee uninterrupted service due to maintenance, upgrades, or circumstances beyond our control.</p>
+            
+            <h3>Limitation of Liability</h3>
+            <p>NU GUI's liability is limited to the fees paid for services in the preceding twelve months.</p>
+            
+            <h3>Contact Information</h3>
+            <p>For questions regarding these terms, contact us at <a href="mailto:legal@nugui.co.za">legal@nugui.co.za</a>.</p>
+        </div>
+    </div>
+</div>
+
+<div id="cookieModal" class="modal-overlay" onclick="closeModal('cookieModal')">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2 class="modal-title">Cookie Policy</h2>
+            <button class="modal-close" onclick="closeModal('cookieModal')">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p><strong>Last Updated:</strong> <?= date('F j, Y') ?></p>
+            
+            <h3>What Are Cookies</h3>
+            <p>Cookies are small text files stored on your device when you visit our website. They help us provide you with a better experience.</p>
+            
+            <h3>Types of Cookies We Use</h3>
+            <ul>
+                <li><strong>Essential Cookies:</strong> Required for basic website functionality</li>
+                <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site</li>
+                <li><strong>Functional Cookies:</strong> Remember your preferences and settings</li>
+                <li><strong>Performance Cookies:</strong> Monitor website performance and speed</li>
+            </ul>
+            
+            <h3>Managing Cookies</h3>
+            <p>You can control cookies through your browser settings. However, disabling certain cookies may affect website functionality.</p>
+            
+            <h3>Third-Party Cookies</h3>
+            <p>We may use third-party services that set cookies for analytics and performance monitoring purposes.</p>
+            
+            <h3>Updates to This Policy</h3>
+            <p>We may update this Cookie Policy periodically. Changes will be posted on this page with an updated revision date.</p>
+            
+            <p>For cookie-related questions, contact us at <a href="mailto:privacy@nugui.co.za">privacy@nugui.co.za</a>.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showPrivacyPopup() {
+    document.getElementById('privacyModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function showTermsPopup() {
+    document.getElementById('termsModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function showCookiePopup() {
+    document.getElementById('cookieModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal('privacyModal');
+        closeModal('termsModal');
+        closeModal('cookieModal');
+    }
+});
+</script>

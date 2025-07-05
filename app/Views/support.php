@@ -20,22 +20,6 @@
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
-    }
     /* Custom styles for the support page to align with the Apple design system */
     .hero-section {
         background-color: var(--color-background);
@@ -116,22 +100,6 @@
         padding: 40px;
         max-width: 56rem;
         margin: 0 auto;
-    }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: none;
-        background-color: var(--color-accent);
-        color: white;
-        transition: background-color 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-    .btn-primary:hover {
-        background-color: var(--color-accent-hover);
     }
     .form-group {
         margin-bottom: 20px;
@@ -275,7 +243,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <button type="submit" class="btn-primary">Submit Support Request</button>
+                    <button type="submit" class="btn btn--primary btn--large">Submit Support Request</button>
                 </div>
             </form>
         </div>

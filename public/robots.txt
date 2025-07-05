@@ -1,0 +1,45 @@
+# Robots.txt for NU GUI - nugui.co.za
+# Last updated: 2025-01-03
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /test/
+Disallow: /*.json$
+Disallow: /writable/
+Disallow: /system/
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Allow search engines to access CSS and JS files
+
+# Sitemap location
+Sitemap: https://nugui.co.za/sitemap.xml
+
+# Additional sitemaps (if any)
+# Sitemap: https://nugui.co.za/sitemap-blog.xml
+# Sitemap: https://nugui.co.za/sitemap-resources.xml

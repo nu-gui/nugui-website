@@ -166,6 +166,70 @@ All static assets are organized in the `public/assets/` directory:
 - JavaScript files in `js/` subdirectory  
 - Images in `images/` subdirectory (53+ professional images included)
 
+## Deployment Options with Afrihost
+
+### Option 1: cPanel Deployment (Recommended for Afrihost)
+
+Afrihost provides cPanel with the following tools for deployment:
+
+1. **Using cPanel File Manager**:
+   - Upload your project files via File Manager
+   - Ensure `public` directory contents are in `public_html`
+   - Keep application files outside `public_html` for security
+
+2. **Using Softaculous App Installer**:
+   - Check if CodeIgniter4 is available in Softaculous
+   - Use auto-installer for quick setup
+   - Configure database during installation
+
+3. **PHP Configuration**:
+   - Use **MultiPHP Manager** to set PHP version to 8.1 or higher
+   - Use **MultiPHP INI Editor** to configure:
+     - `max_execution_time = 300`
+     - `memory_limit = 256M`
+     - `upload_max_filesize = 10M`
+     - `post_max_size = 10M`
+
+4. **Database Setup**:
+   - Create MySQL database via cPanel
+   - Create database user with full privileges
+   - Update `.env` with database credentials
+
+### Option 2: Docker Deployment (If Supported)
+
+If Afrihost supports Docker containers:
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# For production, use:
+docker-compose -f docker-compose.yml up -d
+```
+
+### Option 3: Traditional FTP/SSH Deployment
+
+1. **Prepare files locally**:
+   ```bash
+   # Install dependencies
+   composer install --no-dev --optimize-autoloader
+   
+   # Build CSS for production
+   npm run build:css
+   ```
+
+2. **Upload via FTP**:
+   - Upload all files except `.git`, `node_modules`
+   - Set proper file permissions (755 for directories, 644 for files)
+   - Ensure `writable` directory has write permissions
+
+3. **Configure production environment**:
+   - Update `.env` for production settings
+   - Set `CI_ENVIRONMENT = production`
+   - Configure proper base URL
+
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
+
 ## Contributing
 
 1. Fork the repository

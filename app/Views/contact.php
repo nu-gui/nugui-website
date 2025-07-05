@@ -1,8 +1,15 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>Contact | NuGui<?= $this->endSection() ?>
+<?= $this->section('title') ?>Contact NU GUI | Get Your Free Telecom Consultation<?= $this->endSection() ?>
 
-<?= $this->section('meta_description') ?>Get in touch with NuGui. Contact our team of experts for web development, digital transformation, and technology consulting services.<?= $this->endSection() ?>
+<?php
+// SEO Meta Tags for Contact Page
+$this->setVar('description', 'Contact NU GUI for carrier-grade telecom solutions. Free consultation, 24/7 support, 30-day free trial. VoIP, SMS, call control & billing experts ready to help.');
+$this->setVar('ogTitle', 'Contact NU GUI - Free Telecom Consultation | 24/7 Expert Support');
+$this->setVar('ogDescription', 'Get expert telecom consultation from NU GUI. Free trial setup, migration assistance, 24/7 support. Contact us for VoIP, SMS, billing solutions.');
+$this->setVar('twitterTitle', 'Contact NU GUI - Free Telecom Consultation');
+$this->setVar('twitterDescription', 'Expert telecom consultation, free trial setup, 24/7 support. Contact NU GUI for VoIP, SMS & billing solutions.');
+?>
 
 <?= $this->section('content') ?>
 <style>
@@ -19,22 +26,6 @@
         margin-bottom: 10px;
         color: var(--color-primary);
         letter-spacing: -0.01em;
-    }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 40px;
-        border-radius: 999px;
-        font-size: 1.15rem;
-        font-weight: 600;
-        text-decoration: none;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        color: #18181A;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-        transition: background 0.3s, color 0.3s;
-    }
-    .btn-primary:hover {
-        background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
-        color: #fff;
     }
     /* Custom styles for the contact page to align with the Apple design system */
     .hero-section {
@@ -116,22 +107,6 @@
         padding: 40px;
         max-width: 56rem;
         margin: 0 auto;
-    }
-    .btn-primary {
-        display: inline-block;
-        padding: 15px 30px;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 500;
-        text-decoration: none;
-        background-color: var(--color-accent);
-        color: white;
-        transition: background-color 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-    .btn-primary:hover {
-        background-color: var(--color-accent-hover);
     }
     .form-group {
         margin-bottom: 20px;
@@ -278,7 +253,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <button type="submit" class="btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn--primary btn--large">Send Message</button>
                     </div>
                 </form>
         </div>
@@ -298,10 +273,10 @@
         <div class="card-grid">
             <!-- Email -->
             <div class="contact-card">
-                <h3>Email Us</h3>
+                <h3>📧 Email Us</h3>
                 <p>Send us an email and we'll get back to you within 24 hours</p>
-                <a href="mailto:info@nugui.co.za" style="color: var(--color-accent); font-weight: 600;">
-                    info@nugui.co.za
+                <a href="mailto:wesley@nugui.co.za" style="color: var(--color-accent); font-weight: 600;">
+                    wesley@nugui.co.za
                 </a>
             </div>
             
@@ -309,16 +284,19 @@
             <div class="contact-card">
                 <h3>Call Us</h3>
                 <p>Speak directly with our team during business hours</p>
-                <a href="tel:+27123456789" style="color: var(--color-accent); font-weight: 600;">
-                    +27 12 345 6789
+                <a href="tel:+27813040278" style="color: var(--color-accent); font-weight: 600;">
+                    +27 81 304 0278
                 </a>
             </div>
             
-            <!-- Location -->
+            <!-- WhatsApp Business -->
             <div class="contact-card">
-                <h3>Visit Us</h3>
-                <p>Located in the beautiful Mother City of South Africa</p>
-                <span style="color: var(--color-accent); font-weight: 600;">Cape Town, South Africa</span>
+                <h3>💬 WhatsApp Business</h3>
+                <p>Instant support and quick consultations via WhatsApp</p>
+                <a href="https://wa.me/27211100555" target="_blank" style="color: var(--color-accent); font-weight: 600; display: block; margin-bottom: 0.5rem;">
+                    +27 21 110 0555
+                </a>
+                <span style="color: var(--color-text-secondary); font-size: 0.9rem;">Available 24/7 • Cape Town, South Africa</span>
             </div>
         </div>
     </div>
