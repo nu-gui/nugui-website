@@ -2,6 +2,10 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nuguiyhv/public_html/
-    - /bin/rsync -a --delete --exclude '.git' ./ $DEPLOYPATH
+    - /bin/rsync -a --delete ./public/ $DEPLOYPATH
+    - /bin/rsync -a ./app/ /home/nuguiyhv/app/
+    - /bin/rsync -a ./system/ /home/nuguiyhv/system/
+    - /bin/rsync -a ./writable/ /home/nuguiyhv/writable/
+    - /bin/rsync -a ./env /home/nuguiyhv/.env
     - /bin/find $DEPLOYPATH -type d -exec chmod 755 {} \;
     - /bin/find $DEPLOYPATH -type f -exec chmod 644 {} \;
