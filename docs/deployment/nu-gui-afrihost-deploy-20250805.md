@@ -20,7 +20,8 @@ This report documents the security hardening and deployment of the CodeIgniter 4
 **Result:** Backup folder created successfully via cPanel File Manager
 
 ### 2. Directory Restructuring
-**Status:** 🔄 IN PROGRESS  
+**Status:** ✅ COMPLETED  
+**Result:** Successfully moved app/, vendor/, writable/, .env, composer.* from public_html to /home/nuguiyhv/  
 **Target Structure:**
 ```
 /home/nuguiyhv/
@@ -37,7 +38,7 @@ This report documents the security hardening and deployment of the CodeIgniter 4
 ```
 
 ### 3. Index.php Path Update
-**Status:** Prepared  
+**Status:** 🔄 IN PROGRESS  
 **Current:** `require FCPATH . '../app/Config/Paths.php';`  
 **Target:** Verify path points to relocated app directory
 
