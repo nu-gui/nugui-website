@@ -63,19 +63,53 @@ chmod -R 775 /home/nuguiyhv/writable
 **Changes:** Added force HTTPS redirect rule for security
 
 ### 7. Deployment Hook Update
-**Status:** Prepared  
+**Status:** ✅ COMPLETED  
 **Updated .cpanel.yml:**
 ```yaml
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nuguiyhv/public_html/
     - /bin/rsync -a --delete ./public/ $DEPLOYPATH
-    - /bin/rsync -a ./app/ /home/nuguiyhv/app/
-    - /bin/rsync -a ./system/ /home/nuguiyhv/system/
-    - /bin/rsync -a ./vendor/ /home/nuguiyhv/vendor/
-    - /bin/rsync -a ./writable/ /home/nuguiyhv/writable/
+    - /bin/rsync -a --delete ./app/ /home/nuguiyhv/app/
+    - /bin/rsync -a --delete ./system/ /home/nuguiyhv/system/
+    - /bin/rsync -a --delete ./vendor/ /home/nuguiyhv/vendor/
+    - /bin/rsync -a --delete ./writable/ /home/nuguiyhv/writable/
     - /bin/rsync -a ./.env /home/nuguiyhv/.env
+    - /bin/rsync -a ./composer.* /home/nuguiyhv/
+    - /bin/find /home/nuguiyhv -type d -exec chmod 755 {} \;
+    - /bin/find /home/nuguiyhv -type f -exec chmod 644 {} \;
+    - /bin/chmod -R 775 /home/nuguiyhv/writable
 ```
+
+## Critical Discovery via FTP Analysis
+
+### Server Structure Investigation
+**Status:** ❌ CRITICAL ISSUE IDENTIFIED  
+**FTP Access:** Successfully connected via dev@nugui.co.za to ftp.nugui.co.za  
+**Finding:** Server uses `/public` directory (not `/public_html`) as web root  
+**Critical Issue:** **NO CodeIgniter framework directories exist on server**
+
+### Current Server State
+```
+/public/                  # Web-accessible directory
+├── .htaccess            # Present (1661 bytes)
+├── favicon.ico          # Present (5430 bytes)  
+├── index.php            # Present (1730 bytes) - correctly configured
+└── robots.txt           # Present (25 bytes)
+
+/ (root)                 # Missing ALL framework directories:
+├── app/                 # ❌ MISSING
+├── system/              # ❌ MISSING  
+├── vendor/              # ❌ MISSING
+├── writable/            # ❌ MISSING
+└── .env                 # ❌ MISSING
+```
+
+### Index.php Configuration Analysis
+**Downloaded:** `/public/index.php` (1730 bytes)  
+**Configuration:** `require FCPATH . '../app/Config/Paths.php';` (Line 51)  
+**Status:** ✅ Correctly configured to look for framework directories one level up  
+**Issue:** Framework directories don't exist on server
 
 ## Testing Results
 
@@ -83,29 +117,51 @@ deployment:
 **Status:** ❌ FAILED SECURITY REQUIREMENTS  
 **Issue:** Redirects to https://nugui.co.za/public (incorrect structure)  
 **Result:** Does not meet CodeIgniter 4 security best practices  
-**Decision:** Continue with manual security hardening
-
-### Browser Verification
-**Status:** ❌ FAILED  
-**Error:** ERR_HTTP_RESPONSE_CODE_FAILURE at https://www.nugui.co.za  
-**Target:** https://www.nugui.co.za loads successfully
+**Decision:** Uninstalled by user, continue with manual deployment
 
 ### cURL Headers Test
-**Status:** ❌ FAILED  
+**Status:** ❌ FAILED - APPLICATION NOT DEPLOYED  
 **Command:** `curl -I https://www.nugui.co.za`  
-**Result:** HTTP/2 301 redirect to https://nugui.co.za/public  
-**Expected:** HTTP/2 200 OK with SSL certificate
+**Result:** `HTTP/2 301` redirect to `https://nugui.co.za/public`  
+**Root Cause:** CodeIgniter framework not deployed to server  
+**Expected:** HTTP/2 200 OK with proper CodeIgniter response
 
 ### Security Verification
-**Status:** Pending  
-**Test:** Verify sensitive files not accessible via web requests
+**Status:** ❌ INCOMPLETE - FRAMEWORK MISSING  
+**Finding:** No sensitive files to secure because framework not deployed
 
-## Next Steps
-1. Complete cPanel File Manager backup
-2. Execute directory restructuring
-3. Test site functionality
-4. Verify SSL certificate status
-5. Document final configuration
+## Required Next Steps
+
+### Immediate Actions Required
+1. **Deploy CodeIgniter Framework to Server**
+   - Upload app/, system/, vendor/, writable/ directories to server root
+   - Upload .env configuration file
+   - Upload composer.json and composer.lock files
+   - Ensure proper directory structure matches .cpanel.yml configuration
+
+2. **Complete Security Hardening**
+   - Set file permissions: directories 755, files 644
+   - Set writable/ directory to 775 recursive
+   - Verify sensitive files are not web-accessible
+
+3. **Enable SSL and Test**
+   - Configure AutoSSL in cPanel
+   - Test site functionality at https://www.nugui.co.za
+   - Verify curl returns HTTP/2 200 OK
+
+### Deployment Options
+**Option A: Git-based Deployment (Recommended)**
+- Use cPanel Git Version Control to deploy from GitHub repository
+- Trigger deployment hook to execute .cpanel.yml rsync commands
+- Automatically maintains proper directory structure
+
+**Option B: Manual FTP Upload**
+- Upload framework directories via FTP
+- Manually set file permissions
+- More time-consuming but direct control
+
+### Critical Finding Summary
+The manual directory restructuring reported as "completed" was not actually performed. The server currently has only the `/public` directory with basic web files, but lacks the entire CodeIgniter framework (app/, system/, vendor/, writable/ directories). This explains why the site redirects to `/public` instead of serving the application properly.
 
 ## Commands Executed
 *To be updated during deployment*
