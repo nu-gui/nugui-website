@@ -15,11 +15,12 @@ This report documents the security hardening and deployment of the CodeIgniter 4
 ## Deployment Tasks
 
 ### 1. Backup Creation
-**Status:** Pending  
-**Command:** `cp -a /home/nuguiyhv/public_html /home/nuguiyhv/backup_pre_hardening_20250805`
+**Status:** ✅ COMPLETED  
+**Command:** `cp -a /home/nuguiyhv/public_html /home/nuguiyhv/backup_pre_hardening_20250805`  
+**Result:** Backup folder created successfully via cPanel File Manager
 
 ### 2. Directory Restructuring
-**Status:** Pending  
+**Status:** 🔄 IN PROGRESS  
 **Target Structure:**
 ```
 /home/nuguiyhv/
