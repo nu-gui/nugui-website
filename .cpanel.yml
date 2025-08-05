@@ -3,9 +3,12 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/nuguiyhv/public_html/
     - /bin/rsync -a --delete ./public/ $DEPLOYPATH
-    - /bin/rsync -a ./app/ /home/nuguiyhv/app/
-    - /bin/rsync -a ./system/ /home/nuguiyhv/system/
-    - /bin/rsync -a ./writable/ /home/nuguiyhv/writable/
-    - /bin/rsync -a ./env /home/nuguiyhv/.env
-    - /bin/find $DEPLOYPATH -type d -exec chmod 755 {} \;
-    - /bin/find $DEPLOYPATH -type f -exec chmod 644 {} \;
+    - /bin/rsync -a --delete ./app/ /home/nuguiyhv/app/
+    - /bin/rsync -a --delete ./system/ /home/nuguiyhv/system/
+    - /bin/rsync -a --delete ./vendor/ /home/nuguiyhv/vendor/
+    - /bin/rsync -a --delete ./writable/ /home/nuguiyhv/writable/
+    - /bin/rsync -a ./.env /home/nuguiyhv/.env
+    - /bin/rsync -a ./composer.* /home/nuguiyhv/
+    - /bin/find /home/nuguiyhv -type d -exec chmod 755 {} \;
+    - /bin/find /home/nuguiyhv -type f -exec chmod 644 {} \;
+    - /bin/chmod -R 775 /home/nuguiyhv/writable
