@@ -52,16 +52,14 @@ chmod -R 775 /home/nuguiyhv/writable
 ```
 
 ### 5. AutoSSL Configuration
-**Status:** Pending  
-**Target:** Enable Let's Encrypt certificate for nugui.co.za
+**Status:** 🔄 PREPARED  
+**Target:** Enable Let's Encrypt certificate for nugui.co.za  
+**Location:** cPanel → SSL/TLS Status → Run AutoSSL
 
 ### 6. HTTPS Redirect
-**Status:** Pending  
-**Target .htaccess:**
-```apache
-RewriteCond %{HTTPS} !=on
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-```
+**Status:** ✅ COMPLETED  
+**Result:** Created .htaccess with HTTPS redirect and CodeIgniter 4 URL rewriting  
+**Location:** public/.htaccess
 
 ### 7. Deployment Hook Update
 **Status:** Prepared  
