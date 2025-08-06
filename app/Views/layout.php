@@ -134,14 +134,14 @@
       "contactPoint": [
         {
           "@type": "ContactPoint",
-          "telephone": "+27-81-304-0278",
+          "telephone": "+27-21-110-565",
           "contactType": "sales",
           "areaServed": "Worldwide",
           "availableLanguage": ["English", "Afrikaans"]
         },
         {
           "@type": "ContactPoint",
-          "telephone": "+27-21-110-0555",
+          "telephone": "+27-21-110-555",
           "contactType": "technical support",
           "areaServed": "Worldwide",
           "availableLanguage": "English",
