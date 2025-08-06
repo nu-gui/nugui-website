@@ -166,47 +166,110 @@ ls -la /home/nuguiyhv/app/
 
 ---
 
-**Next Steps:**
-1. ✅ COMPLETED - Created all 40 essential CodeIgniter subdirectories via FTP
-2. ✅ PARTIAL - Started uploading framework files (ResponseTrait.php uploaded to API directory)
-3. 🔧 IN PROGRESS - Fix localhost configuration references in application
-4. ⚠️ PENDING - Complete upload of all framework files to subdirectories
-5. 📋 PENDING - Test website functionality after complete framework deployment
+### 🚨 CRITICAL ROOT CAUSE IDENTIFIED - INCOMPLETE FRAMEWORK DIRECTORIES
 
-**Investigation Status:** ✅ MAJOR PROGRESS - Directory structure created, application now returns HTML content via curl
+#### FTP Investigation Results (Aug 6, 2025 04:10 UTC)
+**Server:** ftp.nugui.co.za (dev@nugui.co.za)  
+**Root Directory:** `/` (all framework directories present at correct level)
 
-### 🎯 BREAKTHROUGH ACHIEVED
+#### ❌ FRAMEWORK DIRECTORIES MISSING ESSENTIAL CONTENTS
 
-#### Curl Test Results (Major Success)
-- **Before Fix:** 404 "Not Found" errors
-- **After Directory Creation:** Complete HTML page with CodeIgniter application content
-- **Evidence:** Landing page animation, JavaScript functionality, debug toolbar, CSRF cookies
-- **Issue Identified:** Application references `http://localhost:8080` instead of live domain
+1. **`/system` directory** - ✅ COMPLETE (44 subdirectories with all CodeIgniter framework files)
+2. **`/app` directory** - ❌ INCOMPLETE (only 2 files: Common.php, index.html)
+   - **Missing:** Config/, Controllers/, Views/, Models/, Database/, Filters/, etc.
+   - **Impact:** Application logic and configuration unavailable
+3. **`/vendor` directory** - ❌ INCOMPLETE (only 1 file: autoload.php)  
+   - **Missing:** All Composer dependency subdirectories
+   - **Impact:** Third-party libraries unavailable
+4. **`/writable` directory** - ❌ INCOMPLETE (only 1 file: index.html)
+   - **Missing:** cache/, logs/, session/, uploads/ subdirectories
+   - **Impact:** Application cannot write cache, logs, or session data
 
-#### Browser vs Curl Discrepancy
-- **Curl Response:** Full CodeIgniter application HTML (502 lines)
-- **Browser Response:** 404 "Not Found" errors
-- **Root Cause:** Configuration pointing to localhost:8080 instead of https://www.nugui.co.za
-- **Next Action:** Fix application configuration for live domain
+#### ✅ COMPLETE FRAMEWORK ARCHIVES AVAILABLE ON SERVER
+- **`app_complete.tar.gz`** (109,618 bytes, Aug 6 03:50) - Contains complete app structure
+- **`vendor_complete.tar.gz`** (9,011,081 bytes, Aug 6 03:51) - Contains all Composer dependencies  
+- **`writable_complete.tar.gz`** (518 bytes, Aug 6 03:52) - Contains writable subdirectories
 
-#### FTP Progress Summary
-- ✅ **40 CodeIgniter subdirectories created** in `/system/` directory
-- ✅ **1 framework file uploaded** (ResponseTrait.php to API directory)
-- ⚠️ **Remaining work:** Upload complete contents to all 39 remaining subdirectories
-- 🔧 **Configuration fix needed:** Replace localhost:8080 references with live domain
+#### Root Cause Analysis
+The deployment process successfully:
+- ✅ Created framework directories at correct root level (`/home/nuguiyhv/`)
+- ✅ Uploaded complete system directory with all 44 CodeIgniter subdirectories
+- ✅ Generated complete tar.gz archives for app, vendor, and writable directories
 
-### 🚨 CONFIRMED NESTED STRUCTURE ISSUE
+However, the extraction process failed for app, vendor, and writable directories, leaving them with only individual files instead of complete structures. This explains:
+- **Curl Success:** CodeIgniter system directory allows basic framework bootstrap (HTTP/2 200 OK, CSRF cookies)
+- **Browser Failure:** Missing app/vendor/writable contents prevent full application functionality (404 errors)
 
-#### System Directory Investigation Results
-**Location:** `/home/nuguiyhv/system/`
-**Critical Finding:** Contains nested `system/` subdirectory with actual CodeIgniter framework files
+#### Immediate Solution Required
+Extract the complete tar.gz archives to populate the missing framework directory contents:
+1. **Extract `app_complete.tar.gz`** to populate `/app/` with Config/, Controllers/, Views/, etc.
+2. **Extract `vendor_complete.tar.gz`** to populate `/vendor/` with Composer dependencies
+3. **Extract `writable_complete.tar.gz`** to populate `/writable/` with cache/, logs/, session/ subdirectories
 
-**Directory Contents Found:**
-- ✅ CodeIgniter system directories: API, Autoloader, Cache, CLI, Commands, Config, Cookie, Database, etc.
-- ⚠️ **NESTED `system/` subdirectory** (0775 permissions, Aug 4, 2025, 10:27 PM)
-- ✅ Core CodeIgniter files: Boot.php, CodeIgniter.php, Common.php, Model.php, etc.
+**Investigation Status:** ✅ ROOT CAUSE IDENTIFIED - All framework components complete, routing system issue
 
-**Root Cause Confirmed:** 
-- Expected: CodeIgniter files directly in `/home/nuguiyhv/system/`
-- Actual: CodeIgniter files nested in `/home/nuguiyhv/system/system/`
-- Impact: Path resolution fails, preventing application initialization
+### 🔍 FINAL INVESTIGATION RESULTS (Aug 6, 2025 08:33 UTC)
+
+#### ✅ ALL CODEIGNITER COMPONENTS CONFIRMED COMPLETE
+**FTP Investigation Results:**
+- **Routes.php**: ✅ All routes properly defined (`/home` → `Home::index`, `/about` → `About::index`, etc.)
+- **Controllers**: ✅ All controllers exist (Home.php: 894 bytes, About.php: 877 bytes, Products.php: 907 bytes, etc.)
+- **Views**: ✅ All views exist with complete content (home.php: 21165 bytes, about.php: 16983 bytes, etc.)
+- **Vendor Directory**: ✅ Complete with all 20 Composer dependency subdirectories (codeigniter4, composer, dompdf, fakerphp, laminas, masterminds, mikey179, myclabs, nikic, phar-io, phenx, phpunit, psr, sabberworm, sebastian, symfony, theseer, plus autoload.php)
+- **System Directory**: ✅ Complete with 44 CodeIgniter framework subdirectories
+- **App Directory**: ✅ Complete with 13 application subdirectories
+
+#### ❌ ACTUAL ROOT CAUSE: ROUTING SYSTEM INITIALIZATION FAILURE
+**Symptoms:**
+- Main landing page (`/`) works perfectly - returns complete HTML with animations
+- ALL CodeIgniter routes return 404 errors (`/home`, `/about`, `/products`, etc.)
+- All framework components are present and complete
+
+**Root Cause Analysis:**
+The issue is NOT missing vendor dependencies (as initially suspected) but rather a problem with CodeIgniter's routing system initialization or bootstrap configuration. The .htaccess file correctly redirects to `/public/` directory, but CodeIgniter's routing system fails to process routes beyond the main landing page.
+
+**BREAKTHROUGH: ROOT CAUSE IDENTIFIED - .HTACCESS URL REWRITING FAILURE**
+
+#### ✅ CODEIGNITER CONFIRMED WORKING VIA DIRECT ACCESS
+**Direct Access Test Results:**
+- `https://www.nugui.co.za/index.php/home` → ✅ **WORKS** (69,740 characters complete HTML)
+- `https://www.nugui.co.za/index.php/about` → ✅ **WORKS** (65,681 characters complete HTML)
+- `https://www.nugui.co.za/home` → ❌ **404 ERROR** (URL rewriting fails)
+- `https://www.nugui.co.za/about` → ❌ **404 ERROR** (URL rewriting fails)
+
+#### 🔍 ACTUAL ROOT CAUSE: .HTACCESS URL REWRITING NOT FUNCTIONING
+**Analysis:**
+- **CodeIgniter Framework**: ✅ 100% Complete and functional
+- **Vendor Dependencies**: ✅ All 20 subdirectories present and complete
+- **Routes Configuration**: ✅ All routes properly defined
+- **Controllers & Views**: ✅ All exist with complete content
+- **.htaccess File**: ✅ Contains correct rewrite rules (line 37: `RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]`)
+
+**Problem**: The server is not processing .htaccess URL rewriting rules, causing direct route access (`/home`) to fail while index.php access (`/index.php/home`) works perfectly.
+
+## 🔧 NGINX CONFIGURATION SOLUTION CREATED
+
+**Configuration Files Created:**
+- `nginx-config/nugui-site.conf` - Complete nginx server block configuration
+- `nginx-config/NGINX_SETUP_INSTRUCTIONS.md` - Implementation guide
+
+**Key Configuration Elements:**
+```nginx
+# Main routing rule (replaces .htaccess functionality)
+location / {
+    try_files $uri $uri/ /index.php$is_args$args;
+}
+
+# Document root
+root /home/nuguiyhv/public;
+```
+
+**Implementation Options:**
+1. **Primary Solution**: Contact Afrihost support to implement nginx configuration
+2. **Quick Fix**: Update CodeIgniter `indexPage` setting to use `index.php/` URLs
+3. **Verification**: Test routes `/home`, `/about`, `/products` after implementation
+
+**Expected Result After Implementation:**
+- ✅ `https://www.nugui.co.za/home` → Works (currently 404)
+- ✅ `https://www.nugui.co.za/about` → Works (currently 404)
+- ✅ All CodeIgniter routes function without `/index.php/` prefix

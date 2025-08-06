@@ -155,7 +155,7 @@ For local development, update your `.env` file:
 
 ```env
 CI_ENVIRONMENT = development
-app.baseURL = 'http://localhost:8080/'
+app.baseURL = 'https://www.nugui.co.za/'
 app.forceGlobalSecureRequests = false
 ```
 
