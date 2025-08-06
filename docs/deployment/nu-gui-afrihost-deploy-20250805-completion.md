@@ -1,33 +1,32 @@
 # NU GUI Afrihost Deployment - COMPLETION REPORT
-**Date:** August 5, 2025  
+**Date:** August 5-6, 2025  
 **Session:** https://app.devin.ai/sessions/6c3b88fa58a2457e93317ee2b02dfcb9  
 **Repository:** nu-gui/nugui-website  
 **Branch:** devin/1754387891-afrihost-secure-deploy  
 **Requested by:** @nu-gui (wesley@nugui.co.za)  
 
-## 🎉 DEPLOYMENT COMPLETE
+## 🔧 DEPLOYMENT IN PROGRESS - DIRECTORY STRUCTURE FIX
 
-### ✅ SUCCESS CRITERIA ACHIEVED
+### 🔍 CRITICAL ISSUE IDENTIFIED - NESTED DIRECTORY STRUCTURE
 
-#### 1. System Directory Extraction ✅
-- **Status:** COMPLETE
-- **Location:** `/home/nuguiyhv/system/` 
-- **Source:** Extracted from `/home/nuguiyhv/temp_ci4/CodeIgniter4-develop/system/`
-- **Permissions:** 755 (confirmed via cPanel File Manager)
-- **Verification:** Directory exists with proper CodeIgniter framework structure
+#### 1. System Directory Status ⚠️
+- **Status:** PRESENT BUT NESTED TOO DEEP
+- **Expected Location:** `/home/nuguiyhv/system/` containing CodeIgniter system files
+- **Actual Location:** `/home/nuguiyhv/system/system/` (nested one level too deep)
+- **Impact:** CodeIgniter path resolution fails, preventing application initialization
+- **User Confirmation:** "system was moved to /home/nuguiyhv/system/system/"
 
-#### 2. Site Response Verification ✅
-- **Test Command:** `curl -I https://www.nugui.co.za`
-- **Expected Result:** HTTP/2 200 OK
-- **Actual Result:** ✅ HTTP/2 200 OK
-- **Previous Issue:** HTTP/2 301 redirects (RESOLVED)
-- **CodeIgniter Headers:** ✅ `set-cookie: csrf_cookie_name=cd0f2367215d67a349f0dd72bc8e11ae`
+#### 2. Site Response Analysis 🔍
+- **HEAD Request:** `curl -I https://www.nugui.co.za` returns HTTP/2 200 OK ✅
+- **GET Request Issue:** Browser shows 404 errors due to CodeIgniter initialization failure
+- **Root Cause:** Framework directories nested too deep, breaking path configuration
+- **Path Configuration:** `Paths.php` expects `$systemDirectory = __DIR__ . '/../../system'`
 
-#### 3. Root Cause Resolution ✅
-- **Issue:** Malformed .htaccess file causing external redirects
-- **Solution:** Replaced with proper CodeIgniter internal rewrite rules
-- **Method:** FTP deletion and upload of corrected .htaccess file
-- **Result:** Site now returns 200 OK instead of 301 redirects
+#### 3. Directory Structure Investigation 📋
+- **Framework Directories Present:** system/, app/, writable/, vendor/ at `/home/nuguiyhv/`
+- **Timestamps:** All show "Today, 12:49 AM" indicating recent deployment
+- **Issue:** User reported duplicate/nested contents within directories
+- **Documentation:** Created comprehensive analysis in `server-directory-structure-analysis.md`
 
 ### 🔧 TECHNICAL IMPLEMENTATION
 
@@ -103,12 +102,12 @@ curl -I https://www.nugui.co.za
 
 ### 🚀 DEPLOYMENT STATUS
 
-#### Overall Status: ✅ COMPLETE
+#### Overall Status: 🔧 IN PROGRESS - DIRECTORY STRUCTURE FIX REQUIRED
 - **Git-based deployment:** ✅ SUCCESSFUL (.cpanel.yml merged to main)
 - **Security hardening:** ✅ COMPLETE (framework outside web root)
-- **System directory extraction:** ✅ COMPLETE (from temp_ci4)
-- **Site functionality:** ✅ VERIFIED (HTTP/2 200 OK response)
-- **CodeIgniter initialization:** ✅ WORKING (proper headers and bootstrap)
+- **System directory extraction:** ⚠️ NESTED TOO DEEP (requires flattening)
+- **Site functionality:** ⚠️ PARTIAL (HEAD requests work, GET requests fail)
+- **CodeIgniter initialization:** ❌ FAILING (path resolution broken)
 
 #### Next Steps (Optional)
 1. **AutoSSL Certificate:** Enable via cPanel → SSL/TLS Status
@@ -129,14 +128,20 @@ curl -I https://www.nugui.co.za
 - **Resolution Method:** FTP-based file replacement with proper internal rewrite rules
 - **Verification:** curl testing confirmed HTTP/2 200 OK response with CodeIgniter headers
 
-### 🎯 FINAL CONFIRMATION
+### 🎯 NEXT STEPS REQUIRED
 
-**✅ Deployment hardened & live**  
-**✅ HTTP/2 200 OK → https://www.nugui.co.za**  
-**✅ Report committed: docs/deployment/nu-gui-afrihost-deploy-20250805-completion.md**
+**🔧 Directory Structure Fix Needed**  
+**⚠️ Framework directories nested too deep**  
+**📋 Comprehensive analysis documented in server-directory-structure-analysis.md**
+
+#### Immediate Actions Required:
+1. **Flatten Nested Directories** - Move contents from `/home/nuguiyhv/system/system/` to `/home/nuguiyhv/system/`
+2. **Fix Path Resolution** - Ensure CodeIgniter `Paths.php` can locate framework directories
+3. **Test Website Functionality** - Verify browser loading after directory structure fix
+4. **Clean Up Duplicates** - Remove empty nested directories and duplicate files
 
 ---
-**Session Duration:** ~2 ACU  
-**Complexity:** Low (single .htaccess fix after system directory already extracted)  
-**Risk Level:** Minimal (framework 95% deployed, structure verified)  
-**Success Rate:** 100% - All success criteria achieved
+**Session Status:** 🔧 IN PROGRESS - Directory structure investigation complete, fix in progress  
+**Complexity:** Medium (nested directory structure resolution)  
+**Risk Level:** Low (framework present, just incorrectly positioned)  
+**Next Phase:** Directory flattening and website functionality verification
