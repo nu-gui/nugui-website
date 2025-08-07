@@ -263,7 +263,7 @@ $this->setVar('twitterDescription', 'Latest telecom trends, technical guides, an
     "name": "NU GUI",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://nugui.co.za/assets/images/NUGUI-ICON-7 - Dark.png"
+      "url": "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
     }
   },
   "blogPost": [

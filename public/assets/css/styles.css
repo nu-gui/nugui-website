@@ -744,3 +744,54 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Product Icon Theme Switching */
+.product-icon-light {
+    display: inline-block;
+}
+
+.product-icon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .product-icon-light {
+    display: none;
+}
+
+[data-theme="dark"] .product-icon-dark {
+    display: inline-block;
+}
+
+/* Landing Page Logo Theme Switching */
+.landing-logo-light {
+    display: block;
+}
+
+.landing-logo-dark {
+    display: none;
+}
+
+[data-theme="dark"] .landing-logo-light {
+    display: none;
+}
+
+[data-theme="dark"] .landing-logo-dark {
+    display: block;
+}
+
+/* Favicon Theme Switching */
+.favicon-light {
+    display: block;
+}
+
+.favicon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .favicon-light {
+    display: none;
+}
+
+[data-theme="dark"] .favicon-dark {
+    display: block;
+}

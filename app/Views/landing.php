@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NU GUI - Welcome</title>
-    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png') ?>">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
     <style>
         body {
             background: var(--color-background);
@@ -301,7 +302,8 @@
     <!-- Landing page overlay -->
     <div class="landing-container" id="landingContainer">
         <div class="logo-animation-container">
-            <img src="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png') ?>" alt="NU GUI Icon" class="logo-icon" id="logoIcon">
+            <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-light" id="logoIcon">
+            <img src="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-dark" id="logoIconDark" style="display: none;">
         </div>
 
         <button class="audio-toggle" id="audioToggle" title="Toggle Sound">

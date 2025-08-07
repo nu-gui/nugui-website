@@ -226,7 +226,8 @@ function toggleDetails(id) {
         <div class="card-grid">
             <!-- Modern, compact solution cards with expandable details -->
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-sip-icon.jpg') ?>" alt="NU SIP Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NUSIP-icon-1.png') ?>" alt="NU SIP Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NUSIP-icon-2.png') ?>" alt="NU SIP Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU SIP - VoIP Platform</h3>
                 <p><strong>195+ countries</strong> coverage. <strong>0.001¢/min</strong> wholesale rates. HD voice quality with <strong>99.99% uptime</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('sip-details')">Details</button>
@@ -240,7 +241,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-sms-icon.jpg') ?>" alt="NU SMS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-SMS-icon-1.png') ?>" alt="NU SMS Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-SMS-icon-2.png') ?>" alt="NU SMS Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p><strong>98% delivery rates</strong>. Send <strong>1M+ messages/hour</strong>. Direct routes to <strong>200+ countries</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('sms-details')">Details</button>
@@ -254,7 +256,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-ccs-icon.jpg') ?>" alt="NU CCS Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-icon-1.png') ?>" alt="NU CCS Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-icon-2.png') ?>" alt="NU CCS Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU CCS - Call Control</h3>
                 <p>AI fraud detection reduces losses by <strong>40%</strong>. Handle <strong>10,000+ CPS</strong>. Real-time billing integration.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('ccs-details')">Details</button>
@@ -268,7 +271,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-data-icon.jpg') ?>" alt="NU DATA Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-DATA-icon-1.png') ?>" alt="NU DATA Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-DATA-icon-2.png') ?>" alt="NU DATA Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU DATA - Intelligence</h3>
                 <p><strong>99.5% accuracy</strong> in validation. Process <strong>100M+ records daily</strong>. Real-time HLR/MNP lookups.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('data-details')">Details</button>
@@ -281,7 +285,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-gui-banner.jpg') ?>" alt="NU GUI Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-GUI-product-1.jpg') ?>" alt="NU GUI Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-GUI-product-2.jpg') ?>" alt="NU GUI Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU GUI - Management Portal</h3>
                 <p>White-label ready. <strong>React + Node.js</strong> stack. Real-time dashboards with <strong>sub-second updates</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('gui-details')">Details</button>
@@ -294,7 +299,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/nu-ccs-banner.jpg') ?>" alt="Telecom Infrastructure Icon" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-product-1.jpg') ?>" alt="Telecom Infrastructure Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-product-2.jpg') ?>" alt="Telecom Infrastructure Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>Complete Infrastructure</h3>
                 <p>Turnkey deployment in <strong>48 hours</strong>. Includes servers, interconnects, and <strong>24/7 NOC support</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('infra-details')">Details</button>
