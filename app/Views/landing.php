@@ -55,7 +55,7 @@
             width: 100vw;
             height: 100vh;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            background-image: url('<?= base_url('assets/images/background-image.jpg') ?>');
+            background-image: url('<?= base_url('assets/images/NUGUI-1.png') ?>');
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;

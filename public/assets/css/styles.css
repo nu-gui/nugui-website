@@ -812,3 +812,20 @@ footer {
 [data-theme="dark"] .product-image-dark {
     display: inline-block;
 }
+
+/* Team Image Theme Switching */
+.team-image-light {
+    display: inline-block;
+}
+
+.team-image-dark {
+    display: none;
+}
+
+[data-theme="dark"] .team-image-light {
+    display: none;
+}
+
+[data-theme="dark"] .team-image-dark {
+    display: inline-block;
+}

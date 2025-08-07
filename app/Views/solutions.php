@@ -285,8 +285,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-GUI-product-1.jpg') ?>" alt="NU GUI Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-GUI-product-2.jpg') ?>" alt="NU GUI Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" alt="NU GUI Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>NU GUI - Management Portal</h3>
                 <p>White-label ready. <strong>React + Node.js</strong> stack. Real-time dashboards with <strong>sub-second updates</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('gui-details')">Details</button>
@@ -299,8 +299,8 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-CCS-product-1.jpg') ?>" alt="Telecom Infrastructure Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-CCS-product-2.jpg') ?>" alt="Telecom Infrastructure Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-icon-1.png') ?>" alt="Telecom Infrastructure Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
+                <img src="<?= base_url('assets/images/NU-CCS-icon-2.png') ?>" alt="Telecom Infrastructure Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
                 <h3>Complete Infrastructure</h3>
                 <p>Turnkey deployment in <strong>48 hours</strong>. Includes servers, interconnects, and <strong>24/7 NOC support</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('infra-details')">Details</button>
