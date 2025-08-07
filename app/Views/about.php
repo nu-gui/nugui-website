@@ -307,7 +307,7 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     "@type": "Organization",
     "name": "NU GUI",
     "url": "https://nugui.co.za",
-    "logo": "https://nugui.co.za/assets/images/NUGUI-ICON-7 - Dark.png",
+    "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png",
     "foundingDate": "2005",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",

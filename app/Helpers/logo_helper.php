@@ -13,11 +13,11 @@ if (!function_exists('get_logo_assets')) {
      */
     function get_logo_assets() {
         return [
-            'logo_full_light' => 'assets/images/NUGU-LOGO-4 - Light.png',
-            'logo_full_dark'  => 'assets/images/NUGUI-5.png',
-            'icon_light'      => 'assets/images/NUGUI-ICON-6 - Light.png',
-            'icon_dark'       => 'assets/images/NUGUI-ICON-7 - Dark.png',
-            'favicon'         => 'assets/images/NUGUI-ICON-7 - Dark.png',
+            'logo_full_light' => 'assets/images/NUGUI-1.png',
+            'logo_full_dark'  => 'assets/images/NUGUI-2.png',
+            'icon_light'      => 'assets/images/NUGUI-icon-1.png',
+            'icon_dark'       => 'assets/images/NUGUI-icon-2.png',
+            'favicon'         => 'assets/images/NUGUI-icon-1.png',
         ];
     }
 }
