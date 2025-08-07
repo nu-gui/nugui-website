@@ -192,6 +192,6 @@ echo "\n=== Next Steps ===\n";
 echo "1. Fix any issues marked with ✗ above\n";
 echo "2. Configure your .env file with proper database credentials\n";
 echo "3. Run 'php spark serve' to start the development server\n";
-echo "4. Access your site at http://localhost:8080\n";
+echo "4. Access your site at https://www.nugui.co.za\n";
 
 echo "\nDiagnostic complete!\n";

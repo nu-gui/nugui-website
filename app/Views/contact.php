@@ -284,8 +284,8 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
             <div class="contact-card">
                 <h3>Call Us</h3>
                 <p>Speak directly with our team during business hours</p>
-                <a href="tel:+27813040278" style="color: var(--color-accent); font-weight: 600;">
-                    +27 81 304 0278
+                <a href="tel:+27211100565" style="color: var(--color-accent); font-weight: 600;">
+                    +27 21 110 565 (Office)
                 </a>
             </div>
             

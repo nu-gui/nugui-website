@@ -105,12 +105,21 @@
                         </a>
                     </div>
                     <div>
-                        <h4 style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Phone</h4>
-                        <a href="tel:+27813040278" 
+                        <h4 style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Office</h4>
+                        <a href="tel:+27211100565" 
                            style="color: var(--color-text-secondary); transition: color var(--transition-fast); text-decoration: none;"
                            onmouseover="this.style.color='var(--color-primary)'"
                            onmouseout="this.style.color='var(--color-text-secondary)'">
-                            +27 81 304 0278
+                            +27 21 110 565
+                        </a>
+                    </div>
+                    <div>
+                        <h4 style="font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-text-secondary); margin-bottom: var(--spacing-xs);">Support</h4>
+                        <a href="tel:+27211100555" 
+                           style="color: var(--color-text-secondary); transition: color var(--transition-fast); text-decoration: none;"
+                           onmouseover="this.style.color='var(--color-primary)'"
+                           onmouseout="this.style.color='var(--color-text-secondary)'">
+                            +27 21 110 555
                         </a>
                     </div>
                     <div>
