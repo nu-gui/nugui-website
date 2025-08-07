@@ -356,7 +356,8 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/nu-sip.jpg') ?>" alt="NU SIP VoIP Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-SIP-product-1.jpg') ?>" alt="NU SIP VoIP Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-SIP-product-2.jpg') ?>" alt="NU SIP VoIP Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SIP <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Enterprise VoIP Platform</span></h2>
@@ -396,7 +397,8 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/nu-sms.jpg') ?>" alt="NU SMS Messaging Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-SMS-product-1.jpg') ?>" alt="NU SMS Messaging Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-SMS-product-2.jpg') ?>" alt="NU SMS Messaging Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SMS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Bulk SMS Gateway Platform</span></h2>
@@ -436,7 +438,8 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/nu-ccs.jpg') ?>" alt="NU CCS Call Control Server" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-CCS-product-1.jpg') ?>" alt="NU CCS Call Control Server" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-CCS-product-2.jpg') ?>" alt="NU CCS Call Control Server" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU CCS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— AI-Powered Call Control System</span></h2>
@@ -476,7 +479,8 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/nu-data.jpg') ?>" alt="NU DATA Enrichment Services" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-DATA-product-1.jpg') ?>" alt="NU DATA Enrichment Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
+                <img src="<?= base_url('assets/images/NU-DATA-product-2.jpg') ?>" alt="NU DATA Enrichment Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU DATA <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Telecom Intelligence Platform</span></h2>

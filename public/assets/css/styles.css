@@ -795,3 +795,20 @@ footer {
 [data-theme="dark"] .favicon-dark {
     display: block;
 }
+
+/* Product Image Theme Switching */
+.product-image-light {
+    display: inline-block;
+}
+
+.product-image-dark {
+    display: none;
+}
+
+[data-theme="dark"] .product-image-light {
+    display: none;
+}
+
+[data-theme="dark"] .product-image-dark {
+    display: inline-block;
+}
