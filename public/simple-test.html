@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Picture Test</title>
+    <style>
+        body {
+            padding: 40px;
+            font-family: system-ui, sans-serif;
+            background: white;
+            color: black;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: white;
+            }
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .icon-test {
+            margin: 40px 0;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .icon-test {
+                border-color: #666;
+                background: #2a2a2a;
+            }
+        }
+        picture img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border: 3px solid transparent;
+            margin: 10px;
+        }
+        .loaded {
+            border-color: green !important;
+        }
+        .info {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #666;
+        }
+        @media (prefers-color-scheme: dark) {
+            .info {
+                color: #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Picture Element Test</h1>
+        
+        <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Current Theme:</strong> <span id="theme-display">Detecting...</span></p>
+            <p><strong>Instructions:</strong> Toggle your OS theme (Windows: Settings → Personalization → Colors) and watch the images change.</p>
+        </div>
+        
+        <div class="icon-test">
+            <h3>Test 1: NU-SIP Icon</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-SIP-icon-2.jpg">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-SIP-icon-1.jpg">
+                <img src="/assets/images/NU-SIP-icon-1.jpg" alt="NU SIP Icon" onload="logLoad(this, 'SIP')">
+            </picture>
+            <div class="info">
+                Light should show: NU-SIP-icon-1.jpg<br>
+                Dark should show: NU-SIP-icon-2.jpg<br>
+                <strong>Actually loaded:</strong> <span id="sip-result">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="icon-test">
+            <h3>Test 2: NU-SMS Icon</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-SMS-icon-2.jpg">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-SMS-icon-1.jpg">
+                <img src="/assets/images/NU-SMS-icon-1.jpg" alt="NU SMS Icon" onload="logLoad(this, 'SMS')">
+            </picture>
+            <div class="info">
+                Light should show: NU-SMS-icon-1.jpg<br>
+                Dark should show: NU-SMS-icon-2.jpg<br>
+                <strong>Actually loaded:</strong> <span id="sms-result">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="icon-test">
+            <h3>Test 3: NUGUI Logo</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NUGUI-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NUGUI-icon-1.png">
+                <img src="/assets/images/NUGUI-icon-1.png" alt="NUGUI Icon" onload="logLoad(this, 'NUGUI')">
+            </picture>
+            <div class="info">
+                Light should show: NUGUI-icon-1.png<br>
+                Dark should show: NUGUI-icon-2.png<br>
+                <strong>Actually loaded:</strong> <span id="nugui-result">Loading...</span>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+            <h3>Debug Information</h3>
+            <p><strong>Network Requests Log:</strong></p>
+            <div id="network-log" style="font-family: monospace; font-size: 12px; text-align: left; max-height: 200px; overflow-y: auto; background: white; padding: 10px; border-radius: 4px;"></div>
+        </div>
+    </div>
+    
+    <script>
+        const networkLog = document.getElementById('network-log');
+        
+        function updateThemeDisplay() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.getElementById('theme-display').textContent = isDark ? '🌙 Dark Mode' : '☀️ Light Mode';
+            document.getElementById('theme-display').style.color = isDark ? '#4a90e2' : '#f39c12';
+        }
+        
+        function logLoad(img, product) {
+            const actualSrc = img.currentSrc || img.src;
+            const filename = actualSrc.split('/').pop();
+            const isDark = filename.includes('-2.');
+            const isLight = filename.includes('-1.');
+            
+            const variant = isDark ? '🌙 DARK (-2)' : isLight ? '☀️ LIGHT (-1)' : '❓ UNKNOWN';
+            const expectedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const isCorrect = (isDark && expectedTheme === 'dark') || (isLight && expectedTheme === 'light');
+            
+            // Update result display
+            const resultId = product.toLowerCase() + '-result';
+            const resultElement = document.getElementById(resultId);
+            if (resultElement) {
+                resultElement.textContent = `${filename} ${variant}`;
+                resultElement.style.color = isCorrect ? 'green' : 'red';
+                resultElement.style.fontWeight = 'bold';
+            }
+            
+            // Mark image as loaded
+            img.classList.add('loaded');
+            
+            // Log to network log
+            const timestamp = new Date().toLocaleTimeString();
+            const status = isCorrect ? '✅ CORRECT' : '❌ WRONG';
+            const logEntry = `${timestamp} - ${product}: ${filename} ${variant} ${status}`;
+            networkLog.innerHTML = logEntry + '<br>' + networkLog.innerHTML;
+            
+            console.log(`${product} loaded: ${filename} (${variant}) - ${status}`);
+        }
+        
+        // Initialize
+        updateThemeDisplay();
+        
+        // Listen for theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            updateThemeDisplay();
+            networkLog.innerHTML = `🔄 Theme changed to ${e.matches ? 'dark' : 'light'} mode<br>` + networkLog.innerHTML;
+        });
+        
+        // Add error handling
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                console.error(`Failed to load: ${this.src}`);
+                this.style.border = '3px solid red';
+                this.alt = 'LOAD ERROR';
+            });
+        });
+    </script>
+</body>
+</html>
