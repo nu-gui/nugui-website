@@ -200,7 +200,8 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
                 <p>With offices across 3 continents and a 24/7 global support team, we're not just a vendor - we're your telecommunications partner for growth.</p>
             </div>
             <div>
-                <img src="<?= base_url('assets/images/our-story.jpg') ?>" alt="Our Story" />
+                <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="Our Story" class="team-image-light" />
+                <img src="<?= base_url('assets/images/NUGUI-2.png') ?>" alt="Our Story" class="team-image-dark" style="display: none;" />
             </div>
         </div>
     </div>
@@ -240,37 +241,43 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         </div>
         <div class="card-grid">
             <div class="team-card">
-                <img src="<?= base_url('assets/images/wes-profile.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" />
+                <img src="<?= base_url('assets/images/wes-profile-1.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/wes-profile-2.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Wes</h3>
                 <p>CEO & Founder</p>
                 <span class="bio">Serial entrepreneur with 20+ years in telecom. Previously founded 3 successful startups. Holder of 5 telecommunications patents. Leading NU GUI's vision for democratizing carrier-grade infrastructure globally.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/suren-profile.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" />
+                <img src="<?= base_url('assets/images/suren-profile-1.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/suren-profile-2.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Suren</h3>
                 <p>CTO</p>
                 <span class="bio">Former Vodafone Principal Architect. 18 years building telecom systems processing billions of calls. Architected systems for 3 of Africa's largest carriers. Ensuring 99.99% uptime across all NU GUI services.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/gali-profile.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" />
+                <img src="<?= base_url('assets/images/gali-profile-1.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/gali-profile-2.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Gali</h3>
                 <p>Sr Executive Assistant</p>
                 <span class="bio">Gali is the Senior Executive Assistant at NU GUI. With exceptional organizational skills and attention to detail, she ensures that all executive operations run smoothly and efficiently.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/pavan-profile.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" />
+                <img src="<?= base_url('assets/images/pavan-profile-1.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/pavan-profile-2.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Pavan</h3>
                 <p>Jr Full Stack Developer</p>
                 <span class="bio">Pavan is a Junior Full Stack Developer at NU GUI. He brings fresh perspectives and innovative ideas to the team, contributing to the development of our dynamic web solutions.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/ajay-profile.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" />
+                <img src="<?= base_url('assets/images/ajay-profile-1.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/ajay-profile-2.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Ajay</h3>
                 <p>Sr Full Stack Developer</p>
                 <span class="bio">Ajay is a Senior Full Stack Developer with a wealth of experience in both front-end and back-end development. His expertise ensures that our applications are robust and user-friendly.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/ankit-profile.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" />
+                <img src="<?= base_url('assets/images/ankit-profile-1.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" class="team-image-light" />
+                <img src="<?= base_url('assets/images/ankit-profile-2.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" class="team-image-dark" style="display: none;" />
                 <h3>Ankit</h3>
                 <p>UI UX Web Designer</p>
                 <span class="bio">Ankit is our UI/UX Web Designer who crafts visually appealing and highly functional designs. His work enhances user experience and ensures our interfaces are intuitive and engaging.</span>
@@ -307,7 +314,7 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     "@type": "Organization",
     "name": "NU GUI",
     "url": "https://nugui.co.za",
-    "logo": "https://nugui.co.za/assets/images/NUGUI-ICON-7 - Dark.png",
+    "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png",
     "foundingDate": "2005",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",

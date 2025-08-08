@@ -744,3 +744,88 @@ footer {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* Product Icon Theme Switching */
+.product-icon-light {
+    display: inline-block;
+}
+
+.product-icon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .product-icon-light {
+    display: none;
+}
+
+[data-theme="dark"] .product-icon-dark {
+    display: inline-block;
+}
+
+/* Landing Page Logo Theme Switching */
+.landing-logo-light {
+    display: block;
+}
+
+.landing-logo-dark {
+    display: none;
+}
+
+[data-theme="dark"] .landing-logo-light {
+    display: none;
+}
+
+[data-theme="dark"] .landing-logo-dark {
+    display: block;
+}
+
+/* Favicon Theme Switching */
+.favicon-light {
+    display: block;
+}
+
+.favicon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .favicon-light {
+    display: none;
+}
+
+[data-theme="dark"] .favicon-dark {
+    display: block;
+}
+
+/* Product Image Theme Switching */
+.product-image-light {
+    display: inline-block;
+}
+
+.product-image-dark {
+    display: none;
+}
+
+[data-theme="dark"] .product-image-light {
+    display: none;
+}
+
+[data-theme="dark"] .product-image-dark {
+    display: inline-block;
+}
+
+/* Team Image Theme Switching */
+.team-image-light {
+    display: inline-block;
+}
+
+.team-image-dark {
+    display: none;
+}
+
+[data-theme="dark"] .team-image-light {
+    display: none;
+}
+
+[data-theme="dark"] .team-image-dark {
+    display: inline-block;
+}

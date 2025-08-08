@@ -1,42 +1,26 @@
-<?php
-
-/*
- *---------------------------------------------------------------
- * CHECK PHP VERSION
- *---------------------------------------------------------------
- */
-
-$minPhpVersion = '8.1';
-if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
-    header('HTTP/1.1 503 Service Unavailable.', true, 503);
-    echo sprintf('Your PHP version must be %s or higher to run CodeIgniter. Current version: %s', $minPhpVersion, PHP_VERSION);
-    exit(1);
-}
-
-/*
- *---------------------------------------------------------------
- * SET THE CURRENT DIRECTORY
- *---------------------------------------------------------------
- */
-
-// Path to the front controller (this file)
-define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
-
-// Ensure the current directory is pointing to the front controller's directory
-if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
-    chdir(FCPATH);
-}
-
-/*
- *---------------------------------------------------------------
- * BOOTSTRAP THE APPLICATION
- *---------------------------------------------------------------
- */
-
-require FCPATH . 'app/Config/Paths.php';
-
-$paths = new Config\Paths();
-
-require $paths->systemDirectory . '/Boot.php';
-
-exit(CodeIgniter\Boot::bootWeb($paths));
+drwxr-xr-x    9 nuguiyhv   nuguiyhv         4096 Aug  7 09:46 .
+drwxr-xr-x   45 nuguiyhv   nuguiyhv         4096 Aug  7 13:51 ..
+-rw-rw-r--    1 nuguiyhv   nuguiyhv          447 Aug  5 00:27 .cpanel.yml
+-rw-rw-r--    1 nuguiyhv   nuguiyhv          212 Aug  5 00:27 .dockerignore
+-rw-------    1 nuguiyhv   nuguiyhv         1913 Aug  7 13:26 .env
+-rw-rw-r--    1 nuguiyhv   nuguiyhv          760 Aug  5 00:27 .env.docker.example
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         1909 Aug  5 00:27 .env.example
+-rw-------    1 nuguiyhv   nuguiyhv           12 Aug  3 04:47 .ftpquota
+-rw-r--r--    1 nuguiyhv   nuguiyhv         1763 Aug  7 13:52 .htaccess
+drwxr-xr-x    3 nuguiyhv   nuguiyhv         4096 Aug  3 01:23 .well-known
+-rw-rw-r--    1 nuguiyhv   nuguiyhv        12321 Aug  5 00:27 DEPLOYMENT.md
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         1388 Aug  5 00:27 Dockerfile
+drwxr-xr-x    5 nuguiyhv   nuguiyhv         4096 Aug  3 00:35 assets
+drwxr-xr-x    2 nuguiyhv   nuguiyhv         4096 Aug  5 01:14 css
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         1197 Aug  5 00:27 docker-compose.yml
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         5430 Aug  5 00:27 favicon.ico
+-rw-------    1 nuguiyhv   nuguiyhv         1730 Aug  7 13:52 index.php
+drwxr-xr-x    2 nuguiyhv   nuguiyhv         4096 Aug  5 01:14 js
+-rw-rw-r--    1 nuguiyhv   nuguiyhv        81508 Aug  5 00:59 package-lock.json
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         1543 Aug  5 00:27 package.json
+-rw-rw-r--    1 nuguiyhv   nuguiyhv          832 Aug  5 00:27 robots.txt
+drwxr-xr-x    2 nuguiyhv   nuguiyhv         4096 Aug  5 12:39 secure
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         2335 Aug  5 00:27 sitemap.xml
+drwxrwxr-x    2 nuguiyhv   nuguiyhv         4096 Aug  5 00:27 src
+-rw-rw-r--    1 nuguiyhv   nuguiyhv         7570 Aug  5 00:27 tailwind.config.js
+drwxrwxr-x    3 nuguiyhv   nuguiyhv         4096 Aug  5 00:27 temp_ci4

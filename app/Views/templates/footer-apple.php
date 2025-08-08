@@ -6,11 +6,11 @@
             <div style="grid-column: span 2;">
                 <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
                     <!-- Theme-aware logo -->
-                    <img src="<?= base_url('assets/images/NUGUI-ICON-6 - Light.png'); ?>" 
+                    <img src="<?= base_url('assets/images/NUGUI-icon-1.png'); ?>" 
                          alt="NuGui Logo" 
                          class="footer-logo-light"
                          style="height: 32px; width: auto; margin-right: var(--spacing-sm);">
-                    <img src="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png'); ?>" 
+                    <img src="<?= base_url('assets/images/NUGUI-icon-2.png'); ?>" 
                          alt="NuGui Logo" 
                          class="footer-logo-dark"
                          style="height: 32px; width: auto; margin-right: var(--spacing-sm); display: none;">

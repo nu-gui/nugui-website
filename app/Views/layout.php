@@ -31,13 +31,14 @@
         <link rel="stylesheet" href="<?= base_url('css/modern-ui.css') ?>">
         <link rel="stylesheet" href="<?= base_url('css/utilities.css') ?>">
     </noscript>
-    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-ICON-7 - Dark.png') ?>">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
 
     <!-- Open Graph meta tags -->
     <meta property="og:title" content="<?= $ogTitle ?? 'NU GUI - Enterprise Telecom Solutions | VoIP, SMS, Call Control' ?>">
     <meta property="og:description" content="<?= $ogDescription ?? 'Leading telecom solutions provider. Carrier-grade VoIP, SMS platforms, call control systems. 99.99% uptime. Trusted by 200+ operators worldwide.' ?>">
-    <meta property="og:image" content="<?= $ogImage ?? base_url('assets/images/nugui-og-preview.jpg') ?>">
+    <meta property="og:image" content="<?= $ogImage ?? base_url('assets/images/NUGUI-1.png') ?>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="<?= current_url() ?>">
@@ -51,7 +52,7 @@
     <meta name="twitter:creator" content="@nugui">
     <meta name="twitter:title" content="<?= $twitterTitle ?? 'NU GUI - Enterprise Telecom Solutions' ?>">
     <meta name="twitter:description" content="<?= $twitterDescription ?? 'Carrier-grade VoIP, SMS, call control & data services. 99.99% uptime. 200+ operators trust us.' ?>">
-    <meta name="twitter:image" content="<?= $twitterImage ?? base_url('assets/images/nugui-twitter-card.jpg') ?>">
+    <meta name="twitter:image" content="<?= $twitterImage ?? base_url('assets/images/NUGUI-1.png') ?>">
     
     <!-- Additional SEO meta tags -->
     <meta name="theme-color" content="#007AFF">
@@ -119,7 +120,7 @@
       "name": "NU GUI",
       "legalName": "NU GUI (Pty) Ltd",
       "url": "https://nugui.co.za",
-      "logo": "https://nugui.co.za/assets/images/NUGUI-ICON-7 - Dark.png",
+      "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png",
       "foundingDate": "2005",
       "founders": [
         {
@@ -157,7 +158,7 @@
       "brand": {
         "@type": "Brand",
         "name": "NU GUI",
-        "logo": "https://nugui.co.za/assets/images/NUGUI-ICON-7 - Dark.png"
+        "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
       }
     }
     </script>

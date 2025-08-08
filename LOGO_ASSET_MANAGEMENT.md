@@ -10,10 +10,10 @@ All logo files are located in `/public/assets/images/`:
 
 | Asset Type | Filename | Usage |
 |------------|----------|-------|
-| Full Logo Light | `NUGU-LOGO-4 - Light.png` | Main header navigation (light theme) |
-| Full Logo Dark | `NUGUI-5.png` | Main header navigation (dark theme) |
-| Icon Light | `NUGUI-ICON-6 - Light.png` | Footers, compact spaces (light theme) |
-| Icon Dark | `NUGUI-ICON-7 - Dark.png` | Footers, compact spaces, favicon (dark theme) |
+| Full Logo Light | `NUGUI-1.png` | Main header navigation (light theme) |
+| Full Logo Dark | `NUGUI-2.png` | Main header navigation (dark theme) |
+| Icon Light | `NUGUI-icon-1.png` | Footers, compact spaces (light theme) |
+| Icon Dark | `NUGUI-icon-2.png` | Footers, compact spaces, favicon (dark theme) |
 
 ## Logo Helper Functions
 
@@ -25,19 +25,19 @@ Returns array of all logo asset paths:
 $assets = get_logo_assets();
 // Returns:
 // [
-//     'logo_full_light' => 'assets/images/NUGU-LOGO-4 - Light.png',
-//     'logo_full_dark'  => 'assets/images/NUGUI-5.png',
-//     'icon_light'      => 'assets/images/NUGUI-ICON-6 - Light.png',
-//     'icon_dark'       => 'assets/images/NUGUI-ICON-7 - Dark.png',
-//     'favicon'         => 'assets/images/NUGUI-ICON-7 - Dark.png',
+//     'logo_full_light' => 'assets/images/NUGUI-1.png',
+//     'logo_full_dark'  => 'assets/images/NUGUI-2.png',
+//     'icon_light'      => 'assets/images/NUGUI-icon-1.png',
+//     'icon_dark'       => 'assets/images/NUGUI-icon-2.png',
+//     'favicon'         => 'assets/images/NUGUI-icon-1.png',
 // ]
 ```
 
 #### `logo_url($type)`
 Get full URL for specific logo type:
 ```php
-echo logo_url('logo_full_light'); // http://site.com/assets/images/NUGU-LOGO-4 - Light.png
-echo logo_url('icon_dark');       // http://site.com/assets/images/NUGUI-ICON-7 - Dark.png
+echo logo_url('logo_full_light'); // http://site.com/assets/images/NUGUI-1.png
+echo logo_url('icon_dark');       // http://site.com/assets/images/NUGUI-icon-2.png
 ```
 
 #### `render_theme_aware_logo($type, $attributes)`
@@ -166,10 +166,10 @@ All templates include CSS for automatic logo switching:
 /public/
   /assets/
     /images/
-      NUGU-LOGO-4 - Light.png    # Full logo (light)
-      NUGUI-5.png                # Full logo (dark)  
-      NUGUI-ICON-6 - Light.png   # Square icon (light)
-      NUGUI-ICON-7 - Dark.png    # Square icon (dark)
+      NUGUI-1.png                # Full logo (light)
+      NUGUI-2.png                # Full logo (dark)  
+      NUGUI-icon-1.png           # Square icon (light)
+      NUGUI-icon-2.png           # Square icon (dark)
 ```
 
 This system ensures consistent branding across the entire NuGui website while making logo management simple and maintainable.
