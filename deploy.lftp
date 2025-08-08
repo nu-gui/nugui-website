@@ -1,0 +1,41 @@
+#!/usr/bin/env lftp
+# NU GUI Afrihost Deployment Script - Selective Upload
+# Deploy only essential public site files to nugui.co.za via FTPS
+
+set ssl:verify-certificate no
+set ftp:ssl-force true
+set ftp:ssl-protect-data true
+set net:max-retries 3
+set net:timeout 30
+
+# Connect to Afrihost FTP server
+open -u "devin@nugui.co.za","25tfcKD76ytjRPM" ftp.nugui.co.za
+
+# Create timestamped backup directory
+!echo "Creating backup directory..."
+mkdir -p /home/nuguiyhv/archives/pre_deploy_$(date +%Y%m%d_%H%M)
+
+# Upload only essential directories and files
+!echo "Uploading public directory..."
+lcd public
+cd /home/nuguiyhv/public_html
+mirror --reverse --verbose --parallel=2 --only-newer --no-perms .
+
+# Upload updated view files
+!echo "Uploading app/Views directory..."
+lcd ../app/Views
+cd /home/nuguiyhv/app/Views
+mirror --reverse --verbose --parallel=2 --only-newer --no-perms .
+
+# List deployed files for verification
+!echo "Deployment complete. Listing key directories..."
+cd /home/nuguiyhv/public_html
+ls -la
+ls -la assets/images/ | head -20
+
+# Verify framework directories are untouched at root
+cd /home/nuguiyhv/
+!echo "Verifying framework directories at root..."
+ls -la app/ system/ vendor/ writable/ | head -5
+
+bye
