@@ -6,6 +6,11 @@
     <title>NU GUI - Welcome</title>
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
+    
+    <!-- Load CSS variables first -->
+    <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
+    
     <style>
         body {
             background: var(--color-background);
@@ -55,10 +60,10 @@
             width: 100vw;
             height: 100vh;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            background-image: url('<?= base_url('assets/images/NUGUI-1.png') ?>');
+            /* background-image: url('<?= base_url('assets/images/background-image.jpg') ?>'); */
+            /* Removed background image for cleaner look */
             background-size: cover;
             background-position: center;
-            background-blend-mode: overlay;
             display: flex;
             align-items: center;
             justify-content: center;
