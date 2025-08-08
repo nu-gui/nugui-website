@@ -390,7 +390,7 @@
             setupHomePagePreloading() {
                 // Monitor iframe loading
                 this.homePageIframe.addEventListener('load', () => {
-                    console.log('Home page preloaded successfully');
+                    // Home page preloaded successfully
                     this.homePageLoaded = true;
                 });
 
@@ -401,7 +401,7 @@
                 });
 
                 // Start preloading immediately
-                console.log('Starting home page preload...');
+                // Starting home page preload
             }
 
             setupAnimationListener() {
@@ -410,7 +410,7 @@
                 // Listen for animation end event
                 logoContainer.addEventListener('animationend', (event) => {
                     if (event.animationName === 'logoGrowMoveAndFade' || event.animationName === 'logoGrowMoveAndFadeMobile') {
-                        console.log('Logo animation completed, starting transition...');
+                        // Logo animation completed, starting transition
                         // Start transition immediately when logo finishes fading
                         this.transitionToHomePage();
                     }
@@ -430,7 +430,7 @@
                     
                     // Trigger transition when logo is nearly invisible (opacity < 0.05)
                     if (opacity < 0.05) {
-                        console.log('Logo opacity below threshold, starting transition...');
+                        // Logo opacity below threshold, starting transition
                         redirectTriggered = true;
                         this.transitionToHomePage();
                         return;
@@ -450,14 +450,14 @@
                 // Play logo spin sound at start
                 setTimeout(() => {
                     if (this.audioEnabled) {
-                        this.logoSpinSound.play().catch(e => console.log('Audio play failed:', e));
+                        this.logoSpinSound.play().catch(() => {/* Audio play failed */});
                     }
                 }, 100);
 
                 // Play transform sound when logo reaches peak
                 setTimeout(() => {
                     if (this.audioEnabled) {
-                        this.logoTransformSound.play().catch(e => console.log('Audio play failed:', e));
+                        this.logoTransformSound.play().catch(() => {/* Audio play failed */});
                     }
                 }, 3000); // When logo is at maximum size before fading
             }
@@ -473,7 +473,7 @@
             }
 
             transitionToHomePage() {
-                console.log('Starting transition to home page...');
+                // Starting transition to home page
                 
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
@@ -489,7 +489,7 @@
                     }, 800);
                 } else {
                     // Fallback: traditional redirect if preload failed
-                    console.log('Using fallback redirect method');
+                    // Using fallback redirect method
                     this.landingContainer.classList.add('fade-out');
                     setTimeout(() => {
                         window.location.href = '<?= base_url('/home') ?>';
@@ -505,12 +505,12 @@
             // sessionStorage.removeItem('landing_shown');
             
             if (sessionStorage.getItem('landing_shown')) {
-                console.log('Landing already shown in this session, redirecting to home...');
+                // Landing already shown in this session, redirecting to home
                 window.location.href = '<?= base_url('/home') ?>';
                 return;
             }
 
-            console.log('Starting landing page animation with wallpaper...');
+            // Starting landing page animation with wallpaper
             new LandingPageController();
         });
 
