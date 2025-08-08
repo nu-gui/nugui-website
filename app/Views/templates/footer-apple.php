@@ -6,14 +6,9 @@
             <div style="grid-column: span 2;">
                 <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
                     <!-- Theme-aware logo -->
-                    <img src="<?= base_url('assets/images/NUGUI-icon-1.png'); ?>" 
-                         alt="NuGui Logo" 
-                         class="footer-logo-light"
-                         style="height: 32px; width: auto; margin-right: var(--spacing-sm);">
-                    <img src="<?= base_url('assets/images/NUGUI-icon-2.png'); ?>" 
-                         alt="NuGui Logo" 
-                         class="footer-logo-dark"
-                         style="height: 32px; width: auto; margin-right: var(--spacing-sm); display: none;">
+                    <div style="height: 32px; width: auto; margin-right: var(--spacing-sm);">
+                        <?= picture_logo(true, 'footer-logo') ?>
+                    </div>
                     <span style="font-family: var(--font-family-display); font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">NuGui</span>
                 </div>
                 <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); max-width: 400px; line-height: var(--line-height-relaxed);">

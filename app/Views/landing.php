@@ -307,8 +307,7 @@
     <!-- Landing page overlay -->
     <div class="landing-container" id="landingContainer">
         <div class="logo-animation-container">
-            <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-light" id="logoIcon">
-            <img src="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-dark" id="logoIconDark" style="display: none;">
+            <?= picture_logo(true, 'logo-icon') ?>
         </div>
 
         <button class="audio-toggle" id="audioToggle" title="Toggle Sound">

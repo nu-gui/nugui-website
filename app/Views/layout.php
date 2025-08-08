@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>">
     
+    <!-- Theme-aware images CSS -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
+    
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
