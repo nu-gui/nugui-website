@@ -17,10 +17,8 @@ if (!function_exists('picture_element')) {
      * @return string HTML picture element
      */
     function picture_element($basePath, $extension = 'png', $alt = '', $class = '', $attributes = []) {
-        // Add cache-busting parameter for development
-        $cacheBuster = '?v=' . time();
-        $lightPath = base_url($basePath . '-1.' . $extension) . $cacheBuster;
-        $darkPath = base_url($basePath . '-2.' . $extension) . $cacheBuster;
+        $lightPath = base_url($basePath . '-1.' . $extension);
+        $darkPath = base_url($basePath . '-2.' . $extension);
         
         // Build additional attributes string
         $attrString = '';
