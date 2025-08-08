@@ -67,44 +67,8 @@ if (!function_exists('picture_product')) {
      * @return string HTML picture element
      */
     function picture_product($product, $type = 'icon', $class = '') {
-        $extension = ($type === 'icon') ? 'jpg' : 'jpg';
-        
-        // Special case for CCS icon-2 which is PNG
-        if ($product === 'CCS' && $type === 'icon') {
-            // For CCS, we need to handle mixed extensions
-            $lightPath = base_url('assets/images/NU-' . $product . '-' . $type . '-1.jpg');
-            $darkPath = base_url('assets/images/NU-' . $product . '-' . $type . '-2.png');
-            
-            $html = '<picture>';
-            $html .= '<source media="(prefers-color-scheme: dark)" srcset="' . $darkPath . '">';
-            $html .= '<source media="(prefers-color-scheme: light)" srcset="' . $lightPath . '">';
-            $html .= '<img src="' . $lightPath . '" alt="NU ' . $product . ' ' . ucfirst($type) . '"';
-            if ($class) {
-                $html .= ' class="' . esc($class) . '"';
-            }
-            $html .= '>';
-            $html .= '</picture>';
-            
-            return $html;
-        }
-        
-        // Special case for DATA icon-2 which is PNG
-        if ($product === 'DATA' && $type === 'icon') {
-            $lightPath = base_url('assets/images/NU-' . $product . '-' . $type . '-1.jpg');
-            $darkPath = base_url('assets/images/NU-' . $product . '-' . $type . '-2.png');
-            
-            $html = '<picture>';
-            $html .= '<source media="(prefers-color-scheme: dark)" srcset="' . $darkPath . '">';
-            $html .= '<source media="(prefers-color-scheme: light)" srcset="' . $lightPath . '">';
-            $html .= '<img src="' . $lightPath . '" alt="NU ' . $product . ' ' . ucfirst($type) . '"';
-            if ($class) {
-                $html .= ' class="' . esc($class) . '"';
-            }
-            $html .= '>';
-            $html .= '</picture>';
-            
-            return $html;
-        }
+        // Use PNG for icons (better quality and transparency) and JPG for product images
+        $extension = ($type === 'icon') ? 'png' : 'jpg';
         
         $basePath = 'assets/images/NU-' . $product . '-' . $type;
         $alt = 'NU ' . $product . ' ' . ucfirst($type);
