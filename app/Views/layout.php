@@ -25,6 +25,9 @@
     <!-- Theme-aware images CSS -->
     <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
     
+    <!-- Centralized theme assets configuration -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
+    
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">

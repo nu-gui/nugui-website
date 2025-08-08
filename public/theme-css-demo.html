@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Theme Assets Demo</title>
+    <link rel="stylesheet" href="/css/theme-assets.css">
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            color: black;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: white;
+            }
+        }
+        
+        h2 {
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .demo-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .demo-item {
+                background: #2a2a2a;
+                border-color: #555;
+            }
+        }
+        
+        /* Using CSS variables for background images */
+        .bg-logo-main,
+        .bg-logo-icon,
+        .bg-icon-sip,
+        .bg-icon-sms,
+        .bg-icon-ccs,
+        .bg-icon-data {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+        }
+        
+        /* Alternative: Using pseudo-elements */
+        .pseudo-icon {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            position: relative;
+        }
+        
+        .pseudo-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .pseudo-icon.sip::before {
+            background-image: var(--icon-sip);
+        }
+        
+        .pseudo-icon.sms::before {
+            background-image: var(--icon-sms);
+        }
+        
+        .pseudo-icon.ccs::before {
+            background-image: var(--icon-ccs);
+        }
+        
+        .pseudo-icon.data::before {
+            background-image: var(--icon-data);
+        }
+        
+        /* Inline style example */
+        .inline-style-demo {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            code {
+                background: #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 CSS Theme Assets Demo</h1>
+    
+    <p>This page demonstrates using CSS variables for theme-aware images. All image URLs are defined in <code>/css/theme-assets.css</code></p>
+    
+    <h2>Method 1: Background Image Classes</h2>
+    <div class="demo-grid">
+        <div class="demo-item">
+            <h4>Logo Main</h4>
+            <div class="bg-logo-main"></div>
+            <code>.bg-logo-main</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>Logo Icon</h4>
+            <div class="bg-logo-icon"></div>
+            <code>.bg-logo-icon</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>SIP Icon</h4>
+            <div class="bg-icon-sip"></div>
+            <code>.bg-icon-sip</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>SMS Icon</h4>
+            <div class="bg-icon-sms"></div>
+            <code>.bg-icon-sms</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>CCS Icon</h4>
+            <div class="bg-icon-ccs"></div>
+            <code>.bg-icon-ccs</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>DATA Icon</h4>
+            <div class="bg-icon-data"></div>
+            <code>.bg-icon-data</code>
+        </div>
+    </div>
+    
+    <h2>Method 2: Pseudo-Elements</h2>
+    <div class="demo-grid">
+        <div class="demo-item">
+            <h4>SIP (::before)</h4>
+            <div class="pseudo-icon sip"></div>
+            <code>.pseudo-icon.sip::before</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>SMS (::before)</h4>
+            <div class="pseudo-icon sms"></div>
+            <code>.pseudo-icon.sms::before</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>CCS (::before)</h4>
+            <div class="pseudo-icon ccs"></div>
+            <code>.pseudo-icon.ccs::before</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>DATA (::before)</h4>
+            <div class="pseudo-icon data"></div>
+            <code>.pseudo-icon.data::before</code>
+        </div>
+    </div>
+    
+    <h2>Method 3: Inline Styles with CSS Variables</h2>
+    <div class="demo-grid">
+        <div class="demo-item">
+            <h4>Logo (inline)</h4>
+            <div class="inline-style-demo" style="background-image: var(--logo-icon);"></div>
+            <code>style="background-image: var(--logo-icon);"</code>
+        </div>
+        
+        <div class="demo-item">
+            <h4>SIP (inline)</h4>
+            <div class="inline-style-demo" style="background-image: var(--icon-sip);"></div>
+            <code>style="background-image: var(--icon-sip);"</code>
+        </div>
+    </div>
+    
+    <h2>Benefits of This Approach</h2>
+    <ul>
+        <li>✅ <strong>Single source of truth</strong> - All image paths in one CSS file</li>
+        <li>✅ <strong>Easy to maintain</strong> - Change images in one place</li>
+        <li>✅ <strong>Better performance</strong> - CSS is cached, no inline styles</li>
+        <li>✅ <strong>Automatic theme switching</strong> - Uses native CSS media queries</li>
+        <li>✅ <strong>No JavaScript required</strong> - Pure CSS solution</li>
+        <li>✅ <strong>Fallback support</strong> - Can add multiple image formats</li>
+    </ul>
+    
+    <h2>How to Add New Images</h2>
+    <ol>
+        <li>Add image files: <code>new-feature-1.png</code> (light) and <code>new-feature-2.png</code> (dark)</li>
+        <li>Update <code>/css/theme-assets.css</code>:
+            <pre><code>:root {
+    --icon-new-feature: url('/assets/images/new-feature-1.png');
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --icon-new-feature: url('/assets/images/new-feature-2.png');
+    }
+}</code></pre>
+        </li>
+        <li>Use in HTML: <code>&lt;div class="bg-icon-new-feature"&gt;&lt;/div&gt;</code></li>
+    </ol>
+    
+    <h2>Current Theme Detection</h2>
+    <p id="theme-status">Checking...</p>
+    
+    <script>
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.getElementById('theme-status').innerHTML = `
+            <strong>Current theme:</strong> ${isDark ? '🌙 Dark Mode' : '☀️ Light Mode'}<br>
+            <strong>Images loading:</strong> ${isDark ? 'All -2 variants' : 'All -1 variants'}
+        `;
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            document.getElementById('theme-status').innerHTML = `
+                <strong>Current theme:</strong> ${e.matches ? '🌙 Dark Mode' : '☀️ Light Mode'}<br>
+                <strong>Images loading:</strong> ${e.matches ? 'All -2 variants' : 'All -1 variants'}
+            `;
+        });
+    </script>
+</body>
+</html>

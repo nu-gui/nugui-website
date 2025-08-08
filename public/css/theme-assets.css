@@ -1,0 +1,185 @@
+/**
+ * Centralized Theme Assets Configuration
+ * Single source of truth for all theme-dependent images
+ * Update image paths here to change them site-wide
+ */
+
+:root {
+    /* Light Theme Images (default) */
+    
+    /* Main Logo */
+    --logo-main: url('/assets/images/NUGUI-1.png');
+    --logo-icon: url('/assets/images/NUGUI-icon-1.png');
+    
+    /* Product Icons */
+    --icon-sip: url('/assets/images/NU-SIP-icon-1.png');
+    --icon-sms: url('/assets/images/NU-SMS-icon-1.png');
+    --icon-ccs: url('/assets/images/NU-CCS-icon-1.png');
+    --icon-data: url('/assets/images/NU-DATA-icon-1.png');
+    
+    /* Product Images */
+    --product-sip: url('/assets/images/NU-SIP-product-1.jpg');
+    --product-sms: url('/assets/images/NU-SMS-product-1.jpg');
+    --product-ccs: url('/assets/images/NU-CCS-product-1.jpg');
+    --product-data: url('/assets/images/NU-DATA-product-1.jpg');
+    
+    /* Future additions */
+    --icon-cron: url('/assets/images/NU-CRON-icon-1.png');
+    --product-cron: url('/assets/images/NU-CRON-product-1.jpg');
+}
+
+/* Dark Theme Images */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Main Logo */
+        --logo-main: url('/assets/images/NUGUI-2.png');
+        --logo-icon: url('/assets/images/NUGUI-icon-2.png');
+        
+        /* Product Icons */
+        --icon-sip: url('/assets/images/NU-SIP-icon-2.png');
+        --icon-sms: url('/assets/images/NU-SMS-icon-2.png');
+        --icon-ccs: url('/assets/images/NU-CCS-icon-2.png');
+        --icon-data: url('/assets/images/NU-DATA-icon-2.png');
+        
+        /* Product Images */
+        --product-sip: url('/assets/images/NU-SIP-product-2.jpg');
+        --product-sms: url('/assets/images/NU-SMS-product-2.jpg');
+        --product-ccs: url('/assets/images/NU-CCS-product-2.jpg');
+        --product-data: url('/assets/images/NU-DATA-product-2.jpg');
+        
+        /* Future additions */
+        --icon-cron: url('/assets/images/NU-CRON-icon-2.png');
+        --product-cron: url('/assets/images/NU-CRON-product-2.jpg');
+    }
+}
+
+/* Manual dark mode class override (if using JS theme switcher) */
+.dark {
+    /* Main Logo */
+    --logo-main: url('/assets/images/NUGUI-2.png');
+    --logo-icon: url('/assets/images/NUGUI-icon-2.png');
+    
+    /* Product Icons */
+    --icon-sip: url('/assets/images/NU-SIP-icon-2.png');
+    --icon-sms: url('/assets/images/NU-SMS-icon-2.png');
+    --icon-ccs: url('/assets/images/NU-CCS-icon-2.png');
+    --icon-data: url('/assets/images/NU-DATA-icon-2.png');
+    
+    /* Product Images */
+    --product-sip: url('/assets/images/NU-SIP-product-2.jpg');
+    --product-sms: url('/assets/images/NU-SMS-product-2.jpg');
+    --product-ccs: url('/assets/images/NU-CCS-product-2.jpg');
+    --product-data: url('/assets/images/NU-DATA-product-2.jpg');
+    
+    /* Future additions */
+    --icon-cron: url('/assets/images/NU-CRON-icon-2.png');
+    --product-cron: url('/assets/images/NU-CRON-product-2.jpg');
+}
+
+/* Utility classes to use these images */
+.logo-main {
+    content: var(--logo-main);
+}
+
+.logo-icon {
+    content: var(--logo-icon);
+}
+
+/* Product icon classes */
+.icon-sip {
+    content: var(--icon-sip);
+}
+
+.icon-sms {
+    content: var(--icon-sms);
+}
+
+.icon-ccs {
+    content: var(--icon-ccs);
+}
+
+.icon-data {
+    content: var(--icon-data);
+}
+
+/* Background image classes */
+.bg-logo-main {
+    background-image: var(--logo-main);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-logo-icon {
+    background-image: var(--logo-icon);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon-sip {
+    background-image: var(--icon-sip);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon-sms {
+    background-image: var(--icon-sms);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon-ccs {
+    background-image: var(--icon-ccs);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon-data {
+    background-image: var(--icon-data);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Pseudo-element image insertion */
+.logo-main::before,
+.logo-icon::before,
+.icon-sip::before,
+.icon-sms::before,
+.icon-ccs::before,
+.icon-data::before {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo-main::before {
+    background-image: var(--logo-main);
+}
+
+.logo-icon::before {
+    background-image: var(--logo-icon);
+}
+
+.icon-sip::before {
+    background-image: var(--icon-sip);
+}
+
+.icon-sms::before {
+    background-image: var(--icon-sms);
+}
+
+.icon-ccs::before {
+    background-image: var(--icon-ccs);
+}
+
+.icon-data::before {
+    background-image: var(--icon-data);
+}
