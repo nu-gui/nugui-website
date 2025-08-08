@@ -226,8 +226,9 @@ function toggleDetails(id) {
         <div class="card-grid">
             <!-- Modern, compact solution cards with expandable details -->
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NUSIP-icon-1.png') ?>" alt="NU SIP Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NUSIP-icon-2.png') ?>" alt="NU SIP Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper">
+                    <?= picture_product('SIP', 'icon', 'product-icon') ?>
+                </div>
                 <h3>NU SIP - VoIP Platform</h3>
                 <p><strong>195+ countries</strong> coverage. <strong>0.001¢/min</strong> wholesale rates. HD voice quality with <strong>99.99% uptime</strong>.</p>
                 <button class="btn btn--primary" onclick="toggleDetails('sip-details')">Details</button>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Image Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            background: #fff;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: #fff;
+            }
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .test-item {
+            border: 2px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .test-item {
+                border-color: #555;
+            }
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+        .status {
+            padding: 5px;
+            border-radius: 4px;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        @media (prefers-color-scheme: dark) {
+            .success { background: #155724; color: #d4edda; }
+            .error { background: #721c24; color: #f8d7da; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Theme Image Test Page</h1>
+    <p>Current color scheme preference: <strong id="scheme">detecting...</strong></p>
+    
+    <h2>Picture Elements (Should Auto-Switch)</h2>
+    <div class="test-grid">
+        <div class="test-item">
+            <h3>NUGUI Logo</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NUGUI-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NUGUI-1.png">
+                <img src="/assets/images/NUGUI-1.png" alt="NUGUI Logo">
+            </picture>
+            <div class="status">Should show -1 in light, -2 in dark</div>
+        </div>
+        
+        <div class="test-item">
+            <h3>NUGUI Icon</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NUGUI-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NUGUI-icon-1.png">
+                <img src="/assets/images/NUGUI-icon-1.png" alt="NUGUI Icon">
+            </picture>
+            <div class="status">Should show icon-1 in light, icon-2 in dark</div>
+        </div>
+        
+        <div class="test-item">
+            <h3>NU-SMS Icon</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-SMS-icon-2.jpg">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-SMS-icon-1.jpg">
+                <img src="/assets/images/NU-SMS-icon-1.jpg" alt="NU-SMS Icon">
+            </picture>
+            <div class="status">Should show SMS-icon-1 in light, SMS-icon-2 in dark</div>
+        </div>
+        
+        <div class="test-item">
+            <h3>NU-SIP Icon</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-SIP-icon-2.jpg">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-SIP-icon-1.jpg">
+                <img src="/assets/images/NU-SIP-icon-1.jpg" alt="NU-SIP Icon">
+            </picture>
+            <div class="status">Should show SIP-icon-1 in light, SIP-icon-2 in dark</div>
+        </div>
+        
+        <div class="test-item">
+            <h3>NU-CCS Icon (Mixed Extensions)</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-CCS-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-CCS-icon-1.jpg">
+                <img src="/assets/images/NU-CCS-icon-1.jpg" alt="NU-CCS Icon">
+            </picture>
+            <div class="status">Light: JPG (-1), Dark: PNG (-2)</div>
+        </div>
+        
+        <div class="test-item">
+            <h3>NU-DATA Icon (Mixed Extensions)</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-DATA-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-DATA-icon-1.jpg">
+                <img src="/assets/images/NU-DATA-icon-1.jpg" alt="NU-DATA Icon">
+            </picture>
+            <div class="status">Light: JPG (-1), Dark: PNG (-2)</div>
+        </div>
+    </div>
+    
+    <h2>Network Requests Check</h2>
+    <p>Open DevTools Network tab and check:</p>
+    <ul>
+        <li>In light mode: Only -1 images should load</li>
+        <li>In dark mode: Only -2 images should load</li>
+        <li>When switching themes: New images should load</li>
+    </ul>
+    
+    <script>
+        // Detect current color scheme
+        function detectScheme() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.getElementById('scheme').textContent = isDark ? 'Dark Mode' : 'Light Mode';
+        }
+        
+        detectScheme();
+        
+        // Listen for changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', detectScheme);
+        
+        // Log which images are actually loading
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                console.log('Loaded:', this.currentSrc || this.src);
+            });
+        });
+    </script>
+</body>
+</html>

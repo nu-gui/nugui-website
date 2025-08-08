@@ -97,15 +97,6 @@ body {
   opacity: 1;
 }
 
-/* Theme-aware logo switching */
-.globalnav-image-apple .logo-dark {
-  display: none;
-}
-
-.globalnav-image-apple .logo-light {
-  display: inline-block;
-}
-
 /* Logo sizing - fill header height with automatic width */
 .globalnav-logo {
   height: 32px; /* Fill most of the 44px header height with some padding */
@@ -119,26 +110,16 @@ body {
   opacity: 0.8;
 }
 
-/* Dark theme logo switching */
-@media (prefers-color-scheme: dark) {
-  .globalnav-image-apple .logo-light {
-    display: none;
-  }
-  
-  .globalnav-image-apple .logo-dark {
-    display: inline-block;
-  }
+/* Picture element support - ensure proper display */
+.globalnav-image-apple picture {
+  display: contents; /* Let img inherit parent layout */
 }
 
-/* Manual theme switching support */
-[data-theme="dark"] .globalnav-image-apple .logo-light,
-.dark .globalnav-image-apple .logo-light {
-  display: none;
-}
-
-[data-theme="dark"] .globalnav-image-apple .logo-dark,
-.dark .globalnav-image-apple .logo-dark {
-  display: inline-block;
+.globalnav-image-apple picture img {
+  height: 32px;
+  width: auto;
+  max-height: 32px;
+  object-fit: contain;
 }
 
 /* Link Text */
