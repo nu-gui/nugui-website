@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="nuguidark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,7 +90,7 @@
     
     <!-- Legacy scripts for backward compatibility -->
     <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
-    <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script>
+    <!-- <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script> DISABLED FOR PICTURE ELEMENT TESTING -->
     
     <!-- Page Gradient Enhancement -->
     <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>
