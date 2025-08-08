@@ -6,7 +6,7 @@
             <div style="grid-column: span 2;">
                 <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
                     <!-- Theme-aware logo -->
-                    <div style="height: 32px; width: auto; margin-right: var(--spacing-sm);">
+                    <div style="height: 32px; width: 32px; margin-right: var(--spacing-sm);">
                         <?= picture_logo(true, 'footer-logo') ?>
                     </div>
                     <span style="font-family: var(--font-family-display); font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-text-primary);">NuGui</span>

@@ -28,6 +28,21 @@
     <!-- Centralized theme assets configuration -->
     <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
     
+    <!-- Enhanced button styles -->
+    <link rel="stylesheet" href="<?= base_url('css/buttons-enhanced.css') ?>">
+    
+    <!-- Unified hero section styles -->
+    <link rel="stylesheet" href="<?= base_url('css/hero-sections.css') ?>">
+    
+    <!-- Unified card styles -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-unified.css') ?>">
+    
+    <!-- Enhanced form styles -->
+    <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
+    
+    <!-- Futuristic form styles -->
+    <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
+    
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">

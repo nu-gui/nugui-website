@@ -39,6 +39,7 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
         font-weight: 700;
         margin-bottom: 20px;
         letter-spacing: -0.02em;
+        color: #FFFFFF; /* White text for main heading */
     }
     .hero-section .text-gradient {
         background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
@@ -49,7 +50,8 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
         font-size: 1.5rem;
         max-width: 48rem;
         margin: 0 auto 30px;
-        color: var(--color-text-secondary);
+        color: #FFFFFF; /* White text for description */
+        opacity: 0.9;
     }
     .section {
         padding: 80px 20px;
@@ -155,7 +157,7 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero-contact">
     <div class="max-w-7xl">
         <h1>
             Let's
@@ -200,7 +202,7 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
             </div>
         <?php endif; ?>
 
-        <div class="contact-form">
+        <div class="contact-form futuristic-form">
                 <form action="<?= base_url('/submit_contact_form') ?>" method="post">
                     <?= csrf_field() ?>
                     
@@ -215,19 +217,26 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
                     <input type="hidden" name="form_start_time" value="<?= time() ?>">
                     <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
                     
-                    <div class="card-grid">
+                    <!-- Contact Information Section -->
+                    <div class="form-section-title">Contact Information</div>
+                    
+                    <div class="form-row single">
                         <div class="form-group">
-                            <label>Full Name *</label>
+                            <label for="contact_name">Full Name</label>
                             <input type="text" 
+                                   id="contact_name"
                                    name="name" 
                                    value="<?= old('name') ?>" 
                                    required
                                    placeholder="John Doe">
                         </div>
-                        
+                    </div>
+                    
+                    <div class="form-row single">
                         <div class="form-group">
-                            <label>Email Address *</label>
+                            <label for="contact_email">Email Address</label>
                             <input type="email" 
+                                   id="contact_email"
                                    name="email" 
                                    value="<?= old('email') ?>" 
                                    required
@@ -235,24 +244,33 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Subject *</label>
-                        <input type="text" 
-                               name="subject" 
-                               value="<?= old('subject') ?>" 
-                               required
-                               placeholder="How can we help?">
+                    <!-- Message Details Section -->
+                    <div class="form-section-title">Message Details</div>
+                    
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label for="contact_subject">Subject</label>
+                            <input type="text" 
+                                   id="contact_subject"
+                                   name="subject" 
+                                   value="<?= old('subject') ?>" 
+                                   required
+                                   placeholder="How can we help?">
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label>Message *</label>
-                        <textarea name="message" 
-                                  rows="6" 
-                                  required
-                                  placeholder="Tell us about your project and requirements..."><?= old('message') ?></textarea>
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label for="contact_message">Message</label>
+                            <textarea id="contact_message"
+                                      name="message" 
+                                      rows="5" 
+                                      required
+                                      placeholder="Tell us about your project and requirements..."><?= old('message') ?></textarea>
+                        </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-submit">
                         <button type="submit" class="btn btn--primary btn--large">Send Message</button>
                     </div>
                 </form>
@@ -275,8 +293,8 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
             <div class="contact-card">
                 <h3>📧 Email Us</h3>
                 <p>Send us an email and we'll get back to you within 24 hours</p>
-                <a href="mailto:wesley@nugui.co.za" style="color: var(--color-accent); font-weight: 600;">
-                    wesley@nugui.co.za
+                <a href="mailto:info@nugui.co.za" style="color: var(--color-accent); font-weight: 600;">
+                    info@nugui.co.za
                 </a>
             </div>
             

@@ -177,12 +177,12 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section" style="background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%); color: var(--color-text-primary); text-align: center; padding: 100px 20px 80px 20px; border-radius: 0 0 48px 48px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+<section class="hero-section hero-about">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
             Pioneering <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Telecom Innovation</span> Since 2005
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
             From startup to global leader: Powering telecommunications for operators in 50+ countries
             with carrier-grade solutions and 24/7 dedicated support.
         </p>
@@ -200,7 +200,12 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
                 <p>With offices across 3 continents and a 24/7 global support team, we're not just a vendor - we're your telecommunications partner for growth.</p>
             </div>
             <div>
-                <?= picture_logo(false, 'team-image') ?>
+                <!-- Custom logo for about page: NUGUI-1 for light theme, NUGUI-2 for dark theme -->
+                <picture>
+                    <source media="(prefers-color-scheme: dark)" srcset="<?= base_url('assets/images/NUGUI-2.png') ?>">
+                    <source media="(prefers-color-scheme: light)" srcset="<?= base_url('assets/images/NUGUI-1.png') ?>">
+                    <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image">
+                </picture>
             </div>
         </div>
     </div>
@@ -276,7 +281,7 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
                 <span class="bio">Ankit is our UI/UX Web Designer who crafts visually appealing and highly functional designs. His work enhances user experience and ensures our interfaces are intuitive and engaging.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/mihir-profile.jpg') ?>" alt="Profile picture of Mihir, Project Manager and Full Stack Developer at NU GUI" />
+                <?= picture_profile('mihir', 'team-image') ?>
                 <h3>Mihir</h3>
                 <p>PM & Full Stack Developer</p>
                 <span class="bio">Mihir serves as both a Project Manager and Full Stack Developer. His dual role helps bridge the gap between project planning and execution, ensuring timely and successful project completions.</span>

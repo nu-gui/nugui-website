@@ -6,7 +6,7 @@
             <div class="globalnav-item globalnav-item-apple">
                 <a href="<?= base_url(); ?>" class="globalnav-link globalnav-link-apple" aria-label="NuGui">
                     <span class="globalnav-image-apple">
-                        <?= picture_logo(false, 'globalnav-logo') ?>
+                        <img src="<?= base_url('assets/images/NUGUI-2.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo - Dark Version" class="globalnav-logo" style="filter: brightness(1) !important;">
                     </span>
                 </a>
             </div>

@@ -1,0 +1,139 @@
+/**
+ * Enhanced Form Styles
+ * Ensures proper button visibility and consistent form styling
+ */
+
+/* Form container styling */
+.contact-form,
+.support-form {
+    background-color: var(--color-background);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 56rem;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure buttons in forms are always visible */
+.form-group .btn--primary,
+.contact-form .btn--primary,
+.support-form .btn--primary {
+    /* Force primary button styling */
+    background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+    color: #FFFFFF !important;
+    border: 2px solid transparent !important;
+    box-shadow: 
+        0 4px 16px rgba(0, 162, 232, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    padding: 16px 32px;
+    font-size: 1.125rem;
+    min-width: 200px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group .btn--primary:hover,
+.contact-form .btn--primary:hover,
+.support-form .btn--primary:hover {
+    background: linear-gradient(135deg, #33B5ED, #00A2E8) !important;
+    box-shadow: 
+        0 6px 20px rgba(0, 162, 232, 0.4),
+        0 3px 6px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px);
+}
+
+.form-group .btn--primary:active,
+.contact-form .btn--primary:active,
+.support-form .btn--primary:active {
+    transform: translateY(0);
+}
+
+/* Dark theme adjustments for forms */
+@media (prefers-color-scheme: dark) {
+    .contact-form,
+    .support-form {
+        background-color: var(--color-surface);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .form-group .btn--primary,
+    .contact-form .btn--primary,
+    .support-form .btn--primary {
+        background: linear-gradient(135deg, #5AB4F1, #2F69B3) !important;
+        color: #FFFFFF !important;
+        border: 2px solid rgba(90, 180, 241, 0.3) !important;
+        box-shadow: 
+            0 4px 16px rgba(90, 180, 241, 0.3),
+            0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .form-group .btn--primary:hover,
+    .contact-form .btn--primary:hover,
+    .support-form .btn--primary:hover {
+        background: linear-gradient(135deg, #7AC5F5, #5AB4F1) !important;
+        border-color: rgba(122, 197, 245, 0.5) !important;
+        box-shadow: 
+            0 6px 24px rgba(90, 180, 241, 0.4),
+            0 3px 6px rgba(0, 0, 0, 0.4) !important;
+    }
+}
+
+/* Form input styling for consistency */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background-color: var(--color-background-secondary);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    background-color: var(--color-background);
+}
+
+/* Center form buttons */
+.form-group:last-child {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Ensure consistent button styling across all forms */
+form .btn--primary,
+form .btn--secondary,
+form .btn--outline {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* Additional button visibility fixes */
+.btn--primary.btn--large {
+    min-height: 56px;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}

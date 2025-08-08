@@ -11,6 +11,10 @@
     --logo-main: url('/assets/images/NUGUI-1.png');
     --logo-icon: url('/assets/images/NUGUI-icon-1.png');
     
+    /* Favicons */
+    --favicon-light: url('/assets/images/NUGUI-icon-1.png');
+    --favicon-dark: url('/assets/images/NUGUI-icon-2.png');
+    
     /* Product Icons */
     --icon-sip: url('/assets/images/NU-SIP-icon-1.png');
     --icon-sms: url('/assets/images/NU-SMS-icon-1.png');
@@ -22,6 +26,19 @@
     --product-sms: url('/assets/images/NU-SMS-product-1.jpg');
     --product-ccs: url('/assets/images/NU-CCS-product-1.jpg');
     --product-data: url('/assets/images/NU-DATA-product-1.jpg');
+    
+    /* Social Media Icons (theme-independent) */
+    --icon-linkedin: url('/assets/images/linkedin-icon.png');
+    --icon-whatsapp: url('/assets/images/whatsapp-icon.png');
+    
+    /* Team Profile Images (theme-independent) */
+    --profile-wes: url('/assets/images/wes-profile.jpg');
+    --profile-suren: url('/assets/images/suren-profile.jpg');
+    --profile-gali: url('/assets/images/gali-profile.jpg');
+    --profile-pavan: url('/assets/images/pavan-profile.jpg');
+    --profile-ajay: url('/assets/images/ajay-profile.jpg');
+    --profile-ankit: url('/assets/images/ankit-profile.jpg');
+    --profile-mihir: url('/assets/images/mihir-profile.jpg');
     
     /* Future additions */
     --icon-cron: url('/assets/images/NU-CRON-icon-1.png');
@@ -108,6 +125,9 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
 }
 
 .bg-logo-icon {
@@ -115,34 +135,66 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    width: 100%;
+    height: 100%;
+    min-height: 32px;
+}
+
+.bg-icon-sip,
+.bg-icon-sms,
+.bg-icon-ccs,
+.bg-icon-data {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    min-height: 48px;
 }
 
 .bg-icon-sip {
     background-image: var(--icon-sip);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .bg-icon-sms {
     background-image: var(--icon-sms);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .bg-icon-ccs {
     background-image: var(--icon-ccs);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .bg-icon-data {
     background-image: var(--icon-data);
+}
+
+/* Product Images */
+.bg-product-sip,
+.bg-product-sms,
+.bg-product-ccs,
+.bg-product-data {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+.bg-product-sip {
+    background-image: var(--product-sip);
+}
+
+.bg-product-sms {
+    background-image: var(--product-sms);
+}
+
+.bg-product-ccs {
+    background-image: var(--product-ccs);
+}
+
+.bg-product-data {
+    background-image: var(--product-data);
 }
 
 /* Pseudo-element image insertion */
@@ -182,4 +234,69 @@
 
 .icon-data::before {
     background-image: var(--icon-data);
+}
+
+/* Social Media Icons */
+.bg-icon-linkedin {
+    background-image: var(--icon-linkedin);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon-whatsapp {
+    background-image: var(--icon-whatsapp);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Profile Images */
+.bg-profile-wes {
+    background-image: var(--profile-wes);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-suren {
+    background-image: var(--profile-suren);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-gali {
+    background-image: var(--profile-gali);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-pavan {
+    background-image: var(--profile-pavan);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-ajay {
+    background-image: var(--profile-ajay);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-ankit {
+    background-image: var(--profile-ankit);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-profile-mihir {
+    background-image: var(--profile-mihir);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }

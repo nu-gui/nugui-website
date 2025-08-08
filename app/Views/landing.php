@@ -59,17 +59,31 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            /* background-image: url('<?= base_url('assets/images/background-image.jpg') ?>'); */
-            /* Removed background image for cleaner look */
-            background-size: cover;
+            background-image: 
+                radial-gradient(ellipse at center, rgba(0, 162, 232, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%),
+                linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.6) 50%, rgba(26, 26, 26, 0.85) 100%),
+                url('<?= base_url('assets/images/background-image.jpg') ?>');
+            background-size: cover, cover, cover;
             background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
             opacity: 1;
             transition: opacity 1s ease-out;
+            /* Add subtle animation to the background */
+            animation: subtleZoom 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes subtleZoom {
+            0% {
+                background-size: cover, cover, 100% auto;
+            }
+            100% {
+                background-size: cover, cover, 110% auto;
+            }
         }
 
         .landing-container.fade-out {
@@ -114,13 +128,18 @@
             pointer-events: none;
             z-index: 1000;
             animation: logoGrowMoveAndFade 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            /* Add glow effect for better visibility on wallpaper */
+            filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
         }
 
         .logo-icon {
             width: 60px;
             height: 60px;
             animation: infiniteRotation 1.5s linear infinite;
-            filter: drop-shadow(0 10px 30px rgba(0, 162, 232, 0.4));
+            filter: 
+                drop-shadow(0 10px 30px rgba(0, 162, 232, 0.6))
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))
+                brightness(1.1);
         }
 
         /* Animations */
@@ -481,17 +500,17 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Clear session storage for testing (remove this line once working)
-            sessionStorage.removeItem('landing_shown');
-            
             // Check if landing page was already shown in this session
+            // Uncomment the next line to always show landing page for testing
+            // sessionStorage.removeItem('landing_shown');
+            
             if (sessionStorage.getItem('landing_shown')) {
-                console.log('Landing already shown, redirecting...');
+                console.log('Landing already shown in this session, redirecting to home...');
                 window.location.href = '<?= base_url('/home') ?>';
                 return;
             }
 
-            console.log('Starting landing page animation...');
+            console.log('Starting landing page animation with wallpaper...');
             new LandingPageController();
         });
 

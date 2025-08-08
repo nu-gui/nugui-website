@@ -34,6 +34,7 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         margin-bottom: 20px;
         letter-spacing: -0.02em;
         line-height: 1.1;
+        color: #FFFFFF; /* White text for the main heading */
     }
     .hero-section .text-gradient {
         background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
@@ -54,6 +55,7 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         font-weight: 700;
         margin-bottom: 20px;
         letter-spacing: -0.02em;
+        color: #FFFFFF; /* White text for the main heading */
     }
     .hero-section .text-gradient {
         background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
@@ -64,7 +66,8 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         font-size: 1.5rem;
         max-w-3xl mx-auto;
         margin-bottom: 30px;
-        color: var(--color-text-secondary);
+        color: #FFFFFF; /* White text for description */
+        opacity: 0.9; /* Slightly transparent for hierarchy */
     }
     .section {
         padding: 80px 20px;
@@ -159,21 +162,21 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
             Trusted by operators in 50+ countries. Carrier-grade VoIP, SMS platforms, call control systems,
             and data management solutions with 99.99% uptime guarantee.
         </p>
-        <div class="hero-stats" style="display: flex; justify-content: center; gap: 3rem; margin: 2rem 0; flex-wrap: wrap;">
-            <div style="text-align: center;">
-                <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-primary);">50+</div>
-                <div style="font-size: 0.9rem; color: var(--color-text-secondary);">Countries Served</div>
+        <div class="hero-stats">
+            <div>
+                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">50+</div>
+                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Countries Served</div>
             </div>
-            <div style="text-align: center;">
-                <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-primary);">99.99%</div>
-                <div style="font-size: 0.9rem; color: var(--color-text-secondary);">Uptime SLA</div>
+            <div>
+                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">99.99%</div>
+                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Uptime SLA</div>
             </div>
-            <div style="text-align: center;">
-                <div style="font-size: 2.5rem; font-weight: 700; color: var(--color-primary);">1B+</div>
-                <div style="font-size: 0.9rem; color: var(--color-text-secondary);">Monthly Transactions</div>
+            <div>
+                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">1B+</div>
+                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Monthly Transactions</div>
             </div>
         </div>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <div class="btn-group">
             <a href="<?= base_url('/solutions'); ?>" class="btn btn--primary btn--large">Get Started Free</a>
             <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Request Demo</a>
         </div>
@@ -196,28 +199,28 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
                 <h3>NU SIP - VoIP Platform</h3>
                 <p>Enterprise VoIP solution with HD voice quality, global coverage in 195+ countries,
                    and seamless PBX integration. Perfect for call centers and enterprises.</p>
-                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--outline">Learn More</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('SMS', 'icon', 'product-icon') ?>
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p>Bulk SMS platform with 98% delivery rates, real-time analytics, and RESTful APIs.
                    Send millions of messages instantly to 200+ countries.</p>
-                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--outline">Learn More</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('CCS', 'icon', 'product-icon') ?>
                 <h3>NU CCS - Call Control System</h3>
                 <p>Next-gen call management with real-time billing, AI-powered fraud detection,
                    and comprehensive CDR analytics. Reduce revenue leakage by up to 40%.</p>
-                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--outline">Learn More</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('DATA', 'icon', 'product-icon') ?>
                 <h3>NU DATA - Intelligence Platform</h3>
                 <p>Telecom data validation and enrichment with 99.5% accuracy. HLR lookups,
                    number portability checks, and real-time verification APIs.</p>
-                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--primary">Learn More</a>
+                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--outline">Learn More</a>
             </div>
         </div>
     </div>
