@@ -192,23 +192,23 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
         </div>
         <div class="card-grid">
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/NUSIP-icon-1.png') ?>" alt="NU SIP Icon" class="product-icon-light">
-                <img src="<?= base_url('assets/images/NUSIP-icon-2.png') ?>" alt="NU SIP Icon" class="product-icon-dark">
+                <img src="<?= base_url('assets/images/NU-SIP-icon-1.jpg') ?>" alt="NU SIP Icon" class="product-icon-light">
+                <img src="<?= base_url('assets/images/NU-SIP-icon-2.jpg') ?>" alt="NU SIP Icon" class="product-icon-dark">
                 <h3>NU SIP - VoIP Platform</h3>
                 <p>Enterprise VoIP solution with HD voice quality, global coverage in 195+ countries,
                    and seamless PBX integration. Perfect for call centers and enterprises.</p>
                 <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/NU-SMS-icon-1.png') ?>" alt="NU SMS Icon" class="product-icon-light">
-                <img src="<?= base_url('assets/images/NU-SMS-icon-2.png') ?>" alt="NU SMS Icon" class="product-icon-dark">
+                <img src="<?= base_url('assets/images/NU-SMS-icon-1.jpg') ?>" alt="NU SMS Icon" class="product-icon-light">
+                <img src="<?= base_url('assets/images/NU-SMS-icon-2.jpg') ?>" alt="NU SMS Icon" class="product-icon-dark">
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p>Bulk SMS platform with 98% delivery rates, real-time analytics, and RESTful APIs.
                    Send millions of messages instantly to 200+ countries.</p>
                 <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/NU-CCS-icon-1.png') ?>" alt="NU CCS Icon" class="product-icon-light">
+                <img src="<?= base_url('assets/images/NU-CCS-icon-1.jpg') ?>" alt="NU CCS Icon" class="product-icon-light">
                 <img src="<?= base_url('assets/images/NU-CCS-icon-2.png') ?>" alt="NU CCS Icon" class="product-icon-dark">
                 <h3>NU CCS - Call Control System</h3>
                 <p>Next-gen call management with real-time billing, AI-powered fraud detection,
@@ -216,7 +216,7 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
                 <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--primary">Learn More</a>
             </div>
             <div class="feature-card">
-                <img src="<?= base_url('assets/images/NU-DATA-icon-1.png') ?>" alt="NU DATA Icon" class="product-icon-light">
+                <img src="<?= base_url('assets/images/NU-DATA-icon-1.jpg') ?>" alt="NU DATA Icon" class="product-icon-light">
                 <img src="<?= base_url('assets/images/NU-DATA-icon-2.png') ?>" alt="NU DATA Icon" class="product-icon-dark">
                 <h3>NU DATA - Intelligence Platform</h3>
                 <p>Telecom data validation and enrichment with 99.5% accuracy. HLR lookups,
