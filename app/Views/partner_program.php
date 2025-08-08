@@ -200,33 +200,38 @@
         margin-top: 30px;
     }
     
-    .button-container button {
+    /* Keep form wizard buttons but ensure they don't affect other buttons */
+    .wizard-step .button-container button {
         padding: 12px 24px;
-        border-radius: 10px;
-        border: none;
+        border-radius: 999px;
         font-size: 1rem;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
     }
     
-    .button-container button[type="button"] {
+    .wizard-step .button-container button[type="button"] {
         background-color: var(--color-background-secondary);
         color: var(--color-text-primary);
-        border: 1px solid var(--color-border);
+        border: 2px solid var(--color-border);
     }
     
-    .button-container button[type="button"]:hover {
+    .wizard-step .button-container button[type="button"]:hover {
         background-color: var(--color-border);
+        transform: translateY(-2px);
     }
     
-    .button-container button[type="submit"] {
-        background-color: var(--color-accent);
+    .wizard-step .button-container button[type="submit"] {
+        background: linear-gradient(135deg, #00A2E8, #0082BB);
         color: white;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 16px rgba(0, 162, 232, 0.3);
     }
     
-    .button-container button[type="submit"]:hover {
-        background-color: var(--color-accent-hover);
+    .wizard-step .button-container button[type="submit"]:hover {
+        background: linear-gradient(135deg, #33B5ED, #00A2E8);
+        box-shadow: 0 6px 20px rgba(0, 162, 232, 0.4);
+        transform: translateY(-2px);
     }
     
     .error {
@@ -234,15 +239,54 @@
         font-size: 0.875rem;
         margin-top: 5px;
     }
+    
+    /* Fix CTA button styling to match theme */
+    .cta-section .btn--primary {
+        background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+        color: #FFFFFF !important;
+        border: 2px solid transparent !important;
+        box-shadow: 
+            0 4px 16px rgba(0, 162, 232, 0.3),
+            0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        padding: 16px 32px !important;
+        border-radius: 999px !important;
+        font-weight: 600 !important;
+        display: inline-block;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .cta-section .btn--primary:hover {
+        background: linear-gradient(135deg, #33B5ED, #00A2E8) !important;
+        box-shadow: 
+            0 6px 20px rgba(0, 162, 232, 0.4),
+            0 3px 6px rgba(0, 0, 0, 0.15) !important;
+        transform: translateY(-2px);
+    }
+    
+    /* Dark theme adjustment for CTA button */
+    @media (prefers-color-scheme: dark) {
+        .cta-section .btn--primary {
+            background: linear-gradient(135deg, #5AB4F1, #2F69B3) !important;
+            border: 2px solid rgba(90, 180, 241, 0.3) !important;
+            box-shadow: 
+                0 4px 16px rgba(90, 180, 241, 0.3),
+                0 2px 4px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .cta-section .btn--primary:hover {
+            background: linear-gradient(135deg, #7AC5F5, #5AB4F1) !important;
+            border-color: rgba(122, 197, 245, 0.5) !important;
+        }
+    }
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section" style="background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%); color: var(--color-text-primary); text-align: center; padding: 100px 20px 80px 20px; border-radius: 0 0 48px 48px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+<section class="hero-section hero-partner">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
             Join the <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI Partner Program</span>
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
             Grow your business with our innovative solutions, dedicated support, and exclusive resources.
         </p>
         <a href="#application-form" class="btn btn--primary btn--large">Apply Now</a>
@@ -310,7 +354,7 @@
     <div class="popup-content">
         <span class="close" onclick="closePopup()">&times;</span>
         <div id="popup-form-content">
-            <div class="form-card" style="max-width: 600px; margin: 0 auto; background: var(--color-surface); border-radius: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); padding: 2.5rem 2rem;">
+            <div class="partner-form futuristic-form" style="max-width: 700px; margin: 0 auto;">
                 <form id="partner-form" method="post" enctype="multipart/form-data" action="<?= base_url('submit_partner_form') ?>">
                     <?= csrf_field() ?>
                     <!-- Honeypot fields - hidden from users but visible to bots -->
@@ -324,44 +368,67 @@
                     <input type="hidden" name="form_start_time" value="<?= time() ?>">
                     <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
                     <div id="step1" class="wizard-step active">
-                        <h2 style="font-size:2rem;font-weight:700;margin-bottom:1.5rem;color:var(--color-primary)">Step 1: Business Information</h2>
-                        <div class="form-group">
-                            <label for="businessName">Business Name</label>
-                            <input type="text" id="businessName" name="businessName" required>
+                        <div class="form-section-title">Step 1: Business Information</div>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="businessName">Business Name</label>
+                                <input type="text" id="businessName" name="businessName" required placeholder="Your company name">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="registrationNumber">Registration Number</label>
-                            <input type="text" id="registrationNumber" name="registrationNumber" required>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="registrationNumber">Registration Number</label>
+                                <input type="text" id="registrationNumber" name="registrationNumber" required placeholder="Company registration">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="countryBusiness">Country of Business</label>
-                            <select id="countryBusiness" name="countryBusiness" required></select>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="countryBusiness">Country of Business</label>
+                                <select id="countryBusiness" name="countryBusiness" required></select>
+                            </div>
                         </div>
-                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
-                            <button type="button" class="btn btn--primary" onclick="nextStep(2)">Next</button>
+                        
+                        <div class="form-submit">
+                            <button type="button" class="btn btn--primary" onclick="nextStep(2)">Next Step</button>
                         </div>
                     </div>
                     <div id="step2" class="wizard-step">
-                        <h2 style="font-size:2rem;font-weight:700;margin-bottom:1.5rem;color:var(--color-primary)">Step 2: Contact Information</h2>
-                        <div class="form-group">
-                            <label for="contactName">Contact Name</label>
-                            <input type="text" id="contactName" name="contactName" required>
+                        <div class="form-section-title">Step 2: Contact Information</div>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="contactName">Contact Name</label>
+                                <input type="text" id="contactName" name="contactName" required placeholder="Full name">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="contactEmail">Contact Email</label>
-                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="contactEmail">Contact Email</label>
+                                <input type="email" id="contactEmail" name="contactEmail" required placeholder="business@example.com">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="contactPhone">Contact Phone</label>
-                            <input type="tel" id="contactPhone" name="contactPhone" required>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="contactPhone">Contact Phone</label>
+                                <input type="tel" id="contactPhone" name="contactPhone" required placeholder="+1 234 567 8900">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="Skype_Teams">Skype/Teams</label>
-                            <input type="text" id="Skype_Teams" name="Skype_Teams" required>
+                        
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="Skype_Teams">Skype/Teams</label>
+                                <input type="text" id="Skype_Teams" name="Skype_Teams" required placeholder="Username or ID">
+                            </div>
                         </div>
-                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: flex-end;">
+                        
+                        <div class="form-submit" style="display: flex; gap: 1rem; justify-content: space-between;">
                             <button type="button" class="btn btn--secondary" onclick="prevStep(1)">Previous</button>
-                            <button type="button" class="btn btn--primary" id="step2NextButton">Next</button>
+                            <button type="button" class="btn btn--primary" id="step2NextButton">Next Step</button>
                         </div>
                         <div class="error" id="emailError" style="display: none;">Email is required.</div>
                     </div>

@@ -177,12 +177,12 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section" style="background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%); color: var(--color-text-primary); text-align: center; padding: 100px 20px 80px 20px; border-radius: 0 0 48px 48px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+<section class="hero-section hero-about">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
+        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
             Pioneering <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Telecom Innovation</span> Since 2005
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: var(--color-text-secondary);">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
             From startup to global leader: Powering telecommunications for operators in 50+ countries
             with carrier-grade solutions and 24/7 dedicated support.
         </p>
@@ -200,8 +200,12 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
                 <p>With offices across 3 continents and a 24/7 global support team, we're not just a vendor - we're your telecommunications partner for growth.</p>
             </div>
             <div>
-                <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="Our Story" class="team-image-light" />
-                <img src="<?= base_url('assets/images/NUGUI-2.png') ?>" alt="Our Story" class="team-image-dark" style="display: none;" />
+                <!-- Custom logo for about page: NUGUI-1 for light theme, NUGUI-2 for dark theme -->
+                <picture>
+                    <source media="(prefers-color-scheme: dark)" srcset="<?= base_url('assets/images/NUGUI-2.png') ?>">
+                    <source media="(prefers-color-scheme: light)" srcset="<?= base_url('assets/images/NUGUI-1.png') ?>">
+                    <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image">
+                </picture>
             </div>
         </div>
     </div>
@@ -241,49 +245,43 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         </div>
         <div class="card-grid">
             <div class="team-card">
-                <img src="<?= base_url('assets/images/wes-profile-1.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/wes-profile-2.jpg') ?>" alt="Profile picture of Wes, CEO and Founder of NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('wes', 'team-image') ?>
                 <h3>Wes</h3>
                 <p>CEO & Founder</p>
                 <span class="bio">Serial entrepreneur with 20+ years in telecom. Previously founded 3 successful startups. Holder of 5 telecommunications patents. Leading NU GUI's vision for democratizing carrier-grade infrastructure globally.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/suren-profile-1.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/suren-profile-2.jpg') ?>" alt="Profile picture of Suren, CTO of NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('suren', 'team-image') ?>
                 <h3>Suren</h3>
                 <p>CTO</p>
                 <span class="bio">Former Vodafone Principal Architect. 18 years building telecom systems processing billions of calls. Architected systems for 3 of Africa's largest carriers. Ensuring 99.99% uptime across all NU GUI services.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/gali-profile-1.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/gali-profile-2.jpg') ?>" alt="Profile picture of Gali, Senior Executive Assistant at NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('gali', 'team-image') ?>
                 <h3>Gali</h3>
                 <p>Sr Executive Assistant</p>
                 <span class="bio">Gali is the Senior Executive Assistant at NU GUI. With exceptional organizational skills and attention to detail, she ensures that all executive operations run smoothly and efficiently.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/pavan-profile-1.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/pavan-profile-2.jpg') ?>" alt="Profile picture of Pavan, Junior Full Stack Developer at NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('pavan', 'team-image') ?>
                 <h3>Pavan</h3>
                 <p>Jr Full Stack Developer</p>
                 <span class="bio">Pavan is a Junior Full Stack Developer at NU GUI. He brings fresh perspectives and innovative ideas to the team, contributing to the development of our dynamic web solutions.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/ajay-profile-1.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/ajay-profile-2.jpg') ?>" alt="Profile picture of Ajay, Senior Full Stack Developer at NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('ajay', 'team-image') ?>
                 <h3>Ajay</h3>
                 <p>Sr Full Stack Developer</p>
                 <span class="bio">Ajay is a Senior Full Stack Developer with a wealth of experience in both front-end and back-end development. His expertise ensures that our applications are robust and user-friendly.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/ankit-profile-1.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" class="team-image-light" />
-                <img src="<?= base_url('assets/images/ankit-profile-2.jpg') ?>" alt="Profile picture of Ankit, UI/UX Web Designer at NU GUI" class="team-image-dark" style="display: none;" />
+                <?= picture_profile('ankit', 'team-image') ?>
                 <h3>Ankit</h3>
                 <p>UI UX Web Designer</p>
                 <span class="bio">Ankit is our UI/UX Web Designer who crafts visually appealing and highly functional designs. His work enhances user experience and ensures our interfaces are intuitive and engaging.</span>
             </div>
             <div class="team-card">
-                <img src="<?= base_url('assets/images/mihir-profile.jpg') ?>" alt="Profile picture of Mihir, Project Manager and Full Stack Developer at NU GUI" />
+                <?= picture_profile('mihir', 'team-image') ?>
                 <h3>Mihir</h3>
                 <p>PM & Full Stack Developer</p>
                 <span class="bio">Mihir serves as both a Project Manager and Full Stack Developer. His dual role helps bridge the gap between project planning and execution, ensuring timely and successful project completions.</span>

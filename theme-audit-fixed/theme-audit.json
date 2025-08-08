@@ -1,0 +1,430 @@
+{
+  "summary": {
+    "rootScanned": "/mnt/d/Dev_Projects/GitHub/nugui-website",
+    "timestamp": "2025-08-08T03:06:04.803Z",
+    "config": {
+      "LIGHT_SUFFIX": "-1",
+      "DARK_SUFFIX": "-2",
+      "exts": [
+        ".html",
+        ".htm",
+        ".php",
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".css",
+        ".scss",
+        ".sass",
+        ".less",
+        ".mdx"
+      ]
+    },
+    "totals": {
+      "filesScanned": 152,
+      "filesWithThemedRefs": 10,
+      "uniquePairsFound": 18,
+      "mixedPairs": 11,
+      "missingAssets": 24
+    }
+  },
+  "perFile": [
+    {
+      "file": "app/Helpers/logo_helper.php",
+      "light": [
+        "logo_full_light",
+        "icon_light",
+        "assets/images/NUGUI-1.png",
+        "assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [
+        "logo_full_dark",
+        "icon_dark",
+        "assets/images/NUGUI-2.png",
+        "assets/images/NUGUI-icon-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "logo_full_light",
+        "logo_full_dark",
+        "icon_light",
+        "icon_dark",
+        "assets/images/NUGUI-1.png",
+        "assets/images/NUGUI-2.png",
+        "assets/images/NUGUI-icon-1.png",
+        "assets/images/NUGUI-icon-2.png"
+      ]
+    },
+    {
+      "file": "app/Helpers/picture_helper.php",
+      "light": [
+        "-1.jpg"
+      ],
+      "dark": [
+        "-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "-1.jpg",
+        "-2.png"
+      ]
+    },
+    {
+      "file": "app/Views/about.php",
+      "light": [
+        "assets/images/NUGUI-1.png",
+        "assets/images/wes-profile-1.jpg",
+        "assets/images/suren-profile-1.jpg",
+        "assets/images/gali-profile-1.jpg",
+        "assets/images/pavan-profile-1.jpg",
+        "assets/images/ajay-profile-1.jpg",
+        "assets/images/ankit-profile-1.jpg",
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [
+        "assets/images/NUGUI-2.png",
+        "assets/images/wes-profile-2.jpg",
+        "assets/images/suren-profile-2.jpg",
+        "assets/images/gali-profile-2.jpg",
+        "assets/images/pavan-profile-2.jpg",
+        "assets/images/ajay-profile-2.jpg",
+        "assets/images/ankit-profile-2.jpg"
+      ],
+      "both": true,
+      "occurrences": [
+        "assets/images/NUGUI-1.png",
+        "assets/images/NUGUI-2.png",
+        "assets/images/wes-profile-1.jpg",
+        "assets/images/wes-profile-2.jpg",
+        "assets/images/suren-profile-1.jpg",
+        "assets/images/suren-profile-2.jpg",
+        "assets/images/gali-profile-1.jpg",
+        "assets/images/gali-profile-2.jpg",
+        "assets/images/pavan-profile-1.jpg",
+        "assets/images/pavan-profile-2.jpg",
+        "assets/images/ajay-profile-1.jpg",
+        "assets/images/ajay-profile-2.jpg",
+        "assets/images/ankit-profile-1.jpg",
+        "assets/images/ankit-profile-2.jpg",
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ]
+    },
+    {
+      "file": "app/Views/blog/index.php",
+      "light": [
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [],
+      "both": false,
+      "occurrences": [
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ]
+    },
+    {
+      "file": "app/Views/home.php",
+      "light": [
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [],
+      "both": false,
+      "occurrences": [
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ]
+    },
+    {
+      "file": "app/Views/landing.php",
+      "light": [
+        "assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [
+        "assets/images/NUGUI-icon-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "assets/images/NUGUI-icon-1.png",
+        "assets/images/NUGUI-icon-2.png"
+      ]
+    },
+    {
+      "file": "app/Views/layout.php",
+      "light": [
+        "assets/images/NUGUI-icon-1.png",
+        "assets/images/NUGUI-1.png",
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ],
+      "dark": [
+        "assets/images/NUGUI-icon-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "assets/images/NUGUI-icon-1.png",
+        "assets/images/NUGUI-icon-2.png",
+        "assets/images/NUGUI-1.png",
+        "https://nugui.co.za/assets/images/NUGUI-icon-1.png"
+      ]
+    },
+    {
+      "file": "app/Views/solutions.php",
+      "light": [
+        "assets/images/NUSIP-icon-1.png"
+      ],
+      "dark": [
+        "assets/images/NUSIP-icon-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "assets/images/NUSIP-icon-1.png",
+        "assets/images/NUSIP-icon-2.png"
+      ]
+    },
+    {
+      "file": "app/Views/templates/header-apple.php",
+      "light": [
+        "assets/images/NUGUI-1.png"
+      ],
+      "dark": [
+        "assets/images/NUGUI-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "assets/images/NUGUI-1.png",
+        "assets/images/NUGUI-2.png"
+      ]
+    },
+    {
+      "file": "public/test-images.php",
+      "light": [
+        "NUGUI-1.png",
+        "NUGUI-icon-1.png"
+      ],
+      "dark": [
+        "NUGUI-2.png",
+        "NUGUI-icon-2.png"
+      ],
+      "both": true,
+      "occurrences": [
+        "NUGUI-1.png",
+        "NUGUI-2.png",
+        "NUGUI-icon-1.png",
+        "NUGUI-icon-2.png"
+      ]
+    }
+  ],
+  "mixedPairs": [
+    {
+      "pairKey": "assets/images/NUGUI.png",
+      "filesWithBoth": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/about.php",
+        "app/Views/templates/header-apple.php"
+      ],
+      "lightRefs": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/about.php",
+        "app/Views/layout.php",
+        "app/Views/templates/header-apple.php"
+      ],
+      "darkRefs": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/about.php",
+        "app/Views/templates/header-apple.php"
+      ],
+      "exampleAssets": [
+        "assets/images/NUGUI-1.png",
+        "assets/images/NUGUI-2.png"
+      ]
+    },
+    {
+      "pairKey": "assets/images/NUGUI-icon.png",
+      "filesWithBoth": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/landing.php",
+        "app/Views/layout.php"
+      ],
+      "lightRefs": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/landing.php",
+        "app/Views/layout.php"
+      ],
+      "darkRefs": [
+        "app/Helpers/logo_helper.php",
+        "app/Views/landing.php",
+        "app/Views/layout.php"
+      ],
+      "exampleAssets": [
+        "assets/images/NUGUI-icon-1.png",
+        "assets/images/NUGUI-icon-2.png"
+      ]
+    },
+    {
+      "pairKey": "assets/images/wes-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/wes-profile-1.jpg",
+        "assets/images/wes-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/suren-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/suren-profile-1.jpg",
+        "assets/images/suren-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/gali-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/gali-profile-1.jpg",
+        "assets/images/gali-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/pavan-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/pavan-profile-1.jpg",
+        "assets/images/pavan-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/ajay-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/ajay-profile-1.jpg",
+        "assets/images/ajay-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/ankit-profile.jpg",
+      "filesWithBoth": [
+        "app/Views/about.php"
+      ],
+      "lightRefs": [
+        "app/Views/about.php"
+      ],
+      "darkRefs": [
+        "app/Views/about.php"
+      ],
+      "exampleAssets": [
+        "assets/images/ankit-profile-1.jpg",
+        "assets/images/ankit-profile-2.jpg"
+      ]
+    },
+    {
+      "pairKey": "assets/images/NUSIP-icon.png",
+      "filesWithBoth": [
+        "app/Views/solutions.php"
+      ],
+      "lightRefs": [
+        "app/Views/solutions.php"
+      ],
+      "darkRefs": [
+        "app/Views/solutions.php"
+      ],
+      "exampleAssets": [
+        "assets/images/NUSIP-icon-1.png",
+        "assets/images/NUSIP-icon-2.png"
+      ]
+    },
+    {
+      "pairKey": "NUGUI.png",
+      "filesWithBoth": [
+        "public/test-images.php"
+      ],
+      "lightRefs": [
+        "public/test-images.php"
+      ],
+      "darkRefs": [
+        "public/test-images.php"
+      ],
+      "exampleAssets": [
+        "NUGUI-1.png",
+        "NUGUI-2.png"
+      ]
+    },
+    {
+      "pairKey": "NUGUI-icon.png",
+      "filesWithBoth": [
+        "public/test-images.php"
+      ],
+      "lightRefs": [
+        "public/test-images.php"
+      ],
+      "darkRefs": [
+        "public/test-images.php"
+      ],
+      "exampleAssets": [
+        "NUGUI-icon-1.png",
+        "NUGUI-icon-2.png"
+      ]
+    }
+  ],
+  "missingAssets": [
+    "-1.jpg",
+    "-2.png",
+    "NUGUI-1.png",
+    "NUGUI-2.png",
+    "NUGUI-icon-1.png",
+    "NUGUI-icon-2.png",
+    "assets/images/NUSIP-icon-1.png",
+    "assets/images/NUSIP-icon-2.png",
+    "assets/images/ajay-profile-1.jpg",
+    "assets/images/ajay-profile-2.jpg",
+    "assets/images/ankit-profile-1.jpg",
+    "assets/images/ankit-profile-2.jpg",
+    "assets/images/gali-profile-1.jpg",
+    "assets/images/gali-profile-2.jpg",
+    "assets/images/pavan-profile-1.jpg",
+    "assets/images/pavan-profile-2.jpg",
+    "assets/images/suren-profile-1.jpg",
+    "assets/images/suren-profile-2.jpg",
+    "assets/images/wes-profile-1.jpg",
+    "assets/images/wes-profile-2.jpg",
+    "icon_dark",
+    "icon_light",
+    "logo_full_dark",
+    "logo_full_light"
+  ]
+}

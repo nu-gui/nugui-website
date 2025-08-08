@@ -35,6 +35,7 @@ $this->setVar('twitterDescription', 'Scale your telecom operations with carrier-
         margin-bottom: 20px;
         letter-spacing: -0.02em;
         line-height: 1.1;
+        color: #FFFFFF; /* White text for the main heading */
     }
     .hero-section .text-gradient {
         background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
@@ -47,7 +48,8 @@ $this->setVar('twitterDescription', 'Scale your telecom operations with carrier-
         font-size: 1.5rem;
         max-width: 48rem;
         margin: 0 auto 30px;
-        color: var(--color-text-secondary);
+        color: #FFFFFF; /* White text for description */
+        opacity: 0.9; /* Slightly transparent for hierarchy */
     }
     .section {
         padding: 80px 20px;
@@ -200,7 +202,7 @@ function toggleDetails(id) {
 </script>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero-solutions">
     <div class="max-w-7xl">
         <h1>
             Telecom Solutions That
@@ -226,11 +228,12 @@ function toggleDetails(id) {
         <div class="card-grid">
             <!-- Modern, compact solution cards with expandable details -->
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NUSIP-icon-1.png') ?>" alt="NU SIP Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NUSIP-icon-2.png') ?>" alt="NU SIP Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper">
+                    <?= picture_product('SIP', 'icon', 'product-icon') ?>
+                </div>
                 <h3>NU SIP - VoIP Platform</h3>
                 <p><strong>195+ countries</strong> coverage. <strong>0.001¢/min</strong> wholesale rates. HD voice quality with <strong>99.99% uptime</strong>.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('sip-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('sip-details')">Details</button>
                 <div id="sip-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>High-Quality Voice & Global Coverage</li>
@@ -241,11 +244,12 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-SMS-icon-1.png') ?>" alt="NU SMS Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-SMS-icon-2.png') ?>" alt="NU SMS Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_product('SMS', 'icon', 'product-icon') ?>
+                </div>
                 <h3>NU SMS - Messaging Gateway</h3>
                 <p><strong>98% delivery rates</strong>. Send <strong>1M+ messages/hour</strong>. Direct routes to <strong>200+ countries</strong>.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('sms-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('sms-details')">Details</button>
                 <div id="sms-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Bulk Messaging & Two-Way SMS</li>
@@ -256,11 +260,12 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-CCS-icon-1.png') ?>" alt="NU CCS Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-CCS-icon-2.png') ?>" alt="NU CCS Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_product('CCS', 'icon', 'product-icon') ?>
+                </div>
                 <h3>NU CCS - Call Control</h3>
                 <p>AI fraud detection reduces losses by <strong>40%</strong>. Handle <strong>10,000+ CPS</strong>. Real-time billing integration.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('ccs-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('ccs-details')">Details</button>
                 <div id="ccs-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Traffic Filtering & Management</li>
@@ -271,11 +276,12 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-DATA-icon-1.png') ?>" alt="NU DATA Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-DATA-icon-2.png') ?>" alt="NU DATA Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_product('DATA', 'icon', 'product-icon') ?>
+                </div>
                 <h3>NU DATA - Intelligence</h3>
                 <p><strong>99.5% accuracy</strong> in validation. Process <strong>100M+ records daily</strong>. Real-time HLR/MNP lookups.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('data-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('data-details')">Details</button>
                 <div id="data-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Phone Validation & HLR Lookup</li>
@@ -285,11 +291,12 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" alt="NU GUI Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_logo(true, 'product-icon') ?>
+                </div>
                 <h3>NU GUI - Management Portal</h3>
                 <p>White-label ready. <strong>React + Node.js</strong> stack. Real-time dashboards with <strong>sub-second updates</strong>.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('gui-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('gui-details')">Details</button>
                 <div id="gui-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Custom UI/UX & White-Label Solutions</li>
@@ -299,11 +306,12 @@ function toggleDetails(id) {
                 </div>
             </div>
             <div class="solution-card">
-                <img src="<?= base_url('assets/images/NU-CCS-icon-1.png') ?>" alt="Telecom Infrastructure Icon" class="product-icon-light" style="width:48px;height:48px;margin-bottom:1rem;">
-                <img src="<?= base_url('assets/images/NU-CCS-icon-2.png') ?>" alt="Telecom Infrastructure Icon" class="product-icon-dark" style="width:48px;height:48px;margin-bottom:1rem;">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_product('CCS', 'icon', 'product-icon') ?>
+                </div>
                 <h3>Complete Infrastructure</h3>
                 <p>Turnkey deployment in <strong>48 hours</strong>. Includes servers, interconnects, and <strong>24/7 NOC support</strong>.</p>
-                <button class="btn btn--primary" onclick="toggleDetails('infra-details')">Details</button>
+                <button class="btn btn--outline" onclick="toggleDetails('infra-details')">Details</button>
                 <div id="infra-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
                         <li>Carrier Integration</li>
@@ -356,8 +364,7 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/NU-SIP-product-1.jpg') ?>" alt="NU SIP VoIP Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
-                <img src="<?= base_url('assets/images/NU-SIP-product-2.jpg') ?>" alt="NU SIP VoIP Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
+                <?= picture_product('SIP', 'product', 'product-image') ?>
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SIP <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Enterprise VoIP Platform</span></h2>
@@ -397,8 +404,7 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/NU-SMS-product-1.jpg') ?>" alt="NU SMS Messaging Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
-                <img src="<?= base_url('assets/images/NU-SMS-product-2.jpg') ?>" alt="NU SMS Messaging Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
+                <?= picture_product('SMS', 'product', 'product-image') ?>
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU SMS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Bulk SMS Gateway Platform</span></h2>
@@ -438,8 +444,7 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/NU-CCS-product-1.jpg') ?>" alt="NU CCS Call Control Server" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
-                <img src="<?= base_url('assets/images/NU-CCS-product-2.jpg') ?>" alt="NU CCS Call Control Server" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
+                <?= picture_product('CCS', 'product', 'product-image') ?>
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU CCS <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— AI-Powered Call Control System</span></h2>
@@ -479,8 +484,7 @@ function toggleDetails(id) {
     <div class="max-w-7xl">
         <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
             <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
-                <img src="<?= base_url('assets/images/NU-DATA-product-1.jpg') ?>" alt="NU DATA Enrichment Services" class="product-image-light" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18);">
-                <img src="<?= base_url('assets/images/NU-DATA-product-2.jpg') ?>" alt="NU DATA Enrichment Services" class="product-image-dark" style="max-width: 260px; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); display: none;">
+                <?= picture_product('DATA', 'product', 'product-image') ?>
             </div>
             <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
                 <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU DATA <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— Telecom Intelligence Platform</span></h2>
@@ -521,7 +525,7 @@ function toggleDetails(id) {
         <h2>Start Your Free 30-Day Trial</h2>
         <p>Join 200+ operators worldwide. No credit card required. Full platform access.<br>
            Average time to first revenue: 15 days. ROI guarantee or money back.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <div class="btn-group" style="margin-top: 2rem;">
             <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Start Free Trial</a>
             <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Schedule Demo</a>
         </div>

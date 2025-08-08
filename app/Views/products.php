@@ -13,12 +13,12 @@ $this->setVar('twitterTitle', 'NU GUI Products - Enterprise Telecom Solutions');
 $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call control & data services. 99.99% uptime, global coverage, enterprise-ready.');
 ?>
 <!-- Apple-Style Products Hero -->
-<section class="hero-section">
+<section class="hero-section hero-products">
     <div class="container" style="max-width: 980px;">
-        <h1>
+        <h1 style="color: #FFFFFF;">
             Enterprise-Grade <span class="text-gradient">Telecom Products</span>
         </h1>
-        <p style="font-size: var(--font-size-xl); max-width: 680px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: var(--font-size-xl); max-width: 680px; margin-left: auto; margin-right: auto; color: #FFFFFF; opacity: 0.9;">
             Carrier-grade solutions trusted by 200+ operators worldwide. Scale from startup to enterprise
             with products that guarantee 99.99% uptime and process billions of transactions monthly.
         </p>
@@ -65,10 +65,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
                         <strong>5000+ DIDs</strong> in 80 countries
                     </li>
                 </ul>
-                <a href="/solutions#nu-sip" 
-                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-primary); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
-                   onmouseover="this.style.background='var(--color-primary-hover)'"
-                   onmouseout="this.style.background='var(--color-primary)'">
+                <a href="/solutions#nu-sip" class="btn btn--outline">
                     Learn More
                     <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7"/>
@@ -111,10 +108,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
                         <strong>Unicode & MMS</strong> support
                     </li>
                 </ul>
-                <a href="/solutions#nu-sms" 
-                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-success); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
-                   onmouseover="this.style.background='#16a34a'"
-                   onmouseout="this.style.background='var(--color-success)'">
+                <a href="/solutions#nu-sms" class="btn btn--outline">
                     Learn More
                     <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7"/>
@@ -157,10 +151,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
                         <strong>REST APIs</strong> for integration
                     </li>
                 </ul>
-                <a href="/solutions#nu-ccs" 
-                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-secondary); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
-                   onmouseover="this.style.background='#7c3aed'"
-                   onmouseout="this.style.background='var(--color-secondary)'">
+                <a href="/solutions#nu-ccs" class="btn btn--outline">
                     Learn More
                     <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7"/>
@@ -203,10 +194,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
                         <strong>TCPA compliance</strong> tools
                     </li>
                 </ul>
-                <a href="/solutions#nu-data" 
-                   style="display: inline-flex; align-items: center; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-warning); color: white; text-decoration: none; border-radius: var(--border-radius); font-weight: 500; transition: all var(--transition-base);"
-                   onmouseover="this.style.background='#d97706'"
-                   onmouseout="this.style.background='var(--color-warning)'">
+                <a href="/solutions#nu-data" class="btn btn--outline">
                     Learn More
                     <svg width="16" height="16" style="margin-left: var(--spacing-xs);" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 5l7 7-7 7"/>
@@ -227,11 +215,11 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
             No credit card required. Full access to all features. 24/7 support included.
             Join 200+ operators who've scaled their business with NU GUI.
         </p>
-        <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
-            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large" style="background: white; color: var(--color-primary);">
+        <div class="btn-group">
+            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large">
                 Contact Sales
             </a>
-            <a href="<?= base_url('/partner-program') ?>" class="btn btn--secondary btn--large" style="background: transparent; color: white; border: 2px solid white;">
+            <a href="<?= base_url('/partner-program') ?>" class="btn btn--secondary btn--large">
                 Partner Program
             </a>
         </div>

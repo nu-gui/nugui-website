@@ -4,12 +4,7 @@
             <!-- Company Info -->
             <div class="lg:col-span-2">
                 <div class="flex items-center mb-4">
-                    <img src="<?= base_url('assets/images/NUGUI-icon-1.png'); ?>" 
-                         alt="NuGui Logo" 
-                         class="logo-light h-8 w-auto">
-                    <img src="<?= base_url('assets/images/NUGUI-icon-2.png'); ?>" 
-                         alt="NuGui Logo" 
-                         class="logo-dark h-8 w-auto">
+                    <?= picture_logo(true, 'h-8 w-auto') ?>
                 </div>
                 <p class="text-gray-400 mb-4 max-w-md">
                     Leading telecommunications infrastructure provider specializing in VoIP services, call control systems, SMS solutions, and data enrichment services for carriers and enterprises.

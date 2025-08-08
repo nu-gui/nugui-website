@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="nuguidark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +21,27 @@
     <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>">
+    
+    <!-- Theme-aware images CSS -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
+    
+    <!-- Centralized theme assets configuration -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
+    
+    <!-- Enhanced button styles -->
+    <link rel="stylesheet" href="<?= base_url('css/buttons-enhanced.css') ?>">
+    
+    <!-- Unified hero section styles -->
+    <link rel="stylesheet" href="<?= base_url('css/hero-sections.css') ?>">
+    
+    <!-- Unified card styles -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-unified.css') ?>">
+    
+    <!-- Enhanced form styles -->
+    <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
+    
+    <!-- Futuristic form styles -->
+    <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
     
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -87,7 +108,8 @@
     
     <!-- Legacy scripts for backward compatibility -->
     <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
-    <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script>
+    <!-- Darkmode temporarily disabled - picture elements should handle theme switching -->
+    <!-- <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script> -->
     
     <!-- Page Gradient Enhancement -->
     <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>

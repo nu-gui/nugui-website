@@ -9,10 +9,12 @@
   --color-primary: #00A2E8; /* Bright Blue - Your signature color! */
   --color-primary-light: #33B5ED; /* Lighter Blue */
   --color-primary-dark: #0082BB; /* Darker Blue */
+  --color-primary-rgb: 0, 162, 232; /* RGB values for primary */
   --color-secondary: #97C9F6; /* Sky Blue */
   --color-accent: #FFC107; /* Bright Gold - More vibrant! */
   --color-accent-secondary: #FF6B35; /* Bright Orange */
   --color-accent-hover: #FFD54F; /* Bright Gold Hover */
+  --color-accent-rgb: 255, 193, 7; /* RGB values for accent */
   
   /* PRODUCT COLORS - Light Theme (Brighter & More Vibrant) */
   --color-gold-ccs: #FFB000; /* Brighter Gold */
@@ -30,6 +32,7 @@
   
   /* SEMANTIC COLORS */
   --color-success: #5FB673;
+  --color-success-rgb: 95, 182, 115;
   --color-warning: #E87D4E;
   --color-info: #97C9F6;
   
@@ -157,10 +160,12 @@
     --color-primary: #2F69B3; /* Medium Blue */
     --color-primary-light: #5AB4F1; /* Cyan Highlight */
     --color-primary-dark: #1E3A7A; /* Deep Blue */
+    --color-primary-rgb: 47, 105, 179; /* RGB values for primary dark */
     --color-secondary: #5AB4F1; /* Cyan Highlight */
     --color-accent: #AF8F4C; /* Gold (CCS) - darker */
     --color-accent-secondary: #CF5B24; /* Orange (SMS) - darker */
     --color-accent-hover: #C6A564; /* Gold Gradient */
+    --color-accent-rgb: 175, 143, 76; /* RGB values for accent dark */
     
     /* PRODUCT COLORS - Dark Theme */
     --color-gold-ccs: #AF8F4C;

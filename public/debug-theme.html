@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Theme Issue</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 20px;
+            background: white;
+            color: black;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a1a;
+                color: white;
+            }
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-item {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        @media (prefers-color-scheme: dark) {
+            .test-item {
+                border-color: #555;
+                background: #2a2a2a;
+            }
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+            margin: 10px;
+            border: 2px solid transparent;
+        }
+        .loaded {
+            border-color: green !important;
+        }
+        .debug-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .debug-info {
+                color: #aaa;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Debug Theme Issue</h1>
+        
+        <div>
+            <strong>Browser theme:</strong> <span id="theme-status">detecting...</span><br>
+            <strong>HTML classes:</strong> <span id="html-classes">none</span><br>
+            <strong>Time:</strong> <span id="current-time"></span>
+        </div>
+        
+        <div class="test-item">
+            <h3>Test 1: Basic Picture Element</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NUGUI-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NUGUI-icon-1.png">
+                <img src="/assets/images/NUGUI-icon-1.png" alt="NUGUI Icon" id="test1-img">
+            </picture>
+            <div class="debug-info">
+                Expected: icon-1.png in light, icon-2.png in dark<br>
+                Actual: <span id="test1-result">loading...</span>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>Test 2: SIP Icon (Mixed Extensions)</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-SIP-icon-2.jpg">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-SIP-icon-1.jpg">
+                <img src="/assets/images/NU-SIP-icon-1.jpg" alt="NU SIP Icon" id="test2-img">
+            </picture>
+            <div class="debug-info">
+                Expected: SIP-icon-1.jpg in light, SIP-icon-2.jpg in dark<br>
+                Actual: <span id="test2-result">loading...</span>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>Test 3: CCS Icon (Mixed Extensions)</h3>
+            <picture>
+                <source media="(prefers-color-scheme: dark)" srcset="/assets/images/NU-CCS-icon-2.png">
+                <source media="(prefers-color-scheme: light)" srcset="/assets/images/NU-CCS-icon-1.jpg">
+                <img src="/assets/images/NU-CCS-icon-1.jpg" alt="NU CCS Icon" id="test3-img">
+            </picture>
+            <div class="debug-info">
+                Expected: CCS-icon-1.jpg in light, CCS-icon-2.png in dark<br>
+                Actual: <span id="test3-result">loading...</span>
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>Network Requests Check</h3>
+            <p>Open DevTools Network tab and verify only one image variant loads per picture element.</p>
+            <button onclick="reloadImages()">Reload All Images</button>
+            <div id="network-log" style="margin-top: 10px; font-family: monospace; font-size: 11px;"></div>
+        </div>
+    </div>
+    
+    <script>
+        const log = document.getElementById('network-log');
+        
+        function updateStatus() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.getElementById('theme-status').textContent = isDark ? 'DARK MODE' : 'LIGHT MODE';
+            document.getElementById('theme-status').style.color = isDark ? '#90EE90' : '#006400';
+            
+            document.getElementById('html-classes').textContent = 
+                document.documentElement.classList.toString() || 'none';
+            
+            document.getElementById('current-time').textContent = new Date().toLocaleTimeString();
+        }
+        
+        function logImage(img, testId) {
+            const actualSrc = img.currentSrc || img.src;
+            const filename = actualSrc.split('/').pop();
+            const isDark = filename.includes('-2.');
+            const isLight = filename.includes('-1.');
+            const variant = isDark ? 'DARK (-2)' : isLight ? 'LIGHT (-1)' : 'UNKNOWN';
+            
+            document.getElementById(`${testId}-result`).textContent = `${filename} (${variant})`;
+            document.getElementById(`${testId}-result`).style.color = isDark ? '#ff6b6b' : '#51cf66';
+            
+            const logEntry = `${new Date().toLocaleTimeString()} - ${testId}: ${filename} (${variant})`;
+            log.innerHTML = logEntry + '<br>' + log.innerHTML;
+            
+            // Highlight the image that loaded
+            img.classList.add('loaded');
+        }
+        
+        function setupImageLogging() {
+            document.getElementById('test1-img').addEventListener('load', function() {
+                logImage(this, 'test1');
+            });
+            
+            document.getElementById('test2-img').addEventListener('load', function() {
+                logImage(this, 'test2');
+            });
+            
+            document.getElementById('test3-img').addEventListener('load', function() {
+                logImage(this, 'test3');
+            });
+            
+            // Also log errors
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    const testId = this.id.replace('-img', '');
+                    document.getElementById(`${testId}-result`).textContent = 'LOAD ERROR';
+                    document.getElementById(`${testId}-result`).style.color = 'red';
+                    this.style.border = '2px solid red';
+                });
+            });
+        }
+        
+        function reloadImages() {
+            log.innerHTML = '--- RELOADING ---<br>' + log.innerHTML;
+            document.querySelectorAll('img').forEach(img => {
+                const originalSrc = img.src;
+                img.src = '';
+                setTimeout(() => {
+                    img.src = originalSrc;
+                }, 100);
+            });
+        }
+        
+        // Initialize
+        updateStatus();
+        setupImageLogging();
+        
+        // Update on theme change
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            updateStatus();
+            setTimeout(() => {
+                log.innerHTML = '--- THEME CHANGED ---<br>' + log.innerHTML;
+            }, 500);
+        });
+        
+        // Check if images are already loaded
+        setTimeout(() => {
+            document.querySelectorAll('img').forEach((img, index) => {
+                if (img.complete) {
+                    logImage(img, `test${index + 1}`);
+                }
+            });
+        }, 100);
+    </script>
+</body>
+</html>

@@ -6,6 +6,11 @@
     <title>NU GUI - Welcome</title>
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
+    
+    <!-- Load CSS variables first -->
+    <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
+    
     <style>
         body {
             background: var(--color-background);
@@ -54,17 +59,31 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-            background-image: url('<?= base_url('assets/images/NUGUI-1.png') ?>');
-            background-size: cover;
+            background-image: 
+                radial-gradient(ellipse at center, rgba(0, 162, 232, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%),
+                linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.6) 50%, rgba(26, 26, 26, 0.85) 100%),
+                url('<?= base_url('assets/images/background-image.jpg') ?>');
+            background-size: cover, cover, cover;
             background-position: center;
-            background-blend-mode: overlay;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
             opacity: 1;
             transition: opacity 1s ease-out;
+            /* Add subtle animation to the background */
+            animation: subtleZoom 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes subtleZoom {
+            0% {
+                background-size: cover, cover, 100% auto;
+            }
+            100% {
+                background-size: cover, cover, 110% auto;
+            }
         }
 
         .landing-container.fade-out {
@@ -109,13 +128,18 @@
             pointer-events: none;
             z-index: 1000;
             animation: logoGrowMoveAndFade 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            /* Add glow effect for better visibility on wallpaper */
+            filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
         }
 
         .logo-icon {
             width: 60px;
             height: 60px;
             animation: infiniteRotation 1.5s linear infinite;
-            filter: drop-shadow(0 10px 30px rgba(0, 162, 232, 0.4));
+            filter: 
+                drop-shadow(0 10px 30px rgba(0, 162, 232, 0.6))
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))
+                brightness(1.1);
         }
 
         /* Animations */
@@ -302,8 +326,7 @@
     <!-- Landing page overlay -->
     <div class="landing-container" id="landingContainer">
         <div class="logo-animation-container">
-            <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-light" id="logoIcon">
-            <img src="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" alt="NU GUI Icon" class="logo-icon landing-logo-dark" id="logoIconDark" style="display: none;">
+            <?= picture_logo(true, 'logo-icon') ?>
         </div>
 
         <button class="audio-toggle" id="audioToggle" title="Toggle Sound">
@@ -367,7 +390,7 @@
             setupHomePagePreloading() {
                 // Monitor iframe loading
                 this.homePageIframe.addEventListener('load', () => {
-                    console.log('Home page preloaded successfully');
+                    // Home page preloaded successfully
                     this.homePageLoaded = true;
                 });
 
@@ -378,7 +401,7 @@
                 });
 
                 // Start preloading immediately
-                console.log('Starting home page preload...');
+                // Starting home page preload
             }
 
             setupAnimationListener() {
@@ -387,7 +410,7 @@
                 // Listen for animation end event
                 logoContainer.addEventListener('animationend', (event) => {
                     if (event.animationName === 'logoGrowMoveAndFade' || event.animationName === 'logoGrowMoveAndFadeMobile') {
-                        console.log('Logo animation completed, starting transition...');
+                        // Logo animation completed, starting transition
                         // Start transition immediately when logo finishes fading
                         this.transitionToHomePage();
                     }
@@ -407,7 +430,7 @@
                     
                     // Trigger transition when logo is nearly invisible (opacity < 0.05)
                     if (opacity < 0.05) {
-                        console.log('Logo opacity below threshold, starting transition...');
+                        // Logo opacity below threshold, starting transition
                         redirectTriggered = true;
                         this.transitionToHomePage();
                         return;
@@ -427,14 +450,14 @@
                 // Play logo spin sound at start
                 setTimeout(() => {
                     if (this.audioEnabled) {
-                        this.logoSpinSound.play().catch(e => console.log('Audio play failed:', e));
+                        this.logoSpinSound.play().catch(() => {/* Audio play failed */});
                     }
                 }, 100);
 
                 // Play transform sound when logo reaches peak
                 setTimeout(() => {
                     if (this.audioEnabled) {
-                        this.logoTransformSound.play().catch(e => console.log('Audio play failed:', e));
+                        this.logoTransformSound.play().catch(() => {/* Audio play failed */});
                     }
                 }, 3000); // When logo is at maximum size before fading
             }
@@ -450,7 +473,7 @@
             }
 
             transitionToHomePage() {
-                console.log('Starting transition to home page...');
+                // Starting transition to home page
                 
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
@@ -466,7 +489,7 @@
                     }, 800);
                 } else {
                     // Fallback: traditional redirect if preload failed
-                    console.log('Using fallback redirect method');
+                    // Using fallback redirect method
                     this.landingContainer.classList.add('fade-out');
                     setTimeout(() => {
                         window.location.href = '<?= base_url('/home') ?>';
@@ -477,17 +500,17 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Clear session storage for testing (remove this line once working)
-            sessionStorage.removeItem('landing_shown');
-            
             // Check if landing page was already shown in this session
+            // Uncomment the next line to always show landing page for testing
+            // sessionStorage.removeItem('landing_shown');
+            
             if (sessionStorage.getItem('landing_shown')) {
-                console.log('Landing already shown, redirecting...');
+                // Landing already shown in this session, redirecting to home
                 window.location.href = '<?= base_url('/home') ?>';
                 return;
             }
 
-            console.log('Starting landing page animation...');
+            // Starting landing page animation with wallpaper
             new LandingPageController();
         });
 
