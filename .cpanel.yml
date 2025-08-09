@@ -2,13 +2,20 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/nuguiyhv/public_html/
-    - /bin/rsync -a --delete ./public/ $DEPLOYPATH
+    - /bin/cp -f ./public/index.php $DEPLOYPATH
+    - /bin/cp -f ./public/.htaccess $DEPLOYPATH
+    - /bin/rsync -a --delete ./public/assets/ $DEPLOYPATH/assets/
+    - /bin/rsync -a --delete ./public/css/ $DEPLOYPATH/css/
+    - /bin/rsync -a --delete ./public/js/ $DEPLOYPATH/js/
+    - /bin/cp -f ./public/robots.txt $DEPLOYPATH || true
+    - /bin/cp -f ./public/sitemap.xml $DEPLOYPATH || true
+    - /bin/cp -f ./favicon.ico $DEPLOYPATH || true
     - /bin/rsync -a --delete ./app/ /home/nuguiyhv/app/
-    - /bin/rsync -a --delete ./system/ /home/nuguiyhv/system/
     - /bin/rsync -a --delete ./vendor/ /home/nuguiyhv/vendor/
     - /bin/rsync -a --delete ./writable/ /home/nuguiyhv/writable/
-    - /bin/rsync -a ./.env /home/nuguiyhv/.env
-    - /bin/rsync -a ./composer.* /home/nuguiyhv/
+    - /bin/cp -f ./.env /home/nuguiyhv/.env
+    - /bin/cp -f ./composer.json /home/nuguiyhv/
+    - /bin/cp -f ./composer.lock /home/nuguiyhv/ || true
     - /bin/find /home/nuguiyhv -type d -exec chmod 755 {} \;
     - /bin/find /home/nuguiyhv -type f -exec chmod 644 {} \;
     - /bin/chmod -R 775 /home/nuguiyhv/writable
