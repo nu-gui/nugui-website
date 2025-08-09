@@ -166,6 +166,22 @@ class PartnerProgram extends BaseController {
     }
 
     /**
+     * Store form token in session for anti-bot validation
+     */
+    public function storeFormToken() {
+        // Handle both JSON and form data
+        $json = $this->request->getJSON();
+        $token = $json ? $json->token : $this->request->getPost('token');
+        
+        if ($token) {
+            $antiBotProtection = new AntiBotProtection();
+            $antiBotProtection->storeFormToken($token);
+            return $this->response->setJSON(['status' => 'success']);
+        }
+        return $this->response->setJSON(['status' => 'error']);
+    }
+
+    /**
      * Verify CAPTCHA response with Google's reCAPTCHA API.
      */
     private function verifyCaptcha($token) {

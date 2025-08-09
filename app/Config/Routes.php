@@ -45,6 +45,7 @@ $routes->post('submit_contact_form', 'Contact::submit_contact_form');
 $routes->post('submit_support_form', 'Support::submit_support_form');
 $routes->post('log_lead', 'LeadController::logLead');
 $routes->post('log-to-file', 'LogController::logToFile');
+$routes->post('store-form-token', 'PartnerProgram::storeFormToken');
 
 /*
  * --------------------------------------------------------------------
