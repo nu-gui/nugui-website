@@ -99,48 +99,77 @@ class Support extends BaseController {
             {$message}
         ");
 
-        if ($emailService->send()) {
-            // Email to User
-            $emailService->clear();
-            $emailService->initializeConfig('support');
-            $emailService->setTo($email);
-            $emailService->setFrom('support@nugui.co.za', 'NU GUI Support');
-            $emailService->setSubject("Support Request: {$issue} [Ticket #{$ticketNumber}]");
-            $emailService->setMessage("
-                <html>
-                    <head>
-                        <title>Support Request Confirmation</title>
-                    </head>
-                    <body>
-                        <h2>Support Request Confirmation</h2>
-                        <p>Dear {$name},</p>
-                        <p>Thank you for contacting NU GUI support. Your support request has been received and logged.</p>
-                        <p><strong>Ticket Number:</strong> {$ticketNumber}</p>
-                        <p><strong>Issue:</strong> {$issue}</p>
-                        <p>Our support team will review your request and get back to you as soon as possible.</p>
-                        <p>Thank you,<br>NU GUI Support Team</p>
-                    </body>
-                </html>
-            ");
-            $emailService->setAltMessage("
-                Dear {$name},
+        // Try to send email (may fail in local development)
+        $emailSent = false;
+        $emailError = '';
+        
+        try {
+            $emailSent = $emailService->send();
+            if (!$emailSent) {
+                $emailError = $emailService->printDebugger();
+            }
+        } catch (\Exception $e) {
+            $emailError = $e->getMessage();
+        }
+        
+        // In local development, we'll consider the form successful even if email fails
+        $isLocalEnv = (getenv('CI_ENVIRONMENT') === 'development' || 
+                       getenv('CI_ENVIRONMENT') === 'testing' || 
+                       strpos($_SERVER['HTTP_HOST'] ?? '', 'localhost') !== false);
+        
+        if ($emailSent) {
+            // Try to send confirmation email to user (optional)
+            try {
+                $emailService->clear();
+                $emailService->initializeConfig('support');
+                $emailService->setTo($email);
+                $emailService->setFrom('support@nugui.co.za', 'NU GUI Support');
+                $emailService->setSubject("Support Request: {$issue} [Ticket #{$ticketNumber}]");
+                $emailService->setMessage("
+                    <html>
+                        <head>
+                            <title>Support Request Confirmation</title>
+                        </head>
+                        <body>
+                            <h2>Support Request Confirmation</h2>
+                            <p>Dear {$name},</p>
+                            <p>Thank you for contacting NU GUI support. Your support request has been received and logged.</p>
+                            <p><strong>Ticket Number:</strong> {$ticketNumber}</p>
+                            <p><strong>Issue:</strong> {$issue}</p>
+                            <p>Our support team will review your request and get back to you as soon as possible.</p>
+                            <p>Thank you,<br>NU GUI Support Team</p>
+                        </body>
+                    </html>
+                ");
+                $emailService->setAltMessage("
+                    Dear {$name},
 
-                Thank you for contacting NU GUI support. Your support request has been received and logged.
+                    Thank you for contacting NU GUI support. Your support request has been received and logged.
 
-                Ticket Number: {$ticketNumber}
-                Issue: {$issue}
+                    Ticket Number: {$ticketNumber}
+                    Issue: {$issue}
 
-                Our support team will review your request and get back to you as soon as possible.
+                    Our support team will review your request and get back to you as soon as possible.
 
-                Thank you,
-                NU GUI Support Team
-            ");
-
-            $emailService->send();
-            
-            return redirect()->to('/support')->with('success', 'Your support request has been sent. Your ticket number is ' . $ticketNumber);
+                    Thank you,
+                    NU GUI Support Team
+                ");
+                $emailService->send();
+            } catch (\Exception $e) {
+                // Confirmation email failure is not critical
+                log_message('warning', 'Support confirmation email failed: ' . $e->getMessage());
+            }
+        }
+        
+        if ($emailSent || $isLocalEnv) {
+            // Log email failure in development but still show success
+            if (!$emailSent && $isLocalEnv) {
+                log_message('warning', 'Support form email failed (local dev): ' . $emailError);
+            }
+            return redirect()->to('/support')->with('success', 'Your support request has been received. Your ticket number is ' . $ticketNumber);
         } else {
-            return redirect()->back()->withInput()->with('errors', ['Email could not be sent.']);
+            // In production, email failure is an error
+            return redirect()->back()->withInput()->with('errors', ['Unable to submit your support request. Please try again later.']);
         }
     }
 

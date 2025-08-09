@@ -22,6 +22,8 @@ class Contact extends BaseController {
     }
 
     public function submit_contact_form() {
+        log_message('info', 'Contact form submission started');
+        
         $antiBotProtection = new AntiBotProtection();
         $clientIP = $this->request->getIPAddress();
         
@@ -86,10 +88,34 @@ class Contact extends BaseController {
             {$message}
         ");
 
-        if ($emailService->send()) {
-            return redirect()->to('/contact')->with('success', 'Your message has been sent.');
+        // Try to send email (may fail in local development)
+        $emailSent = false;
+        $emailError = '';
+        
+        try {
+            $emailSent = $emailService->send();
+            if (!$emailSent) {
+                $emailError = $emailService->printDebugger();
+            }
+        } catch (\Exception $e) {
+            $emailError = $e->getMessage();
+        }
+        
+        // In local development, we'll consider the form successful even if email fails
+        $isLocalEnv = (getenv('CI_ENVIRONMENT') === 'development' || 
+                       getenv('CI_ENVIRONMENT') === 'testing' || 
+                       strpos($_SERVER['HTTP_HOST'] ?? '', 'localhost') !== false);
+        
+        if ($emailSent || $isLocalEnv) {
+            // Log email failure in development but still show success
+            if (!$emailSent && $isLocalEnv) {
+                log_message('warning', 'Contact form email failed (local dev): ' . $emailError);
+            }
+            log_message('info', 'Contact form submitted successfully, redirecting to /contact');
+            return redirect()->to(base_url('contact'))->with('success', 'Your message has been received. We will get back to you soon.');
         } else {
-            return redirect()->back()->withInput()->with('errors', ['Email could not be sent.']);
+            // In production, email failure is an error
+            return redirect()->back()->withInput()->with('errors', ['Unable to send your message. Please try again later.']);
         }
     }
 
