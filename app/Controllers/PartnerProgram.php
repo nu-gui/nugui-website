@@ -146,8 +146,17 @@ class PartnerProgram extends BaseController {
                 // Generate and save PDF
                 $this->generatePDF($data, $reference);
 
-                // Send confirmation email
-                $this->sendConfirmationEmail($data, $reference);
+                // Send confirmation email (optional - may fail in local dev)
+                try {
+                    $this->sendConfirmationEmail($data, $reference);
+                } catch (\Exception $emailException) {
+                    // Log email failure but don't fail the whole submission
+                    $logger->warning('Confirmation email failed to send', [
+                        'reference' => $reference,
+                        'error' => $emailException->getMessage()
+                    ]);
+                    // In production, you might want to queue the email for retry
+                }
 
                 return $this->response->setJSON([
                     'status' => 'success',
@@ -270,7 +279,7 @@ class PartnerProgram extends BaseController {
         $pdf->render();
         $output = $pdf->output();
         $filename = 'Partner_Application_' . $reference . '.pdf';
-        file_put_contents(WRITEPATH . 'uploads/' . $filename);
+        file_put_contents(WRITEPATH . 'uploads/' . $filename, $output);
     }
 
     /**

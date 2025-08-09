@@ -30,9 +30,11 @@ function initializePartnerForm() {
     // Partner form submission handler with anti-bot measures
     const partnerForm = document.getElementById('partner-form');
     if (partnerForm) {
-        // Store form token when form is initialized
-        const formToken = partnerForm.querySelector('input[name="form_token"]').value;
-        storeFormToken(formToken);
+        // Store form token when form is initialized (if field exists)
+        const formTokenField = partnerForm.querySelector('input[name="form_token"]');
+        if (formTokenField && formTokenField.value) {
+            storeFormToken(formTokenField.value);
+        }
         
         partnerForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
@@ -151,12 +153,12 @@ function storeFormToken(token) {
     fetch('/store-form-token', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({ token: token })
     }).catch(error => {
-        console.log('Token storage failed:', error);
+        // Silently fail - token storage is optional for anti-bot protection
+        console.log('Token storage skipped (optional):', error);
     });
 }
 
