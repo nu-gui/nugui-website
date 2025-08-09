@@ -222,6 +222,13 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
                    number portability checks, and real-time verification APIs.</p>
                 <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--outline">Learn More</a>
             </div>
+            <div class="feature-card">
+                <?= picture_product('CRON', 'icon', 'product-icon') ?>
+                <h3>NU CRON - Schedule Manager</h3>
+                <p>AI-driven Contact Schedule Manager for optimized lead generation. Automates 
+                   communication scheduling with intelligent timing and multi-channel support.</p>
+                <a href="<?= base_url('/solutions#nu-cron'); ?>" class="btn btn--outline">Learn More</a>
+            </div>
         </div>
     </div>
 </section>
@@ -359,6 +366,11 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
       "@type": "Offer",
       "name": "NU DATA - Intelligence Platform", 
       "description": "Telecom data validation and enrichment with 99.5% accuracy"
+    },
+    {
+      "@type": "Offer",
+      "name": "NU CRON - Schedule Manager",
+      "description": "AI-driven Contact Schedule Manager for optimized lead generation and communication automation"
     }
   ],
   "aggregateRating": {

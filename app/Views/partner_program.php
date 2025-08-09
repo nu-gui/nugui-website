@@ -505,15 +505,33 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="question5">Which of our products are you most interested in?</label>
-                            <select id="question5" name="question5" required>
-                                <option value="">Select an option</option>
-                                <option value="NU SIP">NU SIP - VoIP Services</option>
-                                <option value="NU SMS">NU SMS - Direct Messaging Services</option>
-                                <option value="NU CCS">NU CCS - Telecoms Software Call Control Server</option>
-                                <option value="NU DATA">NU DATA - Data Enrichment Services</option>
-                                <option value="NU GUI">NU GUI - Custom Build UI UX Portal</option>
-                            </select>
+                            <label>Which of our solutions are you interested in? (Select all that apply)</label>
+                            <div style="display: grid; grid-template-columns: 1fr; gap: 0.8rem; margin-top: 0.5rem;">
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU SIP" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU SIP</strong> - Enterprise VoIP Services</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU SMS" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU SMS</strong> - Direct Messaging Services</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU CCS" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU CCS</strong> - Call Control Server</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU DATA" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU DATA</strong> - Data Enrichment Services</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU CRON" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU CRON</strong> - AI Contact Schedule Manager</span>
+                                </label>
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 0.5rem; border-radius: 8px; transition: background-color 0.2s;">
+                                    <input type="checkbox" name="solutions[]" value="NU GUI" style="margin-right: 0.8rem; width: 20px; height: 20px;">
+                                    <span><strong>NU GUI</strong> - Custom UI/UX Portal</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="question6">How do you plan to market our solutions to your customers?</label>
