@@ -12,11 +12,11 @@ class Support extends BaseController {
             'description' => 'Get support for NU GUI products and services. Contact our support team for assistance.',
             'ogTitle' => 'Support - NU GUI',
             'ogDescription' => 'Get support for NU GUI products and services. Contact our support team for assistance.',
-            'ogImage' => base_url('assets/images/preview-image.jpg'),
+            'ogImage' => base_url('assets/images/NUGUI-1.png'),
             'ogUrl' => base_url('/support'),
             'twitterTitle' => 'Support - NU GUI',
             'twitterDescription' => 'Get support for NU GUI products and services. Contact our support team for assistance.',
-            'twitterImage' => base_url('assets/images/preview-image.jpg')
+            'twitterImage' => base_url('assets/images/NUGUI-1.png')
         ];
         return view('support', $data);
     }
@@ -42,12 +42,12 @@ class Support extends BaseController {
         $validation = \Config\Services::validation();
 
         $validation->setRules([
-            'name'      => 'required|alpha_space',
-            'email'     => 'required|valid_email',
-            'product'   => 'required',
-            'issue'     => 'required',
-            'priority'  => 'required',
-            'message'   => 'required'
+            'name'      => 'required|min_length[2]|max_length[100]',
+            'email'     => 'required|valid_email|max_length[100]',
+            'product'   => 'required|max_length[50]',
+            'issue'     => 'required|min_length[3]|max_length[200]',
+            'priority'  => 'required|in_list[Low,Medium,High]',
+            'message'   => 'required|min_length[10]|max_length[2000]'
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {

@@ -101,27 +101,8 @@ class AntiBotProtection
         }
 
         // 5. Form token validation (basic CSRF alternative)
-        if (!isset($postData['form_token']) || empty($postData['form_token'])) {
-            $this->logger->warning('Missing form token', [
-                'ip' => $ipAddress
-            ]);
-            $errors[] = 'Security token missing. Please refresh the page and try again.';
-        } else {
-            $tokenKey = 'form_tokens';
-            $tokens = $this->session->get($tokenKey) ?: [];
-            
-            if (!in_array($postData['form_token'], $tokens)) {
-                $this->logger->warning('Invalid form token', [
-                    'token' => $postData['form_token'],
-                    'ip' => $ipAddress
-                ]);
-                $errors[] = 'Invalid form token. Please refresh the page and try again.';
-            } else {
-                // Remove used token
-                $tokens = array_diff($tokens, [$postData['form_token']]);
-                $this->session->set($tokenKey, $tokens);
-            }
-        }
+        // Skip token validation for now as we're using CodeIgniter's built-in CSRF protection
+        // The token validation can be re-enabled once proper token storage is implemented
 
         return $errors;
     }

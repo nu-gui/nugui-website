@@ -48,6 +48,11 @@ Thumbs.db
 # Node modules (if using npm/yarn)
 node_modules/
 
+# Deployment temporary files
+deployment-temp/
+
+# Backup directories
+
 # Composer
 composer.phar
 
