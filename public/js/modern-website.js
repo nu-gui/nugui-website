@@ -243,7 +243,7 @@ class NuGuiWebsite {
     // Preload critical resources
     const criticalLinks = [
       '/css/main.css',
-      '/js/main.js'
+      '/js/modern.js'
     ];
 
     criticalLinks.forEach(href => {
