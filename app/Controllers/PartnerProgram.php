@@ -227,7 +227,7 @@ class PartnerProgram extends BaseController {
         $cache = \Config\Services::cache();
         $attempts = $cache->get($ip) ?? 0;
 
-        if ($attempts >= 1) { // Allow 1 requests per minute
+        if ($attempts >= 5) { // Allow 5 requests per minute
             return true;
         }
 
@@ -239,7 +239,7 @@ class PartnerProgram extends BaseController {
      * Generate and save PDF for partner application.
      */
     private function generatePDF($data, $reference) {
-        require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
+        require_once ROOTPATH . 'vendor/autoload.php';
         $pdfOptions = new Options();
         $pdfOptions->set('isHtml5ParserEnabled', true);
         $pdfOptions->set('isRemoteEnabled', true);
