@@ -121,12 +121,17 @@ class PartnerProgram extends BaseController {
         }
 
         // Handle solutions array - convert to string for database storage
-        if (isset($data['solutions']) && is_array($data['solutions'])) {
+        if (isset($data['solutions']) && is_array($data['solutions']) && !empty($data['solutions'])) {
             // Convert array to comma-separated string
             $data['question5'] = implode(', ', $data['solutions']);
             unset($data['solutions']); // Remove the array field
         } else {
-            $data['question5'] = ''; // Set empty if no solutions selected
+            // At least one solution must be selected
+            $logger->error('No solutions selected.');
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Please select at least one solution you are interested in.'
+            ]);
         }
 
         // Add unique reference

@@ -380,7 +380,7 @@
                         <div class="form-row single">
                             <div class="form-group">
                                 <label for="registrationNumber">Registration Number</label>
-                                <input type="text" id="registrationNumber" name="registrationNumber" required placeholder="Company registration">
+                                <input type="text" id="registrationNumber" name="registrationNumber" placeholder="Company registration (optional)">
                             </div>
                         </div>
                         
@@ -422,7 +422,7 @@
                         <div class="form-row single">
                             <div class="form-group">
                                 <label for="Skype_Teams">Skype/Teams</label>
-                                <input type="text" id="Skype_Teams" name="Skype_Teams" required placeholder="Username or ID">
+                                <input type="text" id="Skype_Teams" name="Skype_Teams" placeholder="Username or ID (optional)">
                             </div>
                         </div>
                         
