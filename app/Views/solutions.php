@@ -292,6 +292,22 @@ function toggleDetails(id) {
             </div>
             <div class="solution-card">
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
+                    <?= picture_product('CRON', 'icon', 'product-icon') ?>
+                </div>
+                <h3>NU CRON - Schedule Manager</h3>
+                <p><strong>4x conversion rates</strong> with AI scheduling. Automate <strong>omnichannel campaigns</strong>. GPT-powered responses.</p>
+                <button class="btn btn--outline" onclick="toggleDetails('cron-details')">Details</button>
+                <div id="cron-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
+                    <ul>
+                        <li>AI-Driven Contact Scheduling</li>
+                        <li>Multi-Channel Communication</li>
+                        <li>Lead Journey Automation</li>
+                        <li>Speech-to-Text Analytics</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_logo(true, 'product-icon') ?>
                 </div>
                 <h3>NU GUI - Management Portal</h3>
@@ -513,6 +529,47 @@ function toggleDetails(id) {
                     <li><strong>Carrier identification</strong> with network type (mobile/landline/VoIP)</li>
                     <li><strong>TCPA compliance</strong> checking and DNC list management</li>
                     <li><strong>Batch processing</strong> up to 10M records with downloadable reports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NU CRON Details -->
+<section id="nu-cron" class="section alt">
+    <div class="max-w-7xl">
+        <div class="product-solution-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; gap: 2.5rem; justify-content: center;">
+            <div class="product-solution-image" style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center;">
+                <?= picture_product('CRON', 'product', 'product-image') ?>
+            </div>
+            <div class="product-solution-content" style="flex: 1 1 340px; min-width: 280px; max-width: 520px; display: flex; flex-direction: column; justify-content: center;">
+                <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-primary);">NU CRON <span style="font-weight:400; color:var(--color-text-secondary); font-size:1.1rem;">— AI-Driven Contact Schedule Manager</span></h2>
+                <p style="margin-bottom: 1.2rem; color: var(--color-text-secondary); font-size: 1.1rem;">Optimize lead generation with <strong>AI-powered scheduling</strong>. Automate multi-channel communication journeys. <strong>4x higher conversion rates</strong> with intelligent timing.</p>
+                <div class="product-feature-list" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem;">
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Smart Scheduling</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">AI determines optimal contact times based on lead data.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Multi-Channel</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">SMS, email, voice, WhatsApp, and chat integration.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">AI Communication</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">GPT-powered personalized responses and chatbots.</p>
+                    </div>
+                    <div class="mini-feature-card" style="background: var(--color-background-secondary); border-radius: 14px; padding: 1.1rem 1.2rem; flex: 1 1 180px; min-width: 160px; max-width: 220px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <h4 style="margin:0 0 0.3rem 0; font-size:1.1rem; font-weight:600; color:var(--color-primary);">Analytics</h4>
+                        <p style="margin:0; color:var(--color-text-secondary); font-size:0.98rem;">Real-time performance metrics and conversion tracking.</p>
+                    </div>
+                </div>
+                <ul style="color:var(--color-text-secondary);font-size:1.05rem;line-height:1.6;margin-bottom:0.5rem;list-style:square inside;">
+                    <li><strong>Intelligent scheduling</strong> based on timezone, behavior patterns, and preferences</li>
+                    <li><strong>Omnichannel support</strong> with unified inbox for all communications</li>
+                    <li><strong>AI-driven responses</strong> using GPT-Neo/GPT-J for natural conversations</li>
+                    <li><strong>Lead scoring</strong> and automated journey progression</li>
+                    <li><strong>Audio transcription</strong> with Whisper for call analysis and insights</li>
+                    <li><strong>CRM integration</strong> with SuiteCRM for complete lead management</li>
                 </ul>
             </div>
         </div>
