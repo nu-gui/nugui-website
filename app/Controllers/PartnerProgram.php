@@ -74,7 +74,8 @@ class PartnerProgram extends BaseController {
             'question2' => 'string|max_length[10]',
             'question3' => 'string|max_length[255]',
             'question4' => 'string|max_length[50]',
-            'question5' => 'string|max_length[255]',
+            'solutions' => 'permit_empty|is_array',
+            'solutions.*' => 'permit_empty|string|max_length[255]',
             'question6' => 'string|max_length[1000]',
             'question7' => 'string|max_length[1000]'
             // Note: g-recaptcha-response is optional for fallback mode
@@ -112,6 +113,15 @@ class PartnerProgram extends BaseController {
                 'status' => 'error',
                 'message' => 'Too many requests. Please try again later.'
             ]);
+        }
+
+        // Handle solutions array - convert to string for database storage
+        if (isset($data['solutions']) && is_array($data['solutions'])) {
+            // Convert array to comma-separated string
+            $data['question5'] = implode(', ', $data['solutions']);
+            unset($data['solutions']); // Remove the array field
+        } else {
+            $data['question5'] = ''; // Set empty if no solutions selected
         }
 
         // Add unique reference
