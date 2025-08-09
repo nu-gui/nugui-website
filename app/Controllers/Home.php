@@ -8,11 +8,11 @@ class Home extends BaseController {
             'description' => 'Welcome to NU GUI. Discover our comprehensive business solutions designed to meet your needs.',
             'ogTitle' => 'Home - NU GUI',
             'ogDescription' => 'Welcome to NU GUI. Discover our comprehensive business solutions designed to meet your needs.',
-            'ogImage' => base_url('assets/images/preview-image.jpg'),
+            'ogImage' => base_url('assets/images/NUGUI-1.png'),
             'ogUrl' => base_url('/'),
             'twitterTitle' => 'Home - NU GUI',
             'twitterDescription' => 'Welcome to NU GUI. Discover our comprehensive business solutions designed to meet your needs.',
-            'twitterImage' => base_url('assets/images/preview-image.jpg')
+            'twitterImage' => base_url('assets/images/NUGUI-1.png')
         ];
         return view('home', $data);
     }

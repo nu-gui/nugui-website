@@ -14,11 +14,11 @@ class PartnerProgram extends BaseController {
             'description' => 'Join the NU GUI Partner Program and grow your business with our innovative solutions.',
             'ogTitle' => 'Partner Program - NU GUI',
             'ogDescription' => 'Join the NU GUI Partner Program and grow your business with our innovative solutions.',
-            'ogImage' => base_url('assets/images/preview-image.jpg'),
+            'ogImage' => base_url('assets/images/NUGUI-1.png'),
             'ogUrl' => base_url('/partner-program'),
             'twitterTitle' => 'Partner Program - NU GUI',
             'twitterDescription' => 'Join the NU GUI Partner Program and grow your business with our innovative solutions.',
-            'twitterImage' => base_url('assets/images/preview-image.jpg')
+            'twitterImage' => base_url('assets/images/NUGUI-1.png')
         ];
         return view('partner_program', $data);
     }
@@ -91,14 +91,19 @@ class PartnerProgram extends BaseController {
             ]);
         }
 
-        // CAPTCHA verification
+        // CAPTCHA verification (optional - skip if not configured)
         $captchaResponse = $this->request->getPost('g-recaptcha-response');
-        if (!$this->verifyCaptcha($captchaResponse)) {
-            $logger->error('CAPTCHA verification failed.');
-            return $this->response->setJSON([
-                'status' => 'error',
-                'message' => 'CAPTCHA verification failed. Please try again.'
-            ]);
+        $recaptchaSecretKey = getenv('RECAPTCHA_SECRET_KEY');
+        
+        // Only verify CAPTCHA if secret key is configured and response is provided
+        if (!empty($recaptchaSecretKey) && !empty($captchaResponse)) {
+            if (!$this->verifyCaptcha($captchaResponse)) {
+                $logger->error('CAPTCHA verification failed.');
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'CAPTCHA verification failed. Please try again.'
+                ]);
+            }
         }
 
         // Sanitize input

@@ -8,11 +8,11 @@ class Products extends BaseController {
             'description' => 'Discover NU GUI products designed to enhance your business operations. Learn more today.',
             'ogTitle' => 'Products - NU GUI',
             'ogDescription' => 'Discover NU GUI products designed to enhance your business operations. Learn more today.',
-            'ogImage' => base_url('assets/images/preview-image.jpg'),
+            'ogImage' => base_url('assets/images/NUGUI-1.png'),
             'ogUrl' => base_url('/products'),
             'twitterTitle' => 'Products - NU GUI',
             'twitterDescription' => 'Discover NU GUI products designed to enhance your business operations. Learn more today.',
-            'twitterImage' => base_url('assets/images/preview-image.jpg')
+            'twitterImage' => base_url('assets/images/NUGUI-1.png')
         ];
         return view('products', $data);
     }

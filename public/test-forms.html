@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NU GUI Forms Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .test-results {
+            margin-top: 20px;
+        }
+        .test-item {
+            padding: 8px;
+            margin: 5px 0;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+        }
+        .pass {
+            border-left-color: #28a745;
+        }
+        .fail {
+            border-left-color: #dc3545;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NU GUI Forms Testing Dashboard</h1>
+    
+    <div class="test-container">
+        <h2>Form Accessibility Tests</h2>
+        <button onclick="testFormAccess()">Run Accessibility Tests</button>
+        <div id="accessResults" class="test-results"></div>
+    </div>
+
+    <div class="test-container">
+        <h2>Partner Program Form Test</h2>
+        <button onclick="testPartnerForm()">Test Partner Form</button>
+        <div id="partnerResults" class="test-results"></div>
+        <iframe src="/partner-program" id="partnerFrame"></iframe>
+    </div>
+
+    <div class="test-container">
+        <h2>Contact Form Test</h2>
+        <button onclick="testContactForm()">Test Contact Form</button>
+        <div id="contactResults" class="test-results"></div>
+        <iframe src="/contact" id="contactFrame"></iframe>
+    </div>
+
+    <div class="test-container">
+        <h2>Support Form Test</h2>
+        <button onclick="testSupportForm()">Test Support Form</button>
+        <div id="supportResults" class="test-results"></div>
+        <iframe src="/support" id="supportFrame"></iframe>
+    </div>
+
+    <script>
+        // Test form accessibility
+        async function testFormAccess() {
+            const results = document.getElementById('accessResults');
+            results.innerHTML = '<div class="status info">Running tests...</div>';
+            
+            const forms = [
+                { name: 'Partner Program', url: '/partner-program' },
+                { name: 'Contact', url: '/contact' },
+                { name: 'Support', url: '/support' }
+            ];
+            
+            let html = '';
+            
+            for (const form of forms) {
+                try {
+                    const response = await fetch(form.url);
+                    if (response.ok) {
+                        html += `<div class="test-item pass">✓ ${form.name} page accessible (${response.status})</div>`;
+                    } else {
+                        html += `<div class="test-item fail">✗ ${form.name} page error (${response.status})</div>`;
+                    }
+                } catch (error) {
+                    html += `<div class="test-item fail">✗ ${form.name} page error: ${error.message}</div>`;
+                }
+            }
+            
+            results.innerHTML = html;
+        }
+
+        // Test Partner Program form submission
+        async function testPartnerForm() {
+            const results = document.getElementById('partnerResults');
+            results.innerHTML = '<div class="status info">Testing Partner Program form...</div>';
+            
+            const testData = new FormData();
+            testData.append('businessName', 'Test Company LLC');
+            testData.append('registrationNumber', 'REG123456');
+            testData.append('countryBusiness', 'South Africa');
+            testData.append('contactName', 'John Doe');
+            testData.append('contactEmail', 'test@example.com');
+            testData.append('contactPhone', '+27123456789');
+            testData.append('Skype_Teams', 'john.doe');
+            testData.append('question1', '1-5 Million');
+            testData.append('question2', 'Yes');
+            testData.append('question3', 'Technology');
+            testData.append('question4', 'Reseller');
+            testData.append('solutions[]', 'NU SIP');
+            testData.append('solutions[]', 'NU CRON');
+            testData.append('question6', 'We plan to market through digital channels');
+            testData.append('question7', 'Our target market is SMB companies');
+            
+            // Add anti-bot fields
+            testData.append('form_start_time', Math.floor(Date.now() / 1000) - 10);
+            testData.append('form_token', 'test_token_' + Date.now());
+            
+            // Get CSRF token from the page
+            try {
+                const pageResponse = await fetch('/partner-program');
+                const pageText = await pageResponse.text();
+                const csrfMatch = pageText.match(/name="csrf_test_name"\s+value="([^"]+)"/);
+                if (csrfMatch) {
+                    testData.append('csrf_test_name', csrfMatch[1]);
+                }
+            } catch (e) {
+                console.log('Could not get CSRF token:', e);
+            }
+            
+            try {
+                const response = await fetch('/submit_partner_form', {
+                    method: 'POST',
+                    body: testData
+                });
+                
+                const responseText = await response.text();
+                
+                if (response.ok || response.status === 302 || response.status === 303) {
+                    results.innerHTML = `
+                        <div class="status success">✓ Form submission endpoint working</div>
+                        <div class="test-item pass">Status: ${response.status}</div>
+                        <div class="test-item">Response preview: ${responseText.substring(0, 200)}...</div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="status error">✗ Form submission failed</div>
+                        <div class="test-item fail">Status: ${response.status}</div>
+                        <div class="test-item">Error: ${responseText.substring(0, 500)}</div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `<div class="status error">✗ Test failed: ${error.message}</div>`;
+            }
+        }
+
+        // Test Contact form submission
+        async function testContactForm() {
+            const results = document.getElementById('contactResults');
+            results.innerHTML = '<div class="status info">Testing Contact form...</div>';
+            
+            const testData = new FormData();
+            testData.append('name', 'John Doe');
+            testData.append('email', 'john@example.com');
+            testData.append('subject', 'Test Contact Form');
+            testData.append('message', 'This is a test message to verify the contact form is working correctly.');
+            
+            // Add anti-bot fields
+            testData.append('form_start_time', Math.floor(Date.now() / 1000) - 10);
+            testData.append('form_token', 'test_token_' + Date.now());
+            
+            // Get CSRF token
+            try {
+                const pageResponse = await fetch('/contact');
+                const pageText = await pageResponse.text();
+                const csrfMatch = pageText.match(/name="csrf_test_name"\s+value="([^"]+)"/);
+                if (csrfMatch) {
+                    testData.append('csrf_test_name', csrfMatch[1]);
+                }
+            } catch (e) {
+                console.log('Could not get CSRF token:', e);
+            }
+            
+            try {
+                const response = await fetch('/submit_contact_form', {
+                    method: 'POST',
+                    body: testData
+                });
+                
+                const responseText = await response.text();
+                
+                if (response.ok || response.status === 302 || response.status === 303) {
+                    results.innerHTML = `
+                        <div class="status success">✓ Form submission endpoint working</div>
+                        <div class="test-item pass">Status: ${response.status}</div>
+                        <div class="test-item">Response preview: ${responseText.substring(0, 200)}...</div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="status error">✗ Form submission failed</div>
+                        <div class="test-item fail">Status: ${response.status}</div>
+                        <div class="test-item">Error: ${responseText.substring(0, 500)}</div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `<div class="status error">✗ Test failed: ${error.message}</div>`;
+            }
+        }
+
+        // Test Support form submission
+        async function testSupportForm() {
+            const results = document.getElementById('supportResults');
+            results.innerHTML = '<div class="status info">Testing Support form...</div>';
+            
+            const testData = new FormData();
+            testData.append('name', 'John Doe');
+            testData.append('email', 'john@example.com');
+            testData.append('product', 'NU SIP');
+            testData.append('priority', 'Medium');
+            testData.append('issue', 'Connection Issue');
+            testData.append('message', 'I am experiencing connection issues with the NU SIP service. Please help.');
+            
+            // Add anti-bot fields
+            testData.append('form_start_time', Math.floor(Date.now() / 1000) - 10);
+            testData.append('form_token', 'test_token_' + Date.now());
+            
+            // Get CSRF token
+            try {
+                const pageResponse = await fetch('/support');
+                const pageText = await pageResponse.text();
+                const csrfMatch = pageText.match(/name="csrf_test_name"\s+value="([^"]+)"/);
+                if (csrfMatch) {
+                    testData.append('csrf_test_name', csrfMatch[1]);
+                }
+            } catch (e) {
+                console.log('Could not get CSRF token:', e);
+            }
+            
+            try {
+                const response = await fetch('/submit_support_form', {
+                    method: 'POST',
+                    body: testData
+                });
+                
+                const responseText = await response.text();
+                
+                if (response.ok || response.status === 302 || response.status === 303) {
+                    results.innerHTML = `
+                        <div class="status success">✓ Form submission endpoint working</div>
+                        <div class="test-item pass">Status: ${response.status}</div>
+                        <div class="test-item">Response preview: ${responseText.substring(0, 200)}...</div>
+                    `;
+                } else {
+                    results.innerHTML = `
+                        <div class="status error">✗ Form submission failed</div>
+                        <div class="test-item fail">Status: ${response.status}</div>
+                        <div class="test-item">Error: ${responseText.substring(0, 500)}</div>
+                    `;
+                }
+            } catch (error) {
+                results.innerHTML = `<div class="status error">✗ Test failed: ${error.message}</div>`;
+            }
+        }
+
+        // Run initial accessibility test
+        window.onload = () => {
+            testFormAccess();
+        };
+    </script>
+</body>
+</html>
