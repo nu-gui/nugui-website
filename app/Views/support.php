@@ -228,7 +228,7 @@
                             <option value="NU SMS">NU SMS - Direct Messaging Services</option>
                             <option value="NU CCS">NU CCS - Call Control Server</option>
                             <option value="NU DATA">NU DATA - Data Services</option>
-                            <option value="NU CRON">NU CRON - Contact Schedule Manager</option>
+                            <option value="NU CRON">NU CRON - AI Contact Schedule Manager</option>
                             <option value="NU GUI">NU GUI - Interface Development</option>
                         </select>
                     </div>
