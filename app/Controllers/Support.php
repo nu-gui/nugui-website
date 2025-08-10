@@ -166,7 +166,15 @@ class Support extends BaseController {
             if (!$emailSent && $isLocalEnv) {
                 log_message('warning', 'Support form email failed (local dev): ' . $emailError);
             }
-            return redirect()->to('/support')->with('success', 'Your support request has been received. Your ticket number is ' . $ticketNumber);
+            return redirect()->to('/support')
+                ->with('success', 'Your support request has been received. Your ticket number is ' . $ticketNumber)
+                ->with('ticketNumber', $ticketNumber)
+                ->with('email', $email)
+                ->with('name', $name)
+                ->with('product', $product)
+                ->with('priority', $priority)
+                ->with('issue', $issue)
+                ->with('message', $message);
         } else {
             // In production, email failure is an error
             return redirect()->back()->withInput()->with('errors', ['Unable to submit your support request. Please try again later.']);

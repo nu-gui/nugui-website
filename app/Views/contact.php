@@ -177,12 +177,24 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
             <p>We'd love to hear about your project and how we can help</p>
         </div>
         <?php if (session()->getFlashdata('success')): ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    showConfirmationModal('contact', {
+                        email: '<?= session()->getFlashdata('email') ?? 'your email' ?>'
+                    });
+                });
+            </script>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('success_inline')): ?>
             <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
-                <div class="flex items-center">
-                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span class="text-green-800 dark:text-green-200 font-medium"><?= session()->getFlashdata('success') ?></span>
+                    <div class="text-green-800 dark:text-green-200">
+                        <p class="font-medium"><?= session()->getFlashdata('success_inline') ?></p>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>

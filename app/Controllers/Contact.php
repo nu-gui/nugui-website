@@ -112,7 +112,9 @@ class Contact extends BaseController {
                 log_message('warning', 'Contact form email failed (local dev): ' . $emailError);
             }
             log_message('info', 'Contact form submitted successfully, redirecting to /contact');
-            return redirect()->to(base_url('contact'))->with('success', 'Your message has been received. We will get back to you soon.');
+            return redirect()->to(base_url('contact'))
+                ->with('success', 'Your message has been received. We will get back to you soon.')
+                ->with('email', $email);
         } else {
             // In production, email failure is an error
             return redirect()->back()->withInput()->with('errors', ['Unable to send your message. Please try again later.']);

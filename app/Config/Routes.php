@@ -39,10 +39,15 @@ $routes->get('partner-program', 'PartnerProgram::index');
 $routes->get('contact', 'Contact::index');
 $routes->get('support', 'Support::index');
 
+// Ticket system routes
+$routes->get('support-ticket', 'SupportTicket::index');
+$routes->get('ticket/(:segment)', 'SupportTicket::view_ticket/$1');
+
 // Define POST routes for form submissions
 $routes->post('submit_partner_form', 'PartnerProgram::submit_partner_form');
 $routes->post('submit_contact_form', 'Contact::submit_contact_form');
 $routes->post('submit_support_form', 'Support::submit_support_form');
+$routes->post('submit_ticket_form', 'SupportTicket::submit_support_form');
 $routes->post('log_lead', 'LeadController::logLead');
 $routes->post('log-to-file', 'LogController::logToFile');
 $routes->post('store-form-token', 'PartnerProgram::storeFormToken');

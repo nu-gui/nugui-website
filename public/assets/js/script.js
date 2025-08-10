@@ -51,41 +51,33 @@ function initializePartnerForm() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Show the confirmation message using safe DOM methods
-                        const confirmationMessage = document.getElementById('confirmation-message');
+                        // Close the popup form if it exists
+                        const popupModal = document.getElementById('popup-modal');
+                        if (popupModal) {
+                            popupModal.style.display = 'none';
+                        }
                         
-                        // Clear previous content
-                        confirmationMessage.innerHTML = '';
-                        
-                        // Create elements safely
-                        const greeting = document.createElement('p');
-                        greeting.textContent = `Dear ${formData.get('contactName')},`;
-                        
-                        const thankYou = document.createElement('p');
-                        thankYou.textContent = 'Thank you for applying to the NU GUI Partner Program. Your application has been received and is currently under review.';
-                        
-                        const referenceP = document.createElement('p');
-                        referenceP.textContent = 'Your Reference Number: ';
-                        const referenceStrong = document.createElement('strong');
-                        referenceStrong.textContent = data.reference || 'N/A';
-                        referenceP.appendChild(referenceStrong);
-                        
-                        const nextSteps = document.createElement('p');
-                        nextSteps.textContent = 'We will contact you shortly with the next steps.';
-                        
-                        const regards = document.createElement('p');
-                        regards.innerHTML = 'Best regards,<br>NU GUI Team';
-                        
-                        // Append all elements
-                        confirmationMessage.appendChild(greeting);
-                        confirmationMessage.appendChild(thankYou);
-                        confirmationMessage.appendChild(referenceP);
-                        confirmationMessage.appendChild(nextSteps);
-                        confirmationMessage.appendChild(regards);
-                        
-                        confirmationMessage.style.display = 'block';
-                        // Hide the form
-                        document.getElementById('popup-form-content').style.display = 'none';
+                        // Show the new confirmation modal
+                        if (typeof showConfirmationModal === 'function') {
+                            showConfirmationModal('partner', {
+                                reference: data.reference || 'REF-' + Date.now(),
+                                email: formData.get('contactEmail'),
+                                name: formData.get('contactName')
+                            });
+                        } else {
+                            // Fallback to old method if new modal isn't available
+                            const confirmationMessage = document.getElementById('confirmation-message');
+                            if (confirmationMessage) {
+                                confirmationMessage.innerHTML = `
+                                    <p>Dear ${formData.get('contactName')},</p>
+                                    <p>Thank you for applying to the NU GUI Partner Program.</p>
+                                    <p>Your Reference Number: <strong>${data.reference || 'N/A'}</strong></p>
+                                    <p>We will contact you shortly with the next steps.</p>
+                                `;
+                                confirmationMessage.style.display = 'block';
+                                document.getElementById('popup-form-content').style.display = 'none';
+                            }
+                        }
                     } else {
                         console.error('Error response from server:', data);
                         alert('There was an error submitting your application. Please try again.');
@@ -158,7 +150,7 @@ function storeFormToken(token) {
         body: JSON.stringify({ token: token })
     }).catch(error => {
         // Silently fail - token storage is optional for anti-bot protection
-        console.log('Token storage skipped (optional):', error);
+        // Log suppressed for production
     });
 }
 

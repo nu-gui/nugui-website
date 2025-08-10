@@ -99,6 +99,9 @@
     <main>
         <?= $this->renderSection('content') ?>
     </main>
+    
+    <!-- Include Confirmation Modal -->
+    <?= $this->include('templates/confirmation-modal') ?>
 
     <?= $this->include('templates/footer-apple') ?>
 
