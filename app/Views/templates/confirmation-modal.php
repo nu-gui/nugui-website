@@ -264,9 +264,25 @@
 </style>
 
 <script>
+    // Store ticket data safely to avoid XSS when passing to functions
+    let currentTicketData = {};
+    
     function showConfirmationModal(type, data) {
         const modal = document.getElementById('confirmationModal');
         const modalContent = document.getElementById('modalContent');
+        
+        // Store data for later use by download functions
+        if (type === 'support') {
+            currentTicketData = {
+                ticketNumber: data.ticketNumber || '',
+                name: data.name || '',
+                email: data.email || '',
+                product: data.product || '',
+                priority: data.priority || '',
+                issue: data.issue || '',
+                message: data.message || ''
+            };
+        }
         
         if (type === 'partner') {
             modalContent.innerHTML = getPartnerConfirmation(data);
@@ -399,7 +415,7 @@
             </div>
             
             <div class="confirmation-actions">
-                <button class="action-btn secondary" onclick="downloadTicketInfo('${data.ticketNumber}', ${JSON.stringify(data).replace(/"/g, '&quot;')})">
+                <button class="action-btn secondary" onclick="downloadTicketInfo('${data.ticketNumber}')">
                     Download Ticket
                 </button>
                 <button class="action-btn primary" onclick="closeConfirmationModal()">
@@ -448,7 +464,9 @@ Thank you for your interest in partnering with NU GUI!`;
         downloadTextFile(content, `NUGUI_Partner_Application_${reference}.txt`);
     }
     
-    function downloadTicketInfo(ticketNumber, data) {
+    function downloadTicketInfo(ticketNumber) {
+        // Use the safely stored data instead of passing through HTML
+        const data = currentTicketData;
         const content = `NU GUI Support Ticket
 =====================================
 Ticket Number: ${ticketNumber}
@@ -456,16 +474,16 @@ Date: ${new Date().toLocaleDateString()}
 Time: ${new Date().toLocaleTimeString()}
 
 Customer Information:
-- Name: ${data.name}
-- Email: ${data.email}
+- Name: ${data.name || 'N/A'}
+- Email: ${data.email || 'N/A'}
 
 Ticket Details:
-- Product: ${data.product}
-- Priority: ${data.priority}
-- Issue: ${data.issue}
+- Product: ${data.product || 'N/A'}
+- Priority: ${data.priority || 'N/A'}
+- Issue: ${data.issue || 'N/A'}
 
 Message:
-${data.message}
+${data.message || 'N/A'}
 
 Status: Open
 Expected Response: Within 24-48 hours

@@ -171,7 +171,7 @@ class SupportTicket extends BaseController {
     private function generateTicketId() {
         $date = date('Ymd');
         // Use cryptographically secure random instead of weak md5
-        $random = strtoupper(bin2hex(random_bytes(4))); // 8 character hex string
+        $random = strtoupper(bin2hex(random_bytes(4))); // 4 bytes -> 8 character hex string
         return "TKT-{$date}-{$random}";
     }
     

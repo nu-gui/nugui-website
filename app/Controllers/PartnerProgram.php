@@ -269,7 +269,11 @@ class PartnerProgram extends BaseController {
      * Generate and save PDF for partner application.
      */
     private function generatePDF($data, $reference) {
-        require_once ROOTPATH . 'vendor/autoload.php';
+        // Load autoload only if Dompdf classes aren't already available
+        if (!class_exists('\\Dompdf\\Dompdf')) {
+            require_once ROOTPATH . 'vendor/autoload.php';
+        }
+        
         $pdfOptions = new Options();
         $pdfOptions->set('isHtml5ParserEnabled', true);
         $pdfOptions->set('isRemoteEnabled', true);
@@ -279,7 +283,13 @@ class PartnerProgram extends BaseController {
         $pdf->render();
         $output = $pdf->output();
         $filename = 'Partner_Application_' . $reference . '.pdf';
-        file_put_contents(WRITEPATH . 'uploads/' . $filename, $output);
+        
+        // Add error handling for file write operation
+        $writeResult = file_put_contents(WRITEPATH . 'uploads/' . $filename, $output);
+        if ($writeResult === false) {
+            log_message('error', 'Failed to write PDF file: ' . WRITEPATH . 'uploads/' . $filename);
+            throw new \RuntimeException('Failed to save PDF file');
+        }
     }
 
     /**

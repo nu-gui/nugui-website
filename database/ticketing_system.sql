@@ -312,7 +312,7 @@ INSERT INTO `email_templates` (`template_name`, `template_type`, `subject`, `bod
 -- =============================================
 -- Create indexes for performance
 -- =============================================
-CREATE INDEX idx_tickets_email_thread ON tickets(email_thread_id);
+-- Note: idx_email_thread already created in tickets table definition (line 51)
 CREATE INDEX idx_messages_email_refs ON ticket_messages(email_in_reply_to);
 CREATE INDEX idx_queue_processing ON email_queue(status, priority, created_at);
 

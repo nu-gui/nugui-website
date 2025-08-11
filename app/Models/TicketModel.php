@@ -17,7 +17,7 @@ class TicketModel extends Model
         'assigned_to', 'assigned_email', 'department',
         'resolved_at', 'closed_at', 'first_response_at',
         'response_count', 'customer_satisfaction', 'resolution_time_hours',
-        'email_message_id', 'email_thread_id'
+        'email_message_id', 'email_thread_id', 'tags', 'metadata'
     ];
 
     protected $useTimestamps = true;
@@ -42,7 +42,7 @@ class TicketModel extends Model
             $prefix = 'TKT';
             $date = date('Ymd');
             // Use cryptographically secure random instead of weak md5
-            $random = strtoupper(bin2hex(random_bytes(3))); // 6 character hex string
+            $random = strtoupper(bin2hex(random_bytes(4))); // 4 bytes -> 8 character hex string
             $ticketNumber = "{$prefix}-{$date}-{$random}";
         } while ($this->where('ticket_number', $ticketNumber)->first());
         
