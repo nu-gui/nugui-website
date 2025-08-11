@@ -82,9 +82,12 @@ class SupportTicket extends BaseController {
         $category = $this->determineCategory($product);
         
         try {
-            // Insert ticket into database
+            // Use model method for proper transaction handling
+            $ticketModel = new \App\Models\TicketModel();
+            
+            // Prepare ticket data
             $ticketData = [
-                'ticket_id' => $ticketId,
+                'ticket_number' => $ticketId,  // Fixed: using ticket_number to match database schema
                 'subject' => $issue,
                 'customer_email' => $email,
                 'customer_name' => $name,
@@ -99,25 +102,25 @@ class SupportTicket extends BaseController {
                 ])
             ];
             
-            $this->db->table('tickets')->insert($ticketData);
-            $ticketDbId = $this->db->insertID();
-            
-            // Insert initial message
+            // Prepare message data (field names need to match the model)
             $messageData = [
-                'ticket_id' => $ticketDbId,
-                'message_id' => 'MSG-' . date('YmdHis'),
-                'subject' => 'Re: ' . $issue,
-                'body_text' => $message,
-                'body_html' => nl2br($message),
+                'message_type' => 'initial',
+                'direction' => 'inbound',
+                'subject' => $issue,  // Fixed: removed 'Re:' prefix for initial message
+                'message_body' => $message,
+                'message_html' => nl2br($message),
+                'message_plain' => $message,
                 'sender_email' => $email,
                 'sender_name' => $name,
                 'sender_type' => 'customer',
-                'direction' => 'inbound',
-                'to_emails' => json_encode(['support@nugui.co.za']),
-                'attachments' => json_encode([])
+                'recipients_to' => json_encode(['support@nugui.co.za']),
+                'is_sent' => true,
+                'sent_at' => date('Y-m-d H:i:s')
             ];
             
-            $this->db->table('ticket_messages')->insert($messageData);
+            // Create ticket with message using model method (transaction-safe)
+            $result = $ticketModel->createTicketWithMessage($ticketData, $messageData);
+            $ticketDbId = $result['ticket_id'];
             
             // Create ticket created event
             $eventData = [
@@ -162,7 +165,8 @@ class SupportTicket extends BaseController {
     
     private function generateTicketId() {
         $date = date('Ymd');
-        $random = strtoupper(substr(md5(uniqid()), 0, 8));
+        // Use cryptographically secure random instead of weak md5
+        $random = strtoupper(bin2hex(random_bytes(4))); // 8 character hex string
         return "TKT-{$date}-{$random}";
     }
     
@@ -242,28 +246,20 @@ class SupportTicket extends BaseController {
         $type = $action['type'] ?? '';
         $params = $action['params'] ?? [];
         
+        // Use model methods instead of direct database manipulation
+        $ticketModel = new \App\Models\TicketModel();
+        
         switch ($type) {
             case 'change_priority':
-                $this->db->table('tickets')
-                    ->where('id', $ticketId)
-                    ->update(['priority' => $params['priority'] ?? 'medium']);
+                $ticketModel->updatePriority($ticketId, $params['priority'] ?? 'medium', 'keyword_trigger');
                 break;
                 
             case 'change_status':
-                $this->db->table('tickets')
-                    ->where('id', $ticketId)
-                    ->update(['status' => $params['status'] ?? 'open']);
+                $ticketModel->updateStatus($ticketId, $params['status'] ?? 'open', 'keyword_trigger');
                 break;
                 
             case 'add_tags':
-                $ticket = $this->db->table('tickets')->where('id', $ticketId)->get()->getRowArray();
-                if ($ticket) {
-                    $currentTags = json_decode($ticket['tags'], true) ?? [];
-                    $newTags = array_unique(array_merge($currentTags, $params['tags'] ?? []));
-                    $this->db->table('tickets')
-                        ->where('id', $ticketId)
-                        ->update(['tags' => json_encode($newTags)]);
-                }
+                $ticketModel->addTags($ticketId, $params['tags'] ?? []);
                 break;
         }
     }
@@ -387,7 +383,7 @@ class SupportTicket extends BaseController {
         
         try {
             $ticket = $this->db->table('tickets')
-                ->where('ticket_id', $ticketId)
+                ->where('ticket_number', $ticketId)  // Fixed: using ticket_number to match database schema
                 ->get()
                 ->getRowArray();
             

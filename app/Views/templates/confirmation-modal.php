@@ -521,3 +521,80 @@ Thank you for contacting NU GUI Support!`;
         </div>
     </div>
 </div>
+
+<!-- Noscript fallback for users without JavaScript -->
+<noscript>
+    <style>
+        .noscript-message {
+            display: block;
+            background: var(--color-surface, #ffffff);
+            border: 2px solid var(--color-accent, #007AFF);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .noscript-message h3 {
+            color: var(--color-accent, #007AFF);
+            margin-bottom: 10px;
+        }
+        
+        .noscript-message p {
+            color: var(--color-text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .noscript-details {
+            background: var(--color-background, #f5f5f7);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .noscript-details strong {
+            color: var(--color-text-primary);
+            display: inline-block;
+            min-width: 120px;
+        }
+        
+        /* Hide JavaScript-dependent elements when JS is disabled */
+        .confirmation-modal {
+            display: none !important;
+        }
+    </style>
+    
+    <?php if (session()->has('success')): ?>
+        <div class="noscript-message">
+            <h3>✓ Form Submitted Successfully</h3>
+            <p><?= esc(session('success')) ?></p>
+            
+            <?php if (session()->has('ticketNumber')): ?>
+                <div class="noscript-details">
+                    <strong>Ticket Number:</strong> <?= esc(session('ticketNumber')) ?><br>
+                    <?php if (session()->has('email')): ?>
+                        <strong>Email:</strong> <?= esc(session('email')) ?><br>
+                    <?php endif; ?>
+                    <?php if (session()->has('product')): ?>
+                        <strong>Product:</strong> <?= esc(session('product')) ?><br>
+                    <?php endif; ?>
+                    <?php if (session()->has('priority')): ?>
+                        <strong>Priority:</strong> <?= esc(session('priority')) ?><br>
+                    <?php endif; ?>
+                </div>
+                <p><small>Please save your ticket number for future reference. You will receive a confirmation email shortly.</small></p>
+            <?php endif; ?>
+            
+            <?php if (session()->has('reference')): ?>
+                <div class="noscript-details">
+                    <strong>Reference Number:</strong> <?= esc(session('reference')) ?><br>
+                    <strong>Status:</strong> Under Review<br>
+                    <strong>Expected Response:</strong> Within 48 hours
+                </div>
+                <p><small>Our partnership team will contact you soon at the email address provided.</small></p>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</noscript>

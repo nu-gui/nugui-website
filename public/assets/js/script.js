@@ -68,12 +68,29 @@ function initializePartnerForm() {
                             // Fallback to old method if new modal isn't available
                             const confirmationMessage = document.getElementById('confirmation-message');
                             if (confirmationMessage) {
-                                confirmationMessage.innerHTML = `
-                                    <p>Dear ${formData.get('contactName')},</p>
-                                    <p>Thank you for applying to the NU GUI Partner Program.</p>
-                                    <p>Your Reference Number: <strong>${data.reference || 'N/A'}</strong></p>
-                                    <p>We will contact you shortly with the next steps.</p>
-                                `;
+                                // Use secure DOM manipulation instead of innerHTML to prevent XSS
+                                confirmationMessage.innerHTML = ''; // Clear existing content
+                                
+                                const p1 = document.createElement('p');
+                                p1.textContent = `Dear ${formData.get('contactName')},`;
+                                
+                                const p2 = document.createElement('p');
+                                p2.textContent = 'Thank you for applying to the NU GUI Partner Program.';
+                                
+                                const p3 = document.createElement('p');
+                                p3.textContent = 'Your Reference Number: ';
+                                const strong = document.createElement('strong');
+                                strong.textContent = data.reference || 'N/A';
+                                p3.appendChild(strong);
+                                
+                                const p4 = document.createElement('p');
+                                p4.textContent = 'We will contact you shortly with the next steps.';
+                                
+                                confirmationMessage.appendChild(p1);
+                                confirmationMessage.appendChild(p2);
+                                confirmationMessage.appendChild(p3);
+                                confirmationMessage.appendChild(p4);
+                                
                                 confirmationMessage.style.display = 'block';
                                 document.getElementById('popup-form-content').style.display = 'none';
                             }

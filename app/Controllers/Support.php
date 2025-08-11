@@ -115,7 +115,7 @@ class Support extends BaseController {
         // In local development, we'll consider the form successful even if email fails
         $isLocalEnv = (getenv('CI_ENVIRONMENT') === 'development' || 
                        getenv('CI_ENVIRONMENT') === 'testing' || 
-                       strpos($_SERVER['HTTP_HOST'] ?? '', 'localhost') !== false);
+                       getenv('CI_ENVIRONMENT') === 'local');
         
         if ($emailSent) {
             // Try to send confirmation email to user (optional)

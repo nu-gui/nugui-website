@@ -38,10 +38,15 @@ class TicketModel extends Model
      */
     public function generateTicketNumber(): string
     {
-        $prefix = 'TKT';
-        $date = date('Ymd');
-        $random = strtoupper(substr(md5(uniqid()), 0, 6));
-        return "{$prefix}-{$date}-{$random}";
+        do {
+            $prefix = 'TKT';
+            $date = date('Ymd');
+            // Use cryptographically secure random instead of weak md5
+            $random = strtoupper(bin2hex(random_bytes(3))); // 6 character hex string
+            $ticketNumber = "{$prefix}-{$date}-{$random}";
+        } while ($this->where('ticket_number', $ticketNumber)->first());
+        
+        return $ticketNumber;
     }
 
     /**
@@ -103,6 +108,68 @@ class TicketModel extends Model
         ]);
         
         return true;
+    }
+    
+    /**
+     * Update ticket priority
+     */
+    public function updatePriority($ticketId, $newPriority, $changedBy = 'system')
+    {
+        return $this->update($ticketId, ['priority' => $newPriority]);
+    }
+    
+    /**
+     * Add tags to a ticket
+     */
+    public function addTags($ticketId, array $newTags)
+    {
+        $ticket = $this->find($ticketId);
+        if (!$ticket) {
+            return false;
+        }
+        
+        $currentTags = json_decode($ticket['tags'] ?? '[]', true);
+        $mergedTags = array_unique(array_merge($currentTags, $newTags));
+        
+        return $this->update($ticketId, ['tags' => json_encode($mergedTags)]);
+    }
+    
+    /**
+     * Create a new ticket with initial message
+     */
+    public function createTicketWithMessage(array $ticketData, array $messageData)
+    {
+        $this->db->transStart();
+        
+        try {
+            // Generate ticket number if not provided
+            if (!isset($ticketData['ticket_number'])) {
+                $ticketData['ticket_number'] = $this->generateTicketNumber();
+            }
+            
+            // Insert ticket
+            $this->insert($ticketData);
+            $ticketId = $this->insertID();
+            
+            // Insert initial message
+            $messageModel = new TicketMessageModel();
+            $messageData['ticket_id'] = $ticketId;
+            $messageModel->insert($messageData);
+            
+            $this->db->transComplete();
+            
+            if ($this->db->transStatus() === false) {
+                throw new \Exception('Transaction failed');
+            }
+            
+            return [
+                'ticket_id' => $ticketId,
+                'ticket_number' => $ticketData['ticket_number']
+            ];
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+            throw $e;
+        }
     }
 
     /**

@@ -42,8 +42,10 @@ class AntiBotProtection
         }
 
         // 2. Time-based validation - Form must take at least 3 seconds to complete
-        // Skip time validation in local development
-        $isLocalEnv = strpos($_SERVER['HTTP_HOST'] ?? '', 'localhost') !== false;
+        // Skip time validation in local development - use secure environment detection
+        $isLocalEnv = (getenv('CI_ENVIRONMENT') === 'development' || 
+                       getenv('CI_ENVIRONMENT') === 'testing' || 
+                       getenv('CI_ENVIRONMENT') === 'local');
         
         if (isset($postData['form_start_time']) && !$isLocalEnv) {
             $formStartTime = (int)$postData['form_start_time'];
