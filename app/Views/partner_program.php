@@ -60,31 +60,7 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
     }
-    .benefit-card {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 40px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .benefit-card:hover {
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        border-color: var(--color-primary);
-    }
-    .benefit-card h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--color-text-primary);
-    }
-    .benefit-card p {
-        color: var(--color-text-secondary);
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
+    /* Card styles moved to cards-standardized.css for consistency */
     .how-it-works-steps {
         display: flex;
         justify-content: center;
@@ -92,35 +68,11 @@
         gap: 2rem;
         flex-wrap: wrap;
     }
+    /* Step card styles moved to cards-standardized.css for consistency */
     .step {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 32px 24px 28px 24px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        margin-bottom: 0;
         max-width: 300px;
         min-width: 220px;
         flex: 1 1 220px;
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .step:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 16px 32px rgba(0,0,0,0.22);
-        border-color: var(--color-primary);
-    }
-    .step h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--color-primary);
-    }
-    .step p {
-        color: var(--color-text-secondary);
-        font-size: 1.05rem;
-        font-weight: 500;
-        margin-bottom: 0;
     }
     .cta-section {
         background: var(--color-background);

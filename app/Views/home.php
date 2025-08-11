@@ -93,45 +93,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
     }
-    .feature-card {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 40px;
-        text-align: center;
-        box-shadow:
-            0 0 0 2.5px var(--color-accent),
-            0 4px 32px 0 rgba(0,0,0,0.22),
-            0 0 18px 2px var(--color-primary);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .feature-card:hover {
-        transform: translateY(-10px) scale(1.03);
-        box-shadow:
-            0 0 0 3px var(--color-primary),
-            0 20px 48px 0 rgba(0,0,0,0.28),
-            0 0 24px 4px var(--color-accent);
-    }
-    .feature-card img {
-        display: block;
-        margin: 0 auto 1rem auto;
-        border-radius: 12px;
-        background: var(--color-background-secondary);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-    }
-    .feature-card h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--color-text-primary);
-    }
-    .feature-card p {
-        color: var(--color-text-secondary);
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
+    /* Feature card styles moved to cards-standardized.css for consistency */
     .cta-section {
         background: var(--color-background);
         padding: 80px 20px;

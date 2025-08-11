@@ -19,11 +19,12 @@
 .service-card {
   /* Base styling */
   position: relative;
-  background: var(--color-surface);
+  background: var(--color-surface) !important;
   border-radius: 20px;
   padding: 2rem;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
   
   /* Gradient border effect */
   border: 2px solid transparent;
@@ -93,6 +94,9 @@
 .testimonial-card:hover,
 .stat-card:hover,
 .service-card:hover {
+  /* Maintain solid background on hover */
+  background: var(--color-surface) !important;
+  
   /* Subtle lift - much less dramatic than before */
   transform: translateY(-4px);
   
