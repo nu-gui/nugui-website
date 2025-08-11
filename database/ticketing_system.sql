@@ -338,3 +338,6 @@ LEFT JOIN ticket_messages tm ON t.id = tm.ticket_id
 LEFT JOIN ticket_cc_recipients tcc ON t.id = tcc.ticket_id AND tcc.is_active = 1
 WHERE t.status NOT IN ('closed', 'resolved')
 GROUP BY t.id;
+
+-- Add composite index for better performance on the active_tickets_summary view
+CREATE INDEX idx_tickets_status_id ON tickets(status, id);

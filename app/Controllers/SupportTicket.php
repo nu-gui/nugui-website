@@ -145,8 +145,13 @@ class SupportTicket extends BaseController {
             // Send email notifications
             $this->sendTicketEmails($ticketId, $name, $email, $product, $issue, $priority, $message);
             
-            // Generate summary after ticket creation
+            // Log ticket creation summary for monitoring/analytics
             $summary = $this->generateTicketSummary($ticketDbId);
+            if ($summary) {
+                log_message('info', 'Ticket created: ' . $ticketId . ' with ' . 
+                    $summary['summary']['total_messages'] . ' messages and ' . 
+                    $summary['summary']['total_events'] . ' events');
+            }
             
             return redirect()->to('/support')->with('success', 
                 'Your support request has been received. Your ticket number is ' . $ticketId . 

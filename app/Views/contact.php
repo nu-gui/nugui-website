@@ -184,6 +184,20 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
                     });
                 });
             </script>
+            <noscript>
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="text-green-800 dark:text-green-200">
+                            <p class="font-medium">Thank you for contacting us!</p>
+                            <p>We have received your message<?php if (session()->getFlashdata('email')): ?> and a confirmation has been sent to <?= htmlspecialchars(session()->getFlashdata('email')) ?><?php endif; ?>.</p>
+                            <p>We will respond within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </noscript>
         <?php endif; ?>
 
         <?php if (session()->getFlashdata('success_inline')): ?>

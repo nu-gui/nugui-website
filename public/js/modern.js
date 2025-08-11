@@ -259,10 +259,10 @@ class NuGuiWebsite {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
           .then(registration => {
-            console.log('SW registered: ', registration);
+            // SW registered successfully
           })
           .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
+            // SW registration failed - error suppressed in production
           });
       });
     }
@@ -306,16 +306,16 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
     // Pause expensive operations when page is hidden
-    console.log('Page hidden - pausing animations');
+    // Page hidden - pausing animations
   } else {
     // Resume operations when page is visible
-    console.log('Page visible - resuming animations');
+    // Page visible - resuming animations
   }
 });
 
 // Global error handling
 window.addEventListener('error', (event) => {
-  console.error('Global error:', event.error);
+  // Global error captured - add reporting here if needed
 });
 
 // Export for potential module usage

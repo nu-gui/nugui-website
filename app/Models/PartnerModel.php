@@ -20,7 +20,7 @@ class PartnerModel extends Model {
         'countryBusiness' => 'required|min_length[2]|max_length[255]',
         'contactName' => 'required|min_length[3]|max_length[255]',
         'contactEmail' => 'required|valid_email|max_length[255]',
-        'contactPhone' => 'required|min_length[10]|max_length[50]',
+        'contactPhone' => 'required|min_length[10]|max_length[20]',  // International phone numbers max ~20 chars
         'Skype_Teams' => 'permit_empty|max_length[255]',
         'question1' => 'permit_empty|max_length[255]',
         'question2' => 'permit_empty|max_length[255]',
