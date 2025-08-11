@@ -43,6 +43,9 @@
     <!-- Futuristic form styles -->
     <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
     
+    <!-- Theme fixes and enhancements -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-fixes.css') ?>">
+    
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -189,7 +192,10 @@
     </script>
     
     <!-- Business Form Validation -->
-    <?php if (in_array($this->uri->getSegment(1), ['contact', 'support', 'partner-program'])): ?>
+    <?php 
+    $uri = service('uri');
+    if (in_array($uri->getSegment(1), ['contact', 'support', 'partner-program'])): 
+    ?>
     <script src="<?= base_url('assets/js/business-validation.js') ?>"></script>
     <?php endif; ?>
     
