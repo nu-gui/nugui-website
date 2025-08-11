@@ -34,8 +34,8 @@
     <!-- Unified hero section styles -->
     <link rel="stylesheet" href="<?= base_url('css/hero-sections.css') ?>">
     
-    <!-- Unified card styles -->
-    <link rel="stylesheet" href="<?= base_url('css/cards-unified.css') ?>">
+    <!-- Standardized card styles (replaces cards-unified.css) -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-standardized.css') ?>">
     
     <!-- Enhanced form styles -->
     <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
