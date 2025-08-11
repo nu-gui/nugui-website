@@ -30,9 +30,11 @@ function initializePartnerForm() {
     // Partner form submission handler with anti-bot measures
     const partnerForm = document.getElementById('partner-form');
     if (partnerForm) {
-        // Store form token when form is initialized
-        const formToken = partnerForm.querySelector('input[name="form_token"]').value;
-        storeFormToken(formToken);
+        // Store form token when form is initialized (if field exists)
+        const formTokenField = partnerForm.querySelector('input[name="form_token"]');
+        if (formTokenField && formTokenField.value) {
+            storeFormToken(formTokenField.value);
+        }
         
         partnerForm.addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the default form submission
@@ -49,41 +51,50 @@ function initializePartnerForm() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        // Show the confirmation message using safe DOM methods
-                        const confirmationMessage = document.getElementById('confirmation-message');
+                        // Close the popup form if it exists
+                        const popupModal = document.getElementById('popup-modal');
+                        if (popupModal) {
+                            popupModal.style.display = 'none';
+                        }
                         
-                        // Clear previous content
-                        confirmationMessage.innerHTML = '';
-                        
-                        // Create elements safely
-                        const greeting = document.createElement('p');
-                        greeting.textContent = `Dear ${formData.get('contactName')},`;
-                        
-                        const thankYou = document.createElement('p');
-                        thankYou.textContent = 'Thank you for applying to the NU GUI Partner Program. Your application has been received and is currently under review.';
-                        
-                        const referenceP = document.createElement('p');
-                        referenceP.textContent = 'Your Reference Number: ';
-                        const referenceStrong = document.createElement('strong');
-                        referenceStrong.textContent = data.reference || 'N/A';
-                        referenceP.appendChild(referenceStrong);
-                        
-                        const nextSteps = document.createElement('p');
-                        nextSteps.textContent = 'We will contact you shortly with the next steps.';
-                        
-                        const regards = document.createElement('p');
-                        regards.innerHTML = 'Best regards,<br>NU GUI Team';
-                        
-                        // Append all elements
-                        confirmationMessage.appendChild(greeting);
-                        confirmationMessage.appendChild(thankYou);
-                        confirmationMessage.appendChild(referenceP);
-                        confirmationMessage.appendChild(nextSteps);
-                        confirmationMessage.appendChild(regards);
-                        
-                        confirmationMessage.style.display = 'block';
-                        // Hide the form
-                        document.getElementById('popup-form-content').style.display = 'none';
+                        // Show the new confirmation modal
+                        if (typeof showConfirmationModal === 'function') {
+                            showConfirmationModal('partner', {
+                                reference: data.reference || 'REF-' + Date.now(),
+                                email: formData.get('contactEmail'),
+                                name: formData.get('contactName')
+                            });
+                        } else {
+                            // Fallback to old method if new modal isn't available
+                            const confirmationMessage = document.getElementById('confirmation-message');
+                            if (confirmationMessage) {
+                                // Use secure DOM manipulation instead of innerHTML to prevent XSS
+                                confirmationMessage.innerHTML = ''; // Clear existing content
+                                
+                                const p1 = document.createElement('p');
+                                p1.textContent = `Dear ${formData.get('contactName')},`;
+                                
+                                const p2 = document.createElement('p');
+                                p2.textContent = 'Thank you for applying to the NU GUI Partner Program.';
+                                
+                                const p3 = document.createElement('p');
+                                p3.textContent = 'Your Reference Number: ';
+                                const strong = document.createElement('strong');
+                                strong.textContent = data.reference || 'N/A';
+                                p3.appendChild(strong);
+                                
+                                const p4 = document.createElement('p');
+                                p4.textContent = 'We will contact you shortly with the next steps.';
+                                
+                                confirmationMessage.appendChild(p1);
+                                confirmationMessage.appendChild(p2);
+                                confirmationMessage.appendChild(p3);
+                                confirmationMessage.appendChild(p4);
+                                
+                                confirmationMessage.style.display = 'block';
+                                document.getElementById('popup-form-content').style.display = 'none';
+                            }
+                        }
                     } else {
                         console.error('Error response from server:', data);
                         alert('There was an error submitting your application. Please try again.');
@@ -152,11 +163,12 @@ function storeFormToken(token) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
         },
         body: JSON.stringify({ token: token })
     }).catch(error => {
-        console.log('Token storage failed:', error);
+        // Silently fail - token storage is optional for anti-bot protection
+        // Log suppressed for production
     });
 }
 

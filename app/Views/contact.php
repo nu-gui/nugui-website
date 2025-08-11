@@ -177,12 +177,38 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
             <p>We'd love to hear about your project and how we can help</p>
         </div>
         <?php if (session()->getFlashdata('success')): ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    showConfirmationModal('contact', {
+                        email: '<?= session()->getFlashdata('email') ?? 'your email' ?>'
+                    });
+                });
+            </script>
+            <noscript>
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div class="text-green-800 dark:text-green-200">
+                            <p class="font-medium">Thank you for contacting us!</p>
+                            <p>We have received your message<?php if (session()->getFlashdata('email')): ?> and a confirmation has been sent to <?= htmlspecialchars(session()->getFlashdata('email')) ?><?php endif; ?>.</p>
+                            <p>We will respond within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </noscript>
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('success_inline')): ?>
             <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
-                <div class="flex items-center">
-                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span class="text-green-800 dark:text-green-200 font-medium"><?= session()->getFlashdata('success') ?></span>
+                    <div class="text-green-800 dark:text-green-200">
+                        <p class="font-medium"><?= session()->getFlashdata('success_inline') ?></p>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
@@ -206,41 +232,72 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
                 <form action="<?= base_url('/submit_contact_form') ?>" method="post">
                     <?= csrf_field() ?>
                     
+                    <!-- Enhanced Security Token -->
+                    <?php 
+                        $formSecurity = new \App\Libraries\EnhancedFormSecurity();
+                        $formToken = $formSecurity->generateFormToken('contact');
+                        $challenge = $formSecurity->generateChallenge();
+                    ?>
+                    <input type="hidden" name="form_token" value="<?= $formToken['token'] ?>">
+                    <input type="hidden" name="form_id" value="<?= $formToken['form_id'] ?>">
+                    <input type="hidden" name="form_timestamp" value="<?= $formToken['timestamp'] ?>">
+                    
                     <!-- Honeypot fields - hidden from users but visible to bots -->
-                    <div class="hidden">
-                        <input type="text" name="website" tabindex="-1" autocomplete="off">
-                        <input type="text" name="phone" tabindex="-1" autocomplete="off">
-                        <input type="email" name="email_verify" tabindex="-1" autocomplete="off">
+                    <div style="position: absolute; left: -9999px;">
+                        <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+                        <input type="text" name="company_fax" tabindex="-1" autocomplete="off">
+                        <input type="email" name="confirm_email" tabindex="-1" autocomplete="off">
+                        <textarea name="additional_info" tabindex="-1" autocomplete="off"></textarea>
                     </div>
                     
-                    <!-- Time-based validation -->
-                    <input type="hidden" name="form_start_time" value="<?= time() ?>">
-                    <input type="hidden" name="form_token" value="<?= bin2hex(random_bytes(16)) ?>">
+                    <!-- Business Information Section -->
+                    <div class="form-section-title">Business Information</div>
                     
-                    <!-- Contact Information Section -->
-                    <div class="form-section-title">Contact Information</div>
-                    
-                    <div class="form-row single">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="contact_name">Full Name</label>
+                            <label for="business_name">Business Name <span class="required">*</span></label>
+                            <input type="text" 
+                                   id="business_name"
+                                   name="business_name" 
+                                   value="<?= old('business_name') ?>" 
+                                   required
+                                   placeholder="Your Company Name"
+                                   class="track-interaction">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_name">Your Full Name <span class="required">*</span></label>
                             <input type="text" 
                                    id="contact_name"
                                    name="name" 
                                    value="<?= old('name') ?>" 
                                    required
-                                   placeholder="John Doe">
+                                   placeholder="John Doe"
+                                   class="track-interaction">
                         </div>
                     </div>
                     
-                    <div class="form-row single">
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="contact_email">Email Address</label>
+                            <label for="contact_email">Business Email <span class="required">*</span></label>
                             <input type="email" 
                                    id="contact_email"
                                    name="email" 
                                    value="<?= old('email') ?>" 
                                    required
-                                   placeholder="john@example.com">
+                                   placeholder="john@company.com"
+                                   class="track-interaction"
+                                   data-business-email="true">
+                            <small class="form-hint">Please use your business email address</small>
+                        </div>
+                        <div class="form-group" id="company_website_group" style="display: none;">
+                            <label for="company_website">Company Website <span class="required">*</span></label>
+                            <input type="url" 
+                                   id="company_website"
+                                   name="company_website" 
+                                   value="<?= old('company_website') ?>" 
+                                   placeholder="https://www.company.com"
+                                   class="track-interaction">
+                            <small class="form-hint">Required for personal email verification</small>
                         </div>
                     </div>
                     
@@ -249,29 +306,46 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
                     
                     <div class="form-row single">
                         <div class="form-group">
-                            <label for="contact_subject">Subject</label>
+                            <label for="contact_subject">Subject <span class="required">*</span></label>
                             <input type="text" 
                                    id="contact_subject"
                                    name="subject" 
                                    value="<?= old('subject') ?>" 
                                    required
-                                   placeholder="How can we help?">
+                                   placeholder="How can we help?"
+                                   class="track-interaction">
                         </div>
                     </div>
                     
                     <div class="form-row single">
                         <div class="form-group">
-                            <label for="contact_message">Message</label>
+                            <label for="contact_message">Message <span class="required">*</span></label>
                             <textarea id="contact_message"
                                       name="message" 
                                       rows="5" 
                                       required
-                                      placeholder="Tell us about your project and requirements..."><?= old('message') ?></textarea>
+                                      placeholder="Tell us about your project and requirements..."
+                                      class="track-interaction"><?= old('message') ?></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Challenge -->
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label for="challenge_answer">Security Question: <?= $challenge['question'] ?> <span class="required">*</span></label>
+                            <input type="text" 
+                                   id="challenge_answer"
+                                   name="challenge_answer" 
+                                   required
+                                   placeholder="Your answer"
+                                   class="track-interaction">
+                            <input type="hidden" name="challenge_id" value="<?= $challenge['id'] ?>">
                         </div>
                     </div>
                     
                     <div class="form-submit">
-                        <button type="submit" class="btn btn--primary btn--large">Send Message</button>
+                        <button type="submit" class="btn btn--primary btn--large" id="submit_btn">Send Business Inquiry</button>
+                        <p class="form-note">We only accept inquiries from businesses. Personal emails require company verification.</p>
                     </div>
                 </form>
         </div>

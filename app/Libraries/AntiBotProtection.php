@@ -42,7 +42,12 @@ class AntiBotProtection
         }
 
         // 2. Time-based validation - Form must take at least 3 seconds to complete
-        if (isset($postData['form_start_time'])) {
+        // Skip time validation in local development - use secure environment detection
+        $isLocalEnv = (getenv('CI_ENVIRONMENT') === 'development' || 
+                       getenv('CI_ENVIRONMENT') === 'testing' || 
+                       getenv('CI_ENVIRONMENT') === 'local');
+        
+        if (isset($postData['form_start_time']) && !$isLocalEnv) {
             $formStartTime = (int)$postData['form_start_time'];
             $currentTime = time();
             $timeTaken = $currentTime - $formStartTime;
@@ -60,6 +65,9 @@ class AntiBotProtection
             if ($timeTaken > $this->config->maximumFormTime) {
                 $this->logger->warning('Form session expired', [
                     'time_taken' => $timeTaken,
+                    'form_start_time' => $formStartTime,
+                    'current_time' => $currentTime,
+                    'max_time' => $this->config->maximumFormTime,
                     'ip' => $this->request->getIPAddress()
                 ]);
                 $errors[] = 'Form session expired. Please refresh the page and try again.';
@@ -112,6 +120,11 @@ class AntiBotProtection
      */
     private function isKnownBot($userAgent): bool
     {
+        // Skip bot detection in local development
+        if (strpos($_SERVER['HTTP_HOST'] ?? '', 'localhost') !== false) {
+            return false;
+        }
+        
         $userAgentLower = strtolower($userAgent);
         foreach ($this->config->botPatterns as $pattern) {
             if (strpos($userAgentLower, $pattern) !== false) {

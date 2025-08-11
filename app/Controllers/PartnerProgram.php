@@ -121,12 +121,17 @@ class PartnerProgram extends BaseController {
         }
 
         // Handle solutions array - convert to string for database storage
-        if (isset($data['solutions']) && is_array($data['solutions'])) {
+        if (isset($data['solutions']) && is_array($data['solutions']) && !empty($data['solutions'])) {
             // Convert array to comma-separated string
             $data['question5'] = implode(', ', $data['solutions']);
             unset($data['solutions']); // Remove the array field
         } else {
-            $data['question5'] = ''; // Set empty if no solutions selected
+            // At least one solution must be selected
+            $logger->error('No solutions selected.');
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Please select at least one solution you are interested in.'
+            ]);
         }
 
         // Add unique reference
@@ -141,8 +146,17 @@ class PartnerProgram extends BaseController {
                 // Generate and save PDF
                 $this->generatePDF($data, $reference);
 
-                // Send confirmation email
-                $this->sendConfirmationEmail($data, $reference);
+                // Send confirmation email (optional - may fail in local dev)
+                try {
+                    $this->sendConfirmationEmail($data, $reference);
+                } catch (\Exception $emailException) {
+                    // Log email failure but don't fail the whole submission
+                    $logger->warning('Confirmation email failed to send', [
+                        'reference' => $reference,
+                        'error' => $emailException->getMessage()
+                    ]);
+                    // In production, you might want to queue the email for retry
+                }
 
                 return $this->response->setJSON([
                     'status' => 'success',
@@ -163,6 +177,22 @@ class PartnerProgram extends BaseController {
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Store form token in session for anti-bot validation
+     */
+    public function storeFormToken() {
+        // Handle both JSON and form data
+        $json = $this->request->getJSON();
+        $token = $json ? $json->token : $this->request->getPost('token');
+        
+        if ($token) {
+            $antiBotProtection = new AntiBotProtection();
+            $antiBotProtection->storeFormToken($token);
+            return $this->response->setJSON(['status' => 'success']);
+        }
+        return $this->response->setJSON(['status' => 'error']);
     }
 
     /**
@@ -227,7 +257,7 @@ class PartnerProgram extends BaseController {
         $cache = \Config\Services::cache();
         $attempts = $cache->get($ip) ?? 0;
 
-        if ($attempts >= 1) { // Allow 1 requests per minute
+        if ($attempts >= 5) { // Allow 5 requests per minute
             return true;
         }
 
@@ -239,7 +269,11 @@ class PartnerProgram extends BaseController {
      * Generate and save PDF for partner application.
      */
     private function generatePDF($data, $reference) {
-        require_once FCPATH . 'vendor/dompdf/autoload.inc.php';
+        // Load autoload only if Dompdf classes aren't already available
+        if (!class_exists('\\Dompdf\\Dompdf')) {
+            require_once ROOTPATH . 'vendor/autoload.php';
+        }
+        
         $pdfOptions = new Options();
         $pdfOptions->set('isHtml5ParserEnabled', true);
         $pdfOptions->set('isRemoteEnabled', true);
@@ -249,7 +283,13 @@ class PartnerProgram extends BaseController {
         $pdf->render();
         $output = $pdf->output();
         $filename = 'Partner_Application_' . $reference . '.pdf';
-        file_put_contents(WRITEPATH . 'uploads/' . $filename);
+        
+        // Add error handling for file write operation
+        $writeResult = file_put_contents(WRITEPATH . 'uploads/' . $filename, $output);
+        if ($writeResult === false) {
+            log_message('error', 'Failed to write PDF file: ' . WRITEPATH . 'uploads/' . $filename);
+            throw new \RuntimeException('Failed to save PDF file');
+        }
     }
 
     /**

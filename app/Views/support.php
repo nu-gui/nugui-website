@@ -171,16 +171,44 @@
             <p>Our expert team is ready to assist you with any technical challenges</p>
         </div>
         <?php if (session()->get('success')): ?>
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-8" role="alert">
-                <strong class="font-bold">Success!</strong>
-                <span class="block sm:inline"><?= session()->get('success') ?></span>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    showConfirmationModal('support', {
+                        ticketNumber: '<?= session()->get('ticketNumber') ?? 'TICKET_' . strtoupper(uniqid()) ?>',
+                        email: '<?= session()->get('email') ?? '' ?>',
+                        name: '<?= session()->get('name') ?? '' ?>',
+                        product: '<?= session()->get('product') ?? '' ?>',
+                        priority: '<?= session()->get('priority') ?? 'Medium' ?>',
+                        issue: '<?= session()->get('issue') ?? '' ?>',
+                        message: '<?= session()->get('message') ?? '' ?>'
+                    });
+                });
+            </script>
+        <?php endif; ?>
+
+        <?php if (session()->get('success_inline')): ?>
+            <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-2xl p-6 mb-8">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-green-800 dark:text-green-200">
+                        <p class="font-medium"><?= session()->get('success_inline') ?></p>
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
 
         <?php if (session()->get('errors')): ?>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-8" role="alert">
-                <strong class="font-bold">Error!</strong>
-                <span class="block sm:inline"><?= is_array(session()->get('errors')) ? implode(', ', session()->get('errors')) : session()->get('errors') ?></span>
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-6 mb-8">
+                <div class="flex items-start">
+                    <svg class="w-6 h-6 text-red-600 dark:text-red-400 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-red-800 dark:text-red-200">
+                        <p class="font-medium"><?= is_array(session()->get('errors')) ? implode(', ', session()->get('errors')) : session()->get('errors') ?></p>
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
 
