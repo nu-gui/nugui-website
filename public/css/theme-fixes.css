@@ -330,10 +330,31 @@
   box-shadow: 0 0 0 3px rgba(0, 162, 232, 0.1);
 }
 
-/* Remove double asterisks if they appear */
+/* Style required asterisks properly */
 .form-group label span.required {
-  color: var(--color-error);
+  color: #ff3b30;
   margin-left: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+/* Ensure no duplicate asterisks from pseudo-elements */
+.form-group label::before,
+.form-group label::after {
+  content: none !important;
+}
+
+/* Hide any asterisk that might be in the label text before the span */
+.form-group label {
+  position: relative;
+}
+
+/* Alternative styling for required fields */
+.form-group input:required,
+.form-group textarea:required,
+.form-group select:required {
+  border-left: 3px solid #ff3b30;
 }
 
 /* ========================================

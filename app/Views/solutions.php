@@ -324,21 +324,28 @@ function toggleDetails(id) {
                     </ul>
                 </div>
             </div>
-            <div class="solution-card">
-                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
-                    <?= picture_product('CCS', 'icon', 'product-icon') ?>
-                </div>
-                <h3>Complete Infrastructure</h3>
-                <p>A turnkey approach that bundles <strong>carrier integration, scalable architecture, and 24/7 support</strong>—so you launch quickly and scale confidently.</p>
-                <button class="btn btn--outline" onclick="toggleDetails('infra-details')">Details</button>
-                <div id="infra-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
-                    <ul>
-                        <li>Carrier interconnects and route design</li>
-                        <li>High‑availability deployment patterns</li>
-                        <li>NOC and support with clear escalation paths</li>
-                    </ul>
-                </div>
-            </div>
+        </div>
+        
+        <!-- Complete Infrastructure as text section -->
+        <div style="margin-top: 3rem; padding: 2rem; background: var(--color-background); border-radius: 20px; border: 1px solid var(--color-border);">
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-text-primary);">Complete Infrastructure</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+                A turnkey approach that bundles <strong>carrier integration, scalable architecture, and 24/7 support</strong>—so you launch quickly and scale confidently.
+            </p>
+            <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    Carrier interconnects and route design
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    High‑availability deployment patterns
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    NOC and support with clear escalation paths
+                </li>
+            </ul>
         </div>
     </div>
 </section>
