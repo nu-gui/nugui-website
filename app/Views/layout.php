@@ -20,7 +20,8 @@
     <!-- Product Colors and Page Gradients -->
     <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>">
+    <!-- Disabled: card-glow.css causes transparency issues, replaced by cards-standardized.css -->
+    <!-- <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>"> -->
     
     <!-- Theme-aware images CSS -->
     <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
