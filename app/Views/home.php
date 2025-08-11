@@ -1,16 +1,16 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>Enterprise Telecom Solutions | VoIP, SMS & Call Control Systems<?= $this->endSection() ?>
+<?= $this->section('title') ?>NU GUI | Telecom & Engagement Platforms for Carriers & Resellers<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
 <?php
 // SEO Meta Tags for Home Page
-$this->setVar('description', 'NU GUI delivers carrier-grade telecom solutions: VoIP services, SMS platforms, call control systems & data management. Trusted by operators in 50+ countries. Get started today.');
-$this->setVar('ogTitle', 'NU GUI - Enterprise Telecom Solutions | VoIP, SMS, Call Control');
-$this->setVar('ogDescription', 'Leading provider of carrier-grade telecommunication solutions. VoIP services, SMS platforms, call control systems & data management for operators worldwide.');
-$this->setVar('twitterTitle', 'NU GUI - Enterprise Telecom Solutions | VoIP, SMS, Call Control');
-$this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by operators in 50+ countries. VoIP, SMS, call control & data services.');
+$this->setVar('description', 'NU GUI helps carriers, resellers, and enterprises route calls, send messages, and bill in real time. Explore our VoIP, SMS, call control, data, and scheduling solutions. Strong global partnerships, especially across Africa and India.');
+$this->setVar('ogTitle', 'NU GUI | Telecom & Engagement Platforms for Carriers & Resellers');
+$this->setVar('ogDescription', 'NU GUI helps you connect with customers, scale reliably, and grow revenue — with voice, SMS, data, and engagement platforms that just work.');
+$this->setVar('twitterTitle', 'NU GUI | Telecom & Engagement Platforms');
+$this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, and enterprises to deliver reliable communications and data‑driven marketing at scale.');
 ?>
 <style>
     body {
@@ -155,106 +155,98 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
 <section class="hero-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1>
-            Enterprise Telecom Solutions That
-            <span class="text-gradient">Scale Your Business</span>
+            Powering Telecom Growth for
+            <span class="text-gradient">Carriers & Resellers</span>
         </h1>
         <p>
-            Trusted by operators in 50+ countries. Carrier-grade VoIP, SMS platforms, call control systems,
-            and data management solutions with 99.99% uptime guarantee.
+            <strong>NU GUI</strong> helps you connect with customers, scale reliably, and grow revenue — 
+            with voice, SMS, data, and engagement platforms that just work.
         </p>
-        <div class="hero-stats">
-            <div>
-                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">50+</div>
-                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Countries Served</div>
-            </div>
-            <div>
-                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">99.99%</div>
-                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Uptime SLA</div>
-            </div>
-            <div>
-                <div style="font-size: 2.5rem; font-weight: 700; color: #FFFFFF;">1B+</div>
-                <div style="font-size: 0.9rem; color: rgba(255, 255, 255, 0.85);">Monthly Transactions</div>
-            </div>
-        </div>
+        <p style="font-size: 1.1rem; margin-top: 1rem;">
+            <strong>Since 2018</strong>, after merging and rebranding from <em>We Sell Solutions (WSS)</em>, 
+            we've focused on enabling carriers, resellers, and enterprises to deliver reliable communications 
+            and data‑driven marketing at scale.
+        </p>
         <div class="btn-group">
-            <a href="<?= base_url('/solutions'); ?>" class="btn btn--primary btn--large">Get Started Free</a>
-            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Request Demo</a>
+            <a href="<?= base_url('/solutions'); ?>" class="btn btn--primary btn--large">Explore Solutions</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Talk to Sales</a>
         </div>
     </div>
 </section>
 
-<!-- Services Overview -->
+<!-- Solutions at a Glance -->
 <section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>Carrier-Grade Telecom Solutions</h2>
+            <h2>Solutions at a Glance</h2>
             <p>
-                Enterprise-ready telecommunication infrastructure engineered for 99.99% uptime,
-                infinite scalability, and seamless integration with your existing systems.
+                Everything flows into our <a href="<?= base_url('/solutions'); ?>" style="color: var(--color-primary); text-decoration: underline;">Solutions</a> hub. 
+                Use these quick summaries to jump straight to what you need.
             </p>
         </div>
         <div class="card-grid">
             <div class="feature-card">
                 <?= picture_product('SIP', 'icon', 'product-icon') ?>
-                <h3>NU SIP - VoIP Platform</h3>
-                <p>Enterprise VoIP solution with HD voice quality, global coverage in 195+ countries,
-                   and seamless PBX integration. Perfect for call centers and enterprises.</p>
-                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--outline">Learn More</a>
+                <h3>NU SIP — Enterprise VoIP</h3>
+                <p>Route calls globally with carrier‑grade reliability, least‑cost routing, and failover.</p>
+                <a href="<?= base_url('/solutions#nu-sip'); ?>" class="btn btn--outline">Learn More →</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('SMS', 'icon', 'product-icon') ?>
-                <h3>NU SMS - Messaging Gateway</h3>
-                <p>Bulk SMS platform with 98% delivery rates, real-time analytics, and RESTful APIs.
-                   Send millions of messages instantly to 200+ countries.</p>
-                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--outline">Learn More</a>
+                <h3>NU SMS — Bulk & Two‑Way Messaging</h3>
+                <p>Launch high‑volume campaigns with direct routes, two‑way messaging, and real‑time DLRs.</p>
+                <a href="<?= base_url('/solutions#nu-sms'); ?>" class="btn btn--outline">Learn More →</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('CCS', 'icon', 'product-icon') ?>
-                <h3>NU CCS - Call Control System</h3>
-                <p>Next-gen call management with real-time billing, AI-powered fraud detection,
-                   and comprehensive CDR analytics. Reduce revenue leakage by up to 40%.</p>
-                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--outline">Learn More</a>
+                <h3>NU CCS — Call Control & Billing</h3>
+                <p>Manage high‑volume traffic with advanced routing, real‑time billing integrations, and fraud controls.</p>
+                <a href="<?= base_url('/solutions#nu-ccs'); ?>" class="btn btn--outline">Learn More →</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('DATA', 'icon', 'product-icon') ?>
-                <h3>NU DATA - Intelligence Platform</h3>
-                <p>Telecom data validation and enrichment with 99.5% accuracy. HLR lookups,
-                   number portability checks, and real-time verification APIs.</p>
-                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--outline">Learn More</a>
+                <h3>NU DATA — Intelligence & Validation</h3>
+                <p>Cleanse, validate, and enrich phone data (HLR/MNP), with batch processing for large datasets.</p>
+                <a href="<?= base_url('/solutions#nu-data'); ?>" class="btn btn--outline">Learn More →</a>
             </div>
             <div class="feature-card">
                 <?= picture_product('CRON', 'icon', 'product-icon') ?>
-                <h3>NU CRON - Schedule Manager</h3>
-                <p>AI-driven Contact Schedule Manager for optimized lead generation. Automates 
-                   communication scheduling with intelligent timing and multi-channel support.</p>
-                <a href="<?= base_url('/solutions#nu-cron'); ?>" class="btn btn--outline">Learn More</a>
+                <h3>NU CRON — AI‑Driven Scheduling</h3>
+                <p>Optimise outreach timing and orchestration across channels to lift conversion and CX.</p>
+                <a href="<?= base_url('/solutions#nu-cron'); ?>" class="btn btn--outline">Learn More →</a>
+            </div>
+            <div class="feature-card">
+                <?= picture_product('GUI', 'icon', 'product-icon') ?>
+                <h3>NU GUI — Management Portal</h3>
+                <p>White‑label console with real‑time dashboards and unified API control for operations teams.</p>
+                <a href="<?= base_url('/solutions#nu-gui'); ?>" class="btn btn--outline">Learn More →</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Customer Testimonials -->
+<!-- Customer Success -->
 <section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>Trusted by 200+ Operators Worldwide</h2>
+            <h2>Outcomes You Can Expect</h2>
             <p>
-                See why leading telecommunications companies choose NU GUI for their critical infrastructure.
+                Partner feedback from carriers and resellers across our global network.
             </p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
             <!-- Testimonial 1 -->
             <div style="background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%); border-radius: 20px; padding: 2rem; border: 2px solid var(--color-accent); box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">MB</div>
+                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">TC</div>
                     <div>
-                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Mike Bradley</h4>
-                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">CTO, TeleConnect Africa</p>
+                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Technical Director</h4>
+                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">Tier 2 Carrier, Africa Region</p>
                     </div>
                 </div>
                 <p style="color: var(--color-text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 1rem;">
-                    "NU GUI's VoIP platform helped us scale from 10K to 500K concurrent calls in 6 months. 
-                    Their fraud detection saved us $2M in the first year alone. Outstanding support team."
+                    "The VoIP platform enabled us to scale from 10K to 500K concurrent calls in 6 months. 
+                    Advanced fraud detection capabilities have significantly reduced revenue leakage. Outstanding technical support throughout."
                 </p>
                 <div style="display: flex; color: #ffd700; font-size: 1.2rem;">★★★★★</div>
             </div>
@@ -262,15 +254,15 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
             <!-- Testimonial 2 -->
             <div style="background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%); border-radius: 20px; padding: 2rem; border: 2px solid var(--color-accent); box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">SC</div>
+                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">HO</div>
                     <div>
-                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Sarah Chen</h4>
-                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">Head of Operations, MessageFlow Global</p>
+                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Head of Operations</h4>
+                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">Global Messaging Provider</p>
                     </div>
                 </div>
                 <p style="color: var(--color-text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 1rem;">
-                    "We process 50M SMS monthly through NU SMS. 98.7% delivery rate, real-time analytics, 
-                    and seamless API integration. Migrated from 3 different providers to this single solution."
+                    "Processing 50M+ SMS monthly with 98.7% delivery rate. The real-time analytics and 
+                    seamless API integration allowed us to consolidate from 3 different providers to this single solution."
                 </p>
                 <div style="display: flex; color: #ffd700; font-size: 1.2rem;">★★★★★</div>
             </div>
@@ -278,15 +270,15 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
             <!-- Testimonial 3 -->
             <div style="background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%); border-radius: 20px; padding: 2rem; border: 2px solid var(--color-accent); box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">RK</div>
+                    <div style="width: 48px; height: 48px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-right: 1rem;">FD</div>
                     <div>
-                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Raj Kumar</h4>
-                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">Founder, VoiceTech Solutions</p>
+                        <h4 style="margin: 0; color: var(--color-text-primary); font-weight: 600;">Founder</h4>
+                        <p style="margin: 0; color: var(--color-text-secondary); font-size: 0.9rem;">MVNO, India Region</p>
                     </div>
                 </div>
                 <p style="color: var(--color-text-secondary); line-height: 1.6; font-style: italic; margin-bottom: 1rem;">
-                    "Started as a small MVNO, now serving 100K+ customers. NU CCS billing system and call control 
-                    made our rapid growth possible. ROI was 400% in year one."
+                    "Started as a small MVNO, now serving 100K+ customers. The billing system and call control 
+                    capabilities made our rapid growth possible. Achieved 400% ROI in year one."
                 </p>
                 <div style="display: flex; color: #ffd700; font-size: 1.2rem;">★★★★★</div>
             </div>
@@ -314,17 +306,74 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
     </div>
 </section>
 
-<!-- Partner Program CTA -->
+<!-- Who We Serve -->
+<section class="section" style="background: var(--color-background);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Who We Serve</h2>
+        </div>
+        <div class="card-grid">
+            <div class="feature-card">
+                <h3>Carriers (Tier 1 & 2)</h3>
+                <p>High‑volume environments with complex routing, analytics, and governance needs.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Resellers (Tier 3)</h3>
+                <p>White‑label‑ready platforms, fast onboarding, and go‑to‑market support.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Enterprises & Contact Centres</h3>
+                <p>Streamlined operations, lower costs, and better customer conversations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why NU GUI -->
+<section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Why NU GUI</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Reliability</h3>
+                <p>Carrier‑grade uptime and routing with built‑in failover.</p>
+            </div>
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Cost Optimisation</h3>
+                <p>Least‑cost routing and real‑time reporting.</p>
+            </div>
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Fraud & Spam Protection</h3>
+                <p>Intelligent blocking and controls to protect your network and customers.</p>
+            </div>
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Speed to Value</h3>
+                <p>Fast onboarding, practical support, and a focus on measurable outcomes.</p>
+            </div>
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Partner‑First</h3>
+                <p>Global partner network with particularly <strong>strong relationships across Africa and India</strong>.</p>
+            </div>
+            <div style="padding: 1.5rem;">
+                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem;">✓ Clear Visibility</h3>
+                <p>Lower cost per connected minute through smarter routing.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Ready to Take the Next Step -->
 <section class="cta-section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2>Ready to Transform Your Telecom Operations?</h2>
+        <h2>Ready to Take the Next Step?</h2>
         <p>
-            Join leading operators and enterprises worldwide. Get instant access to our platform
-            with 24/7 support, dedicated account management, and no setup fees.
+            Start with a demo or a pilot tailored to your volumes and regions.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Start Free Trial</a>
-            <a href="<?= base_url('/partner-program'); ?>" class="btn btn--secondary btn--large">Become a Partner</a>
+            <a href="<?= base_url('/solutions'); ?>" class="btn btn--primary btn--large">Explore Solutions</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Schedule a Demo</a>
         </div>
     </div>
 </section>
@@ -337,7 +386,7 @@ $this->setVar('twitterDescription', 'Carrier-grade telecom solutions trusted by 
   "name": "NU GUI",
   "url": "https://nugui.co.za",
   "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png",
-  "description": "Leading provider of carrier-grade telecommunication solutions including VoIP services, SMS platforms, call control systems, and data management for operators worldwide.",
+  "description": "NU GUI helps carriers, resellers, and enterprises route calls, send messages, and bill in real time. Explore our VoIP, SMS, call control, data, and scheduling solutions. Strong global partnerships, especially across Africa and India.",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "ZA"
