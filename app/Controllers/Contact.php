@@ -24,40 +24,72 @@ class Contact extends BaseController {
     public function submit_contact_form() {
         log_message('info', 'Contact form submission started');
         
-        $antiBotProtection = new AntiBotProtection();
+        // Initialize security services
+        $formSecurity = new \App\Libraries\EnhancedFormSecurity();
+        $businessValidator = new \App\Libraries\BusinessEmailValidator();
         $clientIP = $this->request->getIPAddress();
         
-        // Check if IP is temporarily blacklisted
-        if ($antiBotProtection->isTemporarilyBlacklisted($clientIP)) {
-            return redirect()->back()->withInput()->with('errors', ['Your IP is temporarily blocked. Please try again later.']);
+        // Get form data
+        $postData = $this->request->getPost();
+        
+        // 1. Validate form security token
+        $securityErrors = $formSecurity->validateFormSecurity(
+            $postData['form_token'] ?? '', 
+            $postData
+        );
+        
+        if (!empty($securityErrors)) {
+            log_message('warning', 'Form security validation failed: ' . json_encode($securityErrors));
+            return redirect()->back()->withInput()->with('errors', $securityErrors);
         }
         
-        // Anti-bot validation
-        $postData = $this->request->getPost();
-        $botErrors = $antiBotProtection->validateSubmission($postData);
-        
-        if (!empty($botErrors)) {
-            $antiBotProtection->addToBlacklist($clientIP);
-            return redirect()->back()->withInput()->with('errors', $botErrors);
+        // 2. Validate challenge question
+        if (!$formSecurity->validateChallenge(
+            $postData['challenge_id'] ?? '', 
+            $postData['challenge_answer'] ?? ''
+        )) {
+            return redirect()->back()->withInput()->with('errors', ['Security question answer incorrect. Please try again.']);
         }
 
+        // 3. Standard field validation
         $validation = \Config\Services::validation();
 
         $validation->setRules([
+            'business_name' => 'required|min_length[2]|max_length[255]',
             'name'    => 'required|min_length[2]|max_length[100]',
             'email'   => 'required|valid_email|max_length[100]',
             'subject' => 'required|min_length[3]|max_length[200]',
-            'message' => 'required|min_length[10]|max_length[2000]'
+            'message' => 'required|min_length[10]|max_length[2000]',
+            'company_website' => 'permit_empty|max_length[255]'
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
+        // Get sanitized form data
+        $businessName = htmlspecialchars($this->request->getPost('business_name'), ENT_QUOTES, 'UTF-8');
         $name = htmlspecialchars($this->request->getPost('name'), ENT_QUOTES, 'UTF-8');
         $email = htmlspecialchars($this->request->getPost('email'), ENT_QUOTES, 'UTF-8');
         $subject = htmlspecialchars($this->request->getPost('subject'), ENT_QUOTES, 'UTF-8');
         $message = htmlspecialchars($this->request->getPost('message'), ENT_QUOTES, 'UTF-8');
+        $companyWebsite = htmlspecialchars($this->request->getPost('company_website'), ENT_QUOTES, 'UTF-8');
+        
+        // 4. Validate business email
+        $emailValidation = $formSecurity->validateBusinessEmail($email, $companyWebsite);
+        
+        if (!$emailValidation['valid']) {
+            return redirect()->back()->withInput()->with('errors', [$emailValidation['message']]);
+        }
+        
+        // Log form submission for security tracking
+        $this->logFormSubmission('contact', [
+            'business_name' => $businessName,
+            'email' => $email,
+            'email_domain' => $businessValidator->extractDomain($email),
+            'has_website' => !empty($companyWebsite),
+            'ip' => $clientIP
+        ]);
 
         $emailService = new CustomEmail();
         $emailService->initializeConfig('contact');
@@ -68,21 +100,27 @@ class Contact extends BaseController {
         $emailService->setMessage("
             <html>
                 <head>
-                    <title>Contact Form Submission</title>
+                    <title>Business Contact Form Submission</title>
                 </head>
                 <body>
-                    <h2>Contact Form Submission</h2>
-                    <p><strong>Name:</strong> {$name}</p>
-                    <p><strong>Email:</strong> {$email}</p>
+                    <h2>Business Contact Form Submission</h2>
+                    <p><strong>Business Name:</strong> {$businessName}</p>
+                    <p><strong>Contact Name:</strong> {$name}</p>
+                    <p><strong>Business Email:</strong> {$email}</p>
+                    " . (!empty($companyWebsite) ? "<p><strong>Company Website:</strong> {$companyWebsite}</p>" : "") . "
                     <p><strong>Subject:</strong> {$subject}</p>
                     <p><strong>Message:</strong></p>
                     <p>{$message}</p>
+                    <hr>
+                    <p><small>Email Domain Verified: " . ($emailValidation['verified'] ?? 'Yes') . "</small></p>
                 </body>
             </html>
         ");
         $emailService->setAltMessage("
-            Name: {$name}\n
-            Email: {$email}\n
+            Business Name: {$businessName}\n
+            Contact Name: {$name}\n
+            Business Email: {$email}\n
+            " . (!empty($companyWebsite) ? "Company Website: {$companyWebsite}\n" : "") . "
             Subject: {$subject}\n
             Message:\n
             {$message}
@@ -118,6 +156,38 @@ class Contact extends BaseController {
         } else {
             // In production, email failure is an error
             return redirect()->back()->withInput()->with('errors', ['Unable to send your message. Please try again later.']);
+        }
+    }
+    
+    /**
+     * Log form submission for security tracking
+     */
+    private function logFormSubmission($formType, $data)
+    {
+        try {
+            $db = \Config\Database::connect();
+            $builder = $db->table('form_submissions');
+            
+            $submissionData = [
+                'form_type' => $formType,
+                'submission_token' => $this->request->getPost('form_token') ?? uniqid(),
+                'ip_address' => $this->request->getIPAddress(),
+                'user_agent' => $this->request->getUserAgent(),
+                'email' => $data['email'] ?? '',
+                'business_name' => $data['business_name'] ?? null,
+                'company_website' => $data['company_website'] ?? null,
+                'email_domain' => $data['email_domain'] ?? '',
+                'is_business_email' => $data['is_business_email'] ?? true,
+                'domain_verified' => $data['domain_verified'] ?? false,
+                'submission_time' => time() - ($this->request->getPost('form_timestamp') ?? time()),
+                'interaction_count' => $data['interaction_count'] ?? 0,
+                'challenge_passed' => true,
+                'status' => 'approved'
+            ];
+            
+            $builder->insert($submissionData);
+        } catch (\Exception $e) {
+            log_message('error', 'Failed to log form submission: ' . $e->getMessage());
         }
     }
 

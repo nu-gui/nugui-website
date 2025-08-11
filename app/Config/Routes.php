@@ -52,6 +52,15 @@ $routes->post('log_lead', 'LeadController::logLead');
 $routes->post('log-to-file', 'LogController::logToFile');
 $routes->post('store-form-token', 'PartnerProgram::storeFormToken');
 
+// API Routes for Form Validation
+$routes->group('api', function($routes) {
+    $routes->post('check-email-domain', 'Api::checkEmailDomain');
+    $routes->post('track-interaction', 'Api::trackInteraction');
+    $routes->post('track-email-validation', 'Api::trackEmailValidation');
+    $routes->post('validate-company-website', 'Api::validateCompanyWebsite');
+    $routes->get('get-challenge', 'Api::getChallenge');
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

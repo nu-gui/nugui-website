@@ -188,6 +188,11 @@
     }
     </script>
     
+    <!-- Business Form Validation -->
+    <?php if (in_array($this->uri->getSegment(1), ['contact', 'support', 'partner-program'])): ?>
+    <script src="<?= base_url('assets/js/business-validation.js') ?>"></script>
+    <?php endif; ?>
+    
     <!-- Google Analytics -->
     <?php if (getenv('GA_MEASUREMENT_ID')): ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= esc(getenv('GA_MEASUREMENT_ID')) ?>"></script>
