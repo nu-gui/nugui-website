@@ -113,6 +113,19 @@
   position: relative;
   overflow: hidden;
   transition: all 0.3s var(--transition-smooth);
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button group alignment fix */
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .btn::before {
@@ -150,12 +163,15 @@
   background: var(--color-surface);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border);
+  transition: all 0.3s var(--transition-smooth);
 }
 
 .btn--secondary:hover {
-  background: var(--color-background);
+  background: var(--color-primary);
+  color: white !important;
   border-color: var(--color-primary);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 162, 232, 0.3);
 }
 
 .btn--outline {
@@ -346,6 +362,19 @@
   .btn--primary:hover {
     background: linear-gradient(135deg, #7AC5F5, #5AB4F1);
     border-color: rgba(122, 197, 245, 0.5);
+  }
+  
+  .btn--secondary {
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .btn--secondary:hover {
+    background: var(--color-primary);
+    color: white !important;
+    border-color: var(--color-primary);
+    box-shadow: 0 6px 20px rgba(90, 180, 241, 0.4);
   }
   
   /* Ensure text is always readable */

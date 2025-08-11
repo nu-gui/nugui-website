@@ -585,9 +585,9 @@ function toggleDetails(id) {
             <h2>Global Partnerships</h2>
             <p>We partner with operators, resellers, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>. Ask about regional routes, regulatory guidance, and co‑selling.</p>
         </div>
-        <div class="btn-group" style="margin-top: 2rem; text-align: center;">
-            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary">Talk to Sales</a>
-            <a href="<?= base_url('/partner-program'); ?>" class="btn btn--secondary">Become a Partner</a>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Talk to Sales</a>
+            <a href="<?= base_url('/partner-program'); ?>" class="btn btn--secondary btn--large">Become a Partner</a>
         </div>
     </div>
 </section>
