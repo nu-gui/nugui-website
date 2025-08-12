@@ -56,6 +56,10 @@ deployment:
     - /bin/cp -R public/* $DEPLOYPATH
     - /bin/cp public/.htaccess $DEPLOYPATH 2>/dev/null || true
     
+    # Copy essential files for production
+    - /bin/cp robots.txt $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp favicon.ico $DEPLOYPATH 2>/dev/null || true
+    
     # Create index.php in public_html that points to protected app
     - |
       cat > $DEPLOYPATH/index.php << 'EOF'
