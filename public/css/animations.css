@@ -1,0 +1,139 @@
+/**
+ * SHARED ANIMATIONS
+ * Centralized animation definitions to avoid duplication
+ * Used across multiple components
+ */
+
+/* ========================================
+   GRADIENT ANIMATIONS
+   ======================================== */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ========================================
+   FLOATING ANIMATIONS
+   ======================================== */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   PULSE ANIMATIONS
+   ======================================== */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+/* ========================================
+   TILT ANIMATIONS
+   ======================================== */
+@keyframes tilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(1deg);
+  }
+  75% {
+    transform: rotate(-1deg);
+  }
+}
+
+/* ========================================
+   BOUNCE ANIMATIONS
+   ======================================== */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ========================================
+   RIPPLE ANIMATIONS
+   ======================================== */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   SHIMMER ANIMATIONS
+   ======================================== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ========================================
+   GLOW ANIMATIONS
+   ======================================== */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(var(--color-primary-rgb, 0, 162, 232), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(var(--color-primary-rgb, 0, 162, 232), 0.5);
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.animate-gradient {
+  animation: gradientShift 8s ease infinite;
+  background-size: 400% 400%;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+}

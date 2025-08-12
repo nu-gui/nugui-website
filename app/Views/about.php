@@ -249,37 +249,31 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
                 <?= picture_profile('suren', 'team-image') ?>
                 <h3>Suren</h3>
                 <p>CTO</p>
-                <span class="bio">Technical leadership driving our platform architecture and innovation. Ensuring reliability and scalability across all NU GUI services.</span>
+                <span class="bio">Suren brings wealth of expertise in all things IP-based, from VoIP engineering to infrastructure and scalability. His exceptional database skills are the driving force behind our success, combined with his vast understanding of digital communications that powers our technical excellence.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('gali', 'team-image') ?>
                 <h3>Gali</h3>
                 <p>Sr Executive Assistant</p>
-                <span class="bio">Gali is the Senior Executive Assistant at NU GUI. With exceptional organizational skills and attention to detail, she ensures that all executive operations run smoothly and efficiently.</span>
+                <span class="bio">Gali is the voice of reason at NU GUI, empathetic to all circumstances and bridging the gap between technology and human behavior. Her wealth of language skills and training expertise helps build better relationships across our global partnerships and team.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('pavan', 'team-image') ?>
                 <h3>Pavan</h3>
-                <p>Jr Full Stack Developer</p>
-                <span class="bio">Pavan is a Junior Full Stack Developer at NU GUI. He brings fresh perspectives and innovative ideas to the team, contributing to the development of our dynamic web solutions.</span>
-            </div>
-            <div class="team-card">
-                <?= picture_profile('ajay', 'team-image') ?>
-                <h3>Ajay</h3>
-                <p>Sr Full Stack Developer</p>
-                <span class="bio">Ajay is a Senior Full Stack Developer with a wealth of experience in both front-end and back-end development. His expertise ensures that our applications are robust and user-friendly.</span>
+                <p>Full Stack Developer & VoIP Engineer</p>
+                <span class="bio">Pavan serves in a dual role at NU GUI, working as both a Full Stack Developer for UI deployments and a VoIP Engineer for day-to-day operations. His versatility allows him to bridge development and telecommunications infrastructure, ensuring seamless integration between our platforms.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('ankit', 'team-image') ?>
                 <h3>Ankit</h3>
                 <p>UI UX Web Designer</p>
-                <span class="bio">Ankit is our UI/UX Web Designer who crafts visually appealing and highly functional designs. His work enhances user experience and ensures our interfaces are intuitive and engaging.</span>
+                <span class="bio">Ankit is a creative genius with complete creative freedom at NU GUI. He builds and establishes our vision for project development and user experience with every project, ensuring our interfaces are not just functional but truly exceptional.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('mihir', 'team-image') ?>
                 <h3>Mihir</h3>
-                <p>PM & Full Stack Developer</p>
-                <span class="bio">Mihir serves as both a Project Manager and Full Stack Developer. His dual role helps bridge the gap between project planning and execution, ensuring timely and successful project completions.</span>
+                <p>Senior Full Stack Developer</p>
+                <span class="bio">Mihir is a seasoned senior full stack developer who has worked with the best software development companies in the industry. He's always leading the way in best practices and technology advancements, bringing world-class expertise to every project.</span>
             </div>
         </div>
     </div>
@@ -372,12 +366,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
       {
         "@type": "Person",
         "name": "Pavan",
-        "jobTitle": "Junior Full Stack Developer"
-      },
-      {
-        "@type": "Person",
-        "name": "Ajay", 
-        "jobTitle": "Senior Full Stack Developer"
+        "jobTitle": "Full Stack Developer & VoIP Engineer"
       },
       {
         "@type": "Person",
@@ -387,7 +376,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
       {
         "@type": "Person",
         "name": "Mihir",
-        "jobTitle": "Project Manager & Full Stack Developer"
+        "jobTitle": "Senior Full Stack Developer"
       }
     ]
   }

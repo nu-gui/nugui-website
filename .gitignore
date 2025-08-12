@@ -1,60 +1,41 @@
-# CodeIgniter4 .gitignore
+# CodeIgniter 4 .gitignore for Production Deployment
 
-# Vendor directory (Composer dependencies)
+# IMPORTANT: vendor and node_modules should be ignored
+# Run composer install on the server or include vendor only in deployment branch
 /vendor/
+/node_modules/
 
-# Environment files
-/.env
-/.env.*
-!/.env.example
-!/.env.docker.example
-.env.docker
+# Environment files (keep templates only)
+.env
+.env.*
+!env.example
+!env.production
 
-# Database configuration with credentials
-app/Config/Database.php.backup
-
-# Cache and logs
+# Writable directories - only ignore contents, not structure
 /writable/cache/*
 !/writable/cache/index.html
+!/writable/cache/.gitkeep
 /writable/logs/*
 !/writable/logs/index.html
+!/writable/logs/.gitkeep
 /writable/session/*
 !/writable/session/index.html
+!/writable/session/.gitkeep
 /writable/uploads/*
 !/writable/uploads/index.html
-
-# System files
-.DS_Store
-Thumbs.db
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# Build files
-/builds/
-/dist/
+!/writable/uploads/.gitkeep
+/writable/debugbar/*
+!/writable/debugbar/index.html
+!/writable/debugbar/.gitkeep
 
 # Temporary files
 *.tmp
 *.temp
-/info.php
-/phpinfo.php
-/php.ini.bak
-
-# Node modules (if using npm/yarn)
-node_modules/
-
-# Deployment temporary files
-deployment-temp/
-
-# Backup directories
-
-# Composer
-composer.phar
+*.bak
+*.swp
+*.swo
+*~
+*.log
 
 # OS generated files
 .DS_Store
@@ -64,7 +45,30 @@ composer.phar
 .Trashes
 ehthumbs.db
 Thumbs.db
-vendor/
-# CodeIgniter Debug Toolbar cache files
-writable/debugbar/
-!writable/debugbar/.gitkeep
+desktop.ini
+
+# IDE files (optional - can be committed if needed for team)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Keep test/debug files out
+/info.php
+/phpinfo.php
+/test.php
+/debug.php
+
+# Docker files (if not needed for deployment)
+docker-compose.override.yml
+.dockerignore
+
+# Note: The following are intentionally NOT ignored for cPanel deployment:
+# - vendor/ (needed unless Composer is run on server)
+# - .env files (will be configured on server)
+# - app/ (application source code)
+# - public/ (public assets)
+# - system/ (CodeIgniter system files)
+# - All configuration files
+# - .cpanel.yml (deployment configuration)
+# - .htaccess (Apache configuration)

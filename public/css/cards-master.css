@@ -1,0 +1,453 @@
+/**
+ * MASTER CARD STYLING SYSTEM
+ * Unified styling for all card types across the website
+ * Maintains transparency with gradient borders, shadow glows, and animations
+ */
+
+/* ========================================
+   BASE CARD STYLES - Shared by all cards
+   IMPORTANT: This overrides cards-unified.css backgrounds
+   ======================================== */
+.feature-card,
+.solution-card,
+.product-card,
+.benefit-card,
+.value-card,
+.team-card,
+.info-card,
+.process-card,
+.mini-feature-card,
+.contact-card,
+.support-card {
+  /* Force transparent background - override cards-unified.css */
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  /* Keep opacity visible */
+  opacity: 1 !important;
+  visibility: visible !important;
+  
+  /* Structure */
+  position: relative;
+  text-align: center;
+  
+  /* Transition for hover effects */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
+}
+
+/* ========================================
+   FEATURE CARDS - Main product features
+   ======================================== */
+.feature-card {
+  padding: 2.5rem;
+  margin: 1.5rem;
+  border-radius: 32px; /* Extra large rounded corners */
+  
+  /* Thicker border for prominence */
+  border: 3px solid;
+  border-image: linear-gradient(135deg, #00A2E8, #FFB000) 1;
+  
+  /* Strong shadow glow effect */
+  box-shadow: 
+    0 4px 20px rgba(0, 162, 232, 0.15),
+    0 8px 32px rgba(0, 162, 232, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Subtle pulse animation */
+  animation: subtle-pulse 4s ease-in-out infinite;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 8px 32px rgba(0, 162, 232, 0.25),
+    0 16px 48px rgba(0, 162, 232, 0.15),
+    0 0 80px rgba(0, 162, 232, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ========================================
+   SOLUTION CARDS - Service offerings
+   ======================================== */
+.solution-card {
+  /* Force transparent background - override any defaults */
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  padding: 2rem;
+  margin: 1.2rem;
+  border-radius: 28px; /* Large rounded corners */
+  
+  /* Medium border thickness */
+  border: 2.5px solid !important;
+  border-image: linear-gradient(135deg, #00E676, #00A2E8) 1 !important;
+  
+  /* Moderate shadow glow */
+  box-shadow: 
+    0 4px 16px rgba(0, 230, 118, 0.12),
+    0 8px 24px rgba(0, 162, 232, 0.08) !important;
+  
+  /* Float animation */
+  animation: float 6s ease-in-out infinite;
+  
+  /* Ensure text is visible */
+  color: var(--color-text-primary);
+}
+
+.solution-card:hover {
+  transform: translateY(-6px) rotate(0.5deg);
+  box-shadow: 
+    0 6px 24px rgba(0, 230, 118, 0.2),
+    0 12px 40px rgba(0, 162, 232, 0.12),
+    0 0 60px rgba(0, 230, 118, 0.08);
+}
+
+/* ========================================
+   PRODUCT CARDS - Product showcases
+   ======================================== */
+.product-card {
+  padding: 2.2rem;
+  margin: 1.3rem;
+  border-radius: 26px; /* Large soft rounded corners */
+  
+  /* Standard border */
+  border: 2px solid;
+  border-image: linear-gradient(135deg, var(--product-gradient-start, #00A2E8), var(--product-gradient-end, #FFB000)) 1;
+  
+  /* Product-specific glow */
+  box-shadow: 
+    0 4px 18px rgba(0, 162, 232, 0.1),
+    0 8px 28px rgba(255, 176, 0, 0.08);
+  
+  /* Tilt animation */
+  animation: gentle-tilt 8s ease-in-out infinite;
+}
+
+.product-card:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 
+    0 6px 28px rgba(0, 162, 232, 0.18),
+    0 12px 42px rgba(255, 176, 0, 0.12),
+    0 0 50px rgba(0, 162, 232, 0.06);
+}
+
+/* ========================================
+   PROCESS CARDS - Workflow steps
+   ======================================== */
+.process-card {
+  padding: 2.2rem 1.2rem 1.5rem 1.2rem !important;
+  margin: 0.8rem;
+  border-radius: 24px; /* Large moderate rounding */
+  
+  /* Thinner border for subtlety */
+  border: 1.5px solid;
+  border-image: linear-gradient(135deg, #2196F3, #9C4DCC) 1;
+  
+  /* Subtle shadow */
+  box-shadow: 
+    0 3px 12px rgba(33, 150, 243, 0.08),
+    0 6px 20px rgba(156, 77, 204, 0.06);
+  
+  /* Slide-in animation */
+  animation: slide-in 10s ease-in-out infinite;
+  
+  /* Override inline styles */
+  background: transparent !important;
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 260px;
+}
+
+.process-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 5px 20px rgba(33, 150, 243, 0.15),
+    0 10px 32px rgba(156, 77, 204, 0.1);
+}
+
+/* ========================================
+   MINI FEATURE CARDS - Small feature items
+   ======================================== */
+.mini-feature-card {
+  padding: 1.1rem 1.2rem !important;
+  margin: 0.5rem;
+  border-radius: 16px; /* Medium rounded corners */
+  
+  /* Thin border */
+  border: 1px solid rgba(0, 162, 232, 0.3);
+  
+  /* Very subtle shadow (no glow) */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  
+  /* No animation for mini cards */
+  animation: none;
+  
+  /* Keep background for mini cards */
+  background: var(--color-background-secondary) !important;
+  flex: 1 1 180px;
+  min-width: 160px;
+  max-width: 220px;
+  text-align: left !important;
+}
+
+.mini-feature-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 162, 232, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ========================================
+   BENEFIT CARDS - Partner/customer benefits
+   ======================================== */
+.benefit-card {
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 30px; /* Extra distinctive rounding */
+  
+  /* Medium-thick border */
+  border: 2.5px solid;
+  border-image: linear-gradient(135deg, #9C4DCC, #FFB000) 1;
+  
+  /* Purple-gold glow */
+  box-shadow: 
+    0 4px 16px rgba(156, 77, 204, 0.12),
+    0 8px 24px rgba(255, 176, 0, 0.08);
+  
+  /* Bounce animation */
+  animation: soft-bounce 7s ease-in-out infinite;
+}
+
+.benefit-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 
+    0 6px 24px rgba(156, 77, 204, 0.2),
+    0 12px 36px rgba(255, 176, 0, 0.12),
+    0 0 40px rgba(156, 77, 204, 0.06);
+}
+
+/* ========================================
+   VALUE & TEAM CARDS
+   ======================================== */
+.value-card,
+.team-card {
+  padding: 1.8rem;
+  margin: 1rem;
+  border-radius: 22px; /* Large soft corners */
+  
+  /* Standard border */
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #00A2E8, #9C4DCC) 1;
+  
+  /* Moderate glow */
+  box-shadow: 
+    0 3px 14px rgba(0, 162, 232, 0.1),
+    0 6px 22px rgba(156, 77, 204, 0.06);
+  
+  /* Fade-in animation */
+  animation: fade-float 9s ease-in-out infinite;
+}
+
+.value-card:hover,
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 5px 22px rgba(0, 162, 232, 0.16),
+    0 10px 34px rgba(156, 77, 204, 0.1);
+}
+
+/* ========================================
+   INFO CARDS - Information boxes
+   ======================================== */
+.info-card {
+  padding: 1.5rem;
+  margin: 0.8rem;
+  border-radius: 20px; /* Large standard rounding */
+  
+  /* Thin border */
+  border: 1.5px solid;
+  border-image: linear-gradient(135deg, #FF6B35, #FFB000) 1;
+  
+  /* Light shadow */
+  box-shadow: 
+    0 3px 12px rgba(255, 107, 53, 0.08),
+    0 6px 18px rgba(255, 176, 0, 0.06);
+  
+  /* Gentle sway animation */
+  animation: gentle-sway 11s ease-in-out infinite;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 5px 18px rgba(255, 107, 53, 0.14),
+    0 10px 28px rgba(255, 176, 0, 0.1);
+}
+
+/* ========================================
+   PAGE-SPECIFIC GRADIENT OVERRIDES
+   ======================================== */
+.page-home .feature-card,
+.page-home .info-card {
+  border-image: linear-gradient(135deg, #00A2E8, #FFC107) 1;
+}
+
+.page-solutions .solution-card {
+  border-image: linear-gradient(135deg, #00E676, #00A2E8) 1;
+}
+
+.page-products .product-card {
+  border-image: linear-gradient(135deg, var(--product-gradient-start, #00A2E8), var(--product-gradient-end, #FFB000)) 1;
+}
+
+.page-about .team-card,
+.page-about .value-card {
+  border-image: linear-gradient(135deg, #00A2E8, #9C4DCC) 1;
+}
+
+.page-contact .info-card {
+  border-image: linear-gradient(135deg, #FF6B35, #FFB000) 1;
+}
+
+.page-partner-program .benefit-card {
+  border-image: linear-gradient(135deg, #9C4DCC, #FFB000) 1;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes subtle-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.005); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes gentle-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(0.5deg); }
+  75% { transform: rotate(-0.5deg); }
+}
+
+@keyframes slide-in {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+@keyframes soft-bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-5px); }
+  75% { transform: translateY(3px); }
+}
+
+@keyframes fade-float {
+  0%, 100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% { 
+    opacity: 0.95;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes gentle-sway {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  33% { transform: rotate(0.3deg) translateX(2px); }
+  66% { transform: rotate(-0.3deg) translateX(-2px); }
+}
+
+/* ========================================
+   DARK MODE ADJUSTMENTS
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .benefit-card,
+  .value-card,
+  .team-card,
+  .info-card,
+  .process-card {
+    /* Keep transparent */
+    background: transparent !important;
+    
+    /* Enhance glow in dark mode */
+    filter: brightness(1.1);
+  }
+  
+  /* Stronger hover glow in dark mode */
+  .feature-card:hover,
+  .solution-card:hover,
+  .product-card:hover,
+  .benefit-card:hover,
+  .value-card:hover,
+  .team-card:hover,
+  .info-card:hover,
+  .process-card:hover {
+    filter: brightness(1.3);
+  }
+  
+  /* Mini cards get subtle dark background */
+  .mini-feature-card {
+    background: rgba(31, 41, 55, 0.5) !important;
+    border-color: rgba(90, 180, 241, 0.3);
+  }
+  
+  .mini-feature-card:hover {
+    background: rgba(31, 41, 55, 0.7) !important;
+    border-color: rgba(90, 180, 241, 0.5);
+  }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 768px) {
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .benefit-card,
+  .value-card,
+  .team-card,
+  .info-card {
+    padding: 1.5rem;
+    margin: 0.8rem;
+  }
+  
+  .process-card {
+    min-width: 180px;
+    max-width: 200px;
+  }
+  
+  .mini-feature-card {
+    min-width: 140px;
+    max-width: 180px;
+  }
+  
+  /* Reduce animation movement on mobile */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  @keyframes fade-float {
+    0%, 100% { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+    50% { 
+      opacity: 0.97;
+      transform: translateY(-4px);
+    }
+  }
+}

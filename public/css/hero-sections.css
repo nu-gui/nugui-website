@@ -206,10 +206,10 @@
 .hero-section.hero-partner,
 .page-partner-program .hero-section {
     background: linear-gradient(-45deg, 
-        #00A2E8, 
-        #AF8F4C, 
-        #9C7837, 
-        #D4AF37);
+        #FF6B6B,  /* Coral Pink */
+        #4ECDC4,  /* Turquoise */
+        #45B7D1,  /* Sky Blue */
+        #96CEB4); /* Sage Green */
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
 }
@@ -345,10 +345,10 @@
     .hero-section.hero-partner,
     .page-partner-program .hero-section {
         background: linear-gradient(-45deg, 
-            #2F69B3, 
-            #8D6E63, 
-            #6D4C41, 
-            #795548);
+            #E91E63,  /* Pink */
+            #00BCD4,  /* Cyan */
+            #009688,  /* Teal */
+            #4CAF50); /* Green */
         background-size: 400% 400%;
         animation: gradientShift 15s ease infinite;
     }

@@ -360,22 +360,22 @@ function toggleDetails(id) {
         </div>
         <div class="process-cards-row" style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;align-items:stretch;">
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
-                <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">1</div>
+                <div style="width:48px;height:48px;background:linear-gradient(135deg, #00A2E8, #0082BB);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 4px 12px rgba(0,162,232,0.3), 0 2px 4px rgba(0,0,0,0.1);font-size:1.5rem;color:#FFFFFF;font-weight:700;border:2px solid rgba(255,255,255,0.3);">1</div>
                 <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Discovery (Days 1‑3)</h3>
                 <p style="color:var(--color-text-secondary);font-size:1.05rem;">Requirements, current stack, and growth targets</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
-                <div style="width:48px;height:48px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">2</div>
+                <div style="width:48px;height:48px;background:linear-gradient(135deg, #FF6B6B, #FF5252);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 4px 12px rgba(255,107,107,0.3), 0 2px 4px rgba(0,0,0,0.1);font-size:1.5rem;color:#FFFFFF;font-weight:700;border:2px solid rgba(255,255,255,0.3);">2</div>
                 <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Architecture (Days 4‑7)</h3>
                 <p style="color:var(--color-text-secondary);font-size:1.05rem;">Scalable design, carrier selection, integration plan</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
-                <div style="width:48px;height:48px;background:var(--color-accent-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">3</div>
+                <div style="width:48px;height:48px;background:linear-gradient(135deg, #4ECDC4, #44A08D);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 4px 12px rgba(78,205,196,0.3), 0 2px 4px rgba(0,0,0,0.1);font-size:1.5rem;color:#FFFFFF;font-weight:700;border:2px solid rgba(255,255,255,0.3);">3</div>
                 <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Deployment (Days 8‑21)</h3>
                 <p style="color:var(--color-text-secondary);font-size:1.05rem;">Install, configure routes, integrate billing, end‑to‑end tests</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
-                <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">4</div>
+                <div style="width:48px;height:48px;background:linear-gradient(135deg, #9C4DCC, #7B1FA2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 4px 12px rgba(156,77,204,0.3), 0 2px 4px rgba(0,0,0,0.1);font-size:1.5rem;color:#FFFFFF;font-weight:700;border:2px solid rgba(255,255,255,0.3);">4</div>
                 <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Go‑Live (Days 22‑30)</h3>
                 <p style="color:var(--color-text-secondary);font-size:1.05rem;">Launch operations, enable team, activate 24/7 support</p>
             </div>
