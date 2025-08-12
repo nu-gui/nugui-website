@@ -132,24 +132,27 @@ deployment:
       require_once $pathsConfig;
       $paths = new Config\Paths();
       
-      // Path to CodeIgniter's bootstrap file
-      $bootstrap = '/home/nuguiyhv/ci_app/system/bootstrap.php';
-      if (!file_exists($bootstrap)) {
-          die('System bootstrap file not found. Please contact the administrator.');
-      }
-      require $bootstrap;
+      // Load our paths config file
+      require '/home/nuguiyhv/ci_app/app/Config/Paths.php';
+      $paths = new Config\Paths();
       
-      // Load environment configuration
+      // Location of the framework bootstrap file  
+      require '/home/nuguiyhv/ci_app/app/Config/Boot/production.php';
+      
+      // Load Common.php for helper functions (needed for env() function)
+      require '/home/nuguiyhv/ci_app/system/Common.php';
+      
+      // Load environment settings from .env files
       require_once '/home/nuguiyhv/ci_app/system/Config/DotEnv.php';
-      $env = new CodeIgniter\Config\DotEnv('/home/nuguiyhv/ci_app');
-      $env->load();
+      (new CodeIgniter\Config\DotEnv('/home/nuguiyhv/ci_app'))->load();
       
-      // Launch the application
-      $app = Config\Services::codeigniter();
-      $app->initialize();
-      $context = is_cli() ? 'php-cli' : 'web';
-      $app->setContext($context);
-      $app->run();
+      // Define ENVIRONMENT
+      if (!defined('ENVIRONMENT')) {
+          define('ENVIRONMENT', env('CI_ENVIRONMENT', 'production'));
+      }
+      
+      // Boot the application
+      require '/home/nuguiyhv/ci_app/system/CodeIgniter.php';
       EOF
     
     # ============================================================
