@@ -302,5 +302,14 @@ deployment:
       echo "  - Public: $PUBLICPATH" >> $APPPATH/writable/logs/deployment.log
       echo "========================================" >> $APPPATH/writable/logs/deployment.log
     
+    # ============================================================
+    # STEP 11: RUN POST-DEPLOYMENT TASKS
+    # ============================================================
+    - |
+      if [ -f "$REPOPATH/.cpanel/post-deploy.sh" ]; then
+        chmod +x $REPOPATH/.cpanel/post-deploy.sh
+        bash $REPOPATH/.cpanel/post-deploy.sh
+      fi
+    
     # Final success message
     - echo "✅ Secure deployment completed successfully!"
