@@ -67,6 +67,11 @@ if (!function_exists('picture_product')) {
      * @return string HTML picture element
      */
     function picture_product($product, $type = 'icon', $class = '') {
+        // Special case for GUI product - use NUGUI-icon files
+        if ($product === 'GUI') {
+            return picture_logo(true, $class);
+        }
+        
         // Use PNG for icons (better quality and transparency) and JPG for product images
         $extension = ($type === 'icon') ? 'png' : 'jpg';
         

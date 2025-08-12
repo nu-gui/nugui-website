@@ -1,16 +1,16 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>About Us | NU GUI Telecom Solutions - Our Story & Team<?= $this->endSection() ?>
+<?= $this->section('title') ?>About NU GUI | Our Story, Mission & Global Partnerships<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
 <?php
 // SEO Meta Tags for About Page
-$this->setVar('description', 'Learn about NU GUI - Leading telecom solutions provider since 2005. Meet our expert team, discover our mission, and see how we serve operators in 50+ countries worldwide.');
-$this->setVar('ogTitle', 'About NU GUI - Pioneering Telecom Innovation Since 2005');
-$this->setVar('ogDescription', 'Discover the story behind NU GUI, meet our leadership team, and learn how we became a trusted telecom solutions provider for operators worldwide.');
-$this->setVar('twitterTitle', 'About NU GUI - Pioneering Telecom Innovation Since 2005');
-$this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SMS, and call control solutions trusted by operators in 50+ countries.');
+$this->setVar('description', 'NU GUI rebranded from We Sell Solutions (WSS) in 2018. We help carriers, resellers, and enterprises deliver reliable telecom and direct marketing at scale, with strong partnerships globally—especially across Africa and India.');
+$this->setVar('ogTitle', 'About NU GUI | Our Story, Mission & Global Partnerships');
+$this->setVar('ogDescription', 'NU GUI helps carriers, resellers, and enterprises deliver reliable communications and data‑driven marketing at scale. Established in 2018 through merger and rebrand of We Sell Solutions.');
+$this->setVar('twitterTitle', 'About NU GUI | Global Telecom Solutions Provider');
+$this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes: better connectivity, lower cost per minute, stronger customer engagement, and clear reporting.');
 ?>
 <style>
     body {
@@ -92,46 +92,7 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
     }
-    .value-card {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 40px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .value-card:hover {
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        border-color: var(--color-primary);
-    }
-    .value-card h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--color-text-primary);
-    }
-    .value-card p {
-        color: var(--color-text-secondary);
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
-    .team-card {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 32px 24px 28px 24px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        margin-bottom: 0;
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .team-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 16px 32px rgba(0,0,0,0.22);
-        border-color: var(--color-primary);
-    }
+    /* Card styles moved to cards-standardized.css for consistency */
     .team-card img {
         width: 120px;
         height: 120px;
@@ -180,11 +141,11 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
 <section class="hero-section hero-about">
     <div class="max-w-7xl mx-auto">
         <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            Pioneering <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">Telecom Innovation</span> Since 2005
+            About <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
         </h1>
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
-            From startup to global leader: Powering telecommunications for operators in 50+ countries
-            with carrier-grade solutions and 24/7 dedicated support.
+            NU GUI helps carriers, resellers, and enterprises deliver <strong>reliable communications and data‑driven marketing at scale</strong>.<br>
+            We focus on practical outcomes: <strong>better connectivity, lower cost per minute, stronger customer engagement, and clear reporting</strong>.
         </p>
     </div>
 </section>
@@ -194,10 +155,10 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="story-section">
             <div class="story-content">
-                <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 20px;">Two Decades of Telecom Excellence</h2>
-                <p>Founded in 2005 by telecommunications visionaries, NU GUI emerged from a critical industry need: reliable, scalable telecom infrastructure that actually works. What started as a boutique consultancy has evolved into a global powerhouse serving tier-1 carriers and Fortune 500 enterprises.</p>
-                <p>Our breakthrough came in 2010 with the launch of NU CCS - the industry's first AI-powered fraud detection system, reducing revenue leakage by up to 40%. Today, we process over 1 billion transactions monthly, maintain 99.99% uptime across all services, and have saved our clients millions through intelligent automation and fraud prevention.</p>
-                <p>With offices across 3 continents and a 24/7 global support team, we're not just a vendor - we're your telecommunications partner for growth.</p>
+                <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 20px;">Our Origin Story</h2>
+                <p>NU GUI was established in <strong>2018</strong> through the <strong>merger and rebrand of We Sell Solutions (WSS)</strong>. WSS had been providing holistic telecom and direct marketing services—<strong>VoIP, bulk SMS, cloud PBX, campaign automation, and data management</strong>—with a hands‑on, results‑first approach.</p>
+                <p>The rebrand consolidated those strengths into a single, focused company built for modern telecom needs.</p>
+                <p><strong>Leadership:</strong> NU GUI is led by <strong>CEO Wesley Burgess</strong>, whose background spans telecommunications, contact‑centre optimisation, and business intelligence. Prior to NU GUI, Wesley held leadership roles at <strong>Teleforge</strong> and <strong>Proforge</strong>, and served as Managing Director of <strong>We Sell Solutions</strong>. His north star has stayed the same: <strong>help businesses connect better, sell smarter, and operate more efficiently</strong>.</p>
             </div>
             <div>
                 <!-- Custom logo for about page: NUGUI-1 for light theme, NUGUI-2 for dark theme -->
@@ -211,50 +172,84 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     </div>
 </section>
 
-<!-- Vision, Mission & Values -->
+<!-- What We Do & How We Work -->
 <section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>Driving the Future of Global Communications</h2>
-            <p>Our commitment to excellence shapes everything we do</p>
+            <h2>What We Do</h2>
+            <p>We provide platforms and services to <strong>route calls, send messages, run campaigns, and bill in real time</strong>—without complexity.</p>
         </div>
         <div class="card-grid">
             <div class="value-card">
-                <h3>Vision 2030</h3>
-                <p>To power 10% of global telecommunications traffic with sustainable, AI-driven infrastructure that connects every business to their full potential - reliably, securely, affordably.</p>
+                <h3>Voice & Call Control</h3>
+                <p>VoIP, SBC/PBX, advanced routing, failover.</p>
             </div>
             <div class="value-card">
-                <h3>Our Mission</h3>
-                <p>We democratize access to carrier-grade telecom infrastructure. By combining enterprise reliability with startup agility, we help operators launch faster, scale smarter, and compete globally.</p>
+                <h3>Messaging & Campaigns</h3>
+                <p>Bulk SMS, automated outreach.</p>
             </div>
             <div class="value-card">
-                <h3>Core Values</h3>
-                <p><strong>Reliability First:</strong> 99.99% uptime isn't a goal, it's our standard. <strong>Innovation Daily:</strong> We ship improvements weekly, not yearly. <strong>Customer Success:</strong> Your growth is our growth. <strong>Transparency Always:</strong> No hidden fees, no surprises.</p>
+                <h3>Engagement & Data</h3>
+                <p>Lead data management and database tools.</p>
+            </div>
+            <div class="value-card">
+                <h3>Reporting & Billing</h3>
+                <p>Real‑time visibility to manage cost, quality, and ROI.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How We Work -->
+<section class="section alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>How We Work</h2>
+            <p>Values & principles that guide everything we do</p>
+        </div>
+        <div class="card-grid">
+            <div class="value-card">
+                <h3>Reliability First</h3>
+                <p>Carrier‑grade platforms, built‑in failover, proactive support.</p>
+            </div>
+            <div class="value-card">
+                <h3>Cost Transparency</h3>
+                <p>Tools that surface real‑time spend and performance so you can act quickly.</p>
+            </div>
+            <div class="value-card">
+                <h3>Security & Compliance</h3>
+                <p>Controls that protect your business and your customers.</p>
+            </div>
+            <div class="value-card">
+                <h3>Partner‑First</h3>
+                <p>We succeed when our clients and resellers succeed—your roadmap informs ours.</p>
+            </div>
+            <div class="value-card">
+                <h3>Practical Innovation</h3>
+                <p>We ship outcomes, not buzzwords.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Leadership Team -->
-<section class="section alt">
+<section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>Meet the Experts Behind Your Success</h2>
-            <p>Combined 150+ years of telecom experience. Former executives from Vodafone, MTN, and Orange. 
-               Inventors of 12 telecommunications patents. Your dedicated team for growth.</p>
+            <h2>Leadership</h2>
         </div>
         <div class="card-grid">
             <div class="team-card">
                 <?= picture_profile('wes', 'team-image') ?>
-                <h3>Wes</h3>
-                <p>CEO & Founder</p>
-                <span class="bio">Serial entrepreneur with 20+ years in telecom. Previously founded 3 successful startups. Holder of 5 telecommunications patents. Leading NU GUI's vision for democratizing carrier-grade infrastructure globally.</span>
+                <h3>Wesley Burgess</h3>
+                <p>Chief Executive Officer</p>
+                <span class="bio">Wesley leads NU GUI's strategy and growth. His experience spans telecommunications, direct marketing, and analytics—turning complex operations into measurable business results. Under his leadership, NU GUI has focused on reliability, partner enablement, and data‑driven decision‑making.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('suren', 'team-image') ?>
                 <h3>Suren</h3>
                 <p>CTO</p>
-                <span class="bio">Former Vodafone Principal Architect. 18 years building telecom systems processing billions of calls. Architected systems for 3 of Africa's largest carriers. Ensuring 99.99% uptime across all NU GUI services.</span>
+                <span class="bio">Technical leadership driving our platform architecture and innovation. Ensuring reliability and scalability across all NU GUI services.</span>
             </div>
             <div class="team-card">
                 <?= picture_profile('gali', 'team-image') ?>
@@ -290,15 +285,39 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     </div>
 </section>
 
+<!-- Global Partnerships -->
+<section class="section alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Global Partnerships</h2>
+            <p>NU GUI partners with operators, resellers, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>.</p>
+            <p>We collaborate closely with partners on deployment, onboarding, and growth, offering enablement, training, and co‑marketing support.</p>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <p>Interested in partnering? Visit <a href="<?= base_url('/partner-program'); ?>" style="color: var(--color-primary); text-decoration: underline;">Partner with NU GUI</a> or <a href="<?= base_url('/contact'); ?>" style="color: var(--color-primary); text-decoration: underline;">Contact us</a>.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Where We Operate -->
+<section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Where We Operate</h2>
+            <p>Headquartered in <strong>Cape Town, South Africa</strong>, we support customers and partners around the world.</p>
+            <p>Our network and experience bridge <strong>regional growth in Africa and India</strong> with global scalability.</p>
+        </div>
+    </div>
+</section>
+
 <!-- CTA Section -->
 <section class="cta-section">
     <div class="max-w-4xl mx-auto">
-        <h2>Join 200+ Operators Who Trust NU GUI</h2>
-        <p>From startups to tier-1 carriers, we power telecommunications success stories worldwide.
-           Start with our free trial - no credit card required, no setup fees.</p>
+        <h2>Ready to Partner with NU GUI?</h2>
+        <p>Join our global network of carriers, resellers, and enterprises delivering reliable communications at scale.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large">Start Free Trial</a>
-            <a href="<?= base_url('/solutions') ?>" class="btn btn--secondary btn--large">View Case Studies</a>
+            <a href="<?= base_url('/contact') ?>" class="btn btn--primary btn--large">Contact Us</a>
+            <a href="<?= base_url('/solutions') ?>" class="btn btn--secondary btn--large">Explore Solutions</a>
         </div>
     </div>
 </section>
@@ -313,14 +332,14 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     "name": "NU GUI",
     "url": "https://nugui.co.za",
     "logo": "https://nugui.co.za/assets/images/NUGUI-icon-1.png",
-    "foundingDate": "2005",
+    "foundingDate": "2018",
     "numberOfEmployees": {
       "@type": "QuantitativeValue",
       "minValue": 50,
       "maxValue": 100
     },
-    "description": "Leading provider of carrier-grade telecommunication solutions serving operators in 50+ countries since 2005.",
-    "slogan": "Pioneering Telecom Innovation Since 2005",
+    "description": "NU GUI helps carriers, resellers, and enterprises deliver reliable communications and data-driven marketing at scale. Established in 2018 through merger and rebrand of We Sell Solutions.",
+    "slogan": "Powering Telecom Growth for Carriers & Resellers",
     "areaServed": {
       "@type": "Country",
       "name": "Worldwide"
@@ -333,9 +352,9 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
     "founders": [
       {
         "@type": "Person",
-        "name": "Wes",
-        "jobTitle": "CEO & Founder",
-        "description": "Serial entrepreneur with 20+ years in telecom. Holder of 5 telecommunications patents."
+        "name": "Wesley Burgess",
+        "jobTitle": "Chief Executive Officer",
+        "description": "Wesley leads NU GUI's strategy and growth. His experience spans telecommunications, direct marketing, and analytics."
       }
     ],
     "employees": [
@@ -343,7 +362,7 @@ $this->setVar('twitterDescription', 'Meet the team behind carrier-grade VoIP, SM
         "@type": "Person",
         "name": "Suren",
         "jobTitle": "CTO",
-        "description": "Former Vodafone Principal Architect with 18 years building telecom systems."
+        "description": "Technical leadership driving our platform architecture and innovation."
       },
       {
         "@type": "Person",

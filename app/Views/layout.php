@@ -20,7 +20,8 @@
     <!-- Product Colors and Page Gradients -->
     <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>">
+    <!-- Disabled: card-glow.css causes transparency issues, replaced by cards-standardized.css -->
+    <!-- <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>"> -->
     
     <!-- Theme-aware images CSS -->
     <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
@@ -34,14 +35,17 @@
     <!-- Unified hero section styles -->
     <link rel="stylesheet" href="<?= base_url('css/hero-sections.css') ?>">
     
-    <!-- Unified card styles -->
-    <link rel="stylesheet" href="<?= base_url('css/cards-unified.css') ?>">
+    <!-- Standardized card styles (replaces cards-unified.css) -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-standardized.css') ?>">
     
     <!-- Enhanced form styles -->
     <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
     
     <!-- Futuristic form styles -->
     <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
+    
+    <!-- Theme fixes and enhancements -->
+    <link rel="stylesheet" href="<?= base_url('css/theme-fixes.css') ?>">
     
     <!-- Existing CSS for backward compatibility -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -189,7 +193,10 @@
     </script>
     
     <!-- Business Form Validation -->
-    <?php if (in_array($this->uri->getSegment(1), ['contact', 'support', 'partner-program'])): ?>
+    <?php 
+    $uri = service('uri');
+    if (in_array($uri->getSegment(1), ['contact', 'support', 'partner-program'])): 
+    ?>
     <script src="<?= base_url('assets/js/business-validation.js') ?>"></script>
     <?php endif; ?>
     

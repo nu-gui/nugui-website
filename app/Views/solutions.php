@@ -1,16 +1,16 @@
 <?= $this->extend('layout') ?>
 
-<?= $this->section('title') ?>Telecom Solutions for Operators | VoIP, SMS, Call Control & Billing<?= $this->endSection() ?>
+<?= $this->section('title') ?>NU GUI Solutions | Carrier-Grade VoIP, SMS, Call Control, Data Intelligence<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 
 <?php
 // SEO Meta Tags for Solutions Page
-$this->setVar('description', 'Enterprise telecom solutions for operators: VoIP infrastructure, SMS gateways, call control systems, billing integration. Scale from startup to tier-1 carrier with 99.99% uptime.');
-$this->setVar('ogTitle', 'NU GUI Solutions - Enterprise Telecom Infrastructure for Operators');
-$this->setVar('ogDescription', 'Complete telecom solutions: carrier-grade VoIP, bulk SMS platforms, AI-powered call control, real-time billing. Trusted by 200+ operators in 50+ countries.');
-$this->setVar('twitterTitle', 'NU GUI Solutions - Telecom Infrastructure for Operators');
-$this->setVar('twitterDescription', 'Scale your telecom operations with carrier-grade VoIP, SMS, call control & billing solutions. 99.99% uptime guaranteed.');
+$this->setVar('description', 'Explore NU GUI solutions: NU SIP (VoIP), NU SMS (bulk messaging), NU CCS (call control), NU DATA (intelligence), NU CRON (AI scheduling), and turnkey infrastructure. Global partnerships with strength in Africa & India.');
+$this->setVar('ogTitle', 'NU GUI Solutions | Carrier-Grade VoIP, SMS, Call Control, Data Intelligence');
+$this->setVar('ogDescription', 'From startup MVNOs to tier‑1 carriers, we power telecommunications success with carrier‑grade platforms and a partner‑first approach. Complete infrastructure, built for reliability, scale, and measurable ROI.');
+$this->setVar('twitterTitle', 'NU GUI Solutions | Telecom Solutions That Scale With You');
+$this->setVar('twitterDescription', 'Carrier‑grade platforms and partner‑first approach. VoIP, SMS, call control, data intelligence, AI scheduling. Global partnerships with strength in Africa & India.');
 ?>
 <style>
     body {
@@ -209,20 +209,19 @@ function toggleDetails(id) {
             <span class="text-gradient">Scale With You</span>
         </h1>
         <p>
-            From startup MVNOs to tier-1 carriers, we power telecommunications success. 
-            Complete infrastructure solutions with 99.99% uptime, processing billions of minutes monthly.
+            From startup MVNOs to tier‑1 carriers, we power telecommunications success with <strong>carrier‑grade platforms</strong> 
+            and a <strong>partner‑first</strong> approach. Complete infrastructure, built for reliability, scale, and measurable ROI.
         </p>
     </div>
 </section>
 
 <!-- Solutions Grid -->
-<section class="section">
+<section class="section" id="solutions-overview">
     <div class="max-w-7xl">
         <div class="section-header">
-            <h2>Industry-Leading Telecom Infrastructure</h2>
+            <h2>Carrier-Grade Solutions</h2>
             <p>
-                Proven solutions deployed by 200+ operators worldwide. Start small, scale infinitely.
-                Average ROI of 300% within 12 months. 24/7 expert support included.
+                Enterprise-ready telecommunication infrastructure engineered for reliability and scale.
             </p>
         </div>
         <div class="card-grid">
@@ -231,15 +230,16 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper">
                     <?= picture_product('SIP', 'icon', 'product-icon') ?>
                 </div>
-                <h3>NU SIP - VoIP Platform</h3>
-                <p><strong>195+ countries</strong> coverage. <strong>0.001¢/min</strong> wholesale rates. HD voice quality with <strong>99.99% uptime</strong>.</p>
+                <h3>NU SIP — Enterprise VoIP Platform</h3>
+                <p>Global coverage with HD voice quality and <strong>99.99% uptime</strong>. Designed for scale with smart routing and deep analytics.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('sip-details')">Details</button>
                 <div id="sip-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>High-Quality Voice & Global Coverage</li>
-                        <li>Real-time Monitoring & Analytics</li>
-                        <li>Advanced SIP Trunking</li>
-                        <li>Intelligent Routing & Failover</li>
+                        <li><strong>SIP Trunking:</strong> Inbound/outbound with competitive international reach</li>
+                        <li><strong>Media Handling:</strong> Transcoding, recording, real‑time quality analytics</li>
+                        <li><strong>Carrier Routing:</strong> Least‑cost, failover, QoS‑optimised routing</li>
+                        <li><strong>APIs:</strong> REST/GraphQL for CRM/PBX integration</li>
+                        <li><strong>Compliance & Security:</strong> Encryption with GDPR‑aligned controls</li>
                     </ul>
                 </div>
             </div>
@@ -247,15 +247,15 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_product('SMS', 'icon', 'product-icon') ?>
                 </div>
-                <h3>NU SMS - Messaging Gateway</h3>
-                <p><strong>98% delivery rates</strong>. Send <strong>1M+ messages/hour</strong>. Direct routes to <strong>200+ countries</strong>.</p>
+                <h3>NU SMS — Bulk SMS Gateway Platform</h3>
+                <p>Send high‑volume campaigns with <strong>direct operator routes</strong>, real‑time delivery tracking, and two‑way messaging.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('sms-details')">Details</button>
                 <div id="sms-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>Bulk Messaging & Two-Way SMS</li>
-                        <li>API Integration</li>
-                        <li>Real-time Tracking & Reports</li>
-                        <li>Global Coverage</li>
+                        <li><strong>Bulk & Two‑Way Messaging:</strong> Campaigns, alerts, and replies</li>
+                        <li><strong>APIs:</strong> SMPP, HTTP, REST with webhook DLRs</li>
+                        <li><strong>Global Coverage:</strong> Competitive international reach</li>
+                        <li><strong>Compliance:</strong> Opt‑out tools and TCPA‑style controls</li>
                     </ul>
                 </div>
             </div>
@@ -263,15 +263,16 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_product('CCS', 'icon', 'product-icon') ?>
                 </div>
-                <h3>NU CCS - Call Control</h3>
-                <p>AI fraud detection reduces losses by <strong>40%</strong>. Handle <strong>10,000+ CPS</strong>. Real-time billing integration.</p>
+                <h3>NU CCS — AI‑Powered Call Control System</h3>
+                <p>Built on proven SIP proxy technology for maximum reliability. Handle very high call volumes with <strong>real‑time billing integration</strong> and <strong>fraud prevention</strong>.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('ccs-details')">Details</button>
                 <div id="ccs-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>Traffic Filtering & Management</li>
-                        <li>Flexible Billing Integration</li>
-                        <li>Fraud Detection & Prevention</li>
-                        <li>CDR Management</li>
+                        <li><strong>Traffic Management:</strong> Advanced filtering, routing, real‑time monitoring</li>
+                        <li><strong>Billing Integration:</strong> Prepaid/postpaid rating and charging; multi‑currency</li>
+                        <li><strong>Fraud Prevention:</strong> Rules engine + machine‑learning detection</li>
+                        <li><strong>CDR Management:</strong> Generation, export (S3/FTP), and analytics</li>
+                        <li><strong>APIs:</strong> Integrations with common billing stacks</li>
                     </ul>
                 </div>
             </div>
@@ -279,14 +280,15 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_product('DATA', 'icon', 'product-icon') ?>
                 </div>
-                <h3>NU DATA - Intelligence</h3>
-                <p><strong>99.5% accuracy</strong> in validation. Process <strong>100M+ records daily</strong>. Real-time HLR/MNP lookups.</p>
+                <h3>NU DATA — Telecom Intelligence Platform</h3>
+                <p>Real‑time <strong>HLR/VLR</strong> and <strong>MNP</strong> checks with carrier identification, plus high‑throughput batch processing for large datasets.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('data-details')">Details</button>
                 <div id="data-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>Phone Validation & HLR Lookup</li>
-                        <li>Data Cleansing & Batch Processing</li>
-                        <li>Real-time API</li>
+                        <li><strong>Phone Validation:</strong> Live network status, roaming detection, porting state</li>
+                        <li><strong>Data Cleansing:</strong> De‑duplication and formatting at scale</li>
+                        <li><strong>Batch Processing:</strong> Millions of records with downloadable reports</li>
+                        <li><strong>Compliance:</strong> DNC/TCPA‑style list management options</li>
                     </ul>
                 </div>
             </div>
@@ -294,15 +296,16 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_product('CRON', 'icon', 'product-icon') ?>
                 </div>
-                <h3>NU CRON - Schedule Manager</h3>
-                <p><strong>4x conversion rates</strong> with AI scheduling. Automate <strong>omnichannel campaigns</strong>. GPT-powered responses.</p>
+                <h3>NU CRON — AI‑Driven Contact Schedule Manager</h3>
+                <p>Optimise lead outreach with AI‑based timing, omnichannel journeys, and integrated analytics.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('cron-details')">Details</button>
                 <div id="cron-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>AI-Driven Contact Scheduling</li>
-                        <li>Multi-Channel Communication</li>
-                        <li>Lead Journey Automation</li>
-                        <li>Speech-to-Text Analytics</li>
+                        <li><strong>Smart Scheduling:</strong> Timing based on behaviour, timezone, and history</li>
+                        <li><strong>Omnichannel:</strong> SMS, email, voice, WhatsApp, web chat</li>
+                        <li><strong>AI Communication:</strong> GPT‑powered replies and chatbots</li>
+                        <li><strong>Analytics:</strong> Conversion tracking and performance dashboards</li>
+                        <li><strong>Integrations:</strong> CRM and inbox unification</li>
                     </ul>
                 </div>
             </div>
@@ -310,33 +313,39 @@ function toggleDetails(id) {
                 <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
                     <?= picture_logo(true, 'product-icon') ?>
                 </div>
-                <h3>NU GUI - Management Portal</h3>
-                <p>White-label ready. <strong>React + Node.js</strong> stack. Real-time dashboards with <strong>sub-second updates</strong>.</p>
+                <h3>NU GUI — Management Portal</h3>
+                <p>A <strong>white‑label</strong> operations console with real‑time dashboards and API integrations—designed for resellers and enterprise teams.</p>
                 <button class="btn btn--outline" onclick="toggleDetails('gui-details')">Details</button>
                 <div id="gui-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
                     <ul>
-                        <li>Custom UI/UX & White-Label Solutions</li>
-                        <li>API Integration</li>
-                        <li>Real-time Dashboards</li>
+                        <li><strong>Brandable UI:</strong> Custom theming and access‑control</li>
+                        <li><strong>Real‑Time Dashboards:</strong> Sub‑second updates for operations visibility</li>
+                        <li><strong>API‑First:</strong> Unified control across SIP, SMS, billing, and data tools</li>
                     </ul>
                 </div>
             </div>
-            <div class="solution-card">
-                <div class="product-icon-wrapper" style="width:48px;height:48px;margin:0 auto 1rem;">
-                    <?= picture_product('CCS', 'icon', 'product-icon') ?>
-                </div>
-                <h3>Complete Infrastructure</h3>
-                <p>Turnkey deployment in <strong>48 hours</strong>. Includes servers, interconnects, and <strong>24/7 NOC support</strong>.</p>
-                <button class="btn btn--outline" onclick="toggleDetails('infra-details')">Details</button>
-                <div id="infra-details" class="solution-details" style="display:none;margin-top:1rem;text-align:left;">
-                    <ul>
-                        <li>Carrier Integration</li>
-                        <li>Scalable Architecture</li>
-                        <li>24/7 Support</li>
-                        <li>Global Connectivity</li>
-                    </ul>
-                </div>
-            </div>
+        </div>
+        
+        <!-- Complete Infrastructure as text section -->
+        <div style="margin-top: 3rem; padding: 2rem; background: var(--color-background); border-radius: 20px; border: 1px solid var(--color-border);">
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-text-primary);">Complete Infrastructure</h3>
+            <p style="font-size: 1.1rem; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 1.5rem;">
+                A turnkey approach that bundles <strong>carrier integration, scalable architecture, and 24/7 support</strong>—so you launch quickly and scale confidently.
+            </p>
+            <ul style="list-style: none; padding: 0; color: var(--color-text-secondary);">
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    Carrier interconnects and route design
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    High‑availability deployment patterns
+                </li>
+                <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                    <span style="position: absolute; left: 0; color: var(--color-primary);">•</span>
+                    NOC and support with clear escalation paths
+                </li>
+            </ul>
         </div>
     </div>
 </section>
@@ -346,29 +355,29 @@ function toggleDetails(id) {
 <section class="process-section">
     <div class="max-w-7xl">
         <div class="section-header">
-            <h2>From Zero to Revenue in 30 Days</h2>
+            <h2>From Zero to Revenue in ~30 Days</h2>
             <p>Our proven deployment methodology gets you operational fast</p>
         </div>
         <div class="process-cards-row" style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;align-items:stretch;">
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
                 <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">1</div>
-                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Discovery (Days 1-3)</h3>
-                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Analyze requirements, existing infrastructure, and growth projections</p>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Discovery (Days 1‑3)</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Requirements, current stack, and growth targets</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
                 <div style="width:48px;height:48px;background:var(--color-accent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">2</div>
-                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Architecture (Days 4-7)</h3>
-                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Design scalable architecture, select carriers, plan integrations</p>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Architecture (Days 4‑7)</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Scalable design, carrier selection, integration plan</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
                 <div style="width:48px;height:48px;background:var(--color-accent-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">3</div>
-                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Deployment (Days 8-21)</h3>
-                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Install systems, configure routes, integrate billing, test thoroughly</p>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Deployment (Days 8‑21)</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Install, configure routes, integrate billing, end‑to‑end tests</p>
             </div>
             <div class="process-card" style="flex:1 1 220px;min-width:220px;max-width:260px;background:linear-gradient(135deg,var(--color-surface) 80%,var(--color-accent-secondary) 100%);border-radius:20px;padding:2.2rem 1.2rem 1.5rem 1.2rem;box-shadow:0 4px 24px rgba(0,0,0,0.18);text-align:center;position:relative;">
                 <div style="width:48px;height:48px;background:var(--color-primary);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem auto;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:1.5rem;color:#fff;font-weight:700;">4</div>
-                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Go Live (Days 22-30)</h3>
-                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Launch operations, onboard team, activate 24/7 support</p>
+                <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--color-text-primary);">Go‑Live (Days 22‑30)</h3>
+                <p style="color:var(--color-text-secondary);font-size:1.05rem;">Launch operations, enable team, activate 24/7 support</p>
             </div>
         </div>
     </div>
@@ -576,15 +585,28 @@ function toggleDetails(id) {
     </div>
 </section>
 
+<!-- Global Partnerships -->
+<section class="section">
+    <div class="max-w-7xl">
+        <div class="section-header">
+            <h2>Global Partnerships</h2>
+            <p>We partner with operators, resellers, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>. Ask about regional routes, regulatory guidance, and co‑selling.</p>
+        </div>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Talk to Sales</a>
+            <a href="<?= base_url('/partner-program'); ?>" class="btn btn--secondary btn--large">Become a Partner</a>
+        </div>
+    </div>
+</section>
+
 <!-- CTA Section -->
 <section class="cta-section">
     <div class="max-w-7xl">
-        <h2>Start Your Free 30-Day Trial</h2>
-        <p>Join 200+ operators worldwide. No credit card required. Full platform access.<br>
-           Average time to first revenue: 15 days. ROI guarantee or money back.</p>
+        <h2>Get Started</h2>
+        <p>Start with a demo or a pilot tailored to your volumes and regions.</p>
         <div class="btn-group" style="margin-top: 2rem;">
-            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Start Free Trial</a>
-            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Schedule Demo</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--primary btn--large">Schedule a Demo</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Start Your Trial</a>
         </div>
     </div>
 </section>

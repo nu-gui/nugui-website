@@ -60,31 +60,7 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px;
     }
-    .benefit-card {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 40px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .benefit-card:hover {
-        transform: translateY(-10px) scale(1.03);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        border-color: var(--color-primary);
-    }
-    .benefit-card h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: var(--color-text-primary);
-    }
-    .benefit-card p {
-        color: var(--color-text-secondary);
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
+    /* Card styles moved to cards-standardized.css for consistency */
     .how-it-works-steps {
         display: flex;
         justify-content: center;
@@ -92,35 +68,11 @@
         gap: 2rem;
         flex-wrap: wrap;
     }
+    /* Step card styles moved to cards-standardized.css for consistency */
     .step {
-        background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
-        border-radius: 24px;
-        padding: 32px 24px 28px 24px;
-        text-align: center;
-        border: 2px solid var(--color-accent);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        margin-bottom: 0;
         max-width: 300px;
         min-width: 220px;
         flex: 1 1 220px;
-        transition: transform 0.3s var(--transition-bounce), box-shadow 0.3s var(--transition-bounce), border-color 0.3s;
-    }
-    .step:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 16px 32px rgba(0,0,0,0.22);
-        border-color: var(--color-primary);
-    }
-    .step h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--color-primary);
-    }
-    .step p {
-        color: var(--color-text-secondary);
-        font-size: 1.05rem;
-        font-weight: 500;
-        margin-bottom: 0;
     }
     .cta-section {
         background: var(--color-background);
@@ -284,68 +236,165 @@
 <section class="hero-section hero-partner">
     <div class="max-w-7xl mx-auto">
         <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            Join the <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI Partner Program</span>
+            Partner with <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
         </h1>
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
-            Grow your business with our innovative solutions, dedicated support, and exclusive resources.
+            Join a partner network focused on <strong>outcomes</strong>—reliable communications, measurable ROI, and scalable growth for your customers.<br>
+            We collaborate with carriers, resellers, system integrators, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>.
         </p>
-        <a href="#application-form" class="btn btn--primary btn--large">Apply Now</a>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="#application-form" class="btn btn--primary btn--large">Become a Partner</a>
+            <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large">Talk to Sales</a>
+        </div>
     </div>
 </section>
 
-<!-- Why Partner With Us -->
+<!-- Who Partners with NU GUI -->
 <section class="section alt">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>Why Partner with NU GUI?</h2>
-            <p>Gain a competitive edge with our carrier-grade solutions and collaborative approach.</p>
+            <h2>Who Partners with NU GUI?</h2>
         </div>
         <div class="card-grid">
             <div class="benefit-card">
-                <h3>Exclusive Resources</h3>
-                <p>Access our latest tools, technologies, and industry insights to stay ahead of the curve.</p>
+                <h3>Carriers & Operators (Tier 1 & 2)</h3>
+                <p>Expand routing options, add redundancy, and unlock real-time cost and quality insights.</p>
             </div>
             <div class="benefit-card">
-                <h3>Dedicated Support</h3>
-                <p>Enjoy personalized support from our expert team, dedicated to your success.</p>
+                <h3>Resellers & MSPs (Tier 3)</h3>
+                <p>White-label our platforms to launch fast, win deals, and retain customers with reliable service.</p>
             </div>
             <div class="benefit-card">
-                <h3>Co-Branding Options</h3>
-                <p>Offer our solutions under your own brand with our white-labeling and co-branding opportunities.</p>
+                <h3>System Integrators & Consulting Firms</h3>
+                <p>Deliver complex deployments, migrations, and integrations with our support.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Technology Partners & ISVs</h3>
+                <p>Integrate complementary products—analytics, security, CRM, billing, messaging, and more.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--color-text-secondary);">Looking to collaborate on a specific use case? <a href="<?= base_url('/contact'); ?>" style="color: var(--color-primary); text-decoration: underline;">Contact us</a> and we'll scope it together.</p>
+    </div>
+</section>
+
+<!-- Why Partner with NU GUI -->
+<section class="section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Why Partner with NU GUI</h2>
+        </div>
+        <div class="card-grid">
+            <div class="benefit-card">
+                <h3>Carrier-Grade Reliability</h3>
+                <p>Built-in failover and resilient routing.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Clear ROI</h3>
+                <p>Least-cost routing, real-time reporting, and transparent billing models.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Frictionless Delivery</h3>
+                <p>Fast onboarding, guided deployment, and practical documentation.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Co-Sell & Co-Market</h3>
+                <p>Joint go-to-market campaigns, enablement, and case studies.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Regional Strength</h3>
+                <p>Deep relationships and operational experience across <strong>Africa and India</strong>, with global scalability.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- How It Works -->
+<!-- Partner Program Tiers -->
+<section class="section alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Partner Program Tiers</h2>
+        </div>
+        <div class="card-grid">
+            <div class="benefit-card">
+                <h3>Registered — Get started</h3>
+                <p>Access to product overview sessions and partner newsletters. Light-touch support for early opportunities.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Authorized — Grow together</h3>
+                <p>Solution training, deal support, and co-branded assets. Access to demo environments and sandbox accounts. Opportunity registration and basic MDF (where applicable).</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Premier — Scale & co-invest</h3>
+                <p>Priority solution engineering and roadmap briefings. Joint go-to-market plans, co-selling, and dedicated partner manager. Eligibility for enhanced MDF and case study development.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--color-text-secondary);">Tier benefits can be tailored by region or segment. We'll align on goals and the right tier during onboarding.</p>
+    </div>
+</section>
+
+<!-- Onboarding Process -->
 <section class="section">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="section-header">
-            <h2>How to Become a Partner</h2>
+            <h2>Onboarding – How It Works</h2>
         </div>
         <div class="how-it-works-steps">
             <div class="step">
-                <h3>1. Apply</h3>
-                <p>Complete our straightforward application form to express your interest.</p>
+                <h3>1. Discovery & Fit</h3>
+                <p>Use cases, target markets, and success criteria.</p>
             </div>
             <div class="step">
-                <h3>2. Get Approved</h3>
-                <p>Our team will review your application and get back to you promptly.</p>
+                <h3>2. Program Selection</h3>
+                <p>Registered, Authorized, or Premier.</p>
             </div>
             <div class="step">
-                <h3>3. Start Growing</h3>
-                <p>Leverage our resources and solutions to accelerate your business growth.</p>
+                <h3>3. Enablement Plan</h3>
+                <p>Sales + technical training, demo access.</p>
+            </div>
+            <div class="step">
+                <h3>4. Launch Kit</h3>
+                <p>Co-branded collateral, partner portal access.</p>
+            </div>
+            <div class="step">
+                <h3>5. Go-Live & Review</h3>
+                <p>First opportunities, post-launch check-in, and growth plan.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- Regional Strength: Africa & India -->
+<section class="section alt">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="section-header">
+            <h2>Regional Strength: Africa & India</h2>
+            <p>We work closely with partners across <strong>Africa and India</strong>, supporting market entry and scale with:</p>
+        </div>
+        <div class="card-grid">
+            <div class="benefit-card">
+                <h3>Local Routing Expertise</h3>
+                <p>Local routing expertise & coverage through regional partners.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Regulatory Awareness</h3>
+                <p>Regulatory awareness and best practices for compliance and data handling.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Time-zone Aligned Support</h3>
+                <p>Time-zone aligned support and enablement for faster execution.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 2rem; color: var(--color-text-secondary);">Want to validate regional fit? <a href="<?= base_url('/contact'); ?>" style="color: var(--color-primary); text-decoration: underline;">Speak with a specialist</a>.</p>
     </div>
 </section>
 
 <!-- Application Form CTA -->
 <section id="application-form" class="cta-section">
     <div class="max-w-4xl mx-auto">
-        <h2>Ready to Get Started?</h2>
-        <p>Fill out the application form below to take the first step towards a successful partnership.</p>
-        <button onclick="openPopup()" class="btn btn--primary btn--large">Open Application Form</button>
+        <h2>Ready to partner?</h2>
+        <p>We'd love to learn about your market and goals. Fill out the application form below to take the first step.</p>
+        <button onclick="openPopup()" class="btn btn--primary btn--large">Become a Partner</button>
+        <a href="<?= base_url('/contact'); ?>" class="btn btn--secondary btn--large" style="margin-left: 1rem;">Talk to Sales</a>
     </div>
 </section>
 
