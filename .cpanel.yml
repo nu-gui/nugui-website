@@ -49,14 +49,41 @@ deployment:
     # Copy application files (OUTSIDE public_html)
     - /bin/cp -R $REPOPATH/app $APPPATH/ || exit 1
     - /bin/cp -R $REPOPATH/system $APPPATH/ || exit 1
-    - /bin/cp -R $REPOPATH/vendor $APPPATH/ 2>/dev/null || true
     - /bin/cp -R $REPOPATH/database $APPPATH/ 2>/dev/null || true
     - /bin/cp -R $REPOPATH/tests $APPPATH/ 2>/dev/null || true
     
-    # Copy configuration files
+    # Copy composer files for dependency management
+    - /bin/cp $REPOPATH/composer.json $APPPATH/ || exit 1
+    - /bin/cp $REPOPATH/composer.lock $APPPATH/ || exit 1
+    
+    # Install dependencies using Composer (cPanel usually has it)
+    - |
+      cd $APPPATH
+      echo "Installing PHP dependencies with Composer..."
+      
+      # Try different composer locations
+      if [ -f "/opt/cpanel/composer/bin/composer" ]; then
+        /opt/cpanel/composer/bin/composer install --no-dev --optimize-autoloader --no-interaction
+      elif command -v composer &> /dev/null; then
+        composer install --no-dev --optimize-autoloader --no-interaction
+      else
+        echo "================================================"
+        echo "⚠️  IMPORTANT: Composer not found!"
+        echo "================================================"
+        echo "Please run ONE of these options:"
+        echo ""
+        echo "Option 1 - Via cPanel Terminal:"
+        echo "  cd ~/ci_app && composer install --no-dev"
+        echo ""
+        echo "Option 2 - Via SSH:"
+        echo "  bash ~/repositories/nugui-website/scripts/setup-production.sh"
+        echo ""
+        echo "This only needs to be done ONCE after first deployment."
+        echo "================================================"
+      fi
+    
+    # Copy other configuration files
     - /bin/cp $REPOPATH/spark $APPPATH/ || exit 1
-    - /bin/cp $REPOPATH/composer.json $APPPATH/ 2>/dev/null || true
-    - /bin/cp $REPOPATH/composer.lock $APPPATH/ 2>/dev/null || true
     - /bin/cp $REPOPATH/preload.php $APPPATH/ 2>/dev/null || true
     - /bin/cp $REPOPATH/builds $APPPATH/ 2>/dev/null || true
     - /bin/cp $REPOPATH/phpunit.xml.dist $APPPATH/ 2>/dev/null || true
