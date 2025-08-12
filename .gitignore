@@ -5,6 +5,12 @@
 /vendor/
 /node_modules/
 
+# Environment files (keep templates only)
+.env
+.env.*
+!env.example
+!env.production
+
 # Writable directories - only ignore contents, not structure
 /writable/cache/*
 !/writable/cache/index.html

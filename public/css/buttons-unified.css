@@ -72,7 +72,7 @@
 .btn--primary,
 .btn-primary {
   /* Gradient Background */
-  background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+  background: linear-gradient(135deg, var(--color-primary, #00A2E8), var(--color-primary-dark, #0082BB)) !important;
   color: #FFFFFF !important;
   border: 2px solid transparent !important;
   
@@ -85,7 +85,7 @@
 
 .btn--primary:hover,
 .btn-primary:hover {
-  background: linear-gradient(135deg, #33B5ED, #00A2E8) !important;
+  background: linear-gradient(135deg, var(--color-primary-light, #33B5ED), var(--color-primary, #00A2E8)) !important;
   color: #FFFFFF !important;
   transform: translateY(-3px) scale(1.02);
   background-position: 100% 50%;
@@ -143,14 +143,14 @@
 .btn--outline,
 .btn-outline {
   background: rgba(255, 255, 255, 0.95) !important;
-  color: #00A2E8 !important;
-  border: 2px solid #00A2E8 !important;
+  color: var(--color-primary, #00A2E8) !important;
+  border: 2px solid var(--color-primary, #00A2E8) !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
 }
 
 .btn--outline:hover,
 .btn-outline:hover {
-  background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+  background: linear-gradient(135deg, var(--color-primary, #00A2E8), var(--color-primary-dark, #0082BB)) !important;
   color: #FFFFFF !important;
   border-color: #0082BB !important;
   transform: translateY(-3px) scale(1.02);
@@ -224,14 +224,14 @@
 }
 
 .btn--ccs {
-  background: linear-gradient(135deg, #FFB000, #FF9800) !important;
+  background: linear-gradient(135deg, var(--color-accent, #FFB000), var(--color-accent-dark, #FF9800)) !important;
   color: #FFFFFF !important;
   border: 2px solid transparent !important;
   box-shadow: 0 4px 16px rgba(255, 176, 0, 0.3) !important;
 }
 
 .btn--ccs:hover {
-  background: linear-gradient(135deg, #FFC947, #FFB000) !important;
+  background: linear-gradient(135deg, var(--color-accent-light, #FFC947), var(--color-accent, #FFB000)) !important;
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 6px 20px rgba(255, 176, 0, 0.4) !important;
 }
@@ -273,8 +273,8 @@
 }
 
 .btn:active::before {
-  width: 300px;
-  height: 300px;
+  width: 200%;
+  height: 200%;
   opacity: 1;
 }
 

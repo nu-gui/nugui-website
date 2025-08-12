@@ -10,7 +10,7 @@
    ======================================== */
 :root {
   /* Base Font Sizes - Desktop */
-  --text-xs: clamp(0.7rem, 0.65rem + 0.25vw, 0.75rem);      /* 11-12px */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8rem);      /* 12-13px (WCAG compliant) */
   --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);     /* 13-14px */
   --text-base: clamp(0.925rem, 0.875rem + 0.25vw, 1rem);    /* 15-16px */
   --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);       /* 16-18px */

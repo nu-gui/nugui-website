@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/utilities-apple.css') ?>">
     
+    <!-- Shared Animations - Centralized to avoid duplication -->
+    <link rel="stylesheet" href="<?= base_url('css/animations.css?v=' . time()) ?>">
+    
     <!-- Product Colors and Page Gradients -->
     <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
