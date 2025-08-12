@@ -1,0 +1,657 @@
+/**
+ * UNIFIED BUTTON SYSTEM
+ * Single source of truth for all button styles across the website
+ * Consistent animations, hover effects, and visual hierarchy
+ */
+
+/* ========================================
+   BASE BUTTON STYLES
+   Core styling shared by all buttons
+   ======================================== */
+.btn {
+  /* Display & Layout */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+  overflow: hidden;
+  
+  /* Sizing & Spacing */
+  padding: 12px 24px;
+  min-width: 120px;
+  white-space: nowrap;
+  box-sizing: border-box !important;
+  
+  /* Typography */
+  font-family: var(--font-family-primary) !important;
+  font-weight: 600 !important;
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem) !important;
+  text-decoration: none !important;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  
+  /* Visual Styling */
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  
+  /* Transitions & Animations */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0) scale(1);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+}
+
+/* ========================================
+   BUTTON SIZE VARIANTS
+   ======================================== */
+.btn--small,
+.btn-sm {
+  padding: 8px 16px !important;
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;
+  min-width: 80px !important;
+}
+
+.btn--medium,
+.btn-md {
+  padding: 12px 24px !important;
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem) !important;
+  min-width: 120px !important;
+}
+
+.btn--large,
+.btn-lg {
+  padding: 16px 32px !important;
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem) !important;
+  min-width: 200px !important;
+}
+
+/* ========================================
+   PRIMARY BUTTON
+   Main call-to-action style
+   ======================================== */
+.btn--primary,
+.btn-primary {
+  /* Gradient Background */
+  background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+  
+  /* Shadow & Depth */
+  box-shadow: 
+    0 4px 16px rgba(0, 162, 232, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn--primary:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, #33B5ED, #00A2E8) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-3px) scale(1.02);
+  background-position: 100% 50%;
+  
+  box-shadow: 
+    0 8px 24px rgba(0, 162, 232, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn--primary:active,
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 
+    0 2px 8px rgba(0, 162, 232, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ========================================
+   SECONDARY BUTTON
+   Alternative action style
+   ======================================== */
+.btn--secondary,
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--color-primary) !important;
+  border: 2px solid var(--color-primary) !important;
+  backdrop-filter: blur(10px);
+  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn--secondary:hover,
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--color-primary), #0082BB) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(-3px) scale(1.02);
+  
+  box-shadow: 
+    0 6px 20px rgba(0, 162, 232, 0.4),
+    inset 0 0 15px rgba(255, 255, 255, 0.15) !important;
+}
+
+.btn--secondary:active,
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 162, 232, 0.2) !important;
+}
+
+/* ========================================
+   OUTLINE BUTTON
+   For "Learn More" and detail actions
+   ======================================== */
+.btn--outline,
+.btn-outline {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #00A2E8 !important;
+  border: 2px solid #00A2E8 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.btn--outline:hover,
+.btn-outline:hover {
+  background: linear-gradient(135deg, #00A2E8, #0082BB) !important;
+  color: #FFFFFF !important;
+  border-color: #0082BB !important;
+  transform: translateY(-3px) scale(1.02);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  
+  box-shadow: 
+    0 6px 20px rgba(0, 162, 232, 0.5),
+    0 0 0 3px rgba(0, 162, 232, 0.1),
+    inset 0 0 15px rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn--outline:active,
+.btn-outline:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 162, 232, 0.3) !important;
+}
+
+/* ========================================
+   GHOST BUTTON
+   Minimal transparent style
+   ======================================== */
+.btn--ghost,
+.btn-ghost {
+  background: transparent !important;
+  color: var(--color-primary) !important;
+  border: 2px solid var(--color-primary) !important;
+  box-shadow: none !important;
+}
+
+.btn--ghost:hover,
+.btn-ghost:hover {
+  background: var(--color-primary) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 16px rgba(0, 162, 232, 0.3) !important;
+}
+
+.btn--ghost:active,
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 162, 232, 0.2) !important;
+}
+
+/* ========================================
+   PRODUCT-SPECIFIC BUTTON COLORS
+   ======================================== */
+.btn--sip {
+  background: linear-gradient(135deg, #00E676, #00C853) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 4px 16px rgba(0, 230, 118, 0.3) !important;
+}
+
+.btn--sip:hover {
+  background: linear-gradient(135deg, #69F0AE, #00E676) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4) !important;
+}
+
+.btn--sms {
+  background: linear-gradient(135deg, #FF5722, #F4511E) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.3) !important;
+}
+
+.btn--sms:hover {
+  background: linear-gradient(135deg, #FF7043, #FF5722) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4) !important;
+}
+
+.btn--ccs {
+  background: linear-gradient(135deg, #FFB000, #FF9800) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 4px 16px rgba(255, 176, 0, 0.3) !important;
+}
+
+.btn--ccs:hover {
+  background: linear-gradient(135deg, #FFC947, #FFB000) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 176, 0, 0.4) !important;
+}
+
+.btn--data {
+  background: linear-gradient(135deg, #9C4DCC, #7B1FA2) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 4px 16px rgba(156, 77, 204, 0.3) !important;
+}
+
+.btn--data:hover {
+  background: linear-gradient(135deg, #B47CDB, #9C4DCC) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(156, 77, 204, 0.4) !important;
+}
+
+/* ========================================
+   ANIMATED EFFECTS
+   Shared animations for all buttons
+   ======================================== */
+
+/* Ripple Effect on Click */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+
+/* Glow Animation */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    transparent, 
+    rgba(0, 162, 232, 0.3), 
+    transparent);
+  border-radius: inherit;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  opacity: 1;
+  animation: glowRotate 2s linear infinite;
+}
+
+@keyframes glowRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pulse Animation for CTAs */
+.btn--pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 
+      0 4px 16px rgba(0, 162, 232, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 4px 20px rgba(0, 162, 232, 0.5),
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      0 0 0 8px rgba(0, 162, 232, 0.1);
+  }
+}
+
+/* Float Animation */
+.btn--float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ========================================
+   BUTTON STATES
+   ======================================== */
+
+/* Focus States for Accessibility */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 162, 232, 0.3) !important;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled State */
+.btn:disabled,
+.btn.disabled,
+.btn[disabled] {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+/* Loading State */
+.btn--loading,
+.btn.loading {
+  color: transparent !important;
+  pointer-events: none !important;
+  position: relative;
+}
+
+.btn--loading::after,
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   BUTTON GROUPS
+   ======================================== */
+.btn-group {
+  display: inline-flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.btn-group .btn {
+  margin: 0;
+}
+
+/* Compact button group */
+.btn-group--compact {
+  gap: 0.5rem;
+}
+
+/* Vertical button group */
+.btn-group--vertical {
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-group--vertical .btn {
+  width: 100%;
+}
+
+/* ========================================
+   ICON BUTTONS
+   ======================================== */
+.btn--icon {
+  padding: 12px !important;
+  min-width: auto !important;
+  width: 44px;
+  height: 44px;
+  border-radius: 50% !important;
+}
+
+.btn--icon.btn--small {
+  width: 36px;
+  height: 36px;
+  padding: 8px !important;
+}
+
+.btn--icon.btn--large {
+  width: 52px;
+  height: 52px;
+  padding: 14px !important;
+}
+
+/* Button with icon and text */
+.btn--with-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+}
+
+.btn--with-icon svg,
+.btn--with-icon i {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 640px) {
+  /* Full width buttons on mobile */
+  .btn--mobile-full,
+  .btn-mobile-full {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+  }
+  
+  /* Slightly smaller padding on mobile */
+  .btn {
+    padding: 10px 20px;
+  }
+  
+  .btn--large {
+    padding: 14px 28px !important;
+  }
+}
+
+/* ========================================
+   DARK MODE ADJUSTMENTS
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  .btn--primary {
+    background: linear-gradient(135deg, #5AB4F1, #2F69B3) !important;
+    border: 2px solid rgba(90, 180, 241, 0.3) !important;
+    box-shadow: 
+      0 4px 16px rgba(90, 180, 241, 0.3),
+      0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .btn--primary:hover {
+    background: linear-gradient(135deg, #7AC5F5, #5AB4F1) !important;
+    border-color: rgba(122, 197, 245, 0.5) !important;
+    box-shadow: 
+      0 6px 24px rgba(90, 180, 241, 0.4),
+      0 3px 6px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  .btn--secondary {
+    background: rgba(30, 30, 30, 0.8) !important;
+    color: #5AB4F1 !important;
+    border: 2px solid #5AB4F1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .btn--secondary:hover {
+    background: #5AB4F1 !important;
+    color: #121212 !important;
+    border-color: #7AC5F5 !important;
+    box-shadow: 0 4px 16px rgba(90, 180, 241, 0.4) !important;
+  }
+  
+  .btn--outline {
+    background: rgba(30, 30, 30, 0.95) !important;
+    color: #5AB4F1 !important;
+    border: 2px solid #5AB4F1 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .btn--outline:hover {
+    background: linear-gradient(135deg, #5AB4F1, #2F69B3) !important;
+    color: #FFFFFF !important;
+    border-color: #2F69B3 !important;
+    box-shadow: 0 4px 16px rgba(90, 180, 241, 0.4) !important;
+  }
+  
+  .btn--ghost {
+    color: #5AB4F1 !important;
+    border-color: #5AB4F1 !important;
+  }
+  
+  .btn--ghost:hover {
+    background: #5AB4F1 !important;
+    color: #121212 !important;
+    border-color: #7AC5F5 !important;
+    box-shadow: 0 4px 16px rgba(90, 180, 241, 0.4) !important;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+   ======================================== */
+@media (prefers-contrast: high) {
+  .btn {
+    border-width: 3px !important;
+  }
+  
+  .btn--primary {
+    background: var(--color-primary) !important;
+    border: 3px solid #FFFFFF !important;
+  }
+  
+  .btn--secondary {
+    background: transparent !important;
+    border: 3px solid var(--color-primary) !important;
+  }
+  
+  .btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .btn {
+    border: 1px solid #000 !important;
+    color: #000 !important;
+    background: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Full width button */
+.btn--block {
+  width: 100% !important;
+  display: flex !important;
+}
+
+/* Rounded square button */
+.btn--square {
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Sharp corners */
+.btn--sharp {
+  border-radius: 0 !important;
+}
+
+/* Text-only button (no background) */
+.btn--text {
+  background: transparent !important;
+  border: none !important;
+  color: var(--color-primary) !important;
+  padding: 4px 8px !important;
+  min-width: auto !important;
+}
+
+.btn--text:hover {
+  background: rgba(0, 162, 232, 0.1) !important;
+  color: var(--color-primary-hover) !important;
+}
+
+/* Success, Warning, Error variants */
+.btn--success {
+  background: linear-gradient(135deg, #4CAF50, #45A049) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.btn--success:hover {
+  background: linear-gradient(135deg, #66BB6A, #4CAF50) !important;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3) !important;
+}
+
+.btn--warning {
+  background: linear-gradient(135deg, #FF9800, #F57C00) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.btn--warning:hover {
+  background: linear-gradient(135deg, #FFB74D, #FF9800) !important;
+  box-shadow: 0 4px 16px rgba(255, 152, 0, 0.3) !important;
+}
+
+.btn--error,
+.btn--danger {
+  background: linear-gradient(135deg, #F44336, #D32F2F) !important;
+  color: #FFFFFF !important;
+  border: 2px solid transparent !important;
+}
+
+.btn--error:hover,
+.btn--danger:hover {
+  background: linear-gradient(135deg, #EF5350, #F44336) !important;
+  box-shadow: 0 4px 16px rgba(244, 67, 54, 0.3) !important;
+}

@@ -74,6 +74,17 @@
         min-width: 220px;
         flex: 1 1 220px;
     }
+    .step h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: 0.75rem;
+    }
+    .step p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--color-text-secondary);
+    }
     .cta-section {
         background: var(--color-background);
         padding: 80px 20px;
@@ -236,7 +247,7 @@
 <section class="hero-section hero-partner">
     <div class="max-w-7xl mx-auto">
         <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            Partner with <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
+            Partner with <span class="text-gradient" style="color: #7B2D99 !important;">NU GUI</span>
         </h1>
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
             Join a partner network focused on <strong>outcomes</strong>—reliable communications, measurable ROI, and scalable growth for your customers.<br>
@@ -338,28 +349,143 @@
         <div class="section-header">
             <h2>Onboarding – How It Works</h2>
         </div>
-        <div class="how-it-works-steps">
-            <div class="step">
-                <h3>1. Discovery & Fit</h3>
-                <p>Use cases, target markets, and success criteria.</p>
-            </div>
-            <div class="step">
-                <h3>2. Program Selection</h3>
-                <p>Registered, Authorized, or Premier.</p>
-            </div>
-            <div class="step">
-                <h3>3. Enablement Plan</h3>
-                <p>Sales + technical training, demo access.</p>
-            </div>
-            <div class="step">
-                <h3>4. Launch Kit</h3>
-                <p>Co-branded collateral, partner portal access.</p>
-            </div>
-            <div class="step">
-                <h3>5. Go-Live & Review</h3>
-                <p>First opportunities, post-launch check-in, and growth plan.</p>
+        <div class="process-flow-container" style="position: relative; padding: 3rem 1rem; overflow-x: auto;">
+            <div class="process-flow" style="display: flex; justify-content: space-between; align-items: center; gap: 0; max-width: 1200px; margin: 0 auto; position: relative;">
+                
+                <!-- Connecting Line -->
+                <div class="flow-line" style="position: absolute; top: 60px; left: 80px; right: 80px; height: 3px; background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4); z-index: 0;"></div>
+                
+                <!-- Step 1 -->
+                <div class="flow-step" style="position: relative; z-index: 1; text-align: center; flex: 1; max-width: 200px;">
+                    <div class="step-circle" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; position: relative;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #FF6B6B, #FF8E53); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); border: 3px solid rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+                            <span style="font-size: 3rem; font-weight: 700; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">1</span>
+                            <div class="pulse-ring" style="position: absolute; width: 100%; height: 100%; border: 2px solid rgba(255, 107, 107, 0.5); border-radius: 50%; animation: pulse-ring 2s infinite;"></div>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem;">Discovery & Fit</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4; color: var(--color-text-secondary);">Use cases, target markets, and success criteria</p>
+                </div>
+                
+                <!-- Arrow 1 -->
+                <div class="flow-arrow" style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center; margin-top: -3rem;">
+                    <svg width="40" height="20" viewBox="0 0 40 20" style="opacity: 0.6;">
+                        <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="#4ECDC4" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flow-step" style="position: relative; z-index: 1; text-align: center; flex: 1; max-width: 200px;">
+                    <div class="step-circle" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; position: relative;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #4ECDC4, #44A08D); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(78, 205, 196, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); border: 3px solid rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+                            <span style="font-size: 3rem; font-weight: 700; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">2</span>
+                            <div class="pulse-ring" style="position: absolute; width: 100%; height: 100%; border: 2px solid rgba(78, 205, 196, 0.5); border-radius: 50%; animation: pulse-ring 2s infinite 0.4s;"></div>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem;">Program Selection</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4; color: var(--color-text-secondary);">Registered, Authorized, or Premier</p>
+                </div>
+                
+                <!-- Arrow 2 -->
+                <div class="flow-arrow" style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center; margin-top: -3rem;">
+                    <svg width="40" height="20" viewBox="0 0 40 20" style="opacity: 0.6;">
+                        <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="#45B7D1" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flow-step" style="position: relative; z-index: 1; text-align: center; flex: 1; max-width: 200px;">
+                    <div class="step-circle" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; position: relative;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #45B7D1, #2196F3); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(69, 183, 209, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); border: 3px solid rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+                            <span style="font-size: 3rem; font-weight: 700; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">3</span>
+                            <div class="pulse-ring" style="position: absolute; width: 100%; height: 100%; border: 2px solid rgba(69, 183, 209, 0.5); border-radius: 50%; animation: pulse-ring 2s infinite 0.8s;"></div>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem;">Enablement Plan</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4; color: var(--color-text-secondary);">Sales + technical training, demo access</p>
+                </div>
+                
+                <!-- Arrow 3 -->
+                <div class="flow-arrow" style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center; margin-top: -3rem;">
+                    <svg width="40" height="20" viewBox="0 0 40 20" style="opacity: 0.6;">
+                        <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="#96CEB4" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flow-step" style="position: relative; z-index: 1; text-align: center; flex: 1; max-width: 200px;">
+                    <div class="step-circle" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; position: relative;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #96CEB4, #78C2A4); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(150, 206, 180, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); border: 3px solid rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+                            <span style="font-size: 3rem; font-weight: 700; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">4</span>
+                            <div class="pulse-ring" style="position: absolute; width: 100%; height: 100%; border: 2px solid rgba(150, 206, 180, 0.5); border-radius: 50%; animation: pulse-ring 2s infinite 1.2s;"></div>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem;">Launch Kit</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4; color: var(--color-text-secondary);">Co-branded collateral, partner portal access</p>
+                </div>
+                
+                <!-- Arrow 4 -->
+                <div class="flow-arrow" style="flex: 0 0 40px; display: flex; align-items: center; justify-content: center; margin-top: -3rem;">
+                    <svg width="40" height="20" viewBox="0 0 40 20" style="opacity: 0.6;">
+                        <path d="M0 10 L30 10 M30 10 L25 5 M30 10 L25 15" stroke="#9C4DCC" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="flow-step" style="position: relative; z-index: 1; text-align: center; flex: 1; max-width: 200px;">
+                    <div class="step-circle" style="width: 120px; height: 120px; margin: 0 auto 1.5rem; position: relative;">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #9C4DCC, #7B1FA2); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(156, 77, 204, 0.3), 0 4px 8px rgba(0, 0, 0, 0.1); border: 3px solid rgba(255, 255, 255, 0.9); position: relative; overflow: hidden;">
+                            <span style="font-size: 3rem; font-weight: 700; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">5</span>
+                            <div class="pulse-ring" style="position: absolute; width: 100%; height: 100%; border: 2px solid rgba(156, 77, 204, 0.5); border-radius: 50%; animation: pulse-ring 2s infinite 1.6s;"></div>
+                        </div>
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.5rem;">Go-Live & Review</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.4; color: var(--color-text-secondary);">First opportunities, post-launch check-in, growth plan</p>
+                </div>
             </div>
         </div>
+        
+        <!-- Add animation keyframes -->
+        <style>
+            @keyframes pulse-ring {
+                0% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1.3);
+                    opacity: 0;
+                }
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 1024px) {
+                .process-flow {
+                    flex-direction: column;
+                    gap: 2rem !important;
+                }
+                .flow-line {
+                    display: none;
+                }
+                .flow-arrow {
+                    transform: rotate(90deg);
+                    margin: 1rem 0 !important;
+                }
+            }
+            
+            /* Dark mode adjustments */
+            @media (prefers-color-scheme: dark) {
+                .flow-step h3 {
+                    color: #FFFFFF !important;
+                }
+                .flow-step p {
+                    color: rgba(255, 255, 255, 0.7) !important;
+                }
+                .flow-arrow svg path {
+                    opacity: 0.8;
+                }
+            }
+        </style>
     </div>
 </section>
 

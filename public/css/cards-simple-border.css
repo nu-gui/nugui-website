@@ -1,0 +1,108 @@
+/**
+ * CARDS OVERRIDE - Transparent with Gradient Borders
+ * Ensures cards remain transparent while having page-specific gradient borders
+ * This file must load AFTER cards-unified.css to properly override
+ */
+
+/* Override ALL card backgrounds to be transparent */
+.feature-card,
+.solution-card,
+.product-card,
+.benefit-card,
+.value-card,
+.team-card,
+.info-card {
+  /* Force transparent background */
+  background: transparent !important;
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  
+  /* Structure */
+  position: relative;
+  padding: 2rem;
+  margin: 1rem;
+  border-radius: 20px;
+  text-align: center;
+  
+  /* Default border */
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #00A2E8, #FFB000) 1;
+  
+  /* Subtle shadow for depth */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Transition for hover */
+  transition: all 0.3s ease;
+}
+
+/* Remove ALL pseudo-elements */
+.feature-card::before,
+.feature-card::after,
+.solution-card::before,
+.solution-card::after,
+.product-card::before,
+.product-card::after {
+  display: none;
+}
+
+/* Hover effect */
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: #33B5ED;
+  box-shadow: 0 8px 24px rgba(0, 162, 232, 0.2);
+}
+
+/* Page-specific gradient borders */
+.page-home .feature-card,
+.page-home .info-card {
+  border-image: linear-gradient(135deg, #00A2E8, #FFC107) 1;
+}
+
+.page-solutions .solution-card {
+  border-image: linear-gradient(135deg, #00E676, #00A2E8) 1;
+}
+
+.page-products .product-card {
+  border-image: linear-gradient(135deg, var(--product-gradient-start, #00A2E8), var(--product-gradient-end, #FFB000)) 1;
+}
+
+.page-about .team-card,
+.page-about .value-card {
+  border-image: linear-gradient(135deg, #00A2E8, #9C4DCC) 1;
+}
+
+.page-contact .info-card {
+  border-image: linear-gradient(135deg, #FF6B35, #FFB000) 1;
+}
+
+.page-partner-program .benefit-card {
+  border-image: linear-gradient(135deg, #9C4DCC, #FFB000) 1;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .benefit-card,
+  .value-card,
+  .team-card,
+  .info-card {
+    /* Keep transparent */
+    background: transparent !important;
+    /* Brighter borders for dark mode */
+    filter: brightness(1.2);
+  }
+  
+  .feature-card:hover,
+  .solution-card:hover,
+  .product-card:hover,
+  .benefit-card:hover,
+  .value-card:hover,
+  .team-card:hover,
+  .info-card:hover {
+    filter: brightness(1.4);
+  }
+}

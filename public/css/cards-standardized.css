@@ -5,43 +5,177 @@
  */
 
 /* ========================================
-   Base Card Styling - Applied to ALL cards
+   Main Feature Cards - COMPLETELY TRANSPARENT
    ======================================== */
 .feature-card,
+.solution-card,
+.product-card,
+.page-home .feature-card,
+.page-solutions .feature-card,
+.page-solutions .solution-card {
+  /* FORCE COMPLETELY TRANSPARENT - no background at all */
+  position: relative;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  z-index: 1;
+  
+  /* Remove ALL borders and backgrounds */
+  border: none !important;
+  
+  /* Very subtle shadow for depth */
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================
+   Secondary Cards - Subtle Background
+   ======================================== */
 .value-card,
 .benefit-card,
 .team-card,
-.solution-card,
 .process-card,
 .step,
 .testimonial-card,
 .stat-card,
 .service-card {
-  /* Base styling */
   position: relative;
-  background: var(--color-surface) !important;
+  /* These cards can have subtle backgrounds */
+  background: linear-gradient(135deg, 
+    var(--color-surface) 90%, 
+    rgba(0, 162, 232, 0.03) 100%) !important;
   border-radius: 20px;
   padding: 2rem;
-  overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
+  z-index: 1;
+  border: none;
   
-  /* Gradient border effect */
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  
-  /* Subtle shadow */
   box-shadow: 
     0 4px 12px rgba(0, 0, 0, 0.05),
     0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-/* Gradient border using pseudo-element */
+/* ========================================
+   PAGE-SPECIFIC HERO GRADIENT BORDERS
+   ======================================== */
+
+/* Default gradient border for feature cards - MORE PROMINENT */
 .feature-card::before,
+.solution-card::before,
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 3px; /* Thicker border for visibility */
+  border-radius: 20px;
+  background: linear-gradient(135deg, #00A2E8, #33B5ED, #FFC107, #FFB000);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: 1; /* Full opacity for visibility */
+  transition: opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* HOME PAGE - Blue to Gold gradient */
+.page-home .feature-card::before,
+.page-home .solution-card::before,
+.page-home .product-card::before {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #33B5ED 25%, 
+    #FFC107 50%, 
+    #FFB000 75%
+  );
+}
+
+/* ABOUT PAGE - Blue to Purple gradient */
+.page-about .feature-card::before,
+.page-about .value-card::before,
+.page-about .team-card::before {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #0082BB 25%, 
+    #9C4DCC 50%, 
+    #B86CE8 75%
+  );
+}
+
+/* PRODUCTS PAGE - Multi-color gradient */
+.page-products .feature-card::before,
+.page-products .product-card::before {
+  background: linear-gradient(45deg, 
+    #FFB000 0%,    /* Gold - CCS */
+    #9C4DCC 25%,   /* Purple - Data */
+    #00E676 50%,   /* Green - SIP */
+    #FF5722 75%    /* Orange - SMS */
+  );
+}
+
+/* SOLUTIONS PAGE - Green to Blue gradient */
+.page-solutions .solution-card::before,
+.page-solutions .feature-card::before {
+  background: linear-gradient(135deg, 
+    #00E676 0%, 
+    #00C853 25%, 
+    #00A2E8 50%, 
+    #0082BB 75%
+  );
+}
+
+/* SUPPORT PAGE - Blue to Green gradient */
+.page-support .feature-card::before,
+.page-support .benefit-card::before {
+  background: linear-gradient(135deg, 
+    #0082BB 0%, 
+    #00A2E8 25%, 
+    #00C853 50%, 
+    #69F0AE 75%
+  );
+}
+
+/* CONTACT PAGE - Orange to Gold gradient */
+.page-contact .feature-card::before,
+.page-contact .benefit-card::before {
+  background: linear-gradient(135deg, 
+    #FF5722 0%, 
+    #FF8A65 25%, 
+    #FFC107 50%, 
+    #FFD54F 75%
+  );
+}
+
+/* PARTNER PROGRAM - Purple to Gold gradient */
+.page-partner .benefit-card::before,
+.page-partner_program .benefit-card::before,
+.page-partner .step::before,
+.page-partner_program .step::before {
+  background: linear-gradient(135deg, 
+    #7B2D99 0%, 
+    #9C4DCC 25%, 
+    #FFB000 50%, 
+    #FFC847 75%
+  );
+}
+
+/* Subtle border for secondary cards */
 .value-card::before,
 .benefit-card::before,
 .team-card::before,
-.solution-card::before,
 .process-card::before,
 .step::before,
 .testimonial-card::before,
@@ -49,21 +183,23 @@
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  padding: 1px; /* Thinner border */
   border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(120deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, 
+    rgba(0, 162, 232, 0.3),
+    rgba(0, 130, 187, 0.3)
+  );
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  opacity: 0.3;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
 }
 
 /* Content positioning to ensure it's above the gradient border */
@@ -82,42 +218,78 @@
 }
 
 /* ========================================
-   Subtle Hover Effects - Toned Down
+   Hover Effects for Feature Cards
    ======================================== */
 .feature-card:hover,
+.solution-card:hover,
+.product-card:hover,
+.page-home .feature-card:hover,
+.page-solutions .feature-card:hover,
+.page-solutions .solution-card:hover {
+  /* FORCE TRANSPARENT on hover - no background */
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transform: translateY(-4px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================
+   Hover Effects for Secondary Cards
+   ======================================== */
 .value-card:hover,
 .benefit-card:hover,
 .team-card:hover,
-.solution-card:hover,
 .process-card:hover,
 .step:hover,
 .testimonial-card:hover,
 .stat-card:hover,
 .service-card:hover {
-  /* Maintain solid background on hover */
-  background: var(--color-surface) !important;
-  
-  /* Subtle lift - much less dramatic than before */
+  background: linear-gradient(135deg, 
+    var(--color-surface) 85%, 
+    rgba(0, 162, 232, 0.05) 100%) !important;
   transform: translateY(-4px);
-  
-  /* Enhanced shadow on hover */
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.08),
     0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* Gradient border becomes more visible on hover */
+/* Feature cards - gradient border glows on hover */
 .feature-card:hover::before,
+.solution-card:hover::before,
+.product-card:hover::before {
+  opacity: 1;
+  padding: 4px; /* Even thicker border on hover */
+  background-size: 400% 400%;
+  filter: brightness(1.2); /* Brighter glow on hover */
+}
+
+/* Secondary cards - subtle border enhancement on hover */
 .value-card:hover::before,
 .benefit-card:hover::before,
 .team-card:hover::before,
-.solution-card:hover::before,
 .process-card:hover::before,
 .step:hover::before,
 .testimonial-card:hover::before,
 .stat-card:hover::before,
 .service-card:hover::before {
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+/* Gradient animation matching hero sections */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ========================================
@@ -253,38 +425,63 @@
    Dark Theme Adjustments
    ======================================== */
 @media (prefers-color-scheme: dark) {
+  /* Feature cards - COMPLETELY TRANSPARENT in dark mode too */
   .feature-card,
+  .solution-card,
+  .product-card {
+    background: transparent !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Secondary cards - subtle gradient background */
   .value-card,
   .benefit-card,
   .team-card,
-  .solution-card,
   .process-card,
   .step,
   .testimonial-card,
   .stat-card,
   .service-card {
-    background: var(--color-surface);
+    background: linear-gradient(135deg, 
+      var(--color-surface) 85%, 
+      rgba(90, 180, 241, 0.05) 100%) !important;
     box-shadow: 
       0 4px 12px rgba(0, 0, 0, 0.3),
       0 1px 3px rgba(0, 0, 0, 0.4);
   }
   
+  /* Feature cards hover - stay transparent with subtle effect */
   .feature-card:hover,
+  .solution-card:hover,
+  .product-card:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Secondary cards hover */
   .value-card:hover,
   .benefit-card:hover,
   .team-card:hover,
-  .solution-card:hover,
   .process-card:hover,
   .step:hover,
   .testimonial-card:hover,
   .stat-card:hover,
   .service-card:hover {
+    background: linear-gradient(135deg, 
+      var(--color-surface) 80%, 
+      rgba(90, 180, 241, 0.08) 100%) !important;
     box-shadow: 
       0 8px 24px rgba(0, 0, 0, 0.4),
       0 3px 8px rgba(0, 0, 0, 0.5);
   }
   
-  /* Gradient border is slightly brighter in dark mode */
+  /* Gradient border is more visible in dark mode */
   .feature-card::before,
   .value-card::before,
   .benefit-card::before,
@@ -295,7 +492,17 @@
   .testimonial-card::before,
   .stat-card::before,
   .service-card::before {
-    opacity: 0.4;
+    opacity: 0.9;
+    padding: 2.5px; /* Slightly thicker in dark mode for visibility */
+    background: linear-gradient(135deg, 
+      #5AB4F1 0%,      /* Lighter blue for dark mode */
+      #7AC5F5 25%,     /* Bright blue */
+      #90D4F7 35%,     /* Very bright blue */
+      #5AB4F1 50%,     /* Light blue */
+      #2F69B3 75%,     /* Deep blue */
+      #5AB4F1 100%     /* Light blue */
+    );
+    filter: blur(0.3px); /* Subtle glow in dark mode */
   }
   
   .feature-card:hover::before,
@@ -308,7 +515,9 @@
   .testimonial-card:hover::before,
   .stat-card:hover::before,
   .service-card:hover::before {
-    opacity: 0.7;
+    opacity: 1;
+    padding: 3.5px; /* Even more prominent on hover in dark mode */
+    filter: blur(1px); /* Stronger glow effect in dark mode */
   }
 }
 
@@ -501,10 +710,37 @@
   mask-composite: add !important;
 }
 
-/* Ensure solid background is maintained */
+/* FINAL OVERRIDE - Ensure feature cards are COMPLETELY TRANSPARENT */
 .feature-card,
 .solution-card,
-.product-card {
-  background: var(--color-surface) !important;
+.product-card,
+.page-home .feature-card,
+.page-solutions .feature-card,
+.page-solutions .solution-card,
+body .feature-card,
+body .solution-card,
+body .product-card {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   background-clip: border-box !important;
+}
+
+/* Ensure hover state stays transparent */
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover,
+.page-home .feature-card:hover,
+.page-solutions .feature-card:hover,
+.page-solutions .solution-card:hover,
+body .feature-card:hover,
+body .solution-card:hover,
+body .product-card:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }

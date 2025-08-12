@@ -1,0 +1,81 @@
+/**
+ * CRITICAL OVERRIDE - Force feature cards to be completely transparent
+ * This file ensures feature cards have NO background, only gradient borders
+ */
+
+/* Force all feature cards to be completely transparent */
+.feature-card,
+.solution-card,
+.product-card,
+.page-home .feature-card,
+.page-solutions .feature-card,
+.page-solutions .solution-card,
+div.feature-card,
+div.solution-card,
+div.product-card {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+  /* Ensure the pseudo-element doesn't fill the background */
+  isolation: isolate;
+}
+
+/* Ensure the before pseudo-element creates only a border, not a filled background */
+.feature-card::before,
+.solution-card::before,
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: -3px; /* Extend beyond the card */
+  padding: 3px; /* Border thickness */
+  border-radius: 23px;
+  background: linear-gradient(135deg, #00A2E8, #33B5ED, #FFC107, #FFB000);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Hover states must also be transparent */
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover,
+.page-home .feature-card:hover,
+.page-solutions .feature-card:hover,
+.page-solutions .solution-card:hover,
+div.feature-card:hover,
+div.solution-card:hover,
+div.product-card:hover {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  filter: none !important;
+}
+
+/* Dark mode - also transparent */
+@media (prefers-color-scheme: dark) {
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .feature-card:hover,
+  .solution-card:hover,
+  .product-card:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+  }
+}

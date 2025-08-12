@@ -1,0 +1,45 @@
+/**
+ * Alternative approach - Simple gradient border without masks
+ */
+
+/* Remove all backgrounds and pseudo-elements */
+.feature-card,
+.solution-card,
+.product-card {
+  position: relative !important;
+  background: transparent !important;
+  border: 3px solid transparent !important;
+  border-image: linear-gradient(135deg, #00A2E8, #33B5ED, #FFC107, #FFB000) 1 !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: none !important;
+}
+
+/* Remove the pseudo-element that might be causing issues */
+.feature-card::before,
+.solution-card::before,
+.product-card::before,
+.feature-card::after,
+.solution-card::after,
+.product-card::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Page-specific overrides */
+.page-home .feature-card {
+  border-image: linear-gradient(135deg, #00A2E8, #33B5ED, #FFC107, #FFB000) 1 !important;
+}
+
+.page-solutions .solution-card {
+  border-image: linear-gradient(135deg, #00E676, #00C853, #00A2E8, #0082BB) 1 !important;
+}
+
+/* Hover effect - just brighten the border */
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover {
+  border-width: 4px !important;
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}

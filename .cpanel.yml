@@ -1,59 +1,59 @@
 ---
+# cPanel Git Deployment Configuration
+# This file automates deployment when changes are pushed to the repository
+
 deployment:
   tasks:
-    # Set deployment paths
-    - export DEPLOYPATH=/home/nuguiyhv/public_html/
-    - export APPPATH=/home/nuguiyhv/
+    # Set deployment path for nugui.co.za
+    - export DEPLOYPATH=/home/nugui/public_html/
     
-    # Deploy public web files
-    - /bin/cp -f ./public/index.php $DEPLOYPATH
-    - /bin/cp -f ./public/.htaccess $DEPLOYPATH
-    - /bin/rsync -a --delete ./public/assets/ $DEPLOYPATH/assets/
-    - /bin/rsync -a --delete ./public/css/ $DEPLOYPATH/css/
-    - /bin/rsync -a --delete ./public/js/ $DEPLOYPATH/js/
-    - /bin/cp -f ./public/robots.txt $DEPLOYPATH || true
-    - /bin/cp -f ./public/sitemap.xml $DEPLOYPATH || true
-    - /bin/cp -f ./public/favicon.ico $DEPLOYPATH || true
-    - /bin/cp -f ./public/sw.js $DEPLOYPATH || true
+    # Create backup of current deployment (optional but recommended)
+    - export BACKUPPATH=/home/nugui/backups/
+    - mkdir -p $BACKUPPATH
+    - export TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+    - tar -czf $BACKUPPATH/backup_$TIMESTAMP.tar.gz $DEPLOYPATH --exclude=$DEPLOYPATH/writable --exclude=$DEPLOYPATH/vendor || true
     
-    # Deploy application files
-    - /bin/rsync -a --delete ./app/ $APPPATH/app/
-    - /bin/rsync -a --delete ./vendor/ $APPPATH/vendor/
-    - /bin/rsync -a --delete ./system/ $APPPATH/system/ || true
+    # Copy application files
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R public/* $DEPLOYPATH
+    - /bin/cp -R vendor $DEPLOYPATH 2>/dev/null || true
     
-    # Deploy writable directories with proper structure
-    - /bin/mkdir -p $APPPATH/writable/cache
-    - /bin/mkdir -p $APPPATH/writable/logs  
-    - /bin/mkdir -p $APPPATH/writable/session
-    - /bin/mkdir -p $APPPATH/writable/uploads
-    - /bin/rsync -a ./writable/ $APPPATH/writable/ || true
+    # Copy configuration files
+    - /bin/cp spark $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH 2>/dev/null || true
     
-    # Deploy configuration files
-    - /bin/cp -f ./.env.production $APPPATH/.env 2>/dev/null || /bin/cp -f ./.env $APPPATH/.env
-    - /bin/cp -f ./composer.json $APPPATH/
-    - /bin/cp -f ./composer.lock $APPPATH/ || true
+    # Create writable directories if they don't exist
+    - mkdir -p $DEPLOYPATH/writable/cache
+    - mkdir -p $DEPLOYPATH/writable/logs
+    - mkdir -p $DEPLOYPATH/writable/session
+    - mkdir -p $DEPLOYPATH/writable/uploads
+    - mkdir -p $DEPLOYPATH/writable/debugbar
     
-    # Deploy database migration files for ticket system
-    - /bin/mkdir -p $APPPATH/database
-    - /bin/cp -f ./database/ticketing_system.sql $APPPATH/database/ || true
+    # Set proper permissions for writable directories
+    - chmod -R 755 $DEPLOYPATH/writable
+    - chmod -R 777 $DEPLOYPATH/writable/cache
+    - chmod -R 777 $DEPLOYPATH/writable/logs
+    - chmod -R 777 $DEPLOYPATH/writable/session
+    - chmod -R 777 $DEPLOYPATH/writable/uploads
+    - chmod -R 777 $DEPLOYPATH/writable/debugbar
     
-    # Update index.php to point to correct paths
-    - /bin/sed -i "s|require realpath(FCPATH . '../app/Config/Paths.php')|require realpath(FCPATH . '../app/Config/Paths.php')|g" $DEPLOYPATH/index.php
+    # Copy environment file (if exists)
+    - /bin/cp .env $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp env $DEPLOYPATH/.env 2>/dev/null || true
     
-    # Set correct file permissions
-    - /bin/find $APPPATH -type d -exec chmod 755 {} \;
-    - /bin/find $APPPATH -type f -exec chmod 644 {} \;
-    - /bin/chmod -R 775 $APPPATH/writable
-    - /bin/chmod 644 $APPPATH/.env
+    # Set proper permissions for security
+    - chmod 644 $DEPLOYPATH/.env 2>/dev/null || true
+    - chmod 755 $DEPLOYPATH/spark
     
-    # Deploy deployment scripts
-    - /bin/cp -f ./deploy-production.php $APPPATH/
-    - /bin/cp -f ./post-deploy.sh $APPPATH/
-    - /bin/chmod +x $APPPATH/post-deploy.sh
+    # Clear cache after deployment
+    - cd $DEPLOYPATH && php spark cache:clear 2>/dev/null || true
     
-    # Ensure web server can write to necessary directories
-    - /bin/chown -R nuguiyhv:nobody $APPPATH/writable || true
-    - /bin/chown -R nuguiyhv:nobody $DEPLOYPATH || true
+    # Optional: Run database migrations (uncomment if using migrations)
+    # - cd $DEPLOYPATH && php spark migrate 2>/dev/null || true
     
-    # Run post-deployment setup
-    - $APPPATH/post-deploy.sh || echo "Post-deploy script completed with warnings"
+    # Optional: Install composer dependencies (uncomment if needed)
+    # - cd $DEPLOYPATH && /usr/local/bin/composer install --no-dev --optimize-autoloader 2>/dev/null || true
+    
+    # Create deployment log
+    - echo "Deployment completed at $(date)" >> $DEPLOYPATH/writable/logs/deployment.log

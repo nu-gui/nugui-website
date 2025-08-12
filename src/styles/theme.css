@@ -1,0 +1,282 @@
+/**
+ * NUGUI Theme System
+ * Centralized theme configuration for light and dark modes
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import typography system */
+@import './typography.css';
+
+@layer base {
+  /* ========================================
+     CSS Variables for Theme Control
+     ======================================== */
+  :root {
+    /* Light Theme Colors */
+    --color-background: #ffffff;
+    --color-surface: #f9fafb;
+    --color-surface-elevated: #ffffff;
+    --color-border: #e5e7eb;
+    
+    /* Text Colors */
+    --color-text-primary: #111827;
+    --color-text-secondary: #6b7280;
+    --color-text-muted: #9ca3af;
+    --color-text-inverse: #ffffff;
+    
+    /* Brand Colors */
+    --color-primary: #00A2E8;
+    --color-primary-hover: #0288d1;
+    --color-secondary: #FFB000;
+    --color-secondary-hover: #E69500;
+    --color-accent: #9C4DCC;
+    --color-accent-hover: #7B2D99;
+    
+    /* Product Colors */
+    --color-sip: #00E676;
+    --color-sms: #FF5722;
+    --color-ccs: #FFB000;
+    --color-data: #9C4DCC;
+    --color-cron: #2196F3;
+    --color-gui: #00A2E8;
+    
+    /* Status Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+  }
+  
+  /* Dark Theme */
+  [data-theme="dark"],
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Dark Theme Colors */
+      --color-background: #111827;
+      --color-surface: #1f2937;
+      --color-surface-elevated: #374151;
+      --color-border: #374151;
+      
+      /* Text Colors */
+      --color-text-primary: #f9fafb;
+      --color-text-secondary: #d1d5db;
+      --color-text-muted: #9ca3af;
+      --color-text-inverse: #111827;
+      
+      /* Adjusted Brand Colors for Dark Mode */
+      --color-primary: #5AB4F1;
+      --color-primary-hover: #7AC5F5;
+      --color-secondary: #FFC847;
+      --color-secondary-hover: #FFD570;
+      --color-accent: #B86CE8;
+      --color-accent-hover: #C690EF;
+      
+      /* Shadows for Dark Mode */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+      --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5);
+    }
+  }
+  
+  /* Base Styles */
+  
+  body {
+    @apply bg-[var(--color-background)] text-[var(--color-text-primary)] transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* ========================================
+     Reusable Component Classes
+     ======================================== */
+  
+  /* Containers */
+  .container-main {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Cards - Transparent with Gradient Borders */
+  .card-transparent {
+    @apply relative bg-transparent p-8 rounded-2xl;
+    @apply before:absolute before:inset-0 before:p-[2px] before:rounded-2xl;
+    @apply before:bg-gradient-to-br before:from-blue-500 before:to-yellow-500;
+    @apply before:-z-10 before:transition-all before:duration-300;
+    @apply hover:before:p-[3px] hover:transform hover:-translate-y-1;
+  }
+  
+  /* Cards - With Background */
+  .card-surface {
+    @apply bg-[var(--color-surface)] rounded-2xl p-6 shadow-md;
+    @apply border border-[var(--color-border)] transition-all duration-300;
+    @apply hover:shadow-lg hover:transform hover:-translate-y-1;
+  }
+  
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg;
+    @apply font-semibold transition-all duration-200 cursor-pointer;
+    @apply focus:outline-none focus:ring-4 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--color-primary)] text-white;
+    @apply hover:bg-[var(--color-primary-hover)] hover:shadow-lg;
+    @apply focus:ring-blue-500 focus:ring-offset-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-[var(--color-secondary)] text-white;
+    @apply hover:bg-[var(--color-secondary-hover)] hover:shadow-lg;
+    @apply focus:ring-yellow-500 focus:ring-offset-white;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-primary)];
+    @apply hover:bg-[var(--color-primary)] hover:text-white hover:shadow-lg;
+    @apply focus:ring-blue-500 focus:ring-offset-white;
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-[var(--color-text-primary)];
+    @apply hover:bg-[var(--color-surface)] hover:shadow-md;
+  }
+  
+  /* Hero Sections */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-blue-500 via-yellow-500 to-gray-900;
+    @apply relative overflow-hidden;
+  }
+  
+  .hero-gradient-home {
+    @apply bg-gradient-to-br from-[#00A2E8] via-[#FFC107] to-gray-900;
+  }
+  
+  .hero-gradient-about {
+    @apply bg-gradient-to-br from-[#00A2E8] via-[#9C4DCC] to-gray-900;
+  }
+  
+  .hero-gradient-solutions {
+    @apply bg-gradient-to-br from-[#00E676] via-[#00A2E8] to-gray-900;
+  }
+  
+  /* Typography */
+  .heading-1 {
+    @apply text-5xl md:text-6xl font-bold tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  
+  .heading-3 {
+    @apply text-2xl md:text-3xl font-semibold;
+  }
+  
+  .text-muted {
+    @apply text-[var(--color-text-muted)];
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-500 to-yellow-500;
+    @apply bg-clip-text text-transparent;
+  }
+  
+  /* Forms */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg;
+    @apply bg-[var(--color-surface)] border border-[var(--color-border)];
+    @apply text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)];
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-[var(--color-text-secondary)] mb-2;
+  }
+  
+  /* Grid Layouts */
+  .grid-cards {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .grid-features {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+  
+  /* Animations */
+  .animate-gradient {
+    @apply bg-gradient-to-r from-blue-500 via-yellow-500 to-purple-500;
+    background-size: 300% 300%;
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Glass Morphism Effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10;
+  }
+}
+
+@layer utilities {
+  /* Custom Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-border {
+    position: relative;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}

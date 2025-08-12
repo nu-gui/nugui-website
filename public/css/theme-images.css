@@ -50,22 +50,6 @@ picture img {
     object-fit: contain;
 }
 
-/* Remove old display none/block logic - no longer needed with picture elements */
-.logo-light,
-.logo-dark,
-.product-icon-light,
-.product-icon-dark,
-.product-image-light,
-.product-image-dark,
-.footer-logo-light,
-.footer-logo-dark,
-.landing-logo-light,
-.landing-logo-dark,
-.team-image-light,
-.team-image-dark {
-    /* These classes are deprecated - using picture element instead */
-    display: revert !important;
-}
 
 /* For browsers that don't support picture element (fallback) */
 @supports not (selector(:has(picture))) {

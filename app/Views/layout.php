@@ -10,7 +10,10 @@
     <link rel="canonical" href="<?= base_url(uri_string()) ?>">
     <title><?= $this->renderSection('title') ? $this->renderSection('title') . ' | ' : '' ?>NU GUI - Enterprise Telecom Solutions</title>
     
-    <!-- Apple-Inspired Modern CSS Framework -->
+    <!-- Tailwind CSS with Organized Theme System -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/tailwind.css?v=' . time()) ?>">
+    
+    <!-- Core Apple-Inspired CSS Framework -->
     <link rel="stylesheet" href="<?= base_url('css/reset.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/globalnav-apple.css') ?>">
@@ -20,34 +23,27 @@
     <!-- Product Colors and Page Gradients -->
     <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
-    <!-- Disabled: card-glow.css causes transparency issues, replaced by cards-standardized.css -->
-    <!-- <link rel="stylesheet" href="<?= base_url('css/card-glow.css') ?>"> -->
     
-    <!-- Theme-aware images CSS -->
+    <!-- Theme and Asset Configuration -->
     <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
-    
-    <!-- Centralized theme assets configuration -->
     <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
     
-    <!-- Enhanced button styles -->
-    <link rel="stylesheet" href="<?= base_url('css/buttons-enhanced.css') ?>">
-    
-    <!-- Unified hero section styles -->
-    <link rel="stylesheet" href="<?= base_url('css/hero-sections.css') ?>">
-    
-    <!-- Standardized card styles (replaces cards-unified.css) -->
-    <link rel="stylesheet" href="<?= base_url('css/cards-standardized.css') ?>">
-    
-    <!-- Enhanced form styles -->
+    <!-- Unified Button System - Single source for all button styles with consistent animations -->
+    <link rel="stylesheet" href="<?= base_url('css/buttons-unified.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/hero-sections.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
-    
-    <!-- Futuristic form styles -->
     <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
     
-    <!-- Theme fixes and enhancements -->
-    <link rel="stylesheet" href="<?= base_url('css/theme-fixes.css') ?>">
+    <!-- Master Card Styling System - All card types with animations and effects -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-master.css?v=' . time()) ?>">
     
-    <!-- Existing CSS for backward compatibility -->
+    <!-- Fix for rounded corners with gradient borders -->
+    <link rel="stylesheet" href="<?= base_url('css/cards-rounded-fix.css?v=' . time()) ?>">
+    
+    <!-- Improved Typography System - Better font sizes and responsive scaling -->
+    <link rel="stylesheet" href="<?= base_url('css/typography-improved.css?v=' . time()) ?>">
+    
+    <!-- Existing CSS for enhanced features -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
@@ -115,8 +111,6 @@
     
     <!-- Legacy scripts for backward compatibility -->
     <script src="<?= base_url('assets/js/script.js?v=' . time()) ?>"></script>
-    <!-- Darkmode temporarily disabled - picture elements should handle theme switching -->
-    <!-- <script src="<?= base_url('assets/js/darkmode.js?v=' . time()) ?>"></script> -->
     
     <!-- Page Gradient Enhancement -->
     <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>

@@ -1,0 +1,400 @@
+/**
+ * NUGUI Typography System
+ * Consistent font sizes and text styles across all pages
+ */
+
+@layer base {
+  /* ========================================
+     Typography Scale
+     Using a modular scale for consistent sizing
+     Base: 16px (1rem)
+     Scale: 1.25 (Major Third)
+     ======================================== */
+  :root {
+    /* Font Families */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    
+    /* Font Sizes - Desktop */
+    --text-xs: 0.75rem;     /* 12px - Small labels, captions */
+    --text-sm: 0.875rem;    /* 14px - Secondary text, small buttons */
+    --text-base: 1rem;      /* 16px - Body text */
+    --text-lg: 1.125rem;    /* 18px - Lead paragraphs */
+    --text-xl: 1.25rem;     /* 20px - Small headings */
+    --text-2xl: 1.5rem;     /* 24px - H4 headings */
+    --text-3xl: 1.875rem;   /* 30px - H3 headings */
+    --text-4xl: 2.25rem;    /* 36px - H2 headings */
+    --text-5xl: 3rem;       /* 48px - H1 headings */
+    --text-6xl: 3.75rem;    /* 60px - Hero headings */
+    
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+    
+    /* Letter Spacing */
+    --tracking-tighter: -0.05em;
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+    
+    /* Font Weights */
+    --font-thin: 100;
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+    --font-extrabold: 800;
+    --font-black: 900;
+  }
+  
+  /* Mobile Font Sizes */
+  @media (max-width: 768px) {
+    :root {
+      --text-xs: 0.75rem;     /* 12px */
+      --text-sm: 0.813rem;    /* 13px */
+      --text-base: 0.938rem;  /* 15px */
+      --text-lg: 1rem;        /* 16px */
+      --text-xl: 1.125rem;    /* 18px */
+      --text-2xl: 1.25rem;    /* 20px */
+      --text-3xl: 1.5rem;     /* 24px */
+      --text-4xl: 1.875rem;   /* 30px */
+      --text-5xl: 2.25rem;    /* 36px */
+      --text-6xl: 2.5rem;     /* 40px */
+    }
+  }
+  
+  /* Base Typography Styles */
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-normal);
+    letter-spacing: var(--tracking-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Headings */
+  h1, .h1 {
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: 1.5rem;
+  }
+  
+  h2, .h2 {
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: 1.25rem;
+  }
+  
+  h3, .h3 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: 1rem;
+  }
+  
+  h4, .h4 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.875rem;
+  }
+  
+  h5, .h5 {
+    font-size: var(--text-xl);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.75rem;
+  }
+  
+  h6, .h6 {
+    font-size: var(--text-lg);
+    line-height: var(--leading-normal);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Paragraphs */
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin-bottom: 1rem;
+  }
+  
+  /* Lead Paragraphs */
+  .lead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--font-normal);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Small Text */
+  small, .small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+  
+  /* Links */
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  
+  a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Code */
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 0.125rem 0.25rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+  }
+  
+  pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+  }
+}
+
+@layer components {
+  /* ========================================
+     Component-Specific Typography
+     ======================================== */
+  
+  /* Hero Sections */
+  .hero-title {
+    font-size: var(--text-6xl);
+    line-height: var(--leading-none);
+    font-weight: var(--font-extrabold);
+    letter-spacing: var(--tracking-tighter);
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+    font-weight: var(--font-normal);
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  /* Card Typography */
+  .card-title {
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.75rem;
+  }
+  
+  .card-text {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  /* Feature Cards - Consistent Sizing */
+  .feature-card h3,
+  .solution-card h3,
+  .product-card h3,
+  .benefit-card h3,
+  .value-card h3 {
+    font-size: var(--text-xl) !important;
+    line-height: var(--leading-snug);
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.75rem;
+  }
+  
+  .feature-card p,
+  .solution-card p,
+  .product-card p,
+  .benefit-card p,
+  .value-card p {
+    font-size: var(--text-base) !important;
+    line-height: var(--leading-normal);
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  /* Team Cards */
+  .team-card h3 {
+    font-size: var(--text-lg) !important;
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.25rem;
+  }
+  
+  .team-card .role {
+    font-size: var(--text-sm) !important;
+    font-weight: var(--font-medium);
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-card .bio {
+    font-size: var(--text-sm) !important;
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Navigation */
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-normal);
+    line-height: 1;
+  }
+  
+  .btn-sm {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+  }
+  
+  .btn-lg {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+  }
+  
+  /* Forms */
+  .label {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    margin-bottom: 0.5rem;
+  }
+  
+  .input,
+  .textarea,
+  .select {
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+  }
+  
+  .form-help {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+  
+  .form-error {
+    font-size: var(--text-sm);
+    color: var(--color-error);
+    margin-top: 0.25rem;
+  }
+  
+  /* Section Headers */
+  .section-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: 1rem;
+  }
+  
+  .section-subtitle {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: 3rem;
+  }
+  
+  /* Footer */
+  .footer-heading {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-link {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+  
+  /* Testimonials */
+  .testimonial-quote {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-author {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+  }
+  
+  .testimonial-role {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Pricing */
+  .price-amount {
+    font-size: var(--text-5xl);
+    font-weight: var(--font-bold);
+    line-height: 1;
+  }
+  
+  .price-period {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+  }
+  
+  /* Stats */
+  .stat-number {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-secondary);
+  }
+}

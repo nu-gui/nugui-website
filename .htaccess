@@ -1,61 +1,139 @@
+# CodeIgniter 4 Production .htaccess Configuration
+
 # Disable directory browsing
 Options -Indexes
 
-# ----------------------------------------------------------------------
-# Rewrite engine
-# ----------------------------------------------------------------------
+# Disable MultiViews to prevent Apache from serving unexpected files
+Options -MultiViews
 
-# Turning on the rewrite engine is necessary for the following rules and features.
-# FollowSymLinks must be enabled for this to work.
-<IfModule mod_rewrite.c>
-	Options +FollowSymlinks
-	RewriteEngine On
+# Enable RewriteEngine
+RewriteEngine On
 
-	# If you installed CodeIgniter in a subfolder, you will need to
-	# change the following line to match the subfolder you need.
-	# http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
-	# RewriteBase /
+# Redirect Trailing Slashes (prevents duplicate content)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
 
-	# Redirect Trailing Slashes...
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_URI} (.+)/$
-	RewriteRule ^ %1 [L,R=301]
+# Force HTTPS (uncomment these lines in production)
+# RewriteCond %{HTTPS} !=on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
-	# Force HTTPS redirect (DISABLED FOR LOCAL DEVELOPMENT)
-	# RewriteCond %{HTTPS} !=on
-	# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Force WWW (uncomment if you want to force www)
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
 
-	# Rewrite "www.example.com -> example.com" (HTTPS version) (DISABLED FOR LOCAL)
-	# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-	# RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+# Force non-WWW (uncomment if you want to force non-www)
+# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-	# Checks to see if the user is attempting to access a valid file,
-	# such as an image or css document, if this isn't true it sends the
-	# request to the front controller, index.php
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]
+# Ensure Authorization header is passed along
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-	# Ensure Authorization header is passed along
-	RewriteCond %{HTTP:Authorization} .
-	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-</IfModule>
+# Redirect to public folder (if not already in public)
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
 
-<IfModule !mod_rewrite.c>
-	# If we don't have mod_rewrite installed, all 404's
-	# can be sent to index.php, and everything works as normal.
-	ErrorDocument 404 index.php
-</IfModule>
+# Redirect everything to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^public/(.*)$ public/index.php/$1 [L]
 
-# Disable server signature start
-ServerSignature Off
-# Disable server signature end
-
-# Development cache prevention (REMOVE IN PRODUCTION)
+# Security Headers
 <IfModule mod_headers.c>
-    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|svg)$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires 0
-    </FilesMatch>
+    # Protect against XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME-sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # Prevent Clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Enable HSTS (uncomment in production with HTTPS)
+    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/opentype
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Video
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/mpeg "access plus 1 year"
+    
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    
+    # Others
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule>
+
+# Deny access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to specific files
+<FilesMatch "(^\.htaccess|\.htpasswd|\.git|\.svn|composer\.(json|lock)|package\.(json|lock)|\.env|spark|phpunit\.xml|\.user\.ini)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect application and system folders
+<IfModule authz_core_module>
+    RedirectMatch 403 ^/app/.*$
+    RedirectMatch 403 ^/system/.*$
+    RedirectMatch 403 ^/writable/(?!uploads/).*$
+    RedirectMatch 403 ^/vendor/.*$
+    RedirectMatch 403 ^/tests/.*$
+</IfModule>
+
+# PHP Settings (adjust according to your needs)
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
 </IfModule>
