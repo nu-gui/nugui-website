@@ -38,9 +38,8 @@ deployment:
     - chmod -R 777 $DEPLOYPATH/writable/uploads
     - chmod -R 777 $DEPLOYPATH/writable/debugbar
     
-    # Copy environment file (if exists)
-    - /bin/cp .env $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp env $DEPLOYPATH/.env 2>/dev/null || true
+    # Copy environment file - use .env.production if .env doesn't exist
+    - /bin/cp .env $DEPLOYPATH 2>/dev/null || /bin/cp .env.production $DEPLOYPATH/.env 2>/dev/null || true
     
     # Set proper permissions for security
     - chmod 644 $DEPLOYPATH/.env 2>/dev/null || true
