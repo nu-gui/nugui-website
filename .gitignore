@@ -1,75 +1,280 @@
-# CodeIgniter 4 .gitignore for Production Deployment
+#==============================================================================
+# CodeIgniter 4 Production .gitignore
+# Industry-standard configuration for secure production deployment
+#==============================================================================
 
-# IMPORTANT: vendor and node_modules should be ignored
-# Run composer install on the server or include vendor only in deployment branch
-/vendor/
-/node_modules/
-
-# Environment files (keep templates and production config)
+#------------------------------------------------------------------------------
+# ENVIRONMENT & CONFIGURATION
+#------------------------------------------------------------------------------
+# Never commit environment files except production template
 .env
 .env.*
 !.env.production
 !env.example
-!env.production
 
-# Writable directories - only ignore contents, not structure
+#------------------------------------------------------------------------------
+# DEPENDENCIES & BUILD ARTIFACTS
+#------------------------------------------------------------------------------
+# Package managers
+/vendor/
+/node_modules/
+composer.phar
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+#------------------------------------------------------------------------------
+# CODEIGNITER WRITABLE DIRECTORIES
+#------------------------------------------------------------------------------
+# Only ignore contents, keep structure with .gitkeep
 /writable/cache/*
 !/writable/cache/index.html
 !/writable/cache/.gitkeep
+
 /writable/logs/*
 !/writable/logs/index.html
 !/writable/logs/.gitkeep
+
 /writable/session/*
 !/writable/session/index.html
 !/writable/session/.gitkeep
+
 /writable/uploads/*
 !/writable/uploads/index.html
 !/writable/uploads/.gitkeep
+
 /writable/debugbar/*
 !/writable/debugbar/index.html
 !/writable/debugbar/.gitkeep
 
-# Temporary files
-*.tmp
-*.temp
-*.bak
+#------------------------------------------------------------------------------
+# DEVELOPMENT & TESTING
+#------------------------------------------------------------------------------
+# Development tools (kept in dev-tools/ for organization)
+/dev-tools/debug/*.txt
+/dev-tools/debug/*.log
+/dev-tools/tests/coverage/
+/dev-tools/tests/results/
+*.test.php
+*.spec.php
+
+# PHPUnit
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache/
+
+# Testing artifacts
+/tests/_output/*
+/tests/_support/_generated/*
+/tests/coverage/
+.coverage
+
+#------------------------------------------------------------------------------
+# IDE & EDITOR FILES
+#------------------------------------------------------------------------------
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+*.sublime-*
+
+# Vim
 *.swp
 *.swo
 *~
-*.log
+.*.sw?
 
-# OS generated files
+# NetBeans
+nbproject/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+#------------------------------------------------------------------------------
+# OS GENERATED FILES
+#------------------------------------------------------------------------------
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+.AppleDouble
+.LSOverride
+Icon
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
 Thumbs.db
-desktop.ini
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
 
-# IDE files (optional - can be committed if needed for team)
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
+# Linux
+.directory
+.Trash-*
+.nfs*
 
-# Keep test/debug files out
+#------------------------------------------------------------------------------
+# TEMPORARY FILES
+#------------------------------------------------------------------------------
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*.log
+*.pid
+*.seed
+*.pid.lock
+.grunt
+.lock-wscript
+
+#------------------------------------------------------------------------------
+# BUILD & COMPILED FILES
+#------------------------------------------------------------------------------
+# CSS/JS builds (if using preprocessors)
+/public/dist/
+/public/build/
+/public/compiled/
+*.min.js
+*.min.css
+*.map
+
+# PHP
+*.phar
+*.zip
+*.tar.gz
+*.rar
+
+#------------------------------------------------------------------------------
+# SECURITY - NEVER COMMIT THESE
+#------------------------------------------------------------------------------
+# SSL Certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+
+# Database dumps
+*.sql
+!database/*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# Credentials and secrets
+secrets.yml
+secrets.json
+auth.json
+credentials.json
+*.private
+.htpasswd
+
+#------------------------------------------------------------------------------
+# DOCKER (if not needed for production)
+#------------------------------------------------------------------------------
+docker-compose.override.yml
+.dockerignore
+Dockerfile.dev
+docker-compose.dev.yml
+
+#------------------------------------------------------------------------------
+# DEPLOYMENT
+#------------------------------------------------------------------------------
+# CI/CD
+.github/workflows/local-*.yml
+.gitlab-ci-local.yml
+.travis.yml
+.circleci/config.local.yml
+
+# Server configs (unless needed)
+.htaccess.local
+nginx.conf.local
+apache.conf.local
+
+#------------------------------------------------------------------------------
+# PROJECT SPECIFIC
+#------------------------------------------------------------------------------
+# Debug and test files
 /info.php
 /phpinfo.php
 /test.php
 /debug.php
+/check.php
 
-# Docker files (if not needed for deployment)
-docker-compose.override.yml
-.dockerignore
+# Backup files
+backup/
+backups/
+*.backup
 
-# Note: The following are intentionally NOT ignored for cPanel deployment:
-# - vendor/ (needed unless Composer is run on server)
-# - .env files (will be configured on server)
-# - app/ (application source code)
-# - public/ (public assets)
-# - system/ (CodeIgniter system files)
-# - All configuration files
-# - .cpanel.yml (deployment configuration)
-# - .htaccess (Apache configuration)
+# Cache files
+.sass-cache/
+.cache/
+.parcel-cache/
+.nuxt/
+.next/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+#------------------------------------------------------------------------------
+# KEEP THESE FILES
+#------------------------------------------------------------------------------
+# Important configs
+!.cpanel.yml
+!.htaccess
+!robots.txt
+!favicon.ico
+
+# Documentation (now in docs/)
+!docs/
+!README.md
+!LICENSE
+
+# CodeIgniter essentials
+!spark
+!preload.php
+!builds
+
+# Application source
+!app/
+!public/
+!system/
+!database/
+!scripts/deployment/
+
+#==============================================================================
+# End of .gitignore
+#==============================================================================
