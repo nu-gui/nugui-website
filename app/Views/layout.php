@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BRG4CD6Q4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-8BRG4CD6Q4');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= $description ?? 'NU GUI - Leading telecom solutions provider. Carrier-grade VoIP, SMS gateways, call control systems & data services. Trusted by 200+ operators in 50+ countries. 99.99% uptime guaranteed.' ?>">
