@@ -18,10 +18,22 @@ deployment:
     - /bin/cp -R public/* $DEPLOYPATH
     - /bin/cp -R vendor $DEPLOYPATH 2>/dev/null || true
     
+    # Copy system folder (required for CodeIgniter 4)
+    - /bin/cp -R system $DEPLOYPATH 2>/dev/null || true
+    
     # Copy configuration files
     - /bin/cp spark $DEPLOYPATH
-    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp composer.json $DEPLOYPATH 2>/dev/null || true
     - /bin/cp .htaccess $DEPLOYPATH 2>/dev/null || true
+    
+    # Copy public/index.php to root (CodeIgniter 4 entry point)
+    - /bin/cp public/index.php $DEPLOYPATH/index.php 2>/dev/null || true
+    
+    # Ensure assets are accessible
+    - /bin/cp -R public/assets $DEPLOYPATH/assets 2>/dev/null || true
+    - /bin/cp -R public/css $DEPLOYPATH/css 2>/dev/null || true
+    - /bin/cp -R public/js $DEPLOYPATH/js 2>/dev/null || true
+    - /bin/cp -R public/images $DEPLOYPATH/images 2>/dev/null || true
     
     # Create writable directories if they don't exist
     - mkdir -p $DEPLOYPATH/writable/cache
