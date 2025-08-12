@@ -1,79 +1,276 @@
 ---
-# cPanel Git Deployment Configuration
-# This file automates deployment when changes are pushed to the repository
+# Secure cPanel Git Deployment Configuration for CodeIgniter 4
+# This deploys sensitive files OUTSIDE public_html for maximum security
 
 deployment:
   tasks:
-    # Set deployment path for nugui.co.za
-    - export DEPLOYPATH=/home/nuguiyhv/public_html/
+    # ============================================================
+    # STEP 1: SET UP PATHS
+    # ============================================================
+    # Repository location (where cPanel clones the git repo)
+    - export REPOPATH=/home/nuguiyhv/repositories/nugui-website
     
-    # Create backup of current deployment
-    - export BACKUPPATH=/home/nuguiyhv/backups/
+    # Secure application location (OUTSIDE public_html)
+    - export APPPATH=/home/nuguiyhv/ci_app
+    
+    # Public web directory
+    - export PUBLICPATH=/home/nuguiyhv/public_html
+    
+    # Backup location
+    - export BACKUPPATH=/home/nuguiyhv/backups
+    
+    # ============================================================
+    # STEP 2: CREATE BACKUP
+    # ============================================================
     - mkdir -p $BACKUPPATH
     - export TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    - tar -czf $BACKUPPATH/backup_$TIMESTAMP.tar.gz $DEPLOYPATH --exclude=$DEPLOYPATH/writable --exclude=$DEPLOYPATH/vendor --exclude=$DEPLOYPATH/node_modules || true
+    - |
+      if [ -d "$APPPATH" ]; then
+        tar -czf $BACKUPPATH/backup_$TIMESTAMP.tar.gz $APPPATH $PUBLICPATH \
+          --exclude=$APPPATH/writable/cache \
+          --exclude=$APPPATH/writable/logs \
+          --exclude=$APPPATH/vendor || true
+        echo "Backup created: $BACKUPPATH/backup_$TIMESTAMP.tar.gz"
+      fi
     
-    # Clear cache before deployment
-    - rm -rf $DEPLOYPATH/writable/cache/* 2>/dev/null || true
+    # ============================================================
+    # STEP 3: CREATE SECURE DIRECTORY STRUCTURE
+    # ============================================================
+    - mkdir -p $APPPATH
+    - mkdir -p $APPPATH/writable/cache
+    - mkdir -p $APPPATH/writable/logs  
+    - mkdir -p $APPPATH/writable/session
+    - mkdir -p $APPPATH/writable/uploads
+    - mkdir -p $APPPATH/writable/debugbar
     
-    # Copy application files
-    - /bin/cp -R app $DEPLOYPATH
-    - /bin/cp -R system $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp -R vendor $DEPLOYPATH 2>/dev/null || true
-    
-    # Copy public files
-    - /bin/cp -R public/* $DEPLOYPATH
-    - /bin/cp public/.htaccess $DEPLOYPATH 2>/dev/null || true
-    
-    # Copy database folder
-    - /bin/cp -R database $DEPLOYPATH 2>/dev/null || true
+    # ============================================================
+    # STEP 4: DEPLOY SENSITIVE FILES TO SECURE LOCATION
+    # ============================================================
+    # Copy application files (OUTSIDE public_html)
+    - /bin/cp -R $REPOPATH/app $APPPATH/ || exit 1
+    - /bin/cp -R $REPOPATH/system $APPPATH/ || exit 1
+    - /bin/cp -R $REPOPATH/vendor $APPPATH/ 2>/dev/null || true
+    - /bin/cp -R $REPOPATH/database $APPPATH/ 2>/dev/null || true
+    - /bin/cp -R $REPOPATH/tests $APPPATH/ 2>/dev/null || true
     
     # Copy configuration files
-    - /bin/cp spark $DEPLOYPATH
-    - /bin/cp composer.json $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp composer.lock $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp builds $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp preload.php $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp phpunit.xml.dist $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp $REPOPATH/spark $APPPATH/ || exit 1
+    - /bin/cp $REPOPATH/composer.json $APPPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/composer.lock $APPPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/preload.php $APPPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/builds $APPPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/phpunit.xml.dist $APPPATH/ 2>/dev/null || true
     
-    # Copy documentation (optional, can be removed if not needed)
-    - /bin/cp -R docs $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp README.md $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp LICENSE $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp PROJECT_STRUCTURE.md $DEPLOYPATH 2>/dev/null || true
+    # Copy environment file (with proper security)
+    - |
+      if [ -f "$REPOPATH/.env.production" ]; then
+        /bin/cp $REPOPATH/.env.production $APPPATH/.env
+        echo "Copied .env.production to $APPPATH/.env"
+      elif [ -f "$REPOPATH/env.production" ]; then
+        /bin/cp $REPOPATH/env.production $APPPATH/.env
+        echo "Copied env.production to $APPPATH/.env"
+      fi
     
-    # Copy essential files
-    - /bin/cp robots.txt $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp favicon.ico $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp .htaccess $DEPLOYPATH 2>/dev/null || true
+    # ============================================================
+    # STEP 5: SECURE PERMISSIONS FOR SENSITIVE FILES
+    # ============================================================
+    - chmod 600 $APPPATH/.env 2>/dev/null || true
+    - chmod 755 $APPPATH/spark
+    - chmod -R 755 $APPPATH/app
+    - chmod -R 755 $APPPATH/system
+    - chmod -R 775 $APPPATH/writable
+    - chmod -R 777 $APPPATH/writable/cache
+    - chmod -R 777 $APPPATH/writable/logs
+    - chmod -R 777 $APPPATH/writable/session
+    - chmod -R 777 $APPPATH/writable/uploads
     
-    # Copy environment file - use .env.production if .env doesn't exist
-    - /bin/cp .env $DEPLOYPATH 2>/dev/null || /bin/cp .env.production $DEPLOYPATH/.env 2>/dev/null || true
-    - /bin/cp env.production $DEPLOYPATH 2>/dev/null || true
+    # ============================================================
+    # STEP 6: DEPLOY PUBLIC FILES ONLY TO public_html
+    # ============================================================
+    # Clear old public files (keep .well-known for SSL)
+    - find $PUBLICPATH -mindepth 1 -name '.well-known' -prune -o -type f -exec rm -f {} + 2>/dev/null || true
+    - find $PUBLICPATH -mindepth 1 -name '.well-known' -prune -o -type d -exec rm -rf {} + 2>/dev/null || true
     
-    # Create writable directories if they don't exist
-    - mkdir -p $DEPLOYPATH/writable/cache
-    - mkdir -p $DEPLOYPATH/writable/logs
-    - mkdir -p $DEPLOYPATH/writable/session
-    - mkdir -p $DEPLOYPATH/writable/uploads
-    - mkdir -p $DEPLOYPATH/writable/debugbar
+    # Copy ONLY public assets
+    - /bin/cp -R $REPOPATH/public/assets $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp -R $REPOPATH/public/css $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp -R $REPOPATH/public/js $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp -R $REPOPATH/public/images $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/public/robots.txt $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/public/favicon.ico $PUBLICPATH/ 2>/dev/null || true
     
-    # Set proper permissions for writable directories
-    - chmod -R 755 $DEPLOYPATH/writable
-    - chmod -R 777 $DEPLOYPATH/writable/cache
-    - chmod -R 777 $DEPLOYPATH/writable/logs
-    - chmod -R 777 $DEPLOYPATH/writable/session
-    - chmod -R 777 $DEPLOYPATH/writable/uploads
-    - chmod -R 777 $DEPLOYPATH/writable/debugbar
+    # ============================================================
+    # STEP 7: CREATE SECURE index.php ENTRY POINT
+    # ============================================================
+    - |
+      cat > $PUBLICPATH/index.php << 'EOF'
+      <?php
+      
+      /**
+       * CodeIgniter 4 - Secure Entry Point
+       * This file loads the application from a secure location outside public_html
+       */
+      
+      // Path to the front controller
+      define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+      
+      // Ensure PHP version is compatible
+      if (version_compare(PHP_VERSION, '7.4', '<')) {
+          die('Your PHP version must be 7.4 or higher to run CodeIgniter 4. Current version: ' . PHP_VERSION);
+      }
+      
+      // Path to the secure application folder (OUTSIDE public_html)
+      $pathsConfig = '/home/nuguiyhv/ci_app/app/Config/Paths.php';
+      
+      // Check if application exists
+      if (!file_exists($pathsConfig)) {
+          header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+          die('The application is currently undergoing maintenance. Please try again later.');
+      }
+      
+      // Load the paths config file
+      require_once $pathsConfig;
+      $paths = new Config\Paths();
+      
+      // Path to CodeIgniter's bootstrap file
+      $bootstrap = '/home/nuguiyhv/ci_app/system/bootstrap.php';
+      if (!file_exists($bootstrap)) {
+          die('System bootstrap file not found. Please contact the administrator.');
+      }
+      require $bootstrap;
+      
+      // Load environment configuration
+      require_once '/home/nuguiyhv/ci_app/system/Config/DotEnv.php';
+      $env = new CodeIgniter\Config\DotEnv('/home/nuguiyhv/ci_app');
+      $env->load();
+      
+      // Launch the application
+      $app = Config\Services::codeigniter();
+      $app->initialize();
+      $context = is_cli() ? 'php-cli' : 'web';
+      $app->setContext($context);
+      $app->run();
+      EOF
     
-    # Set proper permissions for security
-    - chmod 644 $DEPLOYPATH/.env 2>/dev/null || true
-    - chmod 755 $DEPLOYPATH/spark 2>/dev/null || true
-    - chmod 644 $DEPLOYPATH/.htaccess 2>/dev/null || true
+    # ============================================================
+    # STEP 8: CREATE SECURE .htaccess FILE
+    # ============================================================
+    - |
+      cat > $PUBLICPATH/.htaccess << 'EOF'
+      # Disable directory browsing
+      Options All -Indexes
+      
+      # Disable server signature
+      ServerSignature Off
+      
+      # Prevent access to hidden files
+      <FilesMatch "^\.">
+          Order allow,deny
+          Deny from all
+      </FilesMatch>
+      
+      # Prevent access to sensitive files
+      <FilesMatch "\.(env|json|lock|yaml|yml|md|gitignore|gitattributes|ini|log|sql)$">
+          Order allow,deny
+          Deny from all
+      </FilesMatch>
+      
+      # Force HTTPS
+      RewriteEngine On
+      RewriteCond %{HTTPS} off
+      RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+      
+      # Remove www
+      RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+      RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+      
+      # CodeIgniter 4 routing
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]
+      
+      # Security headers
+      <IfModule mod_headers.c>
+          Header set X-Content-Type-Options "nosniff"
+          Header set X-Frame-Options "SAMEORIGIN"
+          Header set X-XSS-Protection "1; mode=block"
+          Header set Referrer-Policy "strict-origin-when-cross-origin"
+          Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+          Header always unset "X-Powered-By"
+      </IfModule>
+      
+      # Block access to sensitive paths (if accidentally exposed)
+      RedirectMatch 404 /\.git
+      RedirectMatch 404 /vendor/.*$
+      RedirectMatch 404 /system/.*$
+      RedirectMatch 404 /app/.*$
+      RedirectMatch 404 /writable/.*$
+      RedirectMatch 404 /tests/.*$
+      RedirectMatch 404 /database/.*$
+      RedirectMatch 404 /docs/.*$
+      RedirectMatch 404 /dev-tools/.*$
+      
+      # Compress text files
+      <IfModule mod_deflate.c>
+          AddOutputFilterByType DEFLATE text/plain
+          AddOutputFilterByType DEFLATE text/html
+          AddOutputFilterByType DEFLATE text/xml
+          AddOutputFilterByType DEFLATE text/css
+          AddOutputFilterByType DEFLATE application/xml
+          AddOutputFilterByType DEFLATE application/xhtml+xml
+          AddOutputFilterByType DEFLATE application/rss+xml
+          AddOutputFilterByType DEFLATE application/javascript
+          AddOutputFilterByType DEFLATE application/x-javascript
+      </IfModule>
+      EOF
     
-    # Clear CodeIgniter cache after deployment
-    - cd $DEPLOYPATH && php spark cache:clear 2>/dev/null || true
+    # ============================================================
+    # STEP 9: UPDATE PATHS.PHP FOR SECURE STRUCTURE
+    # ============================================================
+    - |
+      cat > $APPPATH/app/Config/Paths.php << 'EOF'
+      <?php
+      
+      namespace Config;
+      
+      /**
+       * Paths Configuration for Secure Deployment
+       * All paths point to locations OUTSIDE public_html for security
+       */
+      class Paths
+      {
+          // System directory
+          public string $systemDirectory = '/home/nuguiyhv/ci_app/system';
+          
+          // Application directory
+          public string $appDirectory = '/home/nuguiyhv/ci_app/app';
+          
+          // Writable directory for logs, cache, etc.
+          public string $writableDirectory = '/home/nuguiyhv/ci_app/writable';
+          
+          // Tests directory
+          public string $testsDirectory = '/home/nuguiyhv/ci_app/tests';
+          
+          // View directory
+          public string $viewDirectory = '/home/nuguiyhv/ci_app/app/Views';
+      }
+      EOF
+    
+    # ============================================================
+    # STEP 10: CLEAR CACHE AND LOG DEPLOYMENT
+    # ============================================================
+    - cd $APPPATH && php spark cache:clear 2>/dev/null || true
     
     # Create deployment log
-    - echo "Deployment completed at $(date)" >> $DEPLOYPATH/writable/logs/deployment.log
-    - echo "Deployed from commit: $(git rev-parse HEAD)" >> $DEPLOYPATH/writable/logs/deployment.log
+    - |
+      echo "========================================" >> $APPPATH/writable/logs/deployment.log
+      echo "Deployment completed at: $(date)" >> $APPPATH/writable/logs/deployment.log
+      echo "Deployed from commit: $(cd $REPOPATH && git rev-parse HEAD)" >> $APPPATH/writable/logs/deployment.log
+      echo "Repository branch: $(cd $REPOPATH && git branch --show-current)" >> $APPPATH/writable/logs/deployment.log
+      echo "Secure paths configured:" >> $APPPATH/writable/logs/deployment.log
+      echo "  - App: $APPPATH" >> $APPPATH/writable/logs/deployment.log
+      echo "  - Public: $PUBLICPATH" >> $APPPATH/writable/logs/deployment.log
+      echo "========================================" >> $APPPATH/writable/logs/deployment.log
+    
+    # Final success message
+    - echo "✅ Secure deployment completed successfully!"
