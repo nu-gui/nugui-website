@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php if (env('GA_MEASUREMENT_ID')): ?>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8BRG4CD6Q4"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= env('GA_MEASUREMENT_ID') ?>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-8BRG4CD6Q4');
+      gtag('config', '<?= env('GA_MEASUREMENT_ID') ?>');
     </script>
+    <?php endif; ?>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
