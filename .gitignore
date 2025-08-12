@@ -5,9 +5,10 @@
 /vendor/
 /node_modules/
 
-# Environment files (keep templates only)
+# Environment files (keep templates and production config)
 .env
 .env.*
+!.env.production
 !env.example
 !env.production
 
