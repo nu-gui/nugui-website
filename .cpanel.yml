@@ -1,70 +1,162 @@
 ---
-# cPanel Git Deployment Configuration
+# cPanel Git Deployment Configuration - SECURE VERSION
 # This file automates deployment when changes are pushed to the repository
 
 deployment:
   tasks:
-    # Set deployment path for nugui.co.za
-    - export DEPLOYPATH=/home/nugui/public_html/
+    # IMPORTANT: Set paths for SECURE CodeIgniter 4 deployment
+    # Application files go ABOVE public_html for security
+    - export APPPATH=/home/nuguiyhv/nugui-app/
+    - export DEPLOYPATH=/home/nuguiyhv/public_html/
     
-    # Create backup of current deployment (optional but recommended)
-    - export BACKUPPATH=/home/nugui/backups/
+    # Create backup of current deployment
+    - export BACKUPPATH=/home/nuguiyhv/backups/
     - mkdir -p $BACKUPPATH
     - export TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    - tar -czf $BACKUPPATH/backup_$TIMESTAMP.tar.gz $DEPLOYPATH --exclude=$DEPLOYPATH/writable --exclude=$DEPLOYPATH/vendor || true
+    - tar -czf $BACKUPPATH/backup_$TIMESTAMP.tar.gz $APPPATH $DEPLOYPATH --exclude=$APPPATH/writable --exclude=$APPPATH/vendor || true
     
-    # Copy application files
-    - /bin/cp -R app $DEPLOYPATH
+    # Create application directory structure (OUTSIDE public_html)
+    - mkdir -p $APPPATH
+    
+    # Copy SENSITIVE application files to PROTECTED directory
+    - /bin/cp -R app $APPPATH
+    - /bin/cp -R system $APPPATH
+    - /bin/cp -R vendor $APPPATH 2>/dev/null || true
+    - /bin/cp spark $APPPATH
+    - /bin/cp composer.json $APPPATH 2>/dev/null || true
+    
+    # Copy environment file to PROTECTED location
+    - /bin/cp .env $APPPATH 2>/dev/null || /bin/cp .env.production $APPPATH/.env 2>/dev/null || true
+    
+    # Create writable directories in PROTECTED location
+    - mkdir -p $APPPATH/writable/cache
+    - mkdir -p $APPPATH/writable/logs
+    - mkdir -p $APPPATH/writable/session
+    - mkdir -p $APPPATH/writable/uploads
+    - mkdir -p $APPPATH/writable/debugbar
+    
+    # Set permissions for writable directories
+    - chmod -R 755 $APPPATH/writable
+    - chmod -R 777 $APPPATH/writable/cache
+    - chmod -R 777 $APPPATH/writable/logs
+    - chmod -R 777 $APPPATH/writable/session
+    - chmod -R 777 $APPPATH/writable/uploads
+    - chmod -R 777 $APPPATH/writable/debugbar
+    
+    # SECURE permissions for sensitive files
+    - chmod 600 $APPPATH/.env 2>/dev/null || true
+    - chmod 755 $APPPATH/spark
+    - chmod -R 755 $APPPATH/app
+    - chmod -R 755 $APPPATH/system
+    
+    # Clear existing public files (except .well-known for SSL)
+    - find $DEPLOYPATH -mindepth 1 -name '.well-known' -prune -o -exec rm -rf {} + 2>/dev/null || true
+    
+    # Copy ONLY PUBLIC files to public_html
     - /bin/cp -R public/* $DEPLOYPATH
-    - /bin/cp -R vendor $DEPLOYPATH 2>/dev/null || true
+    - /bin/cp public/.htaccess $DEPLOYPATH 2>/dev/null || true
     
-    # Copy system folder (required for CodeIgniter 4)
-    - /bin/cp -R system $DEPLOYPATH 2>/dev/null || true
+    # Create index.php in public_html that points to protected app
+    - |
+      cat > $DEPLOYPATH/index.php << 'EOF'
+      <?php
+      
+      // Path to the front controller (PROTECTED LOCATION)
+      define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+      
+      // Path to the application folder (OUTSIDE public_html)
+      $pathsConfig = '/home/nuguiyhv/nugui-app/app/Config/Paths.php';
+      
+      // Ensure the application exists
+      if (!file_exists($pathsConfig)) {
+          die('Application not found. Please contact administrator.');
+      }
+      
+      // Load our paths config file
+      require_once $pathsConfig;
+      $paths = new Config\Paths();
+      
+      // Location of the framework bootstrap file
+      require '/home/nuguiyhv/nugui-app/system/bootstrap.php';
+      
+      // Load environment settings from .env file
+      require_once '/home/nuguiyhv/nugui-app/system/Config/DotEnv.php';
+      $env = new CodeIgniter\Config\DotEnv('/home/nuguiyhv/nugui-app');
+      $env->load();
+      
+      // Grab our CodeIgniter instance
+      $app = Config\Services::codeigniter();
+      $app->initialize();
+      
+      // Set the correct context
+      $context = is_cli() ? 'php-cli' : 'web';
+      $app->setContext($context);
+      
+      // Fire up the engine
+      $app->run();
+      EOF
     
-    # Copy configuration files
-    - /bin/cp spark $DEPLOYPATH
-    - /bin/cp composer.json $DEPLOYPATH 2>/dev/null || true
-    - /bin/cp .htaccess $DEPLOYPATH 2>/dev/null || true
+    # Create .htaccess for security and routing
+    - |
+      cat > $DEPLOYPATH/.htaccess << 'EOF'
+      # Disable directory browsing
+      Options -Indexes
+      
+      # Prevent access to sensitive files
+      <FilesMatch "^\.">
+          Order allow,deny
+          Deny from all
+      </FilesMatch>
+      
+      # Redirect to HTTPS
+      RewriteEngine On
+      RewriteCond %{HTTPS} off
+      RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+      
+      # CodeIgniter 4 routing
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteCond %{REQUEST_FILENAME} !-d
+      RewriteRule ^([\s\S]*)$ index.php/$1 [L,NC,QSA]
+      
+      # Security headers
+      <IfModule mod_headers.c>
+          Header set X-Content-Type-Options "nosniff"
+          Header set X-Frame-Options "SAMEORIGIN"
+          Header set X-XSS-Protection "1; mode=block"
+          Header set Referrer-Policy "strict-origin-when-cross-origin"
+      </IfModule>
+      
+      # Prevent access to vendor, system, app folders if accidentally exposed
+      RedirectMatch 404 /vendor/.*$
+      RedirectMatch 404 /system/.*$
+      RedirectMatch 404 /app/.*$
+      RedirectMatch 404 /writable/.*$
+      EOF
     
-    # Copy public/index.php to root (CodeIgniter 4 entry point)
-    - /bin/cp public/index.php $DEPLOYPATH/index.php 2>/dev/null || true
-    
-    # Ensure assets are accessible
-    - /bin/cp -R public/assets $DEPLOYPATH/assets 2>/dev/null || true
-    - /bin/cp -R public/css $DEPLOYPATH/css 2>/dev/null || true
-    - /bin/cp -R public/js $DEPLOYPATH/js 2>/dev/null || true
-    - /bin/cp -R public/images $DEPLOYPATH/images 2>/dev/null || true
-    
-    # Create writable directories if they don't exist
-    - mkdir -p $DEPLOYPATH/writable/cache
-    - mkdir -p $DEPLOYPATH/writable/logs
-    - mkdir -p $DEPLOYPATH/writable/session
-    - mkdir -p $DEPLOYPATH/writable/uploads
-    - mkdir -p $DEPLOYPATH/writable/debugbar
-    
-    # Set proper permissions for writable directories
-    - chmod -R 755 $DEPLOYPATH/writable
-    - chmod -R 777 $DEPLOYPATH/writable/cache
-    - chmod -R 777 $DEPLOYPATH/writable/logs
-    - chmod -R 777 $DEPLOYPATH/writable/session
-    - chmod -R 777 $DEPLOYPATH/writable/uploads
-    - chmod -R 777 $DEPLOYPATH/writable/debugbar
-    
-    # Copy environment file - use .env.production if .env doesn't exist
-    - /bin/cp .env $DEPLOYPATH 2>/dev/null || /bin/cp .env.production $DEPLOYPATH/.env 2>/dev/null || true
-    
-    # Set proper permissions for security
-    - chmod 644 $DEPLOYPATH/.env 2>/dev/null || true
-    - chmod 755 $DEPLOYPATH/spark
+    # Update Paths.php to use correct directories
+    - |
+      cat > $APPPATH/app/Config/Paths.php << 'EOF'
+      <?php
+      
+      namespace Config;
+      
+      class Paths
+      {
+          public string $systemDirectory = '/home/nuguiyhv/nugui-app/system';
+          public string $appDirectory = '/home/nuguiyhv/nugui-app/app';
+          public string $writableDirectory = '/home/nuguiyhv/nugui-app/writable';
+          public string $testsDirectory = '/home/nuguiyhv/nugui-app/tests';
+          public string $viewDirectory = '/home/nuguiyhv/nugui-app/app/Views';
+      }
+      EOF
     
     # Clear cache after deployment
-    - cd $DEPLOYPATH && php spark cache:clear 2>/dev/null || true
-    
-    # Optional: Run database migrations (uncomment if using migrations)
-    # - cd $DEPLOYPATH && php spark migrate 2>/dev/null || true
-    
-    # Optional: Install composer dependencies (uncomment if needed)
-    # - cd $DEPLOYPATH && /usr/local/bin/composer install --no-dev --optimize-autoloader 2>/dev/null || true
+    - cd $APPPATH && php spark cache:clear 2>/dev/null || true
     
     # Create deployment log
-    - echo "Deployment completed at $(date)" >> $DEPLOYPATH/writable/logs/deployment.log
+    - echo "Secure deployment completed at $(date)" >> $APPPATH/writable/logs/deployment.log
+    
+    # Set final permissions
+    - chmod 755 $DEPLOYPATH
+    - find $DEPLOYPATH -type f -exec chmod 644 {} \;
+    - find $DEPLOYPATH -type d -exec chmod 755 {} \;
