@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php if (env('GA_MEASUREMENT_ID')): ?>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= env('GA_MEASUREMENT_ID') ?>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '<?= env('GA_MEASUREMENT_ID') ?>');
+    </script>
+    <?php endif; ?>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?= $description ?? 'NU GUI - Leading telecom solutions provider. Carrier-grade VoIP, SMS gateways, call control systems & data services. Trusted by 200+ operators in 50+ countries. 99.99% uptime guaranteed.' ?>">
