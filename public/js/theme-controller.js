@@ -141,17 +141,9 @@ class ThemeController {
     }
     
     listenForSystemThemeChanges() {
-        if (!window.matchMedia) return;
-        
-        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        
-        darkModeQuery.addEventListener('change', (e) => {
-            // Only apply system theme if user hasn't set a preference
-            if (!localStorage.getItem('theme')) {
-                const newTheme = e.matches ? 'dark' : 'light';
-                this.setTheme(newTheme);
-            }
-        });
+        // Disabled - we always use the user's explicit choice from localStorage
+        // System preferences should not override user selection
+        return;
     }
     
     // Public API
