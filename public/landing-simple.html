@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NU GUI - Simple Landing Test</title>
+    <title>NU GUI - Welcome</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-image: 
+                radial-gradient(ellipse at center, rgba(0, 162, 232, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%),
+                linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.6) 50%, rgba(26, 26, 26, 0.85) 100%),
+                url('/assets/images/background-image.jpg');
+            background-size: cover, cover, cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: white;
+            animation: subtleZoom 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes subtleZoom {
+            0% { background-size: cover, cover, 100% auto; }
+            100% { background-size: cover, cover, 110% auto; }
         }
         
         .container {
@@ -26,6 +39,7 @@
             height: 100px;
             margin: 0 auto 30px;
             animation: spin 2s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
         }
         
         @keyframes spin {
@@ -36,23 +50,41 @@
         .theme-button {
             display: none;
             padding: 15px 30px;
-            background: rgba(255,255,255,0.2);
-            border: 2px solid white;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
             color: white;
             font-size: 18px;
             cursor: pointer;
             border-radius: 50px;
             margin: 20px auto;
-            animation: glow 2s ease-in-out infinite;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
         }
         
         .theme-button.show {
             display: inline-block;
+            animation: glowingPulse 2s ease-in-out infinite;
         }
         
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.5); }
-            50% { box-shadow: 0 0 40px rgba(255,255,255,0.8); }
+        .theme-button:hover {
+            transform: scale(1.05);
+        }
+        
+        @keyframes glowingPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 162, 232, 0.8),
+                    0 0 40px rgba(0, 162, 232, 0.6),
+                    0 0 60px rgba(0, 162, 232, 0.4),
+                    inset 0 0 20px rgba(0, 162, 232, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 162, 232, 1),
+                    0 0 60px rgba(0, 162, 232, 0.8),
+                    0 0 80px rgba(0, 162, 232, 0.6),
+                    inset 0 0 30px rgba(0, 162, 232, 0.3);
+            }
         }
         
         .skip-button {
@@ -108,10 +140,13 @@
         </button>
     </div>
     
-    <button class="audio-button" id="audioBtn" onclick="toggleAudio()">🔊</button>
+    <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
+        <span id="audioOn">🔊</span>
+        <span id="audioOff" style="display:none;">🔇</span>
+    </button>
     <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
     
-    <audio id="bgAudio" loop>
+    <audio id="bgAudio" loop preload="auto">
         <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
     </audio>
     
@@ -119,8 +154,9 @@
     
     <script>
         let audio = document.getElementById('bgAudio');
-        let audioEnabled = false;
+        let audioEnabled = true; // Start with audio enabled
         let redirectTimer = null;
+        let currentTheme = 'light'; // Track current theme
         
         function updateStatus(msg) {
             document.getElementById('status').textContent = 'Status: ' + msg;
@@ -128,29 +164,44 @@
         }
         
         function toggleAudio() {
-            audioEnabled = !audioEnabled;
-            const btn = document.getElementById('audioBtn');
+            const audioOn = document.getElementById('audioOn');
+            const audioOff = document.getElementById('audioOff');
             
             if (audioEnabled) {
+                // Mute audio
+                audio.pause();
+                audioEnabled = false;
+                audioOn.style.display = 'none';
+                audioOff.style.display = 'block';
+                updateStatus('Audio muted');
+            } else {
+                // Play audio
                 audio.play().then(() => {
-                    btn.textContent = '🔇';
+                    audioEnabled = true;
+                    audioOn.style.display = 'block';
+                    audioOff.style.display = 'none';
                     updateStatus('Audio playing');
                 }).catch(err => {
                     updateStatus('Audio error: ' + err.message);
-                    audioEnabled = false;
                 });
-            } else {
-                audio.pause();
-                btn.textContent = '🔊';
-                updateStatus('Audio paused');
             }
         }
         
         function selectTheme() {
-            const theme = confirm('Switch to dark theme?') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-            updateStatus('Theme set to: ' + theme);
-            goToHome();
+            // Toggle between light and dark
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Update button text to show current selection
+            const btn = document.getElementById('themeBtn');
+            btn.innerHTML = currentTheme === 'dark' ? '🌙 Dark Theme' : '☀️ Light Theme';
+            
+            localStorage.setItem('theme', currentTheme);
+            updateStatus('Theme set to: ' + currentTheme);
+            
+            // Don't redirect immediately, let user see their selection
+            setTimeout(() => {
+                goToHome();
+            }, 500);
         }
         
         function skipIntro() {
@@ -160,6 +211,12 @@
         
         function goToHome() {
             clearTimeout(redirectTimer);
+            
+            // Store audio state for next page
+            if (audioEnabled) {
+                sessionStorage.setItem('landing_audio_enabled', 'true');
+            }
+            
             audio.pause();
             updateStatus('Redirecting to home...');
             setTimeout(() => {
@@ -171,35 +228,47 @@
         window.addEventListener('DOMContentLoaded', () => {
             updateStatus('Page loaded');
             
-            // Try to play audio automatically
-            audio.volume = 0.3;
+            // Set audio volume
+            audio.volume = 0.2;
+            
+            // Auto-play audio on page load
             audio.play().then(() => {
                 audioEnabled = true;
-                document.getElementById('audioBtn').textContent = '🔇';
+                document.getElementById('audioOn').style.display = 'block';
+                document.getElementById('audioOff').style.display = 'none';
                 updateStatus('Audio started automatically');
             }).catch(() => {
-                updateStatus('Audio requires user interaction');
+                // If autoplay fails, show muted state
+                audioEnabled = false;
+                document.getElementById('audioOn').style.display = 'none';
+                document.getElementById('audioOff').style.display = 'block';
+                updateStatus('Click audio button to play');
             });
             
-            // Show theme button after 5 seconds
+            // Show theme button after 2 seconds (reduced from 5)
             setTimeout(() => {
                 document.getElementById('themeBtn').classList.add('show');
-                updateStatus('Theme button shown');
+                updateStatus('Choose your theme');
                 
-                // Auto-hide after 3 more seconds
+                // Auto-select dark theme after 3 seconds if no selection
                 setTimeout(() => {
-                    document.getElementById('themeBtn').classList.remove('show');
-                    updateStatus('Theme button hidden');
+                    if (document.getElementById('themeBtn').classList.contains('show')) {
+                        // No selection made, use dark as default
+                        currentTheme = 'dark';
+                        localStorage.setItem('theme', 'dark');
+                        document.getElementById('themeBtn').classList.remove('show');
+                        updateStatus('Dark theme selected (default)');
+                    }
                 }, 3000);
-            }, 5000);
+            }, 2000);
             
-            // Redirect after 9 seconds
+            // Redirect after 6 seconds (reduced from 9)
             redirectTimer = setTimeout(() => {
                 updateStatus('Auto-redirecting...');
                 goToHome();
-            }, 9000);
+            }, 6000);
             
-            updateStatus('Timer set for 9 seconds');
+            updateStatus('Welcome to NU GUI');
         });
     </script>
 </body>
