@@ -1,41 +1,34 @@
-# Database Schema Documentation
+# Database Documentation
 
-## Current Schema File
-- **`schema.sql`** - Complete database schema with all required tables (August 2025)
-  - Safe to run multiple times (uses `CREATE TABLE IF NOT EXISTS`)
-  - Includes all tables for forms, tickets, sessions, and security
-  - Pre-populated with email validation rules
+## Database Setup File
 
-## Directory Structure
-
-### `/migrations/`
-Directory for future database migrations (currently empty)
-
-### `/archive/`
-Historical SQL files (for reference only):
-- `01_add_business_fields.sql` - Added business validation fields
-- `02_complete_database.sql` - Initial complete database setup
-- `03_ticketing_system.sql` - Ticketing system tables
+### **`rebuild_database.sql`** - Complete Database Schema
+- **WARNING**: This script DROPS and RECREATES all tables (deletes all data)
+- Use this to fix any database structure issues
+- Creates all tables with correct structure including all question columns
+- Includes default email domain rules
 
 ## How to Deploy Database
 
-### Option 1: Via cPanel phpMyAdmin
-1. Log into cPanel
-2. Open phpMyAdmin
-3. Select database: `nuguiyhv_nugui_website_prod`
-4. Click "Import" tab
-5. Upload `schema.sql`
-6. Click "Go"
+### Via cPanel phpMyAdmin (Recommended)
+1. **BACKUP YOUR DATA FIRST** if you have important records
+2. Log into cPanel
+3. Open phpMyAdmin
+4. Select database: `nuguiyhv_nugui_website_prod`
+5. Click "Import" tab
+6. Upload `rebuild_database.sql`
+7. Click "Go"
 
-### Option 2: Via SSH Terminal
+### Via SSH Terminal
 ```bash
 cd ~/ci_app/database
-mysql -u nuguiyhv_nugui_db_user -p nuguiyhv_nugui_website_prod < schema.sql
+mysql -u nuguiyhv_nugui_db_user -p nuguiyhv_nugui_website_prod < rebuild_database.sql
 ```
+(Enter password when prompted)
 
-## Tables Included
+## Tables Created
 
-1. **partners** - Partner program applications
+1. **partners** - Partner program applications (includes question1-7 columns)
 2. **ci_sessions** - Session management
 3. **form_submissions** - Form submission tracking
 4. **email_domain_rules** - Email validation rules
@@ -52,6 +45,7 @@ Located in `.env.production`:
 - Password: [See .env.production]
 
 ## Important Notes
-- Always backup database before running updates
-- The schema.sql is idempotent (safe to run multiple times)
+- **This script will DELETE ALL EXISTING DATA**
+- Always backup your database before running this script
+- The script includes verification queries to confirm successful rebuild
 - All foreign keys and indexes are properly configured
