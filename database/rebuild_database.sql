@@ -9,14 +9,35 @@
 USE nuguiyhv_nugui_website_prod;
 
 -- =============================================
--- DISABLE FOREIGN KEY CHECKS TO ALLOW DROPPING TABLES
+-- DISABLE FOREIGN KEY CHECKS AND AUTOCOMMIT
 -- =============================================
 SET FOREIGN_KEY_CHECKS = 0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 
 -- =============================================
--- DROP EXISTING TABLES
+-- DROP ALL CONSTRAINTS FIRST (if tables exist)
 -- =============================================
 
+-- Drop foreign key constraints if they exist
+SET @tables = NULL;
+SELECT GROUP_CONCAT('`', table_name, '`') INTO @tables
+FROM information_schema.tables 
+WHERE table_schema = 'nuguiyhv_nugui_website_prod'
+AND table_name IN ('ticket_messages', 'ticket_cc_recipients', 'ticket_status_history');
+
+SET @tables = IFNULL(@tables,'dummy');
+SET @sql = CONCAT('DROP TABLE IF EXISTS ', @tables);
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+-- =============================================
+-- DROP ALL TABLES (FORCE DROP)
+-- =============================================
+
+-- Drop tables without foreign key dependencies first
 DROP TABLE IF EXISTS `ticket_status_history`;
 DROP TABLE IF EXISTS `ticket_cc_recipients`;
 DROP TABLE IF EXISTS `ticket_messages`;
@@ -26,11 +47,6 @@ DROP TABLE IF EXISTS `email_domain_rules`;
 DROP TABLE IF EXISTS `form_submissions`;
 DROP TABLE IF EXISTS `ci_sessions`;
 DROP TABLE IF EXISTS `partners`;
-
--- =============================================
--- RE-ENABLE FOREIGN KEY CHECKS
--- =============================================
-SET FOREIGN_KEY_CHECKS = 1;
 
 -- =============================================
 -- RECREATE ALL TABLES WITH CORRECT STRUCTURE
@@ -258,6 +274,13 @@ INSERT INTO `email_domain_rules` (`domain`, `rule_type`, `business_name`, `notes
 ('tempmail.com', 'blacklist', NULL, 'Disposable email - blocked'),
 ('throwawaymail.com', 'blacklist', NULL, 'Disposable email - blocked'),
 ('yopmail.com', 'blacklist', NULL, 'Disposable email - blocked');
+
+-- =============================================
+-- COMMIT TRANSACTION AND RE-ENABLE CHECKS
+-- =============================================
+COMMIT;
+SET FOREIGN_KEY_CHECKS = 1;
+SET AUTOCOMMIT = 1;
 
 -- =============================================
 -- VERIFICATION QUERIES
