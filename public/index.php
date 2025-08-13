@@ -61,8 +61,13 @@ $paths = new Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
 $bootstrap = '/home/nuguiyhv/ci_app/system/Boot.php';
+$boot = '/home/nuguiyhv/ci_app/app/Config/Boot/production.php';
+
 if (file_exists($bootstrap)) {
     require $bootstrap;
+    if (file_exists($boot)) {
+        require $boot;
+    }
 } else {
     // Fallback for local development
     require $paths->systemDirectory . '/Boot.php';
