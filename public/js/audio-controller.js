@@ -56,6 +56,9 @@ class AudioController {
     }
     
     startAudioWithRetry() {
+        // Update icon to show intended state first
+        this.updateAudioIcon();
+        
         // Try to play immediately
         this.play();
         
@@ -304,15 +307,19 @@ class AudioController {
         const iconOff = audioButton.querySelector('.audio-icon-off');
         
         if (this.isPlaying) {
+            // Audio is playing, show the "on" icon (with sound waves)
             iconOn.style.display = 'block';
             iconOff.style.display = 'none';
             audioButton.setAttribute('aria-label', 'Mute audio');
             audioButton.title = 'Mute background music';
+            audioButton.classList.add('playing');
         } else {
+            // Audio is muted, show the "off" icon (muted speaker)
             iconOn.style.display = 'none';
             iconOff.style.display = 'block';
             audioButton.setAttribute('aria-label', 'Unmute audio');
             audioButton.title = 'Play background music';
+            audioButton.classList.remove('playing');
         }
     }
     

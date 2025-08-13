@@ -90,6 +90,14 @@
     animation: audioPulse 2s ease-in-out infinite;
 }
 
+.globalnav-link-audio.playing {
+    opacity: 1;
+}
+
+.globalnav-link-audio:not(.playing) {
+    opacity: 0.6;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .globalnav-item-theme,
