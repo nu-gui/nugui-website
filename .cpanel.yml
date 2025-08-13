@@ -178,8 +178,9 @@ deployment:
           define('ENVIRONMENT', env('CI_ENVIRONMENT', 'production'));
       }
       
-      // Boot the application
-      require '/home/nuguiyhv/ci_app/system/CodeIgniter.php';
+      // Boot the application using the correct method
+      require '/home/nuguiyhv/ci_app/system/Boot.php';
+      exit(CodeIgniter\Boot::bootWeb($paths));
       EOF
     
     # ============================================================
