@@ -109,6 +109,15 @@
     $pageClass = 'page-' . str_replace(['/', '_'], '-', strtolower($currentPage));
 ?>
 <body class="<?= $pageClass ?> <?= $bodyClass ?? '' ?>">
+    <script>
+        // Apply theme from localStorage or system preference
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <?= $this->include('templates/header-apple') ?>
 
     <main>

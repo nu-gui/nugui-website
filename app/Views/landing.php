@@ -4,43 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NU GUI - Welcome</title>
-    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
-    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
+    <!-- Use only light icon for landing page -->
+    <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>">
     
     <!-- Load CSS variables first -->
     <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
     
     <style>
-        body {
-            background: var(--color-background);
-            color: var(--color-text-primary);
-            font-family: var(--font-family-primary);
-            margin: 0;
-            padding: 0;
-        }
-        .hero-section {
-            background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
-            color: var(--color-text-primary);
-            text-align: center;
-            padding: 100px 20px 80px 20px;
-            border-radius: 0 0 48px 48px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-        .hero-section .text-gradient {
-            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
         * {
             margin: 0;
             padding: 0;
@@ -142,6 +113,66 @@
                 brightness(1.1);
         }
 
+        /* Theme switcher button - appears after timer */
+        .theme-switcher {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            padding: 20px 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: none;
+        }
+
+        .theme-switcher.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            animation: glowingPulse 2s ease-in-out infinite;
+        }
+
+        .theme-switcher.hide {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        @keyframes glowingPulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 20px rgba(0, 162, 232, 0.8),
+                    0 0 40px rgba(0, 162, 232, 0.6),
+                    0 0 60px rgba(0, 162, 232, 0.4),
+                    inset 0 0 20px rgba(0, 162, 232, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px rgba(0, 162, 232, 1),
+                    0 0 60px rgba(0, 162, 232, 0.8),
+                    0 0 80px rgba(0, 162, 232, 0.6),
+                    inset 0 0 30px rgba(0, 162, 232, 0.3);
+            }
+        }
+
+        .theme-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-switcher:hover .theme-icon {
+            transform: rotate(180deg);
+        }
+
         /* Animations */
         @keyframes logoGrowMoveAndFade {
             0% {
@@ -229,6 +260,11 @@
                 width: 50px;
                 height: 50px;
                 animation: infiniteRotation 1s linear infinite;
+            }
+
+            .theme-switcher {
+                padding: 15px 30px;
+                font-size: 1rem;
             }
             
             @keyframes logoGrowMoveAndFadeMobile {
@@ -326,8 +362,15 @@
     <!-- Landing page overlay -->
     <div class="landing-container" id="landingContainer">
         <div class="logo-animation-container">
-            <?= picture_logo(true, 'logo-icon') ?>
+            <!-- Use only the light icon for both themes on landing page -->
+            <img src="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" alt="NU GUI Icon" class="logo-icon">
         </div>
+
+        <!-- Theme switcher button (hidden initially) -->
+        <button class="theme-switcher" id="themeSwitcher">
+            <span class="theme-icon" id="themeIcon">🌓</span>
+            <span>Choose Your Theme</span>
+        </button>
 
         <button class="audio-toggle" id="audioToggle" title="Toggle Sound">
             🔊
@@ -337,15 +380,10 @@
             Skip Intro
         </button>
 
-        <!-- Audio elements -->
-        <audio id="logoSpinSound" preload="auto">
-            <source src="<?= base_url('assets/sounds/logo-spin.mp3') ?>" type="audio/mpeg">
-            <source src="<?= base_url('assets/sounds/logo-spin.wav') ?>" type="audio/wav">
-        </audio>
-        
-        <audio id="logoTransformSound" preload="auto">
-            <source src="<?= base_url('assets/sounds/logo-transform.mp3') ?>" type="audio/mpeg">
-            <source src="<?= base_url('assets/sounds/logo-transform.wav') ?>" type="audio/wav">
+        <!-- Audio element for relaxed electric tone -->
+        <audio id="electricTone" preload="auto" loop>
+            <source src="<?= base_url('assets/sounds/electric-relaxed-tone.mp3') ?>" type="audio/mpeg">
+            <source src="<?= base_url('assets/sounds/electric-relaxed-tone.wav') ?>" type="audio/wav">
         </audio>
     </div>
 
@@ -358,17 +396,20 @@
                 this.homePageIframe = document.getElementById('homePageIframe');
                 this.audioToggle = document.getElementById('audioToggle');
                 this.skipButton = document.getElementById('skipIntro');
-                this.logoSpinSound = document.getElementById('logoSpinSound');
-                this.logoTransformSound = document.getElementById('logoTransformSound');
+                this.themeSwitcher = document.getElementById('themeSwitcher');
+                this.themeIcon = document.getElementById('themeIcon');
+                this.electricTone = document.getElementById('electricTone');
                 this.homePageLoaded = false;
+                this.themeSelected = false;
+                this.themeSwitcherTimeout = null;
+                this.autoTransitionTimeout = null;
                 
                 this.init();
             }
 
             init() {
                 // Set initial audio volume
-                this.logoSpinSound.volume = 0.3;
-                this.logoTransformSound.volume = 0.3;
+                this.electricTone.volume = 0.2; // Relaxed volume
 
                 // Setup home page preloading
                 this.setupHomePagePreloading();
@@ -376,6 +417,7 @@
                 // Event listeners
                 this.audioToggle.addEventListener('click', () => this.toggleAudio());
                 this.skipButton.addEventListener('click', () => this.skipIntro());
+                this.themeSwitcher.addEventListener('click', () => this.selectTheme());
 
                 // Listen for animation completion
                 this.setupAnimationListener();
@@ -383,8 +425,11 @@
                 // Start animation sequence
                 this.startAnimationSequence();
 
+                // Show theme switcher after 5.5 seconds (near end of animation)
+                setTimeout(() => this.showThemeSwitcher(), 5500);
+
                 // Fallback redirect in case animation event doesn't fire
-                setTimeout(() => this.transitionToHomePage(), 6000);
+                this.autoTransitionTimeout = setTimeout(() => this.transitionToHomePage(), 9000);
             }
 
             setupHomePagePreloading() {
@@ -392,6 +437,11 @@
                 this.homePageIframe.addEventListener('load', () => {
                     // Home page preloaded successfully
                     this.homePageLoaded = true;
+                    
+                    // Inject theme preference into iframe if selected
+                    if (this.themeSelected) {
+                        this.applyThemeToIframe();
+                    }
                 });
 
                 // Handle iframe loading errors
@@ -399,9 +449,6 @@
                     console.warn('Home page preloading failed, will use traditional redirect');
                     this.homePageLoaded = false;
                 });
-
-                // Start preloading immediately
-                // Starting home page preload
             }
 
             setupAnimationListener() {
@@ -410,70 +457,125 @@
                 // Listen for animation end event
                 logoContainer.addEventListener('animationend', (event) => {
                     if (event.animationName === 'logoGrowMoveAndFade' || event.animationName === 'logoGrowMoveAndFadeMobile') {
-                        // Logo animation completed, starting transition
-                        // Start transition immediately when logo finishes fading
-                        this.transitionToHomePage();
+                        // Don't transition yet - wait for theme selection
                     }
                 });
-
-                // Also track opacity during animation to redirect when logo becomes invisible
-                this.trackLogoOpacity(logoContainer);
-            }
-
-            trackLogoOpacity(logoContainer) {
-                let redirectTriggered = false;
-                const checkOpacity = () => {
-                    if (redirectTriggered) return;
-                    
-                    const computedStyle = window.getComputedStyle(logoContainer);
-                    const opacity = parseFloat(computedStyle.opacity);
-                    
-                    // Trigger transition when logo is nearly invisible (opacity < 0.05)
-                    if (opacity < 0.05) {
-                        // Logo opacity below threshold, starting transition
-                        redirectTriggered = true;
-                        this.transitionToHomePage();
-                        return;
-                    }
-                    
-                    // Continue checking during animation
-                    requestAnimationFrame(checkOpacity);
-                };
-                
-                // Start checking after 2 seconds (when fading begins)
-                setTimeout(() => {
-                    checkOpacity();
-                }, 2000);
             }
 
             startAnimationSequence() {
-                // Play logo spin sound at start
-                setTimeout(() => {
-                    if (this.audioEnabled) {
-                        this.logoSpinSound.play().catch(() => {/* Audio play failed */});
-                    }
-                }, 100);
-
-                // Play transform sound when logo reaches peak
-                setTimeout(() => {
-                    if (this.audioEnabled) {
-                        this.logoTransformSound.play().catch(() => {/* Audio play failed */});
-                    }
-                }, 3000); // When logo is at maximum size before fading
+                // Play relaxed electric tone
+                if (this.audioEnabled) {
+                    this.electricTone.play().catch(() => {/* Audio play failed */});
+                }
             }
 
             toggleAudio() {
                 this.audioEnabled = !this.audioEnabled;
                 this.audioToggle.textContent = this.audioEnabled ? '🔊' : '🔇';
                 this.audioToggle.title = this.audioEnabled ? 'Disable Sound' : 'Enable Sound';
+                
+                if (this.audioEnabled) {
+                    this.electricTone.play().catch(() => {/* Audio play failed */});
+                } else {
+                    this.electricTone.pause();
+                }
+            }
+
+            showThemeSwitcher() {
+                this.themeSwitcher.classList.add('show');
+                
+                // Auto-hide and select default theme after 3 seconds
+                this.themeSwitcherTimeout = setTimeout(() => {
+                    if (!this.themeSelected) {
+                        this.selectDefaultTheme();
+                    }
+                }, 3000);
+            }
+
+            selectTheme() {
+                // Toggle between light and dark theme
+                const currentTheme = localStorage.getItem('theme') || 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                // Store theme preference
+                localStorage.setItem('theme', newTheme);
+                this.themeSelected = true;
+                
+                // Update icon
+                this.themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+                
+                // Hide theme switcher
+                this.themeSwitcher.classList.remove('show');
+                this.themeSwitcher.classList.add('hide');
+                
+                // Clear timeouts
+                if (this.themeSwitcherTimeout) {
+                    clearTimeout(this.themeSwitcherTimeout);
+                }
+                
+                // Apply theme to iframe if loaded
+                if (this.homePageLoaded) {
+                    this.applyThemeToIframe();
+                }
+                
+                // Transition to home page after short delay
+                setTimeout(() => this.transitionToHomePage(), 500);
+            }
+
+            selectDefaultTheme() {
+                // Use system preference or default to light
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const defaultTheme = prefersDark ? 'dark' : 'light';
+                
+                localStorage.setItem('theme', defaultTheme);
+                this.themeSelected = true;
+                
+                // Hide theme switcher
+                this.themeSwitcher.classList.remove('show');
+                this.themeSwitcher.classList.add('hide');
+                
+                // Apply theme to iframe if loaded
+                if (this.homePageLoaded) {
+                    this.applyThemeToIframe();
+                }
+                
+                // Transition to home page
+                setTimeout(() => this.transitionToHomePage(), 500);
+            }
+
+            applyThemeToIframe() {
+                try {
+                    const theme = localStorage.getItem('theme') || 'light';
+                    const iframeDoc = this.homePageIframe.contentDocument || this.homePageIframe.contentWindow.document;
+                    
+                    if (iframeDoc && iframeDoc.documentElement) {
+                        iframeDoc.documentElement.setAttribute('data-theme', theme);
+                    }
+                } catch (e) {
+                    // Cross-origin restriction, theme will be applied when page loads
+                }
             }
 
             skipIntro() {
-                this.transitionToHomePage();
+                // Clear all timeouts
+                if (this.themeSwitcherTimeout) {
+                    clearTimeout(this.themeSwitcherTimeout);
+                }
+                if (this.autoTransitionTimeout) {
+                    clearTimeout(this.autoTransitionTimeout);
+                }
+                
+                // If theme switcher is showing, select default theme
+                if (this.themeSwitcher.classList.contains('show')) {
+                    this.selectDefaultTheme();
+                } else {
+                    this.transitionToHomePage();
+                }
             }
 
             transitionToHomePage() {
-                // Starting transition to home page
+                // Stop audio
+                this.electricTone.pause();
                 
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
@@ -489,10 +591,9 @@
                     }, 800);
                 } else {
                     // Fallback: traditional redirect if preload failed
-                    // Using fallback redirect method
                     this.landingContainer.classList.add('fade-out');
                     setTimeout(() => {
-                        window.location.href = '<?= base_url('/home') ?>';
+                        window.location.href = '<?= base_url('/home') ?>');
                     }, 800);
                 }
             }
@@ -510,7 +611,7 @@
                 return;
             }
 
-            // Starting landing page animation with wallpaper
+            // Starting landing page animation
             new LandingPageController();
         });
 
