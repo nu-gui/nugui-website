@@ -54,14 +54,14 @@ class ContentSecurityPolicy extends BaseConfig
      *
      * @var list<string>|string
      */
-    public $scriptSrc = 'self';
+    public $scriptSrc = ['self', 'unsafe-inline', 'unsafe-eval', 'https://www.googletagmanager.com', 'https://www.google-analytics.com'];
 
     /**
      * Lists allowed stylesheets' URLs.
      *
      * @var list<string>|string
      */
-    public $styleSrc = 'self';
+    public $styleSrc = ['self', 'unsafe-inline', 'https://fonts.googleapis.com'];
 
     /**
      * Defines the origins from which images can be loaded.
@@ -99,7 +99,7 @@ class ContentSecurityPolicy extends BaseConfig
      *
      * @var list<string>|string
      */
-    public $fontSrc;
+    public $fontSrc = ['self', 'https://fonts.gstatic.com'];
 
     /**
      * Lists valid endpoints for submission from `<form>` tags.

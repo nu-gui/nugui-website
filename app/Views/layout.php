@@ -221,5 +221,8 @@
     <?php endif; ?>
     
     <?= $this->renderSection('scripts') ?>
+    
+    <!-- Form Submission Fix -->
+    <script src="/js/form-fix.js"></script>
 </body>
 </html>
