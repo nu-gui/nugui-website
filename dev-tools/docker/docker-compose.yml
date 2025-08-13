@@ -7,8 +7,8 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - .:/var/www/html
-      - ./writable:/var/www/html/writable
+      - ../../:/var/www/html
+      - ../../writable:/var/www/html/writable
       - session_data:/var/www/html/writable/session
     environment:
       - CI_ENVIRONMENT=production
