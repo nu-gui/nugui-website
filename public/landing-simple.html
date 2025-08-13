@@ -34,31 +34,65 @@
         .container {
             text-align: center;
             position: relative;
+            width: 100%;
+            max-width: 600px;
         }
         
-        .theme-help-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 15px;
-            animation: fadeIn 0.5s ease-in;
-            display: none;
+        .welcome-section {
+            margin-bottom: 30px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
         }
         
-        .theme-help-text.show {
-            display: block;
+        .welcome-section.show {
+            opacity: 1;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .welcome-section h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+        
+        .welcome-section p {
+            margin: 0;
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .logo-container {
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         
         .logo {
             width: 100px;
             height: 100px;
-            margin: 20px auto 30px;
             animation: spin 2s linear infinite;
             filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
+            position: absolute;
+            top: 0;
+        }
+        
+        .theme-selector {
+            position: absolute;
+            bottom: 0;
+            display: none;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .theme-selector.show {
+            display: flex;
+            opacity: 1;
         }
         
         @keyframes spin {
@@ -66,57 +100,56 @@
             to { transform: rotate(360deg); }
         }
         
-        .theme-button {
-            display: none;
-            padding: 20px 40px;
-            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(20, 20, 30, 0.9) 100%);
-            border: 2px solid rgba(0, 162, 232, 0.4);
-            color: white;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 50px;
-            margin: 0 auto 20px;
-            backdrop-filter: blur(20px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .theme-button.show {
-            display: inline-flex;
+        .theme-option {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            animation: slideDown 0.5s ease-out, glowingPulse 3s ease-in-out infinite;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .theme-icon-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
         }
         
-        .theme-button:hover {
-            transform: scale(1.08) translateY(-2px);
-            background: linear-gradient(135deg, rgba(40, 40, 50, 0.95) 0%, rgba(30, 30, 40, 0.95) 100%);
+        .theme-icon-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(0, 162, 232, 0.5);
+        }
+        
+        .theme-icon-btn.active {
+            background: rgba(0, 162, 232, 0.2);
             border-color: rgba(0, 162, 232, 0.6);
-            box-shadow: 0 10px 30px rgba(0, 162, 232, 0.3);
+            box-shadow: 0 0 20px rgba(0, 162, 232, 0.4);
         }
         
-        .theme-button svg {
-            width: 28px;
-            height: 28px;
-            fill: currentColor;
+        .theme-icon-btn svg {
+            width: 24px;
+            height: 24px;
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
-        .theme-button:hover svg {
+        .theme-icon-btn:hover svg {
             transform: rotate(180deg);
+        }
+        
+        .theme-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .theme-icon-sun {
@@ -188,18 +221,34 @@
 </head>
 <body>
     <div class="container">
-        <p class="theme-help-text" id="themeHelp">Choose your viewing experience</p>
+        <div class="welcome-section" id="welcomeSection">
+            <h1>Welcome to NU GUI</h1>
+            <p>Loading amazing things...</p>
+        </div>
         
-        <button class="theme-button" id="themeBtn" onclick="selectTheme()">
-            <svg class="theme-icon-moon" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-            <span id="themeText">Dark Mode</span>
-        </button>
-        
-        <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
-        <h1>Welcome to NU GUI</h1>
-        <p>Loading amazing things...</p>
+        <div class="logo-container">
+            <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
+            
+            <div class="theme-selector" id="themeSelector">
+                <div class="theme-option" onclick="selectTheme('dark')">
+                    <div class="theme-icon-btn" id="darkBtn">
+                        <svg class="theme-icon-moon" viewBox="0 0 24 24">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </div>
+                    <span class="theme-label">Dark</span>
+                </div>
+                
+                <div class="theme-option" onclick="selectTheme('light')">
+                    <div class="theme-icon-btn" id="lightBtn">
+                        <svg class="theme-icon-sun" viewBox="0 0 24 24">
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <span class="theme-label">Light</span>
+                </div>
+            </div>
+        </div>
     </div>
     
     <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
@@ -249,37 +298,28 @@
             }
         }
         
-        function selectTheme() {
-            // Toggle between dark and light
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        function selectTheme(theme) {
+            currentTheme = theme;
             
-            // Update button content with animated icon and text
-            const btn = document.getElementById('themeBtn');
-            const themeText = document.getElementById('themeText');
+            // Update active state
+            const darkBtn = document.getElementById('darkBtn');
+            const lightBtn = document.getElementById('lightBtn');
             
-            if (currentTheme === 'light') {
-                btn.innerHTML = `
-                    <svg class="theme-icon-sun" viewBox="0 0 24 24">
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                    <span id="themeText">Light Mode</span>
-                `;
+            if (theme === 'dark') {
+                darkBtn.classList.add('active');
+                lightBtn.classList.remove('active');
             } else {
-                btn.innerHTML = `
-                    <svg class="theme-icon-moon" viewBox="0 0 24 24">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                    <span id="themeText">Dark Mode</span>
-                `;
+                lightBtn.classList.add('active');
+                darkBtn.classList.remove('active');
             }
             
             localStorage.setItem('theme', currentTheme);
-            updateStatus('Theme set to: ' + currentTheme);
+            updateStatus(`${theme === 'dark' ? 'Dark' : 'Light'} theme selected`);
             
             // Give user time to see their selection
             setTimeout(() => {
                 goToHome();
-            }, 1500);
+            }, 1000);
         }
         
         function skipIntro() {
@@ -310,8 +350,12 @@
         window.addEventListener('DOMContentLoaded', () => {
             updateStatus('Page loaded');
             
-            // Set dark theme as default immediately
+            // Set dark theme as default and mark it active
             localStorage.setItem('theme', 'dark');
+            document.getElementById('darkBtn').classList.add('active');
+            
+            // Show welcome text immediately with fade-in
+            document.getElementById('welcomeSection').classList.add('show');
             
             // Set audio volume
             audio.volume = 0.3;
@@ -347,19 +391,16 @@
             document.addEventListener('click', handleInteraction, { once: true });
             document.addEventListener('touchstart', handleInteraction, { once: true });
             
-            // Show theme button after 3 seconds (give user more time)
+            // Show theme selector after 3 seconds
             setTimeout(() => {
-                document.getElementById('themeHelp').classList.add('show');
-                document.getElementById('themeBtn').classList.add('show');
+                document.getElementById('themeSelector').classList.add('show');
                 updateStatus('Select your viewing preference');
                 
                 // Auto-continue with dark theme after 5 seconds if no selection
                 setTimeout(() => {
-                    if (document.getElementById('themeBtn').classList.contains('show')) {
+                    const selector = document.getElementById('themeSelector');
+                    if (selector && selector.classList.contains('show')) {
                         // No selection made, continue with dark theme
-                        localStorage.setItem('theme', 'dark');
-                        document.getElementById('themeBtn').classList.remove('show');
-                        document.getElementById('themeHelp').classList.remove('show');
                         updateStatus('Continuing with dark theme...');
                         
                         // Redirect after showing status
@@ -372,10 +413,8 @@
             
             // Extended redirect timer (10 seconds total)
             redirectTimer = setTimeout(() => {
-                if (document.getElementById('themeBtn').classList.contains('show')) {
-                    updateStatus('Auto-redirecting...');
-                    goToHome();
-                }
+                updateStatus('Auto-redirecting...');
+                goToHome();
             }, 10000);
             
             updateStatus('Welcome to NU GUI');
