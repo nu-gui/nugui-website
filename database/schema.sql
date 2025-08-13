@@ -8,6 +8,7 @@
 USE nuguiyhv_nugui_website_prod;
 
 -- 1. PARTNERS TABLE (for partner program form)
+-- Updated: Added question6 and question7 columns
 CREATE TABLE IF NOT EXISTS `partners` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `businessName` VARCHAR(255) NOT NULL,
@@ -31,6 +32,11 @@ CREATE TABLE IF NOT EXISTS `partners` (
   PRIMARY KEY (`id`),
   KEY `idx_contactEmail` (`contactEmail`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- If table already exists, add missing columns
+ALTER TABLE `partners` 
+ADD COLUMN IF NOT EXISTS `question6` TEXT DEFAULT NULL AFTER `question5`,
+ADD COLUMN IF NOT EXISTS `question7` TEXT DEFAULT NULL AFTER `question6`;
 
 -- 2. SESSION TABLE (for database session handler)
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
