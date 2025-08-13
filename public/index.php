@@ -47,13 +47,37 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
  */
 
 // LOAD OUR PATHS CONFIG FILE
-// This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . '../app/Config/Paths.php';
+// Production path configuration for cPanel deployment
+$appPath = '/home/nuguiyhv/ci_app/app/Config/Paths.php';
+if (file_exists($appPath)) {
+    require $appPath;
+} else {
+    // Fallback for local development
+    require FCPATH . '../app/Config/Paths.php';
+}
 // ^^^ Change this line if you move your application folder
 
 $paths = new Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE
-require $paths->systemDirectory . '/Boot.php';
+$bootstrap = '/home/nuguiyhv/ci_app/system/Boot.php';
+$boot = '/home/nuguiyhv/ci_app/app/Config/Boot/production.php';
+
+if (file_exists($bootstrap)) {
+    require $bootstrap;
+    if (file_exists($boot)) {
+        require $boot;
+    }
+} else {
+    // Fallback for local development
+    require $paths->systemDirectory . '/Boot.php';
+}
+
+// Load environment configuration
+$envPath = '/home/nuguiyhv/ci_app/.env';
+if (file_exists($envPath)) {
+    require_once '/home/nuguiyhv/ci_app/system/Config/DotEnv.php';
+    (new CodeIgniter\Config\DotEnv('/home/nuguiyhv/ci_app'))->load();
+}
 
 exit(Boot::bootWeb($paths));
