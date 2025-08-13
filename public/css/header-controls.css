@@ -3,10 +3,13 @@
  * Theme switcher and audio controls for the navigation bar
  */
 
-/* Theme Switcher Styles */
-.globalnav-item-theme,
+/* Theme Switcher and Audio Control Styles */
 .globalnav-item-audio {
     margin-left: auto;
+    margin-right: 8px;
+}
+
+.globalnav-item-theme {
     margin-right: 12px;
 }
 

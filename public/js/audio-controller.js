@@ -95,8 +95,14 @@ class AudioController {
         const audioEnabled = localStorage.getItem('audioEnabled');
         const savedVolume = localStorage.getItem('audioVolume');
         
-        // Set playing state (default to false unless explicitly enabled)
-        this.isPlaying = audioEnabled === 'true';
+        // Default to playing (true) unless explicitly disabled
+        if (audioEnabled === null) {
+            // First visit - default to playing
+            this.isPlaying = true;
+            localStorage.setItem('audioEnabled', 'true');
+        } else {
+            this.isPlaying = audioEnabled === 'true';
+        }
         
         // Set volume level
         if (savedVolume) {
@@ -133,18 +139,23 @@ class AudioController {
     }
     
     shouldAutoPlay() {
-        // Don't auto-play on first visit
+        // Mark as visited
         if (!localStorage.getItem('hasVisited')) {
             localStorage.setItem('hasVisited', 'true');
-            return false;
         }
         
-        // Check if user has explicitly enabled audio
+        // Check if user has explicitly set audio preference
         const audioEnabled = localStorage.getItem('audioEnabled');
         
         // If coming from landing page with audio enabled
         if (sessionStorage.getItem('landing_audio_enabled') === 'true') {
             sessionStorage.removeItem('landing_audio_enabled');
+            return true;
+        }
+        
+        // Default to true (playing) if no preference set
+        if (audioEnabled === null) {
+            localStorage.setItem('audioEnabled', 'true');
             return true;
         }
         
