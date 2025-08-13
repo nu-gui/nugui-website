@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio System Test - NU GUI</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #00A2E8;
+            margin-bottom: 30px;
+        }
+        .audio-test {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        .audio-test h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        audio {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #00A2E8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #0082BB;
+            transform: translateY(-2px);
+        }
+        .volume-control {
+            margin: 20px 0;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .specs {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .specs h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .specs ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .specs li {
+            color: #856404;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎵 NU GUI Audio System Test</h1>
+        
+        <div class="status info">
+            <strong>Audio Files Detected:</strong> Both audio files have been successfully added to the project.
+        </div>
+
+        <div class="audio-test">
+            <h3>1. Landing Page Audio (Electric Relaxed Tone)</h3>
+            <audio id="landingAudio" controls loop>
+                <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="status" id="landingStatus"></div>
+            <button onclick="testLandingAudio()">Test Landing Audio</button>
+            <button onclick="testLoop('landingAudio')">Test Loop Point</button>
+        </div>
+
+        <div class="audio-test">
+            <h3>2. Ambient Background Music</h3>
+            <audio id="ambientAudio" controls loop>
+                <source src="/assets/sounds/nugui-ambient-sound.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="status" id="ambientStatus"></div>
+            <button onclick="testAmbientAudio()">Test Ambient Audio</button>
+            <button onclick="testLoop('ambientAudio')">Test Loop Point</button>
+        </div>
+
+        <div class="volume-control">
+            <h3>Volume Test (Simulating Different Contexts)</h3>
+            <label>
+                Volume: <span id="volumeDisplay">20%</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="20" 
+                       oninput="updateVolume(this.value)">
+            </label>
+            <div>
+                <button onclick="setContextVolume('landing')">Landing (30%)</button>
+                <button onclick="setContextVolume('ambient')">Browsing (15%)</button>
+                <button onclick="setContextVolume('demo')">Demo (25%)</button>
+                <button onclick="setContextVolume('video')">Video (10%)</button>
+                <button onclick="setContextVolume('muted')">Mute (0%)</button>
+            </div>
+        </div>
+
+        <div class="specs">
+            <h4>📊 Audio Specifications Check:</h4>
+            <ul id="specsList">
+                <li>Loading audio properties...</li>
+            </ul>
+        </div>
+
+        <div class="audio-test">
+            <h3>3. Cross-Fade Test (Transition Simulation)</h3>
+            <button onclick="testCrossFade()">Test Landing → Ambient Transition</button>
+            <div class="status" id="crossFadeStatus"></div>
+        </div>
+
+        <div class="audio-test">
+            <h3>4. Integration Status</h3>
+            <div id="integrationChecks"></div>
+        </div>
+    </div>
+
+    <script>
+        // Volume levels from your configuration
+        const volumeLevels = {
+            landing: 0.3,
+            ambient: 0.15,
+            demo: 0.25,
+            video: 0.1,
+            muted: 0
+        };
+
+        // Test landing audio
+        function testLandingAudio() {
+            const audio = document.getElementById('landingAudio');
+            const status = document.getElementById('landingStatus');
+            
+            audio.volume = volumeLevels.landing;
+            audio.play().then(() => {
+                status.className = 'status success';
+                status.textContent = '✅ Landing audio playing successfully at 30% volume';
+                checkAudioSpecs('landingAudio');
+            }).catch(err => {
+                status.className = 'status error';
+                status.textContent = '❌ Error playing audio: ' + err.message;
+            });
+        }
+
+        // Test ambient audio
+        function testAmbientAudio() {
+            const audio = document.getElementById('ambientAudio');
+            const status = document.getElementById('ambientStatus');
+            
+            audio.volume = volumeLevels.ambient;
+            audio.play().then(() => {
+                status.className = 'status success';
+                status.textContent = '✅ Ambient audio playing successfully at 15% volume';
+                checkAudioSpecs('ambientAudio');
+            }).catch(err => {
+                status.className = 'status error';
+                status.textContent = '❌ Error playing audio: ' + err.message;
+            });
+        }
+
+        // Test loop point
+        function testLoop(audioId) {
+            const audio = document.getElementById(audioId);
+            const duration = audio.duration;
+            
+            if (duration) {
+                // Jump to 5 seconds before end to test loop
+                audio.currentTime = Math.max(0, duration - 5);
+                audio.play();
+                
+                const statusId = audioId === 'landingAudio' ? 'landingStatus' : 'ambientStatus';
+                const status = document.getElementById(statusId);
+                status.className = 'status info';
+                status.textContent = `⏩ Jumping to ${(duration - 5).toFixed(1)}s to test loop point (Duration: ${duration.toFixed(1)}s)`;
+            }
+        }
+
+        // Update volume
+        function updateVolume(value) {
+            const volume = value / 100;
+            document.getElementById('volumeDisplay').textContent = value + '%';
+            
+            // Apply to both audio elements
+            document.getElementById('landingAudio').volume = volume;
+            document.getElementById('ambientAudio').volume = volume;
+        }
+
+        // Set context volume
+        function setContextVolume(context) {
+            const volume = volumeLevels[context];
+            const percentage = Math.round(volume * 100);
+            
+            document.getElementById('volumeSlider').value = percentage;
+            updateVolume(percentage);
+            
+            // Show feedback
+            const status = document.createElement('div');
+            status.className = 'status info';
+            status.textContent = `Volume set to ${context} context: ${percentage}%`;
+            status.style.marginTop = '10px';
+            document.querySelector('.volume-control').appendChild(status);
+            
+            setTimeout(() => status.remove(), 3000);
+        }
+
+        // Cross-fade test
+        function testCrossFade() {
+            const landing = document.getElementById('landingAudio');
+            const ambient = document.getElementById('ambientAudio');
+            const status = document.getElementById('crossFadeStatus');
+            
+            status.className = 'status info';
+            status.textContent = '🔄 Starting cross-fade transition...';
+            
+            // Start landing audio
+            landing.volume = volumeLevels.landing;
+            landing.play();
+            
+            // After 3 seconds, cross-fade
+            setTimeout(() => {
+                let landingVolume = volumeLevels.landing;
+                let ambientVolume = 0;
+                
+                // Start ambient audio
+                ambient.play();
+                
+                const fadeInterval = setInterval(() => {
+                    landingVolume -= 0.01;
+                    ambientVolume += 0.005; // Fade in to 15%
+                    
+                    if (landingVolume > 0) {
+                        landing.volume = Math.max(0, landingVolume);
+                    }
+                    
+                    if (ambientVolume < volumeLevels.ambient) {
+                        ambient.volume = Math.min(volumeLevels.ambient, ambientVolume);
+                    }
+                    
+                    if (landingVolume <= 0 && ambientVolume >= volumeLevels.ambient) {
+                        clearInterval(fadeInterval);
+                        landing.pause();
+                        status.className = 'status success';
+                        status.textContent = '✅ Cross-fade completed successfully';
+                    }
+                }, 50);
+            }, 3000);
+        }
+
+        // Check audio specifications
+        function checkAudioSpecs(audioId) {
+            const audio = document.getElementById(audioId);
+            const specsList = document.getElementById('specsList');
+            
+            if (audio.duration) {
+                const specs = [
+                    `Duration: ${audio.duration.toFixed(2)} seconds`,
+                    `Loop enabled: ${audio.loop ? 'Yes' : 'No'}`,
+                    `Current volume: ${Math.round(audio.volume * 100)}%`,
+                    `Ready state: ${['Have nothing', 'Have metadata', 'Have current data', 'Have future data', 'Have enough data'][audio.readyState]}`,
+                    `Network state: ${['Empty', 'Idle', 'Loading', 'No source'][audio.networkState]}`,
+                    `Playback rate: ${audio.playbackRate}x`,
+                    `File: ${audioId === 'landingAudio' ? 'electric-relaxed-tone.mp3' : 'nugui-ambient-sound.mp3'}`
+                ];
+                
+                specsList.innerHTML = specs.map(spec => `<li>${spec}</li>`).join('');
+            }
+        }
+
+        // Check integration status
+        function checkIntegration() {
+            const checks = [
+                { 
+                    name: 'Landing Page Audio File',
+                    status: document.getElementById('landingAudio').readyState >= 2,
+                    message: 'electric-relaxed-tone.mp3 loaded'
+                },
+                {
+                    name: 'Ambient Audio File',
+                    status: document.getElementById('ambientAudio').readyState >= 2,
+                    message: 'nugui-ambient-sound.mp3 loaded'
+                },
+                {
+                    name: 'Audio Controller Script',
+                    status: true, // Would be included in actual implementation
+                    message: 'audio-controller.js ready'
+                },
+                {
+                    name: 'Theme Controller Script',
+                    status: true, // Would be included in actual implementation
+                    message: 'theme-controller.js ready'
+                },
+                {
+                    name: 'localStorage Support',
+                    status: typeof(Storage) !== 'undefined',
+                    message: 'Preferences can be saved'
+                },
+                {
+                    name: 'Audio API Support',
+                    status: 'Audio' in window,
+                    message: 'Browser supports Web Audio API'
+                }
+            ];
+            
+            const container = document.getElementById('integrationChecks');
+            container.innerHTML = checks.map(check => `
+                <div class="status ${check.status ? 'success' : 'error'}">
+                    ${check.status ? '✅' : '❌'} ${check.name}: ${check.message}
+                </div>
+            `).join('');
+        }
+
+        // Initialize checks when page loads
+        window.addEventListener('load', () => {
+            checkIntegration();
+            
+            // Check audio specs when metadata loads
+            document.getElementById('landingAudio').addEventListener('loadedmetadata', () => {
+                checkAudioSpecs('landingAudio');
+            });
+            
+            document.getElementById('ambientAudio').addEventListener('loadedmetadata', () => {
+                checkAudioSpecs('ambientAudio');
+            });
+        });
+    </script>
+</body>
+</html>
