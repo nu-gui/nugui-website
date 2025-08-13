@@ -9,7 +9,12 @@
 USE nuguiyhv_nugui_website_prod;
 
 -- =============================================
--- DROP EXISTING TABLES (in reverse order of dependencies)
+-- DISABLE FOREIGN KEY CHECKS TO ALLOW DROPPING TABLES
+-- =============================================
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- =============================================
+-- DROP EXISTING TABLES
 -- =============================================
 
 DROP TABLE IF EXISTS `ticket_status_history`;
@@ -21,6 +26,11 @@ DROP TABLE IF EXISTS `email_domain_rules`;
 DROP TABLE IF EXISTS `form_submissions`;
 DROP TABLE IF EXISTS `ci_sessions`;
 DROP TABLE IF EXISTS `partners`;
+
+-- =============================================
+-- RE-ENABLE FOREIGN KEY CHECKS
+-- =============================================
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- =============================================
 -- RECREATE ALL TABLES WITH CORRECT STRUCTURE
