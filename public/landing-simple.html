@@ -18,11 +18,12 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: white;
             animation: subtleZoom 20s ease-in-out infinite alternate;
+            padding-top: 100px;
         }
         
         @keyframes subtleZoom {
@@ -32,12 +33,30 @@
         
         .container {
             text-align: center;
+            position: relative;
+        }
+        
+        .theme-help-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s ease-in;
+            display: none;
+        }
+        
+        .theme-help-text.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .logo {
             width: 100px;
             height: 100px;
-            margin: 0 auto 30px;
+            margin: 20px auto 30px;
             animation: spin 2s linear infinite;
             filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
         }
@@ -49,25 +68,36 @@
         
         .theme-button {
             display: none;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-            border: 2px solid rgba(255,255,255,0.2);
+            padding: 20px 40px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+            border: 2px solid rgba(255,255,255,0.3);
             color: white;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 500;
             cursor: pointer;
             border-radius: 50px;
-            margin: 20px auto;
+            margin: 0 auto 20px;
             backdrop-filter: blur(20px);
             transition: all 0.3s ease;
+            position: relative;
         }
         
         .theme-button.show {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             animation: glowingPulse 2s ease-in-out infinite;
         }
         
         .theme-button:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+        }
+        
+        .theme-button svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
         
         @keyframes glowingPulse {
@@ -131,13 +161,18 @@
 </head>
 <body>
     <div class="container">
+        <p class="theme-help-text" id="themeHelp">Select your preferred viewing mode</p>
+        
+        <button class="theme-button" id="themeBtn" onclick="selectTheme()">
+            <svg class="theme-icon-light" viewBox="0 0 24 24">
+                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <span>Choose Your Theme</span>
+        </button>
+        
         <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
         <h1>Welcome to NU GUI</h1>
         <p>Loading amazing things...</p>
-        
-        <button class="theme-button" id="themeBtn" onclick="selectTheme()">
-            🌓 Choose Your Theme
-        </button>
     </div>
     
     <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
@@ -191,9 +226,23 @@
             // Toggle between light and dark
             currentTheme = currentTheme === 'light' ? 'dark' : 'light';
             
-            // Update button text to show current selection
+            // Update button content with icon and text
             const btn = document.getElementById('themeBtn');
-            btn.innerHTML = currentTheme === 'dark' ? '🌙 Dark Theme' : '☀️ Light Theme';
+            if (currentTheme === 'dark') {
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <span>Dark Theme</span>
+                `;
+            } else {
+                btn.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <span>Light Theme</span>
+                `;
+            }
             
             localStorage.setItem('theme', currentTheme);
             updateStatus('Theme set to: ' + currentTheme);
@@ -212,9 +261,13 @@
         function goToHome() {
             clearTimeout(redirectTimer);
             
-            // Store audio state for next page
+            // Always set audio to enabled for next page
+            localStorage.setItem('audioEnabled', 'true');
+            sessionStorage.setItem('landing_audio_enabled', 'true');
+            
+            // Store current audio state
             if (audioEnabled) {
-                sessionStorage.setItem('landing_audio_enabled', 'true');
+                localStorage.setItem('audioVolume', '0.15'); // Lower volume for main pages
             }
             
             audio.pause();
@@ -231,6 +284,10 @@
             // Set audio volume
             audio.volume = 0.2;
             
+            // Set localStorage to ensure audio plays by default on all pages
+            localStorage.setItem('audioEnabled', 'true');
+            localStorage.setItem('audioVolume', '0.2');
+            
             // Auto-play audio on page load
             audio.play().then(() => {
                 audioEnabled = true;
@@ -238,15 +295,30 @@
                 document.getElementById('audioOff').style.display = 'none';
                 updateStatus('Audio started automatically');
             }).catch(() => {
-                // If autoplay fails, show muted state
+                // If autoplay is blocked, try playing on first user interaction
                 audioEnabled = false;
                 document.getElementById('audioOn').style.display = 'none';
                 document.getElementById('audioOff').style.display = 'block';
-                updateStatus('Click audio button to play');
+                updateStatus('Click anywhere to start audio');
+                
+                // Try to play on any user interaction
+                const startAudio = () => {
+                    audio.play().then(() => {
+                        audioEnabled = true;
+                        document.getElementById('audioOn').style.display = 'block';
+                        document.getElementById('audioOff').style.display = 'none';
+                        updateStatus('Audio started');
+                        document.removeEventListener('click', startAudio);
+                        document.removeEventListener('touchstart', startAudio);
+                    });
+                };
+                document.addEventListener('click', startAudio, { once: false });
+                document.addEventListener('touchstart', startAudio, { once: false });
             });
             
-            // Show theme button after 2 seconds (reduced from 5)
+            // Show theme help text and button after 2 seconds
             setTimeout(() => {
+                document.getElementById('themeHelp').classList.add('show');
                 document.getElementById('themeBtn').classList.add('show');
                 updateStatus('Choose your theme');
                 
@@ -257,12 +329,13 @@
                         currentTheme = 'dark';
                         localStorage.setItem('theme', 'dark');
                         document.getElementById('themeBtn').classList.remove('show');
+                        document.getElementById('themeHelp').classList.remove('show');
                         updateStatus('Dark theme selected (default)');
                     }
                 }, 3000);
             }, 2000);
             
-            // Redirect after 6 seconds (reduced from 9)
+            // Redirect after 6 seconds
             redirectTimer = setTimeout(() => {
                 updateStatus('Auto-redirecting...');
                 goToHome();
