@@ -606,18 +606,28 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Check if landing page was already shown in this session
-            // Uncomment the next line to always show landing page for testing
-            // sessionStorage.removeItem('landing_shown');
+            console.log('DOM loaded - Initializing landing page');
             
+            // Check if landing page was already shown in this session
+            // Always show for testing
+            sessionStorage.removeItem('landing_shown');
+            
+            /*
             if (sessionStorage.getItem('landing_shown')) {
-                // Landing already shown in this session, redirecting to home
+                console.log('Landing already shown in this session, redirecting to home');
                 window.location.href = '<?= base_url('/home') ?>';
                 return;
             }
+            */
 
-            // Starting landing page animation
-            new LandingPageController();
+            console.log('Starting landing page animation');
+            try {
+                window.landingController = new LandingPageController();
+                console.log('LandingPageController initialized successfully');
+            } catch (error) {
+                console.error('Error initializing LandingPageController:', error);
+                alert('Error: ' + error.message);
+            }
         });
 
         // Prevent context menu and text selection for better UX
