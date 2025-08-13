@@ -34,10 +34,9 @@ class ThemeController {
         if (savedTheme) {
             this.currentTheme = savedTheme;
         } else {
-            // Use system preference
-            const systemPrefersDark = window.matchMedia && 
-                                     window.matchMedia('(prefers-color-scheme: dark)').matches;
-            this.currentTheme = systemPrefersDark ? 'dark' : 'light';
+            // Default to dark theme
+            this.currentTheme = 'dark';
+            localStorage.setItem('theme', 'dark');
         }
         
         // Apply theme to document

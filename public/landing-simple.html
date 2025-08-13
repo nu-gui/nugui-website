@@ -23,7 +23,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: white;
             animation: subtleZoom 20s ease-in-out infinite alternate;
-            padding-top: 100px;
+            padding-top: 60px;
         }
         
         @keyframes subtleZoom {
@@ -69,8 +69,8 @@
         .theme-button {
             display: none;
             padding: 20px 40px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-            border: 2px solid rgba(255,255,255,0.3);
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(20, 20, 30, 0.9) 100%);
+            border: 2px solid rgba(0, 162, 232, 0.4);
             color: white;
             font-size: 20px;
             font-weight: 500;
@@ -78,26 +78,53 @@
             border-radius: 50px;
             margin: 0 auto 20px;
             backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            overflow: hidden;
         }
         
         .theme-button.show {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            animation: glowingPulse 2s ease-in-out infinite;
+            gap: 15px;
+            animation: slideDown 0.5s ease-out, glowingPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .theme-button:hover {
-            transform: scale(1.08);
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            transform: scale(1.08) translateY(-2px);
+            background: linear-gradient(135deg, rgba(40, 40, 50, 0.95) 0%, rgba(30, 30, 40, 0.95) 100%);
+            border-color: rgba(0, 162, 232, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 162, 232, 0.3);
         }
         
         .theme-button svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             fill: currentColor;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .theme-button:hover svg {
+            transform: rotate(180deg);
+        }
+        
+        .theme-icon-sun {
+            color: #FFD700;
+        }
+        
+        .theme-icon-moon {
+            color: #B8C5D6;
         }
         
         @keyframes glowingPulse {
@@ -161,13 +188,13 @@
 </head>
 <body>
     <div class="container">
-        <p class="theme-help-text" id="themeHelp">Select your preferred viewing mode</p>
+        <p class="theme-help-text" id="themeHelp">Choose your viewing experience</p>
         
         <button class="theme-button" id="themeBtn" onclick="selectTheme()">
-            <svg class="theme-icon-light" viewBox="0 0 24 24">
-                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            <svg class="theme-icon-moon" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
             </svg>
-            <span>Choose Your Theme</span>
+            <span id="themeText">Dark Mode</span>
         </button>
         
         <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
@@ -191,7 +218,7 @@
         let audio = document.getElementById('bgAudio');
         let audioEnabled = true; // Start with audio enabled
         let redirectTimer = null;
-        let currentTheme = 'light'; // Track current theme
+        let currentTheme = 'dark'; // Start with dark theme as default
         
         function updateStatus(msg) {
             document.getElementById('status').textContent = 'Status: ' + msg;
@@ -223,34 +250,36 @@
         }
         
         function selectTheme() {
-            // Toggle between light and dark
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            // Toggle between dark and light
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            // Update button content with icon and text
+            // Update button content with animated icon and text
             const btn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
+            const themeText = document.getElementById('themeText');
+            
+            if (currentTheme === 'light') {
                 btn.innerHTML = `
-                    <svg viewBox="0 0 24 24">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    <span>Dark Theme</span>
+                    <span id="themeText">Light Mode</span>
                 `;
             } else {
                 btn.innerHTML = `
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
-                    <span>Light Theme</span>
+                    <span id="themeText">Dark Mode</span>
                 `;
             }
             
             localStorage.setItem('theme', currentTheme);
             updateStatus('Theme set to: ' + currentTheme);
             
-            // Don't redirect immediately, let user see their selection
+            // Give user time to see their selection
             setTimeout(() => {
                 goToHome();
-            }, 500);
+            }, 1500);
         }
         
         function skipIntro() {
@@ -281,65 +310,73 @@
         window.addEventListener('DOMContentLoaded', () => {
             updateStatus('Page loaded');
             
+            // Set dark theme as default immediately
+            localStorage.setItem('theme', 'dark');
+            
             // Set audio volume
-            audio.volume = 0.2;
+            audio.volume = 0.3;
             
-            // Set localStorage to ensure audio plays by default on all pages
+            // Force audio to play by default
             localStorage.setItem('audioEnabled', 'true');
-            localStorage.setItem('audioVolume', '0.2');
+            localStorage.setItem('audioVolume', '0.3');
             
-            // Auto-play audio on page load
-            audio.play().then(() => {
-                audioEnabled = true;
-                document.getElementById('audioOn').style.display = 'block';
-                document.getElementById('audioOff').style.display = 'none';
-                updateStatus('Audio started automatically');
-            }).catch(() => {
-                // If autoplay is blocked, try playing on first user interaction
-                audioEnabled = false;
-                document.getElementById('audioOn').style.display = 'none';
-                document.getElementById('audioOff').style.display = 'block';
-                updateStatus('Click anywhere to start audio');
-                
-                // Try to play on any user interaction
-                const startAudio = () => {
-                    audio.play().then(() => {
-                        audioEnabled = true;
-                        document.getElementById('audioOn').style.display = 'block';
-                        document.getElementById('audioOff').style.display = 'none';
-                        updateStatus('Audio started');
-                        document.removeEventListener('click', startAudio);
-                        document.removeEventListener('touchstart', startAudio);
-                    });
-                };
-                document.addEventListener('click', startAudio, { once: false });
-                document.addEventListener('touchstart', startAudio, { once: false });
-            });
+            // Try multiple methods to start audio
+            const startAudioPlayback = () => {
+                audio.play().then(() => {
+                    audioEnabled = true;
+                    document.getElementById('audioOn').style.display = 'block';
+                    document.getElementById('audioOff').style.display = 'none';
+                    updateStatus('Audio playing');
+                }).catch(err => {
+                    // Silent retry
+                    setTimeout(startAudioPlayback, 100);
+                });
+            };
             
-            // Show theme help text and button after 2 seconds
+            // Start audio immediately
+            startAudioPlayback();
+            
+            // Also try on user interaction
+            const handleInteraction = () => {
+                if (!audioEnabled || audio.paused) {
+                    startAudioPlayback();
+                }
+            };
+            
+            document.addEventListener('mousemove', handleInteraction, { once: true });
+            document.addEventListener('click', handleInteraction, { once: true });
+            document.addEventListener('touchstart', handleInteraction, { once: true });
+            
+            // Show theme button after 3 seconds (give user more time)
             setTimeout(() => {
                 document.getElementById('themeHelp').classList.add('show');
                 document.getElementById('themeBtn').classList.add('show');
-                updateStatus('Choose your theme');
+                updateStatus('Select your viewing preference');
                 
-                // Auto-select dark theme after 3 seconds if no selection
+                // Auto-continue with dark theme after 5 seconds if no selection
                 setTimeout(() => {
                     if (document.getElementById('themeBtn').classList.contains('show')) {
-                        // No selection made, use dark as default
-                        currentTheme = 'dark';
+                        // No selection made, continue with dark theme
                         localStorage.setItem('theme', 'dark');
                         document.getElementById('themeBtn').classList.remove('show');
                         document.getElementById('themeHelp').classList.remove('show');
-                        updateStatus('Dark theme selected (default)');
+                        updateStatus('Continuing with dark theme...');
+                        
+                        // Redirect after showing status
+                        setTimeout(() => {
+                            goToHome();
+                        }, 1000);
                     }
-                }, 3000);
-            }, 2000);
+                }, 5000);
+            }, 3000);
             
-            // Redirect after 6 seconds
+            // Extended redirect timer (10 seconds total)
             redirectTimer = setTimeout(() => {
-                updateStatus('Auto-redirecting...');
-                goToHome();
-            }, 6000);
+                if (document.getElementById('themeBtn').classList.contains('show')) {
+                    updateStatus('Auto-redirecting...');
+                    goToHome();
+                }
+            }, 10000);
             
             updateStatus('Welcome to NU GUI');
         });

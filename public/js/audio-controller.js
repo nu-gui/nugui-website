@@ -48,13 +48,31 @@ class AudioController {
         // Handle page visibility changes
         this.handleVisibilityChange();
         
-        // Start playing if enabled and not from landing page
-        if (this.shouldAutoPlay()) {
-            this.play();
-        }
+        // Always try to start playing
+        this.startAudioWithRetry();
         
         // Listen for landing page signal
         this.listenForLandingPageSignal();
+    }
+    
+    startAudioWithRetry() {
+        // Try to play immediately
+        this.play();
+        
+        // If that fails, try on user interaction
+        if (!this.isPlaying) {
+            const attemptPlay = () => {
+                if (!this.isPlaying) {
+                    this.play();
+                }
+            };
+            
+            // Try on various user interactions
+            document.addEventListener('click', attemptPlay, { once: true });
+            document.addEventListener('touchstart', attemptPlay, { once: true });
+            document.addEventListener('keydown', attemptPlay, { once: true });
+            document.addEventListener('mousemove', attemptPlay, { once: true });
+        }
     }
     
     createAudioElement() {

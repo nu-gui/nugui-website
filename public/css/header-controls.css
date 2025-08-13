@@ -41,15 +41,28 @@
 /* Icon animations */
 .globalnav-image-theme svg,
 .globalnav-image-audio svg {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .globalnav-link-theme:hover .globalnav-image-theme svg {
-    transform: rotate(45deg);
+    transform: rotate(180deg) scale(1.1);
+}
+
+.globalnav-link-theme:active .globalnav-image-theme svg {
+    transform: rotate(360deg) scale(0.9);
 }
 
 .globalnav-link-audio:hover .globalnav-image-audio svg {
-    transform: scale(1.1);
+    transform: scale(1.15);
+}
+
+/* Theme icon colors */
+.theme-icon-light {
+    color: #FFD700;
+}
+
+.theme-icon-dark {
+    color: #B8C5D6;
 }
 
 /* Dark theme adjustments */
