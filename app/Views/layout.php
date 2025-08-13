@@ -58,6 +58,9 @@
     <!-- Improved Typography System - Better font sizes and responsive scaling -->
     <link rel="stylesheet" href="<?= base_url('css/typography-improved.css?v=' . time()) ?>">
     
+    <!-- Header Controls - Theme switcher and audio controls -->
+    <link rel="stylesheet" href="<?= base_url('css/header-controls.css?v=' . time()) ?>">
+    
     <!-- Existing CSS for enhanced features -->
     <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -138,6 +141,12 @@
     
     <!-- Page Gradient Enhancement -->
     <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>
+    
+    <!-- Theme Controller -->
+    <script src="<?= base_url('js/theme-controller.js?v=' . time()) ?>"></script>
+    
+    <!-- Audio Controller -->
+    <script src="<?= base_url('js/audio-controller.js?v=' . time()) ?>"></script>
     
     <!-- Global Site Schema -->
     <script type="application/ld+json">

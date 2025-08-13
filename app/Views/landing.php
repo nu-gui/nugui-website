@@ -577,6 +577,11 @@
                 // Stop audio
                 this.electricTone.pause();
                 
+                // Store audio state for next page
+                if (this.audioEnabled) {
+                    sessionStorage.setItem('landing_audio_enabled', 'true');
+                }
+                
                 // Store session flag to prevent showing again
                 sessionStorage.setItem('landing_shown', 'true');
 
