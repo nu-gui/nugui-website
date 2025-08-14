@@ -54,6 +54,9 @@
     <!-- Master Card Styling System - All card types with animations and effects -->
     <link rel="stylesheet" href="<?= base_url('css/cards-master.css?v=' . time()) ?>">
     
+    <!-- Card glow animations - unified across all pages -->
+    <link rel="stylesheet" href="<?= base_url('css/card-glow.css?v=' . time()) ?>">
+    
     <!-- Fix for rounded corners with gradient borders -->
     <link rel="stylesheet" href="<?= base_url('css/cards-rounded-fix.css?v=' . time()) ?>">
     
