@@ -40,9 +40,9 @@ body {
 .globalnav-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
-  gap: 8px;
+  gap: 12px;
 }
 
 /* Navigation Items */
@@ -52,8 +52,20 @@ body {
   height: 100%;
 }
 
+/* Logo with better spacing */
 .globalnav-item-apple {
-  margin-right: 24px;
+  margin-right: 32px;
+  flex-shrink: 0;
+}
+
+/* Main navigation items - evenly spaced */
+.globalnav-item-home,
+.globalnav-item-about,
+.globalnav-item-solutions,
+.globalnav-item-partners,
+.globalnav-item-contact,
+.globalnav-item-support {
+  margin: 0 4px;
 }
 
 /* Navigation Links */
