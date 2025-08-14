@@ -22,7 +22,7 @@
         }
         
         .header {
-            height: 250px;
+            height: 150px;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -37,28 +37,23 @@
         .header-content {
             display: flex;
             align-items: center;
-            gap: 60px;
+            gap: 40px;
             width: 100%;
             max-width: 1200px;
-        }
-        
-        .header-left {
-            flex: 1;
-            text-align: left;
         }
         
         .header-center {
             display: flex;
             align-items: center;
             justify-content: center;
+            flex: 0 0 auto;
         }
         
         .header-right {
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            gap: 40px;
+            justify-content: center;
         }
         
         .header-info {
@@ -133,16 +128,16 @@
         
         .logo-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             animation: spin 2s linear infinite;
             filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
         }
@@ -259,22 +254,6 @@
             transform: translateY(-2px);
         }
         
-        .audio-button {
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            cursor: pointer;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            transition: all 0.3s ease;
-        }
-        
-        .audio-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
         .status {
             position: fixed;
             bottom: 10px;
@@ -289,13 +268,9 @@
 </head>
 <body>
     <div class="header">
-        <div class="header-info" id="headerInfo">Initializing...</div>
+        <div class="header-info" id="headerInfo">Welcome to NU GUI</div>
         
         <div class="header-content">
-            <div class="header-left">
-                <!-- Welcome section removed - using header-info for instructions -->
-            </div>
-            
             <div class="header-center">
                 <div class="logo-container">
                     <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
@@ -322,11 +297,6 @@
                         <span class="theme-label">Light</span>
                     </div>
                 </div>
-                
-                <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
-                    <span id="audioOn">🔊</span>
-                    <span id="audioOff" style="display:none;">🔇</span>
-                </button>
             </div>
         </div>
     </div>
@@ -339,15 +309,9 @@
         <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
     </div>
     
-    <audio id="bgAudio" loop preload="auto" autoplay muted>
-        <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
-    </audio>
-    
     <div class="status" id="status">Status: Initializing...</div>
     
     <script>
-        let audio = document.getElementById('bgAudio');
-        let audioEnabled = true; // Start with audio enabled
         let redirectTimer = null;
         let currentTheme = 'dark'; // Start with dark theme as default
         
@@ -364,29 +328,6 @@
             console.log('Status update:', msg);
         }
         
-        function toggleAudio() {
-            const audioOn = document.getElementById('audioOn');
-            const audioOff = document.getElementById('audioOff');
-            
-            if (audioEnabled) {
-                // Mute audio
-                audio.pause();
-                audioEnabled = false;
-                audioOn.style.display = 'none';
-                audioOff.style.display = 'block';
-                updateStatus('Audio muted');
-            } else {
-                // Play audio
-                audio.play().then(() => {
-                    audioEnabled = true;
-                    audioOn.style.display = 'block';
-                    audioOff.style.display = 'none';
-                    updateStatus('Audio playing');
-                }).catch(err => {
-                    updateStatus('Audio error: ' + err.message);
-                });
-            }
-        }
         
         function selectTheme(theme) {
             currentTheme = theme;
@@ -421,16 +362,9 @@
         function goToHome() {
             clearTimeout(redirectTimer);
             
-            // Always set audio to enabled for next page
-            localStorage.setItem('audioEnabled', 'true');
-            sessionStorage.setItem('landing_audio_enabled', 'true');
+            // Store theme preference
+            localStorage.setItem('theme', currentTheme);
             
-            // Store current audio state
-            if (audioEnabled) {
-                localStorage.setItem('audioVolume', '0.15'); // Lower volume for main pages
-            }
-            
-            audio.pause();
             updateStatus('Redirecting to home...');
             setTimeout(() => {
                 window.location.href = '/home';
@@ -445,74 +379,7 @@
             localStorage.setItem('theme', 'dark');
             document.getElementById('darkBtn').classList.add('active');
             
-            // Set audio volume
-            audio.volume = 0.3;
-            
-            // Force audio to play by default
-            localStorage.setItem('audioEnabled', 'true');
-            localStorage.setItem('audioVolume', '0.3');
-            
-            // Force audio to start with Web Audio API trick
-            let audioStarted = false;
-            
-            const startAudioPlayback = () => {
-                if (audioStarted) return;
-                
-                // Set up audio properly
-                audio.volume = 0.3;
-                audio.loop = true;
-                
-                // Try playing muted first (browsers usually allow this)
-                audio.muted = true;
-                
-                const tryPlay = () => {
-                    if (audioStarted) return;
-                    
-                    audio.play().then(() => {
-                        // Success! Now unmute
-                        audio.muted = false;
-                        audioStarted = true;
-                        audioEnabled = true;
-                        document.getElementById('audioOn').style.display = 'block';
-                        document.getElementById('audioOff').style.display = 'none';
-                        updateStatus('Audio playing - Select theme');
-                    }).catch((err) => {
-                        // Silent fail - audio will start on user interaction
-                        console.log('Audio autoplay blocked, will start on user interaction');
-                    });
-                };
-                
-                // Try to play immediately
-                tryPlay();
-                
-                // Set up user interaction handlers to start audio
-                const startOnInteraction = () => {
-                    if (!audioStarted) {
-                        audio.muted = false;
-                        audio.play().then(() => {
-                            audioStarted = true;
-                            audioEnabled = true;
-                            document.getElementById('audioOn').style.display = 'block';
-                            document.getElementById('audioOff').style.display = 'none';
-                        }).catch(() => {});
-                    }
-                };
-                
-                // Add multiple event listeners for user interaction
-                ['click', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-                    document.addEventListener(event, startOnInteraction, { once: true });
-                });
-            };
-            
-            // Start audio immediately
-            startAudioPlayback();
-            
-            // Show welcome message for 2 seconds
-            setTimeout(() => {
-                updateStatus('Loading experience...');
-            }, 2000);
-            
-            // Show theme selector after 3 seconds
+            // Show theme selector after 1 second
             setTimeout(() => {
                 const themeSelector = document.getElementById('themeSelector');
                 if (themeSelector) {
@@ -529,7 +396,7 @@
                     
                     updateStatus('Select your viewing preference');
                     
-                    // Auto-continue with dark theme after 5 more seconds (8 total)
+                    // Auto-continue with dark theme after 3 more seconds (4 total)
                     setTimeout(() => {
                         const selector = document.getElementById('themeSelector');
                         if (selector && !window.themeSelected) {
@@ -539,21 +406,21 @@
                             // Redirect after showing status
                             setTimeout(() => {
                                 goToHome();
-                            }, 1500);
+                            }, 1000);
                         }
-                    }, 5000);
+                    }, 3000);
                 }
-            }, 3000);
+            }, 1000);
             
-            // Extended redirect timer (10 seconds total) - as final fallback
+            // Redirect timer (6 seconds total) - as final fallback
             redirectTimer = setTimeout(() => {
                 if (!window.themeSelected) {
                     updateStatus('Auto-redirecting to home...');
                     setTimeout(() => {
                         goToHome();
-                    }, 1000);
+                    }, 500);
                 }
-            }, 10000);
+            }, 6000);
         });
     </script>
 </body>
