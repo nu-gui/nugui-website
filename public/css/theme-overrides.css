@@ -20,31 +20,57 @@
     color: #1d1d1f !important;
 }
 
+/* Navigation bar stays dark for both themes */
 [data-theme="light"] .globalnav,
 .light-theme .globalnav {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 [data-theme="light"] .globalnav-link,
 .light-theme .globalnav-link {
-    color: rgba(0, 0, 0, 0.88) !important;
+    color: rgba(245, 245, 247, 0.88) !important;
 }
 
 [data-theme="light"] .globalnav-link:hover,
 .light-theme .globalnav-link:hover {
-    color: rgba(0, 0, 0, 1) !important;
-    background: rgba(0, 0, 0, 0.08) !important;
+    color: rgba(245, 245, 247, 1) !important;
+    background: rgba(245, 245, 247, 0.1) !important;
 }
 
-[data-theme="light"] .hero__content h1,
-.light-theme .hero__content h1 {
+/* Hero section for light theme */
+[data-theme="light"] .hero-section,
+.light-theme .hero-section {
+    background: linear-gradient(120deg, #FFFFFF 60%, #e8f4f8 100%) !important;
     color: #1d1d1f !important;
 }
 
-[data-theme="light"] .hero__content p,
-.light-theme .hero__content p {
+[data-theme="light"] .hero-section h1,
+.light-theme .hero-section h1 {
+    color: #1d1d1f !important;
+}
+
+[data-theme="light"] .hero-section p,
+.light-theme .hero-section p {
     color: #86868b !important;
+}
+
+[data-theme="light"] .hero-section .text-gradient,
+.light-theme .hero-section .text-gradient {
+    background: linear-gradient(90deg, #0066cc, #00a2e8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Hero section for dark theme */
+[data-theme="dark"] .hero-section,
+.dark-theme .hero-section {
+    background: linear-gradient(120deg, #000000 60%, #1a1a2e 100%) !important;
+}
+
+[data-theme="dark"] .hero-section h1,
+.dark-theme .hero-section h1 {
+    color: #FFFFFF !important;
 }
 
 [data-theme="light"] .section,
@@ -58,6 +84,51 @@
     background: #f5f5f7 !important;
     color: #1d1d1f !important;
     border-color: #d2d2d7 !important;
+}
+
+/* Buttons for light theme */
+[data-theme="light"] .btn,
+.light-theme .btn {
+    background: #0066cc !important;
+    color: #FFFFFF !important;
+    border-color: #0066cc !important;
+}
+
+[data-theme="light"] .btn:hover,
+.light-theme .btn:hover {
+    background: #0051a3 !important;
+    border-color: #0051a3 !important;
+}
+
+[data-theme="light"] .btn--outline,
+.light-theme .btn--outline {
+    background: transparent !important;
+    color: #0066cc !important;
+    border-color: #0066cc !important;
+}
+
+[data-theme="light"] .btn--outline:hover,
+.light-theme .btn--outline:hover {
+    background: #0066cc !important;
+    color: #FFFFFF !important;
+}
+
+/* Solution cards for light theme */
+[data-theme="light"] .solution-card,
+.light-theme .solution-card {
+    background: #FFFFFF !important;
+    border: 1px solid #d2d2d7 !important;
+    color: #1d1d1f !important;
+}
+
+[data-theme="light"] .solution-card h3,
+.light-theme .solution-card h3 {
+    color: #1d1d1f !important;
+}
+
+[data-theme="light"] .solution-card p,
+.light-theme .solution-card p {
+    color: #86868b !important;
 }
 
 /* Dark Theme Overrides (default) */
@@ -92,6 +163,64 @@
 .dark-theme .globalnav-link:hover {
     color: rgba(245, 245, 247, 1) !important;
     background: rgba(245, 245, 247, 0.1) !important;
+}
+
+/* Theme-aware images */
+[data-theme="light"] .theme-logo-dark,
+.light-theme .theme-logo-dark {
+    display: none !important;
+}
+
+[data-theme="light"] .theme-logo-light,
+.light-theme .theme-logo-light {
+    display: block !important;
+}
+
+[data-theme="dark"] .theme-logo-dark,
+.dark-theme .theme-logo-dark {
+    display: block !important;
+}
+
+[data-theme="dark"] .theme-logo-light,
+.dark-theme .theme-logo-light {
+    display: none !important;
+}
+
+/* Product icons for light theme - invert dark icons */
+[data-theme="light"] .product-icon-wrapper img[src*="dark"],
+[data-theme="light"] .product-icon-wrapper img[src*="DARK"],
+.light-theme .product-icon-wrapper img[src*="dark"],
+.light-theme .product-icon-wrapper img[src*="DARK"] {
+    filter: invert(1) !important;
+}
+
+/* Product icons that should stay as-is in light theme */
+[data-theme="light"] .product-icon-wrapper img[src*="light"],
+[data-theme="light"] .product-icon-wrapper img[src*="LIGHT"],
+.light-theme .product-icon-wrapper img[src*="light"],
+.light-theme .product-icon-wrapper img[src*="LIGHT"] {
+    filter: none !important;
+}
+
+/* Product solution images */
+[data-theme="light"] .product-solution-image img[src*="dark"],
+.light-theme .product-solution-image img[src*="dark"] {
+    display: none !important;
+}
+
+[data-theme="light"] .product-solution-image img[src*="light"],
+.light-theme .product-solution-image img[src*="light"] {
+    display: block !important;
+}
+
+[data-theme="dark"] .product-solution-image img[src*="light"],
+.dark-theme .product-solution-image img[src*="light"] {
+    display: none !important;
+}
+
+[data-theme="dark"] .product-solution-image img[src*="dark"],
+.dark-theme .product-solution-image img[src*="dark"] {
+    display: block !important;
 }
 
 /* Ensure no color-scheme override from browser */

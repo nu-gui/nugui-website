@@ -162,11 +162,8 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             </div>
             <div>
                 <!-- Custom logo for about page: NUGUI-1 for light theme, NUGUI-2 for dark theme -->
-                <picture>
-                    <source media="(prefers-color-scheme: dark)" srcset="<?= base_url('assets/images/NUGUI-2.png') ?>">
-                    <source media="(prefers-color-scheme: light)" srcset="<?= base_url('assets/images/NUGUI-1.png') ?>">
-                    <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image">
-                </picture>
+                <img src="<?= base_url('assets/images/NUGUI-2.png') ?>" alt="NU GUI Logo" class="team-image theme-logo-dark" style="display: block;">
+                <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image theme-logo-light" style="display: none;">
             </div>
         </div>
     </div>
