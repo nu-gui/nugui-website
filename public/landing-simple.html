@@ -157,8 +157,8 @@
         }
         
         .theme-selector.show {
-            display: flex;
-            opacity: 1;
+            display: flex !important;
+            opacity: 1 !important;
         }
         
         @keyframes spin {
@@ -339,7 +339,7 @@
         <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
     </div>
     
-    <audio id="bgAudio" loop preload="auto" autoplay>
+    <audio id="bgAudio" loop preload="auto" autoplay muted>
         <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
     </audio>
     
@@ -361,7 +361,7 @@
             if (headerInfo) {
                 headerInfo.textContent = msg;
             }
-            console.log(msg);
+            console.log('Status update:', msg);
         }
         
         function toggleAudio() {
@@ -390,6 +390,7 @@
         
         function selectTheme(theme) {
             currentTheme = theme;
+            window.themeSelected = true; // Mark that user selected a theme
             
             // Update active state
             const darkBtn = document.getElementById('darkBtn');
@@ -438,14 +439,11 @@
         
         // Initialize
         window.addEventListener('DOMContentLoaded', () => {
-            updateStatus('Page loaded');
+            updateStatus('Welcome to NU GUI');
             
             // Set dark theme as default and mark it active
             localStorage.setItem('theme', 'dark');
             document.getElementById('darkBtn').classList.add('active');
-            
-            // Show welcome text immediately with fade-in
-            document.getElementById('welcomeSection').classList.add('show');
             
             // Set audio volume
             audio.volume = 0.3;
@@ -457,106 +455,105 @@
             // Force audio to start with Web Audio API trick
             let audioStarted = false;
             
-            // Create silent audio context to unlock audio
-            const unlockAudio = () => {
-                const AudioContext = window.AudioContext || window.webkitAudioContext;
-                const audioContext = new AudioContext();
-                
-                // Create empty buffer
-                const buffer = audioContext.createBuffer(1, 1, 22050);
-                const source = audioContext.createBufferSource();
-                source.buffer = buffer;
-                source.connect(audioContext.destination);
-                
-                // Play silent sound
-                if (source.start) {
-                    source.start(0);
-                } else {
-                    source.noteOn(0);
-                }
-                
-                // Now audio is unlocked, play real audio
-                setTimeout(() => {
-                    audio.muted = false;
-                    audio.volume = 0.3;
-                    audio.play();
-                    audioStarted = true;
-                    audioEnabled = true;
-                    document.getElementById('audioOn').style.display = 'block';
-                    document.getElementById('audioOff').style.display = 'none';
-                }, 100);
-            };
-            
             const startAudioPlayback = () => {
                 if (audioStarted) return;
                 
-                // First unlock audio context
-                unlockAudio();
-                
                 // Set up audio properly
-                audio.muted = false;
                 audio.volume = 0.3;
                 audio.loop = true;
                 
-                // Aggressive play attempts
-                const attemptPlay = () => {
+                // Try playing muted first (browsers usually allow this)
+                audio.muted = true;
+                
+                const tryPlay = () => {
                     if (audioStarted) return;
                     
                     audio.play().then(() => {
+                        // Success! Now unmute
+                        audio.muted = false;
                         audioStarted = true;
                         audioEnabled = true;
                         document.getElementById('audioOn').style.display = 'block';
                         document.getElementById('audioOff').style.display = 'none';
-                        updateStatus('Select your viewing preference');
-                    }).catch(() => {
-                        // Retry in 100ms
-                        setTimeout(attemptPlay, 100);
+                        updateStatus('Audio playing - Select theme');
+                    }).catch((err) => {
+                        // Silent fail - audio will start on user interaction
+                        console.log('Audio autoplay blocked, will start on user interaction');
                     });
                 };
                 
-                // Start attempting immediately
-                attemptPlay();
+                // Try to play immediately
+                tryPlay();
                 
-                // Also try on user interaction as fallback
-                ['click', 'touchstart', 'keydown'].forEach(eventType => {
-                    document.addEventListener(eventType, () => {
-                        if (!audioStarted) {
-                            attemptPlay();
-                        }
-                    }, { once: true });
+                // Set up user interaction handlers to start audio
+                const startOnInteraction = () => {
+                    if (!audioStarted) {
+                        audio.muted = false;
+                        audio.play().then(() => {
+                            audioStarted = true;
+                            audioEnabled = true;
+                            document.getElementById('audioOn').style.display = 'block';
+                            document.getElementById('audioOff').style.display = 'none';
+                        }).catch(() => {});
+                    }
+                };
+                
+                // Add multiple event listeners for user interaction
+                ['click', 'touchstart', 'keydown', 'scroll'].forEach(event => {
+                    document.addEventListener(event, startOnInteraction, { once: true });
                 });
             };
             
-            // Start immediately
+            // Start audio immediately
             startAudioPlayback();
+            
+            // Show welcome message for 2 seconds
+            setTimeout(() => {
+                updateStatus('Loading experience...');
+            }, 2000);
             
             // Show theme selector after 3 seconds
             setTimeout(() => {
-                document.getElementById('themeSelector').classList.add('show');
-                updateStatus('Select your viewing preference');
-                
-                // Auto-continue with dark theme after 5 seconds if no selection
-                setTimeout(() => {
-                    const selector = document.getElementById('themeSelector');
-                    if (selector && selector.classList.contains('show')) {
-                        // No selection made, continue with dark theme
-                        updateStatus('Continuing with dark theme...');
-                        
-                        // Redirect after showing status
-                        setTimeout(() => {
-                            goToHome();
-                        }, 1000);
-                    }
-                }, 5000);
+                const themeSelector = document.getElementById('themeSelector');
+                if (themeSelector) {
+                    // Force display
+                    themeSelector.style.display = 'flex';
+                    themeSelector.style.opacity = '0';
+                    
+                    // Trigger reflow to ensure transition works
+                    themeSelector.offsetHeight;
+                    
+                    // Now add show class for transition
+                    themeSelector.classList.add('show');
+                    themeSelector.style.opacity = '1';
+                    
+                    updateStatus('Select your viewing preference');
+                    
+                    // Auto-continue with dark theme after 5 more seconds (8 total)
+                    setTimeout(() => {
+                        const selector = document.getElementById('themeSelector');
+                        if (selector && !window.themeSelected) {
+                            // No selection made, continue with dark theme
+                            updateStatus('Continuing with dark theme...');
+                            
+                            // Redirect after showing status
+                            setTimeout(() => {
+                                goToHome();
+                            }, 1500);
+                        }
+                    }, 5000);
+                }
             }, 3000);
             
-            // Extended redirect timer (10 seconds total)
+            // Extended redirect timer (10 seconds total) - as final fallback
             redirectTimer = setTimeout(() => {
-                updateStatus('Auto-redirecting...');
-                goToHome();
+                if (!window.themeSelected) {
+                    updateStatus('Auto-redirecting to home...');
+                    setTimeout(() => {
+                        goToHome();
+                    }, 1000);
+                }
             }, 10000);
-            
-            updateStatus('Select your viewing preference');
         });
     </script>
 </body>
