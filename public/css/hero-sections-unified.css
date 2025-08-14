@@ -1,0 +1,329 @@
+/**
+ * Unified Hero Section Styles - Theme Independent
+ * Hero sections remain identical in both light and dark themes
+ * Primary text is always white, accent colors provide contrast
+ */
+
+/* ============================================
+   ANIMATION KEYFRAMES
+   ============================================ */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================
+   BASE HERO SECTION STYLES
+   ============================================ */
+.hero-section {
+    color: #FFFFFF !important;
+    text-align: center;
+    padding: 120px 20px 100px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* Force white text for all hero content */
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section p,
+.hero-section strong,
+.hero-section em {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 48rem;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+}
+
+/* Subtle overlay for depth */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   HOME PAGE - Deep Blue Ocean
+   ============================================ */
+.page-home .hero-section,
+.page-page-home .hero-section {
+    background: linear-gradient(-45deg, 
+        #003d82,  /* Deep Ocean Blue */
+        #004494,  /* Royal Blue */
+        #0056b3,  /* Strong Blue */
+        #1e6ba8   /* Ocean Blue */
+    );
+}
+
+.page-home .text-gradient,
+.page-page-home .text-gradient {
+    background: linear-gradient(90deg, 
+        #ffeb3b,  /* Bright Yellow */
+        #ffc107,  /* Amber */
+        #ff9800   /* Orange */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   PRODUCTS PAGE - Deep Purple
+   ============================================ */
+.page-products .hero-section,
+.page-page-products .hero-section {
+    background: linear-gradient(-45deg, 
+        #4a148c,  /* Deep Purple */
+        #6a1b9a,  /* Purple */
+        #7b1fa2,  /* Medium Purple */
+        #8e24aa   /* Light Purple */
+    );
+}
+
+.page-products .text-gradient,
+.page-page-products .text-gradient {
+    background: linear-gradient(90deg, 
+        #00ff88,  /* Mint Green */
+        #00e676,  /* Green */
+        #00c853   /* Light Green */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   SOLUTIONS PAGE - Forest Green
+   ============================================ */
+.page-solutions .hero-section,
+.page-page-solutions .hero-section {
+    background: linear-gradient(-45deg, 
+        #1b5e20,  /* Dark Green */
+        #2e7d32,  /* Forest Green */
+        #388e3c,  /* Green */
+        #43a047   /* Light Green */
+    );
+}
+
+.page-solutions .text-gradient,
+.page-page-solutions .text-gradient {
+    background: linear-gradient(90deg, 
+        #ff6f00,  /* Deep Orange */
+        #ff9100,  /* Orange */
+        #ffab00   /* Amber Orange */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   ABOUT PAGE - Deep Teal
+   ============================================ */
+.page-about .hero-section,
+.page-page-about .hero-section {
+    background: linear-gradient(-45deg, 
+        #004d40,  /* Dark Teal */
+        #00695c,  /* Teal */
+        #00796b,  /* Medium Teal */
+        #00897b   /* Light Teal */
+    );
+}
+
+.page-about .text-gradient,
+.page-page-about .text-gradient {
+    background: linear-gradient(90deg, 
+        #ff5252,  /* Red */
+        #ff4081,  /* Pink */
+        #ff1744   /* Bright Red */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   CONTACT PAGE - Sunset Orange
+   ============================================ */
+.page-contact .hero-section,
+.page-page-contact .hero-section {
+    background: linear-gradient(-45deg, 
+        #bf360c,  /* Deep Orange */
+        #d84315,  /* Dark Orange */
+        #e64a19,  /* Orange */
+        #f4511e   /* Light Orange */
+    );
+}
+
+.page-contact .text-gradient,
+.page-page-contact .text-gradient {
+    background: linear-gradient(90deg, 
+        #00bcd4,  /* Cyan */
+        #00acc1,  /* Dark Cyan */
+        #0097a7   /* Deep Cyan */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   SUPPORT PAGE - Crimson Red
+   ============================================ */
+.page-support .hero-section,
+.page-page-support .hero-section {
+    background: linear-gradient(-45deg, 
+        #b71c1c,  /* Dark Red */
+        #c62828,  /* Red */
+        #d32f2f,  /* Medium Red */
+        #e53935   /* Light Red */
+    );
+}
+
+.page-support .text-gradient,
+.page-page-support .text-gradient {
+    background: linear-gradient(90deg, 
+        #00e5ff,  /* Cyan */
+        #00b8d4,  /* Light Blue */
+        #0091ea   /* Blue */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   PARTNER PAGE - Royal Gold
+   ============================================ */
+.page-partner-program .hero-section,
+.page-page-partner-program .hero-section {
+    background: linear-gradient(-45deg, 
+        #f57f17,  /* Dark Yellow */
+        #f9a825,  /* Gold */
+        #fbc02d,  /* Bright Gold */
+        #fdd835   /* Light Gold */
+    );
+}
+
+.page-partner-program .text-gradient,
+.page-page-partner-program .text-gradient {
+    background: linear-gradient(90deg, 
+        #7c4dff,  /* Deep Purple */
+        #651fff,  /* Purple */
+        #6200ea   /* Dark Purple */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   HERO BUTTONS - Consistent across all pages
+   ============================================ */
+.hero-section .btn-primary,
+.hero-section .btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    color: #FFFFFF !important;
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section .btn-primary:hover,
+.hero-section .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   FORCE THEME INDEPENDENCE
+   ============================================ */
+/* Override any theme-specific changes to hero sections */
+[data-theme="light"] .hero-section,
+[data-theme="dark"] .hero-section {
+    /* Colors remain the same regardless of theme */
+    color: #FFFFFF !important;
+}
+
+[data-theme="light"] .hero-section h1,
+[data-theme="light"] .hero-section p,
+[data-theme="light"] .hero-section strong,
+[data-theme="dark"] .hero-section h1,
+[data-theme="dark"] .hero-section p,
+[data-theme="dark"] .hero-section strong {
+    color: #FFFFFF !important;
+}
+
+/* Ensure text gradients remain consistent */
+[data-theme="light"] .hero-section .text-gradient,
+[data-theme="dark"] .hero-section .text-gradient {
+    /* Gradient colors don't change with theme */
+    opacity: 1 !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 20px 60px 20px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+}
