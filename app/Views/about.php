@@ -138,12 +138,12 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section hero-about">
+<section class="hero-section">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            About <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
+        <h1>
+            About <span class="text-gradient">NU GUI</span>
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             NU GUI helps carriers, resellers, and enterprises deliver <strong>reliable communications and data‑driven marketing at scale</strong>.<br>
             We focus on practical outcomes: <strong>better connectivity, lower cost per minute, stronger customer engagement, and clear reporting</strong>.
         </p>

@@ -48,6 +48,7 @@
     <!-- Unified Button System - Single source for all button styles with consistent animations -->
     <link rel="stylesheet" href="<?= base_url('css/buttons-unified.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/hero-sections.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/page-hero-themes.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
     

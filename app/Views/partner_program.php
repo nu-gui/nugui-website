@@ -244,12 +244,12 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section hero-partner">
+<section class="hero-section">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            Partner with <span class="text-gradient" style="color: #7B2D99 !important;">NU GUI</span>
+        <h1>
+            Partner with <span class="text-gradient">NU GUI</span>
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             Join a partner network focused on <strong>outcomes</strong>—reliable communications, measurable ROI, and scalable growth for your customers.<br>
             We collaborate with carriers, resellers, system integrators, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>.
         </p>
