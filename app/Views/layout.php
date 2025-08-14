@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="<?= base_url('css/reset.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/globalnav-apple.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/header-controls.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/utilities-apple.css') ?>">
     
@@ -42,6 +43,7 @@
     <!-- Theme and Asset Configuration -->
     <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/theme-overrides.css') ?>">
     
     <!-- Unified Button System - Single source for all button styles with consistent animations -->
     <link rel="stylesheet" href="<?= base_url('css/buttons-unified.css?v=' . time()) ?>">

@@ -96,8 +96,22 @@ class ThemeController {
     }
     
     applyTheme(theme) {
-        // Apply to root element
+        // Apply to multiple elements to ensure it sticks
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.className = theme + '-theme';
+        document.body.setAttribute('data-theme', theme);
+        document.body.className = theme + '-theme';
+        
+        // Force CSS variable updates
+        if (theme === 'light') {
+            document.documentElement.style.setProperty('--bg-primary', '#FFFFFF');
+            document.documentElement.style.setProperty('--text-primary', '#1d1d1f');
+            document.documentElement.style.setProperty('--bg-secondary', '#f5f5f7');
+        } else {
+            document.documentElement.style.setProperty('--bg-primary', '#000000');
+            document.documentElement.style.setProperty('--text-primary', '#f5f5f7');
+            document.documentElement.style.setProperty('--bg-secondary', '#1d1d1f');
+        }
         
         // Update meta theme-color
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');

@@ -457,61 +457,73 @@
             localStorage.setItem('audioEnabled', 'true');
             localStorage.setItem('audioVolume', '0.3');
             
-            // Audio autoplay with progressive enhancement
+            // Force audio to start with Web Audio API trick
             let audioStarted = false;
             
-            const startAudioPlayback = () => {
-                if (audioStarted) return;
+            // Create silent audio context to unlock audio
+            const unlockAudio = () => {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
                 
-                // Set volume first
-                audio.volume = 0.3;
+                // Create empty buffer
+                const buffer = audioContext.createBuffer(1, 1, 22050);
+                const source = audioContext.createBufferSource();
+                source.buffer = buffer;
+                source.connect(audioContext.destination);
                 
-                // Try unmuted play first (works if user has interacted before)
-                audio.play().then(() => {
+                // Play silent sound
+                if (source.start) {
+                    source.start(0);
+                } else {
+                    source.noteOn(0);
+                }
+                
+                // Now audio is unlocked, play real audio
+                setTimeout(() => {
+                    audio.muted = false;
+                    audio.volume = 0.3;
+                    audio.play();
                     audioStarted = true;
                     audioEnabled = true;
                     document.getElementById('audioOn').style.display = 'block';
                     document.getElementById('audioOff').style.display = 'none';
+                }, 100);
+            };
+            
+            const startAudioPlayback = () => {
+                if (audioStarted) return;
+                
+                // Try to unlock and play
+                try {
+                    unlockAudio();
                     updateStatus('Welcome to NU GUI');
-                }).catch(() => {
-                    // Try muted autoplay (usually works)
-                    audio.muted = true;
+                } catch (e) {
+                    // Fallback to user interaction
+                    audio.muted = false;
+                    audio.volume = 0.3;
                     audio.play().then(() => {
-                        // Unmute after successful start
-                        setTimeout(() => {
-                            audio.muted = false;
-                            audioStarted = true;
-                            audioEnabled = true;
-                            document.getElementById('audioOn').style.display = 'block';
-                            document.getElementById('audioOff').style.display = 'none';
-                            updateStatus('Welcome to NU GUI');
-                        }, 10);
+                        audioStarted = true;
+                        audioEnabled = true;
+                        document.getElementById('audioOn').style.display = 'block';
+                        document.getElementById('audioOff').style.display = 'none';
+                        updateStatus('Welcome to NU GUI');
                     }).catch(() => {
-                        // Last resort: wait for interaction
-                        updateStatus('Welcome to NU GUI - Click for audio');
-                        
-                        const enableOnInteraction = () => {
+                        updateStatus('Welcome to NU GUI');
+                        document.addEventListener('click', () => {
                             if (!audioStarted) {
-                                audio.muted = false;
                                 audio.play();
                                 audioStarted = true;
                                 audioEnabled = true;
                                 document.getElementById('audioOn').style.display = 'block';
                                 document.getElementById('audioOff').style.display = 'none';
-                                updateStatus('Welcome to NU GUI');
                             }
-                        };
-                        
-                        document.addEventListener('click', enableOnInteraction, { once: true });
-                        document.addEventListener('touchstart', enableOnInteraction, { once: true });
+                        }, { once: true });
                     });
-                });
+                }
             };
             
-            // Try multiple times with different strategies
+            // Start immediately
             startAudioPlayback();
-            setTimeout(startAudioPlayback, 100);
-            setTimeout(startAudioPlayback, 500);
             
             // Show theme selector after 3 seconds
             setTimeout(() => {

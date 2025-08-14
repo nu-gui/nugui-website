@@ -83,7 +83,7 @@
                 </button>
             </div>
 
-            <!-- Search/CTA -->
+            <!-- WhatsApp CTA -->
             <div class="globalnav-item globalnav-item-cta">
                 <a href="https://wa.me/message/TGGYMYT6YAI5O1" 
                    target="_blank"
