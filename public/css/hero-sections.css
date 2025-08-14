@@ -16,24 +16,21 @@
     }
 }
 
-/* Base Hero Section - Dark professional gradient (like Apple's hero) */
+/* Base Hero Section with animated gradient */
 .hero-section {
-    /* Dark sophisticated gradient - works for both themes */
-    background: linear-gradient(135deg, 
-        #0a0a0f 0%,
-        #1a1a2e 25%, 
-        #16213e 50%, 
-        #0f3460 75%,
-        #2F69B3 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(-45deg, 
+        #00A2E8, 
+        #0082BB, 
+        #97C9F6, 
+        #5AB4F1);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     color: #FFFFFF;
     text-align: center;
     padding: 120px 20px 100px 20px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    border-radius: 0 0 48px 48px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 /* Add subtle pattern overlay */
@@ -67,9 +64,9 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Gradient text accent - Using NUGUI brand colors */
+/* Gradient text accent */
 .hero-section .text-gradient {
-    background: linear-gradient(90deg, #00A2E8, #33B5ED, #FFC107);
+    background: linear-gradient(90deg, #FFD700, #FFC107, #FFB000);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -87,7 +84,7 @@
     left: 0;
     top: 0;
     z-index: -1;
-    background: linear-gradient(90deg, #00A2E8, #FFC107);
+    background: linear-gradient(90deg, #FFD700, #FFC107);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -139,41 +136,38 @@
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
 }
 
-/* Page-specific animated gradient variations - All with dark professional look */
+/* Page-specific animated gradient variations */
 .hero-section.hero-home,
 .page-home .hero-section {
-    background: linear-gradient(135deg, 
-        #0a0a0f 0%,
-        #1a1a2e 20%, 
-        #16213e 40%, 
-        #0f3460 70%,
-        #00A2E8 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(-45deg, 
+        #00A2E8, 
+        #00E676, 
+        #0082BB, 
+        #00C853);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .hero-section.hero-solutions,
 .page-solutions .hero-section {
-    background: linear-gradient(135deg, 
-        #0a0a0f 0%,
-        #1a1a2e 20%,
-        #2d1b69 50%,
-        #4a148c 80%,
-        #7B1FA2 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(-45deg, 
+        #00A2E8, 
+        #9C4DCC, 
+        #7B1FA2, 
+        #AA66FF);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .hero-section.hero-about,
 .page-about .hero-section {
-    background: linear-gradient(135deg, 
-        #0a0a0f 0%,
-        #1a1a2e 25%, 
-        #16213e 50%, 
-        #0f3460 75%,
-        #2F69B3 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(-45deg, 
+        #00A2E8, 
+        #00D4FF, 
+        #0082BB, 
+        #00B8D4);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .hero-section.hero-products,

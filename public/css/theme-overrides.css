@@ -1,5 +1,95 @@
 /**
  * Theme Override Styles
+ * Custom theme enhancements for navigation and hero sections
+ * These override the default styles while preserving main branch functionality
+ */
+
+/* ============================================
+   NAVIGATION THEME OVERRIDES
+   ============================================ */
+
+/* Light theme navigation */
+[data-theme="light"] .globalnav {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .globalnav.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="light"] .globalnav-link {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="light"] .globalnav-link:hover {
+    color: rgba(0, 0, 0, 1) !important;
+    background: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Dark theme navigation (explicit) */
+[data-theme="dark"] .globalnav {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .globalnav.scrolled {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .globalnav-link {
+    color: rgba(245, 245, 247, 0.88) !important;
+}
+
+[data-theme="dark"] .globalnav-link:hover {
+    color: rgba(245, 245, 247, 1) !important;
+    background: rgba(245, 245, 247, 0.1) !important;
+}
+
+/* Mobile menu theme overrides */
+[data-theme="light"] .globalnav-menu {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] .globalnav-menu-link {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="dark"] .globalnav-menu {
+    background: rgba(0, 0, 0, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .globalnav-menu-link {
+    color: rgba(245, 245, 247, 0.88) !important;
+}
+
+/* Logo switching for themes */
+[data-theme="light"] .theme-logo-dark {
+    display: none !important;
+}
+
+[data-theme="light"] .theme-logo-light {
+    display: block !important;
+}
+
+[data-theme="dark"] .theme-logo-dark {
+    display: block !important;
+}
+
+[data-theme="dark"] .theme-logo-light {
+    display: none !important;
+}
+
+/* ============================================
+   ORIGINAL THEME OVERRIDES BELOW
+   ============================================ */
+
+/**
+ * Theme Override Styles
  * Works with main branch theme system using CSS variables
  */
 
