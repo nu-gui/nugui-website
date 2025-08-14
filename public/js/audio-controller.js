@@ -59,20 +59,8 @@ class AudioController {
         // Update icon to show intended state first
         this.updateAudioIcon();
         
-        // Unlock audio context first
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) {
-            const audioContext = new AudioContext();
-            const buffer = audioContext.createBuffer(1, 1, 22050);
-            const source = audioContext.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioContext.destination);
-            if (source.start) {
-                source.start(0);
-            } else if (source.noteOn) {
-                source.noteOn(0);
-            }
-        }
+        // Don't try to create AudioContext immediately - wait for user interaction
+        // This avoids the console warning about AudioContext not being allowed to start
         
         // Try to play immediately
         this.play();
@@ -208,29 +196,23 @@ class AudioController {
         this.audio.volume = 0;
         this.audio.loop = true;
         
-        // Aggressive play attempts
-        const attemptPlay = () => {
-            const playPromise = this.audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        this.isPlaying = true;
-                        this.fadeIn();
-                        this.savePreferences();
-                        this.updateAudioIcon();
-                    })
-                    .catch(error => {
-                        // Retry after a short delay
-                        if (!this.isPlaying) {
-                            setTimeout(attemptPlay, 100);
-                        }
-                    });
-            }
-        };
+        // Try to play
+        const playPromise = this.audio.play();
         
-        // Start attempting immediately
-        attemptPlay();
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    this.isPlaying = true;
+                    this.fadeIn();
+                    this.savePreferences();
+                    this.updateAudioIcon();
+                })
+                .catch(error => {
+                    // Silent fail - audio will start on user interaction
+                    // Don't retry automatically to avoid console spam
+                    console.log('Audio autoplay prevented by browser - will start on user interaction');
+                });
+        }
     }
     
     pause() {

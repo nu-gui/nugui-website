@@ -18,6 +18,8 @@
                     <a href="https://www.linkedin.com/company/nu-gui/" 
                        target="_blank"
                        rel="noopener noreferrer"
+                       title="Connect with NU GUI on LinkedIn"
+                       aria-label="LinkedIn Profile"
                        style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--color-surface); border-radius: var(--border-radius); transition: all var(--transition-base);"
                        onmouseover="this.style.background='var(--color-primary)'; this.style.transform='translateY(-2px)'"
                        onmouseout="this.style.background='var(--color-surface)'; this.style.transform='translateY(0)'">
@@ -28,6 +30,8 @@
                     <a href="https://wa.me/27211100555" 
                        target="_blank"
                        rel="noopener noreferrer"
+                       title="Contact us on WhatsApp"
+                       aria-label="WhatsApp Contact"
                        style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--color-surface); border-radius: var(--border-radius); transition: all var(--transition-base);"
                        onmouseover="this.style.background='var(--color-success)'; this.style.transform='translateY(-2px)'"
                        onmouseout="this.style.background='var(--color-surface)'; this.style.transform='translateY(0)'">
