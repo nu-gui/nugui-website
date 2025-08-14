@@ -1,17 +1,31 @@
 /**
  * Theme Override Styles
- * Ensures themes work properly regardless of browser preferences
+ * Works with main branch theme system using CSS variables
  */
 
-/* Light Theme Overrides */
-[data-theme="light"],
-.light-theme {
-    --bg-primary: #FFFFFF !important;
-    --bg-secondary: #f5f5f7 !important;
-    --text-primary: #1d1d1f !important;
-    --text-secondary: #86868b !important;
-    --border-color: #d2d2d7 !important;
-    --link-color: #0066cc !important;
+/* Force Light Theme */
+[data-theme="light"] {
+    /* PRIMARY BLUES - Light Theme (Vibrant) */
+    --color-primary: #00A2E8 !important;
+    --color-primary-light: #33B5ED !important;
+    --color-primary-dark: #0082BB !important;
+    --color-secondary: #97C9F6 !important;
+    --color-accent: #FFC107 !important;
+    --color-accent-secondary: #FF6B35 !important;
+    
+    /* Text Colors - Light Theme */
+    --color-text-primary: #1a1a1a !important;
+    --color-text-secondary: #4a4a4a !important;
+    --color-text-tertiary: #757575 !important;
+    
+    /* Background Colors - Light Theme */
+    --color-background: #FFFFFF !important;
+    --color-background-secondary: #F7F9FB !important;
+    --color-background-tertiary: #FAFBFC !important;
+    
+    /* Border Colors - Light Theme */
+    --color-border: #E0E0E0 !important;
+    --color-separator: #E0E0E0 !important;
 }
 
 [data-theme="light"] body,
@@ -20,23 +34,6 @@
     color: #1d1d1f !important;
 }
 
-/* Navigation bar stays dark for both themes */
-[data-theme="light"] .globalnav,
-.light-theme .globalnav {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-[data-theme="light"] .globalnav-link,
-.light-theme .globalnav-link {
-    color: rgba(245, 245, 247, 0.88) !important;
-}
-
-[data-theme="light"] .globalnav-link:hover,
-.light-theme .globalnav-link:hover {
-    color: rgba(245, 245, 247, 1) !important;
-    background: rgba(245, 245, 247, 0.1) !important;
-}
 
 /* Hero section for light theme */
 [data-theme="light"] .hero-section,
@@ -131,38 +128,29 @@
     color: #86868b !important;
 }
 
-/* Dark Theme Overrides (default) */
-[data-theme="dark"],
-.dark-theme {
-    --bg-primary: #000000 !important;
-    --bg-secondary: #1d1d1f !important;
-    --text-primary: #f5f5f7 !important;
-    --text-secondary: #86868b !important;
-    --border-color: #424245 !important;
-    --link-color: #2997ff !important;
-}
-
-[data-theme="dark"] body,
-.dark-theme body {
-    background-color: #000000 !important;
-    color: #f5f5f7 !important;
-}
-
-[data-theme="dark"] .globalnav,
-.dark-theme .globalnav {
-    background: rgba(0, 0, 0, 0.8) !important;
-    border-bottom-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-[data-theme="dark"] .globalnav-link,
-.dark-theme .globalnav-link {
-    color: rgba(245, 245, 247, 0.88) !important;
-}
-
-[data-theme="dark"] .globalnav-link:hover,
-.dark-theme .globalnav-link:hover {
-    color: rgba(245, 245, 247, 1) !important;
-    background: rgba(245, 245, 247, 0.1) !important;
+/* Force Dark Theme */
+[data-theme="dark"] {
+    /* PRIMARY BLUES - Dark Theme (muted) */
+    --color-primary: #2F69B3 !important;
+    --color-primary-light: #5AB4F1 !important;
+    --color-primary-dark: #1E3A7A !important;
+    --color-secondary: #5AB4F1 !important;
+    --color-accent: #AF8F4C !important;
+    --color-accent-secondary: #CF5B24 !important;
+    
+    /* Text Colors - Dark Theme */
+    --color-text-primary: #FFFFFF !important;
+    --color-text-secondary: #CCCCCC !important;
+    --color-text-tertiary: #999999 !important;
+    
+    /* Background Colors - Dark Theme */
+    --color-background: #121212 !important;
+    --color-background-secondary: #1E1E1E !important;
+    --color-background-tertiary: #252525 !important;
+    
+    /* Border Colors - Dark Theme */
+    --color-border: #333333 !important;
+    --color-separator: #333333 !important;
 }
 
 /* Theme-aware images */
