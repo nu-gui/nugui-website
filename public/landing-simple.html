@@ -399,31 +399,25 @@
                     
                     updateStatus('Select your viewing preference');
                     
-                    // Auto-continue with dark theme after 3 more seconds (4 total)
+                    // Auto-continue with dark theme after 2 more seconds (3 total)
                     setTimeout(() => {
                         const selector = document.getElementById('themeSelector');
                         if (selector && !window.themeSelected) {
                             // No selection made, continue with dark theme
                             updateStatus('Continuing with dark theme...');
-                            
-                            // Redirect after showing status
-                            setTimeout(() => {
-                                goToHome();
-                            }, 1000);
+                            // Redirect immediately
+                            goToHome();
                         }
-                    }, 3000);
+                    }, 2000);
                 }
             }, 1000);
             
-            // Redirect timer (6 seconds total) - as final fallback
+            // Redirect timer (3 seconds total) - as final fallback
             redirectTimer = setTimeout(() => {
                 if (!window.themeSelected) {
-                    updateStatus('Auto-redirecting to home...');
-                    setTimeout(() => {
-                        goToHome();
-                    }, 500);
+                    goToHome();
                 }
-            }, 6000);
+            }, 3000);
         });
     </script>
 </body>
