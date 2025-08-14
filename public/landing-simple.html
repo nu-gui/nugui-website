@@ -293,10 +293,7 @@
         
         <div class="header-content">
             <div class="header-left">
-                <div class="welcome-section" id="welcomeSection">
-                    <h1>Welcome to NU GUI</h1>
-                    <p>Loading amazing things...</p>
-                </div>
+                <!-- Welcome section removed - using header-info for instructions -->
             </div>
             
             <div class="header-center">
@@ -493,33 +490,41 @@
             const startAudioPlayback = () => {
                 if (audioStarted) return;
                 
-                // Try to unlock and play
-                try {
-                    unlockAudio();
-                    updateStatus('Welcome to NU GUI');
-                } catch (e) {
-                    // Fallback to user interaction
-                    audio.muted = false;
-                    audio.volume = 0.3;
+                // First unlock audio context
+                unlockAudio();
+                
+                // Set up audio properly
+                audio.muted = false;
+                audio.volume = 0.3;
+                audio.loop = true;
+                
+                // Aggressive play attempts
+                const attemptPlay = () => {
+                    if (audioStarted) return;
+                    
                     audio.play().then(() => {
                         audioStarted = true;
                         audioEnabled = true;
                         document.getElementById('audioOn').style.display = 'block';
                         document.getElementById('audioOff').style.display = 'none';
-                        updateStatus('Welcome to NU GUI');
+                        updateStatus('Select your viewing preference');
                     }).catch(() => {
-                        updateStatus('Welcome to NU GUI');
-                        document.addEventListener('click', () => {
-                            if (!audioStarted) {
-                                audio.play();
-                                audioStarted = true;
-                                audioEnabled = true;
-                                document.getElementById('audioOn').style.display = 'block';
-                                document.getElementById('audioOff').style.display = 'none';
-                            }
-                        }, { once: true });
+                        // Retry in 100ms
+                        setTimeout(attemptPlay, 100);
                     });
-                }
+                };
+                
+                // Start attempting immediately
+                attemptPlay();
+                
+                // Also try on user interaction as fallback
+                ['click', 'touchstart', 'keydown'].forEach(eventType => {
+                    document.addEventListener(eventType, () => {
+                        if (!audioStarted) {
+                            attemptPlay();
+                        }
+                    }, { once: true });
+                });
             };
             
             // Start immediately
@@ -551,7 +556,7 @@
                 goToHome();
             }, 10000);
             
-            updateStatus('Welcome to NU GUI');
+            updateStatus('Select your viewing preference');
         });
     </script>
 </body>

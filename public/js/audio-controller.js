@@ -59,23 +59,40 @@ class AudioController {
         // Update icon to show intended state first
         this.updateAudioIcon();
         
+        // Unlock audio context first
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+            const audioContext = new AudioContext();
+            const buffer = audioContext.createBuffer(1, 1, 22050);
+            const source = audioContext.createBufferSource();
+            source.buffer = buffer;
+            source.connect(audioContext.destination);
+            if (source.start) {
+                source.start(0);
+            } else if (source.noteOn) {
+                source.noteOn(0);
+            }
+        }
+        
         // Try to play immediately
         this.play();
         
-        // If that fails, try on user interaction
-        if (!this.isPlaying) {
-            const attemptPlay = () => {
-                if (!this.isPlaying) {
-                    this.play();
-                }
-            };
-            
-            // Try on various user interactions
-            document.addEventListener('click', attemptPlay, { once: true });
-            document.addEventListener('touchstart', attemptPlay, { once: true });
-            document.addEventListener('keydown', attemptPlay, { once: true });
-            document.addEventListener('mousemove', attemptPlay, { once: true });
-        }
+        // Also set up multiple fallback attempts
+        const attemptPlay = () => {
+            if (!this.isPlaying) {
+                this.play();
+            }
+        };
+        
+        // Try on various user interactions
+        ['click', 'touchstart', 'touchend', 'keydown', 'mousemove', 'scroll'].forEach(event => {
+            document.addEventListener(event, attemptPlay, { once: true });
+        });
+        
+        // Also try after a delay
+        setTimeout(attemptPlay, 500);
+        setTimeout(attemptPlay, 1000);
+        setTimeout(attemptPlay, 2000);
     }
     
     createAudioElement() {
@@ -186,24 +203,34 @@ class AudioController {
     play() {
         if (!this.audio || this.isPlaying) return;
         
-        // Start playing
-        const playPromise = this.audio.play();
+        // Ensure audio is set up properly
+        this.audio.muted = false;
+        this.audio.volume = 0;
+        this.audio.loop = true;
         
-        if (playPromise !== undefined) {
-            playPromise
-                .then(() => {
-                    this.isPlaying = true;
-                    this.fadeIn();
-                    this.savePreferences();
-                    this.updateAudioIcon();
-                })
-                .catch(error => {
-                    console.log('Audio autoplay prevented:', error);
-                    // Autoplay was prevented, wait for user interaction
-                    this.isPlaying = false;
-                    this.updateAudioIcon();
-                });
-        }
+        // Aggressive play attempts
+        const attemptPlay = () => {
+            const playPromise = this.audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        this.isPlaying = true;
+                        this.fadeIn();
+                        this.savePreferences();
+                        this.updateAudioIcon();
+                    })
+                    .catch(error => {
+                        // Retry after a short delay
+                        if (!this.isPlaying) {
+                            setTimeout(attemptPlay, 100);
+                        }
+                    });
+            }
+        };
+        
+        // Start attempting immediately
+        attemptPlay();
     }
     
     pause() {
