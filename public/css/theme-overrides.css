@@ -42,21 +42,34 @@
     color: rgba(245, 245, 247, 1) !important;
 }
 
-/* Logo switching for themes */
-[data-theme="light"] .theme-logo-dark {
+/* Logo and image switching for themes */
+[data-theme="light"] .theme-logo-dark,
+[data-theme="light"] .theme-image-dark {
     display: none !important;
 }
 
-[data-theme="light"] .theme-logo-light {
+[data-theme="light"] .theme-logo-light,
+[data-theme="light"] .theme-image-light {
     display: block !important;
 }
 
-[data-theme="dark"] .theme-logo-dark {
+[data-theme="dark"] .theme-logo-dark,
+[data-theme="dark"] .theme-image-dark {
     display: block !important;
 }
 
-[data-theme="dark"] .theme-logo-light {
+[data-theme="dark"] .theme-logo-light,
+[data-theme="dark"] .theme-image-light {
     display: none !important;
+}
+
+/* Default state before theme is set */
+.theme-image-light {
+    display: block;
+}
+
+.theme-image-dark {
+    display: none;
 }
 
 /* ============================================
