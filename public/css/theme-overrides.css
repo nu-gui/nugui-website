@@ -8,63 +8,38 @@
    NAVIGATION THEME OVERRIDES
    ============================================ */
 
-/* Light theme navigation */
-[data-theme="light"] .globalnav {
-    background: rgba(255, 255, 255, 0.8) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-[data-theme="light"] .globalnav.scrolled {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-bottom-color: rgba(0, 0, 0, 0.15) !important;
-}
-
-[data-theme="light"] .globalnav-link {
-    color: rgba(0, 0, 0, 0.8) !important;
-}
-
-[data-theme="light"] .globalnav-link:hover {
-    color: rgba(0, 0, 0, 1) !important;
-    background: rgba(0, 0, 0, 0.06) !important;
-}
-
-/* Dark theme navigation (explicit) */
-[data-theme="dark"] .globalnav {
+/* Navigation always uses DARK theme styling for both light and dark modes */
+.globalnav {
     background: rgba(0, 0, 0, 0.8) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-[data-theme="dark"] .globalnav.scrolled {
+.globalnav.scrolled {
     background: rgba(0, 0, 0, 0.95) !important;
     border-bottom-color: rgba(255, 255, 255, 0.15) !important;
 }
 
-[data-theme="dark"] .globalnav-link {
+.globalnav-link {
     color: rgba(245, 245, 247, 0.88) !important;
 }
 
-[data-theme="dark"] .globalnav-link:hover {
+.globalnav-link:hover {
     color: rgba(245, 245, 247, 1) !important;
     background: rgba(245, 245, 247, 0.1) !important;
 }
 
-/* Mobile menu theme overrides */
-[data-theme="light"] .globalnav-menu {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-[data-theme="light"] .globalnav-menu-link {
-    color: rgba(0, 0, 0, 0.8) !important;
-}
-
-[data-theme="dark"] .globalnav-menu {
+/* Mobile menu also uses dark theme styling always */
+.globalnav-menu {
     background: rgba(0, 0, 0, 0.95) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-[data-theme="dark"] .globalnav-menu-link {
+.globalnav-menu-link {
     color: rgba(245, 245, 247, 0.88) !important;
+}
+
+.globalnav-menu-link:hover {
+    color: rgba(245, 245, 247, 1) !important;
 }
 
 /* Logo switching for themes */
