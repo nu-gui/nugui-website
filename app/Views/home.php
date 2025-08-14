@@ -20,55 +20,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
         margin: 0;
         padding: 0;
     }
-    .hero-section {
-        background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 100px 20px 80px 20px;
-        border-radius: 0 0 48px 48px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
-        color: #FFFFFF; /* White text for the main heading */
-    }
-    .hero-section .text-gradient {
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-    }
-    /* Custom styles for the home page to align with the Apple design system */
-    .hero-section {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 80px 20px;
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-        color: #FFFFFF; /* White text for the main heading */
-    }
-    .hero-section .text-gradient {
-        background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-w-3xl mx-auto;
-        margin-bottom: 30px;
-        color: #FFFFFF; /* White text for description */
-        opacity: 0.9; /* Slightly transparent for hierarchy */
-    }
+    /* Hero section styles are in hero-sections.css */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -114,7 +66,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero-home">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1>
             Powering Telecom Growth for
