@@ -8,12 +8,12 @@ class Landing extends BaseController
 {
     public function index()
     {
-        // Serve the new landing page HTML directly
-        $landingPath = FCPATH . 'landing-simple.html';
+        // Serve the landing page HTML directly
+        $landingPath = FCPATH . 'landing.html';
         if (file_exists($landingPath)) {
             return file_get_contents($landingPath);
         }
-        // Fallback to old view if new file doesn't exist
+        // Fallback to view if HTML file doesn't exist
         return view('landing');
     }
 }
