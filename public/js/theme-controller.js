@@ -96,27 +96,17 @@ class ThemeController {
     }
     
     applyTheme(theme) {
-        // Apply to multiple elements to ensure it sticks
+        // Apply theme attribute to documentElement
         document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.className = theme + '-theme';
-        document.body.setAttribute('data-theme', theme);
-        document.body.className = theme + '-theme';
         
-        // Force CSS variable updates
-        if (theme === 'light') {
-            document.documentElement.style.setProperty('--bg-primary', '#FFFFFF');
-            document.documentElement.style.setProperty('--text-primary', '#1d1d1f');
-            document.documentElement.style.setProperty('--bg-secondary', '#f5f5f7');
-        } else {
-            document.documentElement.style.setProperty('--bg-primary', '#000000');
-            document.documentElement.style.setProperty('--text-primary', '#f5f5f7');
-            document.documentElement.style.setProperty('--bg-secondary', '#1d1d1f');
-        }
+        // Also add class for compatibility
+        document.documentElement.className = theme;
+        document.body.className = theme;
         
         // Update meta theme-color
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
-            metaThemeColor.content = theme === 'dark' ? '#1a1a1a' : '#FFFFFF';
+            metaThemeColor.content = theme === 'dark' ? '#121212' : '#FFFFFF';
         }
         
         // Update favicon

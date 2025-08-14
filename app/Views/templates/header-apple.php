@@ -6,7 +6,10 @@
             <div class="globalnav-item globalnav-item-apple">
                 <a href="<?= base_url(); ?>" class="globalnav-link globalnav-link-apple" aria-label="NuGui">
                     <span class="globalnav-image-apple">
-                        <img src="<?= base_url('assets/images/NUGUI-2.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo - Dark Version" class="globalnav-logo" style="filter: brightness(1) !important;">
+                        <!-- Dark theme logo (NUGUI-2) -->
+                        <img src="<?= base_url('assets/images/NUGUI-2.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo" class="globalnav-logo theme-logo-dark">
+                        <!-- Light theme logo (NUGUI-1) -->
+                        <img src="<?= base_url('assets/images/NUGUI-1.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo" class="globalnav-logo theme-logo-light">
                     </span>
                 </a>
             </div>

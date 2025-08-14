@@ -18,6 +18,32 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Light theme navigation styling */
+[data-theme="light"] .globalnav,
+.light-theme .globalnav {
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .globalnav.scrolled,
+.light-theme .globalnav.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme navigation styling (default) */
+[data-theme="dark"] .globalnav,
+.dark-theme .globalnav {
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .globalnav.scrolled,
+.dark-theme .globalnav.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
 /* Body padding to account for fixed header */
 body {
   padding-top: 44px;
@@ -85,6 +111,41 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
 }
 
+/* Light theme link colors */
+[data-theme="light"] .globalnav-link,
+.light-theme .globalnav-link {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="light"] .globalnav-link:hover,
+.light-theme .globalnav-link:hover {
+  color: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .globalnav-link:active,
+.light-theme .globalnav-link:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme link colors (default) */
+[data-theme="dark"] .globalnav-link,
+.dark-theme .globalnav-link {
+  color: rgba(245, 245, 247, 0.88);
+}
+
+[data-theme="dark"] .globalnav-link:hover,
+.dark-theme .globalnav-link:hover {
+  color: rgba(245, 245, 247, 1);
+  background: rgba(245, 245, 247, 0.1);
+}
+
+[data-theme="dark"] .globalnav-link:active,
+.dark-theme .globalnav-link:active {
+  background: rgba(245, 245, 247, 0.15);
+}
+
+/* Default fallback */
 .globalnav-link:hover {
   color: rgba(245, 245, 247, 1);
   background: rgba(245, 245, 247, 0.1);
@@ -116,6 +177,36 @@ body {
   max-height: 32px;
   object-fit: contain;
   transition: opacity 0.2s ease;
+}
+
+/* Theme-aware logo switching */
+[data-theme="light"] .globalnav-logo.theme-logo-dark,
+.light-theme .globalnav-logo.theme-logo-dark {
+  display: none !important;
+}
+
+[data-theme="light"] .globalnav-logo.theme-logo-light,
+.light-theme .globalnav-logo.theme-logo-light {
+  display: block !important;
+}
+
+[data-theme="dark"] .globalnav-logo.theme-logo-dark,
+.dark-theme .globalnav-logo.theme-logo-dark {
+  display: block !important;
+}
+
+[data-theme="dark"] .globalnav-logo.theme-logo-light,
+.dark-theme .globalnav-logo.theme-logo-light {
+  display: none !important;
+}
+
+/* Default state (before theme is applied) */
+.globalnav-logo.theme-logo-light {
+  display: none;
+}
+
+.globalnav-logo.theme-logo-dark {
+  display: block;
 }
 
 .globalnav-logo:hover {
@@ -196,6 +287,20 @@ body {
   z-index: var(--z-dropdown);
 }
 
+/* Light theme mobile menu */
+[data-theme="light"] .globalnav-menu,
+.light-theme .globalnav-menu {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme mobile menu (default) */
+[data-theme="dark"] .globalnav-menu,
+.dark-theme .globalnav-menu {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .globalnav-menu.open {
   transform: translateY(0);
   opacity: 1;
@@ -238,6 +343,38 @@ body {
   padding: 8px 0;
   transition: color 0.3s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+/* Light theme menu links */
+[data-theme="light"] .globalnav-menu-link,
+.light-theme .globalnav-menu-link {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="light"] .globalnav-menu-link:hover,
+.light-theme .globalnav-menu-link:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+[data-theme="light"] .globalnav-menu-item,
+.light-theme .globalnav-menu-item {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme menu links (default) */
+[data-theme="dark"] .globalnav-menu-link,
+.dark-theme .globalnav-menu-link {
+  color: rgba(245, 245, 247, 0.88);
+}
+
+[data-theme="dark"] .globalnav-menu-link:hover,
+.dark-theme .globalnav-menu-link:hover {
+  color: rgba(245, 245, 247, 1);
+}
+
+[data-theme="dark"] .globalnav-menu-item,
+.dark-theme .globalnav-menu-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .globalnav-menu-link:hover {
