@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Trimmer for Landing Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #00a2e8;
+        }
+        .info {
+            background: rgba(0, 162, 232, 0.2);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        audio {
+            width: 100%;
+            margin: 20px 0;
+        }
+        .recommendation {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Audio Optimization for Landing Page</h1>
+        
+        <div class="info">
+            <h2>Current Audio Files:</h2>
+            <p><strong>Landing Page:</strong> electric-relaxed-tone.mp3 (3.2MB)</p>
+            <p><strong>Main Site:</strong> nugui-ambient-sound.mp3 (2.9MB)</p>
+        </div>
+
+        <h2>Test Current Audio:</h2>
+        <audio controls>
+            <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="recommendation">
+            <h2>✅ Recommendations:</h2>
+            <ol>
+                <li><strong>Trim Length:</strong> Create a 15-20 second version for landing page</li>
+                <li><strong>Fade Out:</strong> Add 2-second fade at the end for smooth transition</li>
+                <li><strong>File Size:</strong> Should be under 500KB after trimming</li>
+                <li><strong>Loop Point:</strong> Ensure clean loop if user stays longer</li>
+            </ol>
+        </div>
+
+        <div class="info">
+            <h2>🔧 How to Trim:</h2>
+            <p>Use an online tool like <a href="https://mp3cut.net/" target="_blank" style="color: #00a2e8;">MP3Cut.net</a>:</p>
+            <ol>
+                <li>Upload <code>electric-relaxed-tone.mp3</code></li>
+                <li>Select 0:00 to 0:20 (20 seconds)</li>
+                <li>Enable "Fade Out" (2 seconds)</li>
+                <li>Save as <code>electric-relaxed-tone-short.mp3</code></li>
+                <li>Place in <code>/public/assets/sounds/</code></li>
+            </ol>
+        </div>
+
+        <div class="recommendation">
+            <h2>📊 Landing Page Timing:</h2>
+            <ul>
+                <li>0-3 seconds: Welcome text appears</li>
+                <li>3 seconds: Theme selector appears</li>
+                <li>8 seconds: Auto-selection of theme</li>
+                <li>10 seconds: Auto-redirect to main page</li>
+                <li><strong>Audio needed: ~15 seconds (with buffer)</strong></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

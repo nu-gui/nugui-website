@@ -342,7 +342,9 @@
         <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
     </div>
     
-    <audio id="bgAudio" loop preload="auto" muted>
+    <audio id="bgAudio" loop preload="auto" autoplay>
+        <!-- Use trimmed version if available, fallback to full version -->
+        <source src="/assets/sounds/electric-relaxed-tone-short.mp3" type="audio/mpeg" onerror="this.src='/assets/sounds/electric-relaxed-tone.mp3'">
         <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
     </audio>
     
@@ -457,51 +459,61 @@
             localStorage.setItem('audioEnabled', 'true');
             localStorage.setItem('audioVolume', '0.3');
             
-            // Start with muted autoplay, then unmute
+            // Audio autoplay with progressive enhancement
             let audioStarted = false;
             
             const startAudioPlayback = () => {
                 if (audioStarted) return;
                 
-                // First try to play muted
-                audio.muted = true;
+                // Set volume first
+                audio.volume = 0.3;
+                
+                // Try unmuted play first (works if user has interacted before)
                 audio.play().then(() => {
-                    // Successfully started muted, now unmute
-                    audio.muted = false;
-                    audio.volume = 0.3;
                     audioStarted = true;
                     audioEnabled = true;
                     document.getElementById('audioOn').style.display = 'block';
                     document.getElementById('audioOff').style.display = 'none';
                     updateStatus('Welcome to NU GUI');
-                }).catch(err => {
-                    // Even muted failed, need user interaction
-                    const enableAudio = () => {
-                        audio.muted = false;
-                        audio.volume = 0.3;
-                        audio.play().then(() => {
+                }).catch(() => {
+                    // Try muted autoplay (usually works)
+                    audio.muted = true;
+                    audio.play().then(() => {
+                        // Unmute after successful start
+                        setTimeout(() => {
+                            audio.muted = false;
                             audioStarted = true;
                             audioEnabled = true;
                             document.getElementById('audioOn').style.display = 'block';
                             document.getElementById('audioOff').style.display = 'none';
                             updateStatus('Welcome to NU GUI');
-                        });
-                    };
-                    
-                    // Attach to first user interaction
-                    ['click', 'touchstart', 'keydown'].forEach(event => {
-                        document.addEventListener(event, enableAudio, { once: true });
+                        }, 10);
+                    }).catch(() => {
+                        // Last resort: wait for interaction
+                        updateStatus('Welcome to NU GUI - Click for audio');
+                        
+                        const enableOnInteraction = () => {
+                            if (!audioStarted) {
+                                audio.muted = false;
+                                audio.play();
+                                audioStarted = true;
+                                audioEnabled = true;
+                                document.getElementById('audioOn').style.display = 'block';
+                                document.getElementById('audioOff').style.display = 'none';
+                                updateStatus('Welcome to NU GUI');
+                            }
+                        };
+                        
+                        document.addEventListener('click', enableOnInteraction, { once: true });
+                        document.addEventListener('touchstart', enableOnInteraction, { once: true });
                     });
-                    
-                    updateStatus('Click anywhere to enable sound');
                 });
             };
             
-            // Start immediately
+            // Try multiple times with different strategies
             startAudioPlayback();
-            
-            // Retry after DOM settles
-            setTimeout(startAudioPlayback, 50);
+            setTimeout(startAudioPlayback, 100);
+            setTimeout(startAudioPlayback, 500);
             
             // Show theme selector after 3 seconds
             setTimeout(() => {
