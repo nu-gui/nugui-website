@@ -37,23 +37,26 @@
         .header-content {
             display: flex;
             align-items: center;
-            gap: 40px;
             width: 100%;
             max-width: 1200px;
+            position: relative;
         }
         
         .header-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 0 0 auto;
         }
         
         .header-right {
-            flex: 1;
+            margin-left: auto;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+            z-index: 1;
         }
         
         .header-info {
