@@ -22,20 +22,51 @@
         }
         
         .header {
-            height: 80px;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
+            justify-content: center;
+            padding: 20px 40px;
             z-index: 10;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .header-left {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .header-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 40px;
         }
         
         .header-info {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
             letter-spacing: 0.5px;
         }
         
@@ -79,7 +110,6 @@
         }
         
         .welcome-section {
-            margin-bottom: 30px;
             opacity: 0;
             transition: opacity 0.5s ease-in;
         }
@@ -90,38 +120,34 @@
         
         .welcome-section h1 {
             margin: 0 0 8px 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
             font-weight: 300;
             letter-spacing: -0.5px;
         }
         
         .welcome-section p {
             margin: 0;
-            font-size: 1.1em;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.8);
         }
         
         .logo-container {
             position: relative;
-            height: 200px;
+            width: 120px;
+            height: 120px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
         
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             animation: spin 2s linear infinite;
             filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
-            position: absolute;
-            top: 0;
         }
         
         .theme-selector {
-            position: absolute;
-            bottom: 0;
             display: none;
             flex-direction: row;
             gap: 20px;
@@ -263,25 +289,23 @@
 </head>
 <body>
     <div class="header">
-        <div class="header-info" id="headerInfo">
-            Initializing NU GUI experience...
-        </div>
-        <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
-            <span id="audioOn">🔊</span>
-            <span id="audioOff" style="display:none;">🔇</span>
-        </button>
-    </div>
-    
-    <div class="main-content">
-        <div class="container">
-            <div class="welcome-section" id="welcomeSection">
-                <h1>Welcome to NU GUI</h1>
-                <p>Loading amazing things...</p>
+        <div class="header-info" id="headerInfo">Initializing...</div>
+        
+        <div class="header-content">
+            <div class="header-left">
+                <div class="welcome-section" id="welcomeSection">
+                    <h1>Welcome to NU GUI</h1>
+                    <p>Loading amazing things...</p>
+                </div>
             </div>
             
-            <div class="logo-container">
-                <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
-                
+            <div class="header-center">
+                <div class="logo-container">
+                    <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
+                </div>
+            </div>
+            
+            <div class="header-right">
                 <div class="theme-selector" id="themeSelector">
                     <div class="theme-option" onclick="selectTheme('dark')">
                         <div class="theme-icon-btn" id="darkBtn">
@@ -301,15 +325,24 @@
                         <span class="theme-label">Light</span>
                     </div>
                 </div>
+                
+                <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
+                    <span id="audioOn">🔊</span>
+                    <span id="audioOff" style="display:none;">🔇</span>
+                </button>
             </div>
         </div>
+    </div>
+    
+    <div class="main-content">
+        <!-- Background wallpaper only, no content -->
     </div>
     
     <div class="footer">
         <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
     </div>
     
-    <audio id="bgAudio" loop preload="auto">
+    <audio id="bgAudio" loop preload="auto" muted>
         <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
     </audio>
     
@@ -424,48 +457,51 @@
             localStorage.setItem('audioEnabled', 'true');
             localStorage.setItem('audioVolume', '0.3');
             
-            // Create click-to-play overlay if needed
+            // Start with muted autoplay, then unmute
             let audioStarted = false;
             
             const startAudioPlayback = () => {
                 if (audioStarted) return;
                 
+                // First try to play muted
+                audio.muted = true;
                 audio.play().then(() => {
+                    // Successfully started muted, now unmute
+                    audio.muted = false;
+                    audio.volume = 0.3;
                     audioStarted = true;
                     audioEnabled = true;
                     document.getElementById('audioOn').style.display = 'block';
                     document.getElementById('audioOff').style.display = 'none';
                     updateStatus('Welcome to NU GUI');
-                    
-                    // Remove any click overlay
-                    const overlay = document.getElementById('clickOverlay');
-                    if (overlay) overlay.remove();
                 }).catch(err => {
-                    // Create invisible click overlay for entire page
-                    if (!document.getElementById('clickOverlay')) {
-                        const overlay = document.createElement('div');
-                        overlay.id = 'clickOverlay';
-                        overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;cursor:pointer;background:transparent;';
-                        overlay.onclick = () => {
-                            startAudioPlayback();
-                            overlay.remove();
-                        };
-                        document.body.appendChild(overlay);
-                        updateStatus('Click anywhere to start');
-                    }
+                    // Even muted failed, need user interaction
+                    const enableAudio = () => {
+                        audio.muted = false;
+                        audio.volume = 0.3;
+                        audio.play().then(() => {
+                            audioStarted = true;
+                            audioEnabled = true;
+                            document.getElementById('audioOn').style.display = 'block';
+                            document.getElementById('audioOff').style.display = 'none';
+                            updateStatus('Welcome to NU GUI');
+                        });
+                    };
+                    
+                    // Attach to first user interaction
+                    ['click', 'touchstart', 'keydown'].forEach(event => {
+                        document.addEventListener(event, enableAudio, { once: true });
+                    });
+                    
+                    updateStatus('Click anywhere to enable sound');
                 });
             };
             
-            // Try to start audio immediately
+            // Start immediately
             startAudioPlayback();
             
-            // Try again after a short delay
-            setTimeout(startAudioPlayback, 100);
-            
-            // Also attach to all interaction events
-            ['click', 'touchstart', 'keydown', 'scroll', 'wheel'].forEach(event => {
-                document.addEventListener(event, startAudioPlayback, { once: true, passive: true });
-            });
+            // Retry after DOM settles
+            setTimeout(startAudioPlayback, 50);
             
             // Show theme selector after 3 seconds
             setTimeout(() => {

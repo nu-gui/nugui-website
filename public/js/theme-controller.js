@@ -28,19 +28,29 @@ class ThemeController {
     }
     
     applyInitialTheme() {
-        // Check for saved theme preference
+        // Always check localStorage first and trust it completely
         const savedTheme = localStorage.getItem('theme');
         
         if (savedTheme) {
             this.currentTheme = savedTheme;
+            console.log('Applying saved theme:', savedTheme);
         } else {
-            // Default to dark theme
+            // Default to dark theme only if nothing is saved
             this.currentTheme = 'dark';
             localStorage.setItem('theme', 'dark');
+            console.log('No saved theme, defaulting to dark');
         }
         
-        // Apply theme to document
+        // Force apply theme to document
         this.applyTheme(this.currentTheme);
+        
+        // Double-check after a short delay to ensure it stuck
+        setTimeout(() => {
+            if (document.documentElement.getAttribute('data-theme') !== this.currentTheme) {
+                console.log('Theme mismatch detected, reapplying:', this.currentTheme);
+                this.applyTheme(this.currentTheme);
+            }
+        }, 100);
     }
     
     setupThemeSwitcher() {
