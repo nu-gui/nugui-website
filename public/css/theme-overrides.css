@@ -125,40 +125,9 @@
 }
 
 
-/* Hero section for light theme */
-[data-theme="light"] .hero-section,
-.light-theme .hero-section {
-    background: linear-gradient(120deg, #FFFFFF 60%, #e8f4f8 100%) !important;
-    color: #1d1d1f !important;
-}
-
-[data-theme="light"] .hero-section h1,
-.light-theme .hero-section h1 {
-    color: #1d1d1f !important;
-}
-
-[data-theme="light"] .hero-section p,
-.light-theme .hero-section p {
-    color: #86868b !important;
-}
-
-[data-theme="light"] .hero-section .text-gradient,
-.light-theme .hero-section .text-gradient {
-    background: linear-gradient(90deg, #0066cc, #00a2e8) !important;
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-}
-
-/* Hero section for dark theme */
-[data-theme="dark"] .hero-section,
-.dark-theme .hero-section {
-    background: linear-gradient(120deg, #000000 60%, #1a1a2e 100%) !important;
-}
-
-[data-theme="dark"] .hero-section h1,
-.dark-theme .hero-section h1 {
-    color: #FFFFFF !important;
-}
+/* REMOVED: Hero section overrides that were blocking animated gradients
+   Hero sections should use the animated gradients from hero-sections.css
+   which have vibrant colors and animations */
 
 [data-theme="light"] .section,
 .light-theme .section {
