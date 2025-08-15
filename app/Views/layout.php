@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/globalnav-apple.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/header-controls.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/navigation-dark-only.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/utilities-apple.css') ?>">
     
