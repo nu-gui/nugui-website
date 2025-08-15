@@ -123,10 +123,10 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section hero-support">
+<section class="hero-section hero-support hero">
     <div class="max-w-7xl">
         <h1>
-            Support <span class="text-gradient">Center</span>
+            Support <span class="accent" data-text="Center">Center</span>
         </h1>
         <p>
             Get expert assistance for all your technical needs. Our support team is here to help.

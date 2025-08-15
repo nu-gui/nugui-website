@@ -66,11 +66,11 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1>
             Powering Telecom Growth for
-            <span class="text-gradient">Carriers & Resellers</span>
+            <span class="accent" data-text="Carriers & Resellers">Carriers & Resellers</span>
         </h1>
         <p>
             <strong>NU GUI</strong> helps you connect with customers, scale reliably, and grow revenue — 

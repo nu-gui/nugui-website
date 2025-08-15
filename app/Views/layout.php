@@ -23,10 +23,12 @@
     <title><?= $this->renderSection('title') ? $this->renderSection('title') . ' | ' : '' ?>NU GUI - Enterprise Telecom Solutions</title>
     
     <!-- NEW UNIFIED CSS STRUCTURE -->
-    <!-- 01-BASE: Reset, Variables, Typography -->
+    <!-- 01-BASE: Reset, Variables, Typography, Theming -->
     <link rel="stylesheet" href="<?= base_url('css/01-base/reset.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/01-base/variables.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/01-base/typography.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/01-base/tokens.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/01-base/themes.css?v=' . time()) ?>">
     
     <!-- 02-LAYOUT: Layout system and Navigation -->
     <link rel="stylesheet" href="<?= base_url('css/02-layout/layout.css?v=' . time()) ?>">
@@ -34,7 +36,9 @@
     
     <!-- 03-COMPONENTS: UI Components -->
     <link rel="stylesheet" href="<?= base_url('css/03-components/hero-sections.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/hero.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/03-components/cards.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/card.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/03-components/buttons.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/03-components/forms.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/03-components/footer.css?v=' . time()) ?>">
@@ -97,6 +101,9 @@
     <link rel="prefetch" href="<?= base_url('/solutions') ?>">
     <link rel="prefetch" href="<?= base_url('/about') ?>">
     <link rel="prefetch" href="<?= base_url('/contact') ?>">
+    
+    <!-- Theme Resolver - Load early to apply theme before page renders -->
+    <script src="<?= base_url('js/theme-resolver.js?v=' . time()) ?>"></script>
 
     <?= $this->renderSection('styles') ?>
 </head>
@@ -112,7 +119,8 @@
             const savedTheme = localStorage.getItem('theme');
             const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
+            // Use body consistently for theme attributes
+            document.body.setAttribute('data-theme', theme);
         })();
     </script>
     <?= $this->include('templates/header-apple') ?>

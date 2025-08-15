@@ -223,10 +223,10 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero">
     <div class="max-w-7xl mx-auto">
         <h1>
-            Partner with <span class="text-gradient">NU GUI</span>
+            Partner with <span class="accent" data-text="NU GUI">NU GUI</span>
         </h1>
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             Join a partner network focused on <strong>outcomes</strong>—reliable communications, measurable ROI, and scalable growth for your customers.<br>

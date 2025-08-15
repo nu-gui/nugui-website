@@ -117,10 +117,10 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero">
     <div class="max-w-7xl mx-auto">
         <h1>
-            About <span class="text-gradient">NU GUI</span>
+            About <span class="accent" data-text="NU GUI">NU GUI</span>
         </h1>
         <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             NU GUI helps carriers, resellers, and enterprises deliver <strong>reliable communications and data‑driven marketing at scale</strong>.<br>
