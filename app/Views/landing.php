@@ -7,9 +7,10 @@
     <!-- Use only light icon for landing page -->
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>">
     
-    <!-- Load CSS variables first -->
-    <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
+    <!-- Load new unified CSS structure -->
+    <link rel="stylesheet" href="<?= base_url('css/01-base/variables.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/01-base/typography.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/04-utilities/theme.css') ?>">
     
     <style>
         * {

@@ -98,7 +98,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
                 Use these quick summaries to jump straight to what you need.
             </p>
         </div>
-        <div class="card-grid">
+        <div class="product-showcase-grid">
             <div class="feature-card">
                 <?= picture_product('SIP', 'icon', 'product-icon') ?>
                 <h3>NU SIP — Enterprise VoIP</h3>
@@ -148,7 +148,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
                 Partner feedback from carriers and resellers across our global network.
             </p>
         </div>
-        <div class="testimonial-grid">
+        <div class="testimonial-cards-grid">
             <!-- Testimonial 1 -->
             <div class="testimonial-card" style="--card-index: 0;">
                 <div class="testimonial-header">
@@ -226,7 +226,7 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
         <div class="section-header">
             <h2>Who We Serve</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="feature-card">
                 <h3>Carriers (Tier 1 & 2)</h3>
                 <p>High‑volume environments with complex routing, analytics, and governance needs.</p>
@@ -249,30 +249,30 @@ $this->setVar('twitterDescription', 'Since 2018, enabling carriers, resellers, a
         <div class="section-header">
             <h2>Why NU GUI</h2>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Reliability</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Carrier‑grade uptime and routing with built‑in failover.</p>
+        <div class="feature-cards-grid">
+            <div class="feature-card">
+                <h3>✓ Reliability</h3>
+                <p>Carrier‑grade uptime and routing with built‑in failover.</p>
             </div>
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Cost Optimisation</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Least‑cost routing and real‑time reporting.</p>
+            <div class="feature-card">
+                <h3>✓ Cost Optimisation</h3>
+                <p>Least‑cost routing and real‑time reporting.</p>
             </div>
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Fraud & Spam Protection</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Intelligent blocking and controls to protect your network and customers.</p>
+            <div class="feature-card">
+                <h3>✓ Fraud & Spam Protection</h3>
+                <p>Intelligent blocking and controls to protect your network and customers.</p>
             </div>
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Speed to Value</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Fast onboarding, practical support, and a focus on measurable outcomes.</p>
+            <div class="feature-card">
+                <h3>✓ Speed to Value</h3>
+                <p>Fast onboarding, practical support, and a focus on measurable outcomes.</p>
             </div>
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Partner‑First</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Global partner network with particularly <strong>strong relationships across Africa and India</strong>.</p>
+            <div class="feature-card">
+                <h3>✓ Partner‑First</h3>
+                <p>Global partner network with particularly <strong>strong relationships across Africa and India</strong>.</p>
             </div>
-            <div style="padding: 1.5rem;">
-                <h3 style="color: var(--color-primary); margin-bottom: 0.5rem; font-size: 1.25rem; font-weight: 600;">✓ Clear Visibility</h3>
-                <p style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-secondary);">Lower cost per connected minute through smarter routing.</p>
+            <div class="feature-card">
+                <h3>✓ Clear Visibility</h3>
+                <p>Lower cost per connected minute through smarter routing.</p>
             </div>
         </div>
     </div>

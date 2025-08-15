@@ -212,25 +212,28 @@
    LOGO TREATMENT
    ============================================ */
 
-/* Always show light version of logo in nav */
-.globalnav .theme-logo-light,
-[data-theme="light"] .globalnav .theme-logo-light,
-[data-theme="dark"] .globalnav .theme-logo-light {
-    display: block !important;
-}
-
+/* Always show dark version of logo in nav (NUGUI-2) since nav is always dark */
 .globalnav .theme-logo-dark,
 [data-theme="light"] .globalnav .theme-logo-dark,
 [data-theme="dark"] .globalnav .theme-logo-dark {
+    display: block !important;
+}
+
+.globalnav .theme-logo-light,
+[data-theme="light"] .globalnav .theme-logo-light,
+[data-theme="dark"] .globalnav .theme-logo-light {
     display: none !important;
 }
 
-/* Force light logo in navigation */
-.globalnav img[src*="NUGUI-1"],
-.globalnav img[src*="NUGUI-icon-1"],
-[data-theme="light"] .globalnav img[src*="NUGUI-1"],
-[data-theme="light"] .globalnav img[src*="NUGUI-icon-1"] {
-    filter: brightness(1.2) !important;
+/* Ensure dark logo (NUGUI-2) has proper visibility in dark nav */
+.globalnav img[src*="NUGUI-2"],
+.globalnav img[src*="NUGUI-icon-2"],
+[data-theme="light"] .globalnav img[src*="NUGUI-2"],
+[data-theme="light"] .globalnav img[src*="NUGUI-icon-2"],
+[data-theme="dark"] .globalnav img[src*="NUGUI-2"],
+[data-theme="dark"] .globalnav img[src*="NUGUI-icon-2"] {
+    filter: none !important;
+    opacity: 1 !important;
 }
 
 /* ============================================

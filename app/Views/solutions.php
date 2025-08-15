@@ -20,37 +20,7 @@ $this->setVar('twitterDescription', 'Carrier‑grade platforms and partner‑fir
         margin: 0;
         padding: 0;
     }
-    /* Custom styles for the solutions page to align with the Apple design system */
-    .hero-section {
-        background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 100px 20px 80px 20px;
-        border-radius: 0 0 48px 48px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
-        color: #FFFFFF; /* White text for the main heading */
-    }
-    .hero-section .text-gradient {
-        background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-width: 48rem;
-        margin: 0 auto 30px;
-        color: #FFFFFF; /* White text for description */
-        opacity: 0.9; /* Slightly transparent for hierarchy */
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -75,12 +45,7 @@ $this->setVar('twitterDescription', 'Carrier‑grade platforms and partner‑fir
         margin: 0 auto;
         color: var(--color-text-secondary);
     }
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2.5rem;
-        align-items: stretch;
-    }
+    /* Card grid styles are now in layout.css - using solution-cards-grid for 3-column layout */
     .solution-card {
         background: linear-gradient(135deg, var(--color-surface) 80%, var(--color-accent-secondary) 100%);
         border-radius: 24px;
@@ -224,7 +189,7 @@ function toggleDetails(id) {
                 Enterprise-ready telecommunication infrastructure engineered for reliability and scale.
             </p>
         </div>
-        <div class="card-grid">
+        <div class="solution-cards-grid">
             <!-- Modern, compact solution cards with expandable details -->
             <div class="solution-card">
                 <div class="product-icon-wrapper">

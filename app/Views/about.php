@@ -27,24 +27,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    /* Custom styles for the about page to align with the Apple design system */
-    .hero-section {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 80px 20px;
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-w-3xl mx-auto;
-        color: var(--color-text-secondary);
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -87,11 +70,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         line-height: 1.7;
         color: var(--color-text-secondary);
     }
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
+    /* Card grid styles are now in layout.css - using feature-cards-grid for 3-column layout */
     /* Card styles moved to cards-standardized.css for consistency */
     .team-card img {
         width: 120px;
@@ -176,7 +155,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             <h2>What We Do</h2>
             <p>We provide platforms and services to <strong>route calls, send messages, run campaigns, and bill in real time</strong>—without complexity.</p>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="value-card">
                 <h3>Voice & Call Control</h3>
                 <p>VoIP, SBC/PBX, advanced routing, failover.</p>
@@ -204,7 +183,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             <h2>How We Work</h2>
             <p>Values & principles that guide everything we do</p>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="value-card">
                 <h3>Reliability First</h3>
                 <p>Carrier‑grade platforms, built‑in failover, proactive support.</p>
@@ -235,7 +214,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         <div class="section-header">
             <h2>Leadership</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="team-card">
                 <?= picture_profile('wes', 'team-image') ?>
                 <h3>Wesley Burgess</h3>

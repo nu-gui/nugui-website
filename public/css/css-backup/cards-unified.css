@@ -1,0 +1,275 @@
+/**
+ * Unified Card Styles
+ * Consistent card styling with animations across all pages
+ */
+
+/* Base card style for all card types */
+.card-base,
+.feature-card,
+.solution-card,
+.product-card,
+.value-card,
+.team-card,
+.benefit-card,
+.contact-card,
+.support-card {
+    background: linear-gradient(135deg, 
+        var(--color-surface) 0%, 
+        rgba(var(--color-accent-rgb), 0.05) 100%);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(var(--color-accent-rgb), 0.2);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(var(--color-accent-rgb), 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Ensure cards always have full opacity */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Enhanced hover effect for all cards */
+.card-base:hover,
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover,
+.value-card:hover,
+.team-card:hover,
+.benefit-card:hover,
+.contact-card:hover,
+.support-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    box-shadow: 
+        0 15px 30px rgba(0, 0, 0, 0.15),
+        0 0 0 2px var(--color-primary);
+    /* Ensure cards stay visible on hover */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Subtle animated gradient background on hover */
+.card-base::before,
+.feature-card::before,
+.solution-card::before,
+.product-card::before,
+.value-card::before,
+.team-card::before,
+.benefit-card::before,
+.contact-card::before,
+.support-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(var(--color-primary-rgb), 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.card-base:hover::before,
+.feature-card:hover::before,
+.solution-card:hover::before,
+.product-card:hover::before,
+.value-card:hover::before,
+.team-card:hover::before,
+.benefit-card:hover::before,
+.contact-card:hover::before,
+.support-card:hover::before {
+    opacity: 0.5;
+    /* Removed pulsing animation for less distraction */
+}
+
+/* Card headings */
+.card-base h3,
+.feature-card h3,
+.solution-card h3,
+.product-card h3,
+.value-card h3,
+.team-card h3,
+.benefit-card h3,
+.contact-card h3,
+.support-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+}
+
+/* Card paragraphs */
+.card-base p,
+.feature-card p,
+.solution-card p,
+.product-card p,
+.value-card p,
+.team-card p,
+.benefit-card p,
+.contact-card p,
+.support-card p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Special styling for team cards with images */
+.team-card img,
+.team-card .team-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 18px auto;
+    object-fit: cover;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 0 0 3px var(--color-background),
+        0 0 0 5px rgba(var(--color-accent-rgb), 0.2);
+    transition: all 0.4s ease;
+}
+
+.team-card:hover img,
+.team-card:hover .team-image {
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.2),
+        0 0 0 3px var(--color-background),
+        0 0 0 5px var(--color-primary);
+    transform: scale(1.05);
+}
+
+/* Product/Feature icon styling */
+.feature-card .icon,
+.solution-card .icon,
+.product-card .icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover .icon,
+.solution-card:hover .icon,
+.product-card:hover .icon {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 8px 24px rgba(var(--color-primary-rgb), 0.4);
+}
+
+/* CSS Variables for colors (add to root if not present) */
+:root {
+    --color-primary-rgb: 0, 162, 232;
+    --color-accent-rgb: 0, 130, 187;
+    --color-success-rgb: 0, 230, 118;
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+    .card-base,
+    .feature-card,
+    .solution-card,
+    .product-card,
+    .value-card,
+    .team-card,
+    .benefit-card,
+    .contact-card,
+    .support-card {
+        background: linear-gradient(135deg, 
+            var(--color-surface) 0%, 
+            rgba(var(--color-accent-rgb), 0.08) 100%);
+        border: 2px solid rgba(var(--color-accent-rgb), 0.3);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(var(--color-accent-rgb), 0.2);
+    }
+    
+    .card-base:hover,
+    .feature-card:hover,
+    .solution-card:hover,
+    .product-card:hover,
+    .value-card:hover,
+    .team-card:hover,
+    .benefit-card:hover,
+    .contact-card:hover,
+    .support-card:hover {
+        box-shadow: 
+            0 20px 40px rgba(0, 0, 0, 0.5),
+            0 0 30px rgba(var(--color-primary-rgb), 0.4),
+            0 0 0 2px var(--color-primary);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-base,
+    .feature-card,
+    .solution-card,
+    .product-card,
+    .value-card,
+    .team-card,
+    .benefit-card,
+    .contact-card,
+    .support-card {
+        padding: 30px 20px;
+    }
+    
+    .card-base h3,
+    .feature-card h3,
+    .solution-card h3,
+    .product-card h3,
+    .value-card h3,
+    .team-card h3,
+    .benefit-card h3,
+    .contact-card h3,
+    .support-card h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* Grid container for cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Stagger animation for cards on page load - simplified */
+.card-grid > * {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 1; /* Ensure cards are visible */
+}
+
+.card-grid > *:nth-child(1) { animation-delay: 0.05s; }
+.card-grid > *:nth-child(2) { animation-delay: 0.1s; }
+.card-grid > *:nth-child(3) { animation-delay: 0.15s; }
+.card-grid > *:nth-child(4) { animation-delay: 0.2s; }
+.card-grid > *:nth-child(5) { animation-delay: 0.25s; }
+.card-grid > *:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0.8;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

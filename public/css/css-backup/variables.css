@@ -1,0 +1,260 @@
+/**
+ * Apple-Inspired Design System Variables
+ * Modern CSS custom properties for consistent design
+ */
+
+:root {
+  /* Colors - NUGUI Brand Palette (Vibrant) */
+  /* PRIMARY BLUES - Keep them bright and vibrant! */
+  --color-primary: #00A2E8; /* Bright Blue - Your signature color! */
+  --color-primary-light: #33B5ED; /* Lighter Blue */
+  --color-primary-dark: #0082BB; /* Darker Blue */
+  --color-primary-rgb: 0, 162, 232; /* RGB values for primary */
+  --color-secondary: #97C9F6; /* Sky Blue */
+  --color-accent: #FFC107; /* Bright Gold - More vibrant! */
+  --color-accent-secondary: #FF6B35; /* Bright Orange */
+  --color-accent-hover: #FFD54F; /* Bright Gold Hover */
+  --color-accent-rgb: 255, 193, 7; /* RGB values for accent */
+  
+  /* PRODUCT COLORS - Light Theme (Brighter & More Vibrant) */
+  --color-gold-ccs: #FFB000; /* Brighter Gold */
+  --color-gold-ccs-light: #FFC847;
+  --color-gold-ccs-dark: #E69500;
+  --color-purple-data: #9C4DCC; /* Brighter Purple */
+  --color-purple-data-light: #B86CE8;
+  --color-purple-data-dark: #7B2D99;
+  --color-green-sip: #00E676; /* Vibrant Green */
+  --color-green-sip-light: #69F0AE;
+  --color-green-sip-dark: #00C853;
+  --color-orange-sms: #FF5722; /* Vibrant Orange */
+  --color-orange-sms-light: #FF8A65;
+  --color-orange-sms-dark: #E64A19;
+  
+  /* SEMANTIC COLORS */
+  --color-success: #5FB673;
+  --color-success-rgb: 95, 182, 115;
+  --color-warning: #E87D4E;
+  --color-info: #97C9F6;
+  
+  /* Text Colors - Light Theme */
+  --color-text-primary: #1a1a1a; /* Darker for better contrast */
+  --color-text-secondary: #4a4a4a; /* Lighter than before but still readable */
+  --color-text-tertiary: #757575;
+  --color-text-quaternary: #9e9e9e;
+  
+  /* Background Colors - Light Theme */
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F9FB;
+  --color-background-tertiary: #FAFBFC;
+  --color-background-elevated: #FFFFFF;
+  
+  /* Border & Separator Colors - Light Theme */
+  --color-border: #E0E0E0;
+  --color-separator: #E0E0E0;
+  --color-divider: #E0E0E0;
+  
+  /* Surface Colors - Light Theme */
+  --color-surface: #FFFFFF;
+  --color-surface-secondary: #F7F9FB;
+  --color-surface-tertiary: #F0F2F5;
+  
+  /* Accent Colors for Dark/Light States */
+  --color-dark-gray: #222222;
+  --color-light-gray: #CCCCCC;
+  
+  /* Typography */
+  --font-family-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  
+  /* Font Sizes - Fluid Typography */
+  --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 1.2vw, 1rem);
+  --font-size-base: clamp(1rem, 1.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 2vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 2.5vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 3vw, 1.875rem);
+  --font-size-3xl: clamp(1.875rem, 4vw, 2.25rem);
+  --font-size-4xl: clamp(2.25rem, 5vw, 3rem);
+  --font-size-5xl: clamp(3rem, 6vw, 3.75rem);
+  --font-size-6xl: clamp(3.75rem, 8vw, 4.5rem);
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-heavy: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  --spacing-4xl: 5rem;     /* 80px */
+  --spacing-5xl: 6rem;     /* 96px */
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --container-padding: var(--spacing-lg);
+  --header-height: 80px;
+  --sidebar-width: 280px;
+  
+  /* Border Radius */
+  --border-radius-xs: 2px;
+  --border-radius-sm: 4px;
+  --border-radius: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  --border-radius-2xl: 24px;
+  --border-radius-full: 9999px;
+  
+  /* Shadows - Apple-style depth */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Transitions - Apple-style easing */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Z-index scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* Blur effects */
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark), [data-theme="dark"], .dark {
+  :root {
+    /* PRIMARY BLUES - Dark Theme (muted) */
+    --color-primary: #2F69B3; /* Medium Blue */
+    --color-primary-light: #5AB4F1; /* Cyan Highlight */
+    --color-primary-dark: #1E3A7A; /* Deep Blue */
+    --color-primary-rgb: 47, 105, 179; /* RGB values for primary dark */
+    --color-secondary: #5AB4F1; /* Cyan Highlight */
+    --color-accent: #AF8F4C; /* Gold (CCS) - darker */
+    --color-accent-secondary: #CF5B24; /* Orange (SMS) - darker */
+    --color-accent-hover: #C6A564; /* Gold Gradient */
+    --color-accent-rgb: 175, 143, 76; /* RGB values for accent dark */
+    
+    /* PRODUCT COLORS - Dark Theme */
+    --color-gold-ccs: #AF8F4C;
+    --color-gold-ccs-light: #C6A564;
+    --color-gold-ccs-dark: #806633;
+    --color-purple-data: #6D4DA8;
+    --color-purple-data-light: #8E67CC;
+    --color-purple-data-dark: #4F3A7F;
+    --color-green-sip: #348E4E;
+    --color-green-sip-light: #5FB673;
+    --color-green-sip-dark: #1E6132;
+    --color-orange-sms: #CF5B24;
+    --color-orange-sms-light: #E87D4E;
+    --color-orange-sms-dark: #A84215;
+    
+    /* Text Colors - Dark Theme */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #CCCCCC;
+    --color-text-tertiary: #999999;
+    --color-text-quaternary: #666666;
+    
+    /* Background Colors - Dark Theme */
+    --color-background: #121212;
+    --color-background-secondary: #1E1E1E;
+    --color-background-tertiary: #252525;
+    --color-background-elevated: #1E1E1E;
+    
+    /* Border & Separator Colors - Dark Theme */
+    --color-border: #333333;
+    --color-separator: #333333;
+    --color-divider: #333333;
+    
+    /* Surface Colors - Dark Theme */
+    --color-surface: #1E1E1E;
+    --color-surface-secondary: #252525;
+    --color-surface-tertiary: #2B2B2B;
+    
+    /* Accent Colors for Dark Theme */
+    --color-dark-gray: #DDDDDD;
+    --color-light-gray: #2B2B2B;
+    
+    /* Semantic Colors - Dark Theme */
+    --color-success: #348E4E;
+    --color-warning: #CF5B24;
+    --color-info: #5AB4F1;
+  }
+}
+
+/* Gradient Text Fixes - Ensure visibility */
+.text-gradient,
+.hero-section .text-gradient {
+  /* Fallback color first */
+  color: var(--color-primary) !important;
+  /* Then apply gradient effect */
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Force display for better compatibility */
+  display: inline-block;
+  /* Ensure minimum contrast if gradient fails */
+  text-shadow: none;
+}
+
+/* Backup for browsers that don't support gradient text */
+@supports not (-webkit-background-clip: text) {
+  .text-gradient,
+  .hero-section .text-gradient {
+    color: var(--color-primary) !important;
+    -webkit-text-fill-color: initial;
+  }
+}
+
+/* High contrast mode - disable gradients */
+@media (prefers-contrast: high) {
+  .text-gradient,
+  .hero-section .text-gradient {
+    background: none !important;
+    color: var(--color-primary) !important;
+    -webkit-text-fill-color: initial !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0.01ms;
+    --transition-base: 0.01ms;
+    --transition-slow: 0.01ms;
+    --transition-bounce: 0.01ms;
+  }
+}

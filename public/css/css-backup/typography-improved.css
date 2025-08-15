@@ -1,0 +1,393 @@
+/**
+ * IMPROVED TYPOGRAPHY SYSTEM
+ * Comprehensive font sizing with better hierarchy and responsive scaling
+ * Addresses oversized fonts and improves readability across all devices
+ */
+
+/* ========================================
+   ROOT FONT SIZE VARIABLES
+   Using clamp() for responsive scaling
+   ======================================== */
+:root {
+  /* Base Font Sizes - Desktop */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8rem);      /* 12-13px (WCAG compliant) */
+  --text-sm: clamp(0.8rem, 0.75rem + 0.25vw, 0.875rem);     /* 13-14px */
+  --text-base: clamp(0.925rem, 0.875rem + 0.25vw, 1rem);    /* 15-16px */
+  --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);       /* 16-18px */
+  --text-xl: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);   /* 18-20px */
+  --text-2xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);      /* 20-24px */
+  --text-3xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);    /* 24-30px */
+  --text-4xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);     /* 28-36px */
+  --text-5xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);            /* 32-48px */
+  --text-6xl: clamp(2.5rem, 2rem + 2.5vw, 3.75rem);         /* 40-60px */
+}
+
+/* ========================================
+   HERO SECTIONS - Reduced sizes
+   ======================================== */
+.hero-title,
+.hero h1 {
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3.5rem) !important;  /* 32-56px */
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle,
+.hero p.lead {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem) !important;  /* 16-20px */
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+/* ========================================
+   SECTION HEADERS - Better hierarchy
+   ======================================== */
+.section-title,
+section h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem) !important;  /* 24-36px */
+  line-height: 1.2;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle,
+section p.lead {
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.125rem) !important;  /* 15-18px */
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ========================================
+   CARD TYPOGRAPHY - Optimized sizes
+   ======================================== */
+
+/* Feature & Solution Cards */
+.feature-card h3,
+.solution-card h3,
+.product-card h3 {
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem) !important;  /* 18-22px */
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.feature-card p,
+.solution-card p,
+.product-card p {
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem) !important;  /* 14-15px */
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Process Cards - Smaller text */
+.process-card h3 {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem) !important;  /* 16-18px */
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.process-card p {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Mini Feature Cards - Compact sizing */
+.mini-feature-card h4 {
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem) !important;  /* 14-15px */
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.mini-feature-card p {
+  font-size: clamp(0.75rem, 0.725rem + 0.125vw, 0.825rem) !important;  /* 12-13px */
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+/* Testimonial Cards */
+.testimonial-meta h4 {
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem) !important;  /* 15-17px */
+  font-weight: 600;
+  margin: 0;
+}
+
+.testimonial-meta p {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.testimonial-content {
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem) !important;  /* 14-15px */
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.testimonial-rating {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem) !important;  /* 16-18px */
+}
+
+/* Team Cards */
+.team-card h3 {
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem) !important;  /* 15-17px */
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.team-card .role {
+  font-size: clamp(0.75rem, 0.725rem + 0.125vw, 0.825rem) !important;  /* 12-13px */
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.team-card .bio {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* Benefit & Value Cards */
+.benefit-card h3,
+.value-card h3 {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.2rem) !important;  /* 16-19px */
+  line-height: 1.3;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-card p,
+.value-card p,
+.benefit-card ul,
+.value-card ul {
+  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.925rem) !important;  /* 14-15px */
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* ========================================
+   NAVIGATION - Appropriate sizing
+   ======================================== */
+.globalnav-link,
+.nav-link {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ========================================
+   BUTTONS - Consistent sizing
+   ======================================== */
+.btn {
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem) !important;  /* 14-15px */
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.65rem 1.5rem;
+}
+
+.btn-sm {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  padding: 0.5rem 1.2rem;
+}
+
+.btn-lg {
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem) !important;  /* 15-17px */
+  padding: 0.8rem 2rem;
+}
+
+/* ========================================
+   FORMS - Readable sizing
+   ======================================== */
+.form-label,
+label {
+  font-size: clamp(0.85rem, 0.825rem + 0.125vw, 0.925rem) !important;  /* 14-15px */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+  font-size: clamp(0.875rem, 0.85rem + 0.125vw, 0.95rem) !important;  /* 14-15px */
+  line-height: 1.5;
+}
+
+.form-help,
+.form-text {
+  font-size: clamp(0.75rem, 0.725rem + 0.125vw, 0.825rem) !important;  /* 12-13px */
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+/* ========================================
+   FOOTER - Smaller, cleaner text
+   ======================================== */
+.footer-heading {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.footer-link {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  line-height: 1.8;
+}
+
+.footer-text {
+  font-size: clamp(0.75rem, 0.725rem + 0.125vw, 0.825rem) !important;  /* 12-13px */
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   LISTS - Consistent sizing
+   ======================================== */
+ul, ol {
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 0.95rem) !important;  /* 14-15px */
+  line-height: 1.6;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Solution details lists */
+.solution-details ul {
+  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.925rem) !important;  /* 14-15px */
+  line-height: 1.5;
+}
+
+.solution-details li {
+  margin-bottom: 0.75rem;
+}
+
+/* ========================================
+   TABLES - Readable sizing
+   ======================================== */
+table {
+  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 0.925rem) !important;  /* 14-15px */
+}
+
+th {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ========================================
+   BADGES & TAGS
+   ======================================== */
+.badge,
+.tag {
+  font-size: clamp(0.7rem, 0.675rem + 0.125vw, 0.75rem) !important;  /* 11-12px */
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   CODE & PRE
+   ======================================== */
+code {
+  font-size: 0.85em;
+  font-family: var(--font-mono);
+}
+
+pre {
+  font-size: clamp(0.8rem, 0.775rem + 0.125vw, 0.875rem) !important;  /* 13-14px */
+  line-height: 1.6;
+}
+
+/* ========================================
+   MOBILE OPTIMIZATIONS
+   ======================================== */
+@media (max-width: 768px) {
+  /* Reduce hero text on mobile */
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+  
+  /* Tighter card spacing on mobile */
+  .feature-card h3,
+  .solution-card h3,
+  .product-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .feature-card p,
+  .solution-card p,
+  .product-card p {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Smaller buttons on mobile */
+  .btn {
+    padding: 0.6rem 1.25rem;
+  }
+  
+  /* Better line height for readability on small screens */
+  p, li {
+    line-height: 1.6;
+  }
+}
+
+/* ========================================
+   LARGE SCREENS (4K+)
+   ======================================== */
+@media (min-width: 2560px) {
+  :root {
+    /* Slightly larger base for 4K screens */
+    --text-base: 1.125rem;  /* 18px */
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY - Minimum sizes
+   ======================================== */
+@media (prefers-reduced-motion: no-preference) {
+  /* Ensure minimum readable sizes */
+  body {
+    font-size: max(16px, 1rem);
+  }
+  
+  p, li, td {
+    font-size: max(14px, 0.875rem);
+  }
+  
+  .btn {
+    font-size: max(14px, 0.875rem);
+  }
+}
+
+/* ========================================
+   DARK MODE ADJUSTMENTS
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  /* Slightly increase font weight in dark mode for better readability */
+  body {
+    font-weight: 400; /* up from 300 */
+  }
+  
+  p, li {
+    font-weight: 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600; /* slightly lighter than light mode */
+  }
+}

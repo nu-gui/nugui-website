@@ -1,0 +1,111 @@
+/**
+ * Theme-aware image styling
+ * Using native prefers-color-scheme for optimal performance
+ */
+
+/* Base styles for picture elements */
+picture {
+    display: contents; /* Allow child img to inherit parent layout */
+}
+
+picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Product icon styling */
+.product-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-icon-wrapper picture img,
+.product-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Product image styling */
+.product-image {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+/* Footer logo styling */
+.footer-logo {
+    height: 32px;
+    width: auto;
+}
+
+/* Landing page logo */
+.logo-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+
+/* For browsers that don't support picture element (fallback) */
+@supports not (selector(:has(picture))) {
+    /* Fallback to showing light theme by default */
+    .logo-dark,
+    .product-icon-dark,
+    .product-image-dark,
+    .footer-logo-dark,
+    .landing-logo-dark,
+    .team-image-dark {
+        display: none !important;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+        .logo-light,
+        .product-icon-light,
+        .product-image-light,
+        .footer-logo-light,
+        .landing-logo-light,
+        .team-image-light {
+            display: none !important;
+        }
+        
+        .logo-dark,
+        .product-icon-dark,
+        .product-image-dark,
+        .footer-logo-dark,
+        .landing-logo-dark,
+        .team-image-dark {
+            display: revert !important;
+        }
+    }
+}
+
+/* Ensure proper sizing in flex containers */
+.feature-card picture img {
+    display: block;
+    margin: 0 auto 1rem auto;
+    border-radius: 12px;
+    background: var(--color-background-secondary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Solution card images */
+.solution-card .product-icon-wrapper {
+    margin: 0 auto 1rem;
+}
+
+/* Product solution images in flex containers */
+.product-solution-image picture img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}

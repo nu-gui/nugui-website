@@ -1,0 +1,613 @@
+/**
+ * NUGUI Unified Card System v2.0
+ * Complete card styles with consistent rounded corners, subtle glows, and elaborate hover effects
+ * All cards have 20px border radius and animated gradient borders
+ */
+
+/* ========================================
+   ANIMATION KEYFRAMES
+   ======================================== */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 4px 20px rgba(0, 162, 232, 0.15),
+      0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 4px 25px rgba(0, 162, 232, 0.2),
+      0 2px 15px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ========================================
+   BASE CARD STYLES - UNIFIED SYSTEM
+   ======================================== */
+.card,
+.feature-card,
+.solution-card,
+.product-card,
+.value-card,
+.benefit-card,
+.team-card,
+.mini-feature-card,
+.process-card,
+.info-card,
+.stat-card,
+.testimonial-card,
+.contact-card,
+.support-card {
+  position: relative !important;
+  padding: 2rem !important;
+  border-radius: 20px !important; /* UNIFIED ROUNDED CORNERS */
+  
+  /* Base background - subtle glassmorphism */
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0.02) 100%) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Base border and shadow */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 4px 20px rgba(0, 162, 232, 0.1),
+    0 2px 10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Transitions */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  overflow: hidden;
+  
+  /* Text must be visible */
+  color: var(--color-text-primary) !important;
+  
+  /* Subtle idle animation */
+  animation: subtle-pulse 4s ease-in-out infinite;
+}
+
+/* ========================================
+   ANIMATED GRADIENT BORDERS - ALL CARDS
+   ======================================== */
+.card::before,
+.feature-card::before,
+.solution-card::before,
+.product-card::before,
+.value-card::before,
+.benefit-card::before,
+.team-card::before,
+.mini-feature-card::before,
+.process-card::before,
+.info-card::before,
+.stat-card::before,
+.contact-card::before,
+.support-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #FFC107 25%, 
+    #9C4DCC 50%, 
+    #00E676 75%, 
+    #00A2E8 100%);
+  background-size: 300% 300%;
+  animation: glowShift 8s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3; /* Subtle glow in idle state */
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* ========================================
+   CARD-SPECIFIC GRADIENT COLORS
+   ======================================== */
+
+/* Feature Cards - Blue/Gold */
+.feature-card::before {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #FFB000 33%, 
+    #00A2E8 66%, 
+    #FFB000 100%);
+}
+
+/* Solution Cards - Green/Blue */
+.solution-card::before {
+  background: linear-gradient(135deg, 
+    #00E676 0%, 
+    #00A2E8 33%, 
+    #00C853 66%, 
+    #0082BB 100%);
+}
+
+/* Product Cards - Rainbow */
+.product-card::before {
+  background: linear-gradient(135deg, 
+    #FFB000 0%,    /* Gold */
+    #9C4DCC 25%,   /* Purple */
+    #00E676 50%,   /* Green */
+    #FF5722 75%,   /* Orange */
+    #FFB000 100%);
+}
+
+/* Process Cards - Purple/Blue */
+.process-card::before {
+  background: linear-gradient(135deg, 
+    #9C4DCC 0%, 
+    #00A2E8 50%, 
+    #9C4DCC 100%);
+}
+
+/* Value & Benefit Cards - Warm Gradient */
+.value-card::before,
+.benefit-card::before {
+  background: linear-gradient(135deg, 
+    #FFB000 0%, 
+    #FF5722 33%, 
+    #FFC107 66%, 
+    #FFB000 100%);
+}
+
+/* Team Cards - Cool Professional */
+.team-card::before {
+  background: linear-gradient(135deg, 
+    #00A2E8 0%, 
+    #0082BB 33%, 
+    #00ACC1 66%, 
+    #00A2E8 100%);
+}
+
+/* Info Cards - Cyan/Green */
+.info-card::before {
+  background: linear-gradient(135deg, 
+    #00ACC1 0%, 
+    #00E676 50%, 
+    #00ACC1 100%);
+}
+
+/* Contact & Support Cards - Trust Blue */
+.contact-card::before,
+.support-card::before {
+  background: linear-gradient(135deg, 
+    #1E88E5 0%, 
+    #00A2E8 50%, 
+    #1E88E5 100%);
+}
+
+/* ========================================
+   HOVER EFFECTS - ELABORATE GLOW
+   ======================================== */
+.card:hover,
+.feature-card:hover,
+.solution-card:hover,
+.product-card:hover,
+.value-card:hover,
+.benefit-card:hover,
+.team-card:hover,
+.mini-feature-card:hover,
+.process-card:hover,
+.info-card:hover,
+.stat-card:hover,
+.contact-card:hover,
+.support-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 
+    0 20px 60px rgba(0, 162, 232, 0.3),
+    0 10px 30px rgba(0, 162, 232, 0.2),
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2) !important;
+  animation: none !important; /* Stop pulse on hover */
+}
+
+/* Stronger gradient border on hover */
+.card:hover::before,
+.feature-card:hover::before,
+.solution-card:hover::before,
+.product-card:hover::before,
+.value-card:hover::before,
+.benefit-card:hover::before,
+.team-card:hover::before,
+.mini-feature-card:hover::before,
+.process-card:hover::before,
+.info-card:hover::before,
+.stat-card:hover::before,
+.contact-card:hover::before,
+.support-card:hover::before {
+  opacity: 1 !important;
+  padding: 3px !important;
+}
+
+/* Inner glow effect - ALL CARDS */
+.card::after,
+.feature-card::after,
+.solution-card::after,
+.product-card::after,
+.value-card::after,
+.benefit-card::after,
+.team-card::after,
+.mini-feature-card::after,
+.process-card::after,
+.info-card::after,
+.stat-card::after,
+.contact-card::after,
+.support-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 162, 232, 0.1) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* Activate inner glow on hover */
+.card:hover::after,
+.feature-card:hover::after,
+.solution-card:hover::after,
+.product-card:hover::after,
+.value-card:hover::after,
+.benefit-card:hover::after,
+.team-card:hover::after,
+.mini-feature-card:hover::after,
+.process-card:hover::after,
+.info-card:hover::after,
+.stat-card:hover::after,
+.contact-card:hover::after,
+.support-card:hover::after {
+  opacity: 1;
+}
+
+/* ========================================
+   MINI CARDS - Compact Version
+   ======================================== */
+.mini-feature-card {
+  padding: 1.25rem !important;
+}
+
+.mini-feature-card::before {
+  background: linear-gradient(135deg, 
+    rgba(0, 162, 232, 0.5) 0%, 
+    rgba(255, 193, 7, 0.5) 50%, 
+    rgba(0, 162, 232, 0.5) 100%);
+  opacity: 0.4;
+}
+
+/* ========================================
+   TESTIMONIAL CARDS - Unique Style
+   ======================================== */
+.testimonial-card {
+  padding: 1.5rem 1.5rem 1.5rem 2rem !important;
+  border-left: 4px solid var(--color-primary) !important;
+  font-style: italic;
+  max-width: 100%;
+  min-height: 200px;
+}
+
+.testimonial-card::before {
+  background: linear-gradient(135deg, 
+    rgba(0, 162, 232, 0.2) 0%, 
+    rgba(255, 193, 7, 0.2) 50%, 
+    rgba(0, 162, 232, 0.2) 100%);
+  opacity: 0.5;
+}
+
+.testimonial-card:hover {
+  border-left-color: var(--color-accent) !important;
+}
+
+/* Quote mark - smaller for compact cards */
+.testimonial-card::after {
+  content: '"';
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  opacity: 0.3;
+  font-family: serif;
+  line-height: 1;
+  z-index: 1;
+  transition: none;
+  background: none;
+}
+
+/* Testimonial content - more compact */
+.testimonial-card p {
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.testimonial-card .testimonial-author {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-style: normal;
+  margin-top: 0.5rem;
+}
+
+.testimonial-card .testimonial-role {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-style: normal;
+}
+
+/* ========================================
+   CARD CONTENT STYLING
+   ======================================== */
+.card-icon,
+.product-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-icon,
+.feature-card:hover .product-icon,
+.solution-card:hover .product-icon,
+.product-card:hover .product-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Card Typography */
+.card h3,
+.feature-card h3,
+.solution-card h3,
+.product-card h3,
+.value-card h3,
+.benefit-card h3,
+.team-card h3,
+.process-card h3,
+.info-card h3,
+.stat-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-primary);
+  transition: color 0.3s ease;
+}
+
+.card p,
+.feature-card p,
+.solution-card p,
+.product-card p,
+.value-card p,
+.benefit-card p,
+.team-card p,
+.process-card p,
+.info-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+/* Team Card Specific */
+.team-card {
+  text-align: center;
+}
+
+.team-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--color-primary);
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Stat Card Specific */
+.stat-card {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+/* ========================================
+   DARK THEME ADJUSTMENTS
+   ======================================== */
+[data-theme="dark"] .card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .solution-card,
+[data-theme="dark"] .product-card,
+[data-theme="dark"] .value-card,
+[data-theme="dark"] .benefit-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .process-card,
+[data-theme="dark"] .info-card,
+[data-theme="dark"] .stat-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.03) 0%, 
+    rgba(255, 255, 255, 0.01) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="dark"] .card::before,
+[data-theme="dark"] .feature-card::before,
+[data-theme="dark"] .solution-card::before,
+[data-theme="dark"] .product-card::before,
+[data-theme="dark"] .value-card::before,
+[data-theme="dark"] .benefit-card::before,
+[data-theme="dark"] .team-card::before,
+[data-theme="dark"] .process-card::before,
+[data-theme="dark"] .info-card::before,
+[data-theme="dark"] .stat-card::before {
+  opacity: 0.5; /* Brighter glow in dark mode */
+}
+
+/* ========================================
+   LIGHT THEME ADJUSTMENTS
+   ======================================== */
+[data-theme="light"] .card,
+[data-theme="light"] .feature-card,
+[data-theme="light"] .solution-card,
+[data-theme="light"] .product-card,
+[data-theme="light"] .value-card,
+[data-theme="light"] .benefit-card,
+[data-theme="light"] .team-card,
+[data-theme="light"] .process-card,
+[data-theme="light"] .info-card,
+[data-theme="light"] .stat-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.8) 0%, 
+    rgba(255, 255, 255, 0.6) 100%) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+@media (max-width: 768px) {
+  .card,
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .value-card,
+  .benefit-card,
+  .team-card,
+  .process-card,
+  .info-card,
+  .stat-card {
+    padding: 1.5rem !important;
+  }
+  
+  .mini-feature-card {
+    padding: 1rem !important;
+  }
+  
+  .card:hover,
+  .feature-card:hover,
+  .solution-card:hover,
+  .product-card:hover {
+    transform: translateY(-4px) scale(1.01) !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .feature-card,
+  .solution-card,
+  .product-card,
+  .value-card,
+  .benefit-card,
+  .team-card,
+  .process-card,
+  .info-card,
+  .stat-card {
+    animation: none !important;
+  }
+  
+  .card::before,
+  .feature-card::before,
+  .solution-card::before,
+  .product-card::before {
+    animation: none !important;
+  }
+  
+  .card:hover,
+  .feature-card:hover {
+    transform: translateY(-4px) !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.card:focus-visible,
+.feature-card:focus-visible,
+.solution-card:focus-visible,
+.product-card:focus-visible,
+.value-card:focus-visible,
+.benefit-card:focus-visible,
+.team-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   OVERRIDE ANY CONFLICTING STYLES
+   ======================================== */
+/* Force override product-colors.css and other conflicting files */
+body .feature-card,
+body .solution-card,
+body .product-card,
+body .value-card,
+body .benefit-card,
+body .team-card,
+body .process-card,
+body .info-card,
+body .stat-card,
+body .mini-feature-card,
+body .contact-card,
+body .support-card,
+body .testimonial-card {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Ensure all card pseudo-elements respect border radius */
+body .feature-card::before,
+body .feature-card::after,
+body .solution-card::before,
+body .solution-card::after,
+body .product-card::before,
+body .product-card::after,
+body .value-card::before,
+body .value-card::after,
+body .benefit-card::before,
+body .benefit-card::after,
+body .team-card::before,
+body .team-card::after,
+body .process-card::before,
+body .process-card::after,
+body .info-card::before,
+body .info-card::after,
+body .stat-card::before,
+body .stat-card::after {
+  border-radius: 20px !important;
+}

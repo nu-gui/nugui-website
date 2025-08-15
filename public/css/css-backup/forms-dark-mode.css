@@ -1,0 +1,250 @@
+/**
+ * Dark Mode Form Enhancements
+ * Improved visibility and contrast for forms in dark theme
+ * Specifically targets Contact and Support page forms
+ */
+
+/* ============================================
+   DARK MODE FORM CONTAINERS
+   ============================================ */
+[data-theme="dark"] .futuristic-form,
+[data-theme="dark"] .contact-form,
+[data-theme="dark"] .support-form,
+[data-theme="dark"] .partner-form {
+    background: linear-gradient(135deg, 
+        rgba(30, 30, 30, 0.95) 0%,     /* Dark gray with high opacity */
+        rgba(40, 40, 40, 0.90) 100%);  /* Slightly lighter dark gray */
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form headings in dark mode */
+[data-theme="dark"] .futuristic-form h2,
+[data-theme="dark"] .contact-form h2,
+[data-theme="dark"] .support-form h2,
+[data-theme="dark"] .partner-form h2,
+[data-theme="dark"] .futuristic-form h3,
+[data-theme="dark"] .contact-form h3,
+[data-theme="dark"] .support-form h3,
+[data-theme="dark"] .partner-form h3 {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   DARK MODE FORM INPUTS
+   ============================================ */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea,
+[data-theme="dark"] .form-group select {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF !important;
+    transition: all 0.3s ease;
+}
+
+/* Placeholder text in dark mode */
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Focus states for better visibility */
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus,
+[data-theme="dark"] .form-group select:focus {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+    outline: none;
+}
+
+/* Hover states */
+[data-theme="dark"] .form-group input:hover,
+[data-theme="dark"] .form-group textarea:hover,
+[data-theme="dark"] .form-group select:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ============================================
+   DARK MODE LABELS
+   ============================================ */
+[data-theme="dark"] .form-group label {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .form-group label .required {
+    color: #ff6b6b !important; /* Bright red for required asterisk */
+}
+
+/* ============================================
+   DARK MODE BUTTONS
+   ============================================ */
+[data-theme="dark"] .futuristic-form button[type="submit"],
+[data-theme="dark"] .contact-form button[type="submit"],
+[data-theme="dark"] .support-form button[type="submit"],
+[data-theme="dark"] .partner-form button[type="submit"],
+[data-theme="dark"] .futuristic-form .btn-primary,
+[data-theme="dark"] .contact-form .btn-primary,
+[data-theme="dark"] .support-form .btn-primary,
+[data-theme="dark"] .partner-form .btn-primary {
+    background: linear-gradient(135deg, #00A2E8 0%, #0082BB 100%) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+}
+
+[data-theme="dark"] .futuristic-form button[type="submit"]:hover,
+[data-theme="dark"] .contact-form button[type="submit"]:hover,
+[data-theme="dark"] .support-form button[type="submit"]:hover,
+[data-theme="dark"] .partner-form button[type="submit"]:hover {
+    background: linear-gradient(135deg, #0082BB 0%, #00A2E8 100%) !important;
+    box-shadow: 0 4px 20px rgba(0, 162, 232, 0.4) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   DARK MODE CHECKBOXES & RADIO BUTTONS
+   ============================================ */
+[data-theme="dark"] .checkbox-group label,
+[data-theme="dark"] .radio-group label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] input[type="checkbox"],
+[data-theme="dark"] input[type="radio"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="dark"] input[type="checkbox"]:checked,
+[data-theme="dark"] input[type="radio"]:checked {
+    background: #00A2E8 !important;
+    border-color: #00A2E8 !important;
+}
+
+/* ============================================
+   DARK MODE ERROR/SUCCESS MESSAGES
+   ============================================ */
+[data-theme="dark"] .error-message,
+[data-theme="dark"] .form-error {
+    background: rgba(239, 68, 68, 0.2) !important;
+    border: 1px solid rgba(239, 68, 68, 0.4) !important;
+    color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .success-message {
+    background: rgba(34, 197, 94, 0.2) !important;
+    border: 1px solid rgba(34, 197, 94, 0.4) !important;
+    color: #86efac !important;
+}
+
+/* ============================================
+   DARK MODE FORM SECTIONS
+   ============================================ */
+[data-theme="dark"] .form-section {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+[data-theme="dark"] .form-section h3 {
+    color: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   DARK MODE HELP TEXT
+   ============================================ */
+[data-theme="dark"] .form-help,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] .help-text {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   CONTACT PAGE SPECIFIC DARK MODE
+   ============================================ */
+[data-theme="dark"] .page-contact .contact-form,
+[data-theme="dark"] .page-page-contact .contact-form {
+    background: linear-gradient(135deg, 
+        rgba(25, 25, 35, 0.95) 0%,
+        rgba(35, 35, 45, 0.90) 100%);
+    border: 1px solid rgba(243, 115, 22, 0.2); /* Orange accent border */
+}
+
+[data-theme="dark"] .page-contact .form-group input:focus,
+[data-theme="dark"] .page-contact .form-group textarea:focus,
+[data-theme="dark"] .page-page-contact .form-group input:focus,
+[data-theme="dark"] .page-page-contact .form-group textarea:focus {
+    border-color: rgba(243, 115, 22, 0.4) !important; /* Orange focus */
+    box-shadow: 0 0 0 3px rgba(243, 115, 22, 0.1) !important;
+}
+
+/* ============================================
+   SUPPORT PAGE SPECIFIC DARK MODE
+   ============================================ */
+[data-theme="dark"] .page-support .support-form,
+[data-theme="dark"] .page-page-support .support-form {
+    background: linear-gradient(135deg, 
+        rgba(35, 25, 25, 0.95) 0%,
+        rgba(45, 35, 35, 0.90) 100%);
+    border: 1px solid rgba(239, 68, 68, 0.2); /* Red accent border */
+}
+
+[data-theme="dark"] .page-support .form-group input:focus,
+[data-theme="dark"] .page-support .form-group textarea:focus,
+[data-theme="dark"] .page-page-support .form-group input:focus,
+[data-theme="dark"] .page-page-support .form-group textarea:focus {
+    border-color: rgba(239, 68, 68, 0.4) !important; /* Red focus */
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* ============================================
+   DARK MODE SELECT DROPDOWNS
+   ============================================ */
+[data-theme="dark"] .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+[data-theme="dark"] .form-group select option {
+    background: #2a2a2a !important;
+    color: #FFFFFF !important;
+}
+
+/* ============================================
+   DARK MODE FILE UPLOAD
+   ============================================ */
+[data-theme="dark"] input[type="file"] {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+[data-theme="dark"] input[type="file"]::file-selector-button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}

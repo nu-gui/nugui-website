@@ -48,31 +48,65 @@ class AudioController {
         // Handle page visibility changes
         this.handleVisibilityChange();
         
-        // Always try to start playing
-        this.startAudioWithRetry();
+        // Save audio position before page unload for continuity
+        this.setupPageUnloadHandler();
+        
+        // Continue playing if user was previously playing music
+        if (this.isPlaying) {
+            this.continuePlayback();
+        }
         
         // Listen for landing page signal
         this.listenForLandingPageSignal();
     }
     
-    startAudioWithRetry() {
+    setupPageUnloadHandler() {
+        // Save audio position before page navigation for seamless continuity
+        window.addEventListener('beforeunload', () => {
+            if (this.audio && this.isPlaying && !this.audio.paused) {
+                // Save current position for next page
+                sessionStorage.setItem('audioPosition', this.audio.currentTime.toString());
+            }
+        });
+        
+        // Also save position on page visibility change (for tab switching)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && this.audio && this.isPlaying && !this.audio.paused) {
+                sessionStorage.setItem('audioPosition', this.audio.currentTime.toString());
+            }
+        });
+    }
+    
+    continuePlayback() {
+        // This method continues playback for returning users who were already playing
+        if (!this.audio) return;
+        
+        // Try to restore playback position if saved
+        const savedPosition = sessionStorage.getItem('audioPosition');
+        if (savedPosition) {
+            this.audio.currentTime = parseFloat(savedPosition);
+            sessionStorage.removeItem('audioPosition'); // Clear after use
+        }
+        
+        // Continue playing with retry logic (for navigation continuity)
+        this.startPlaybackWithRetry();
+    }
+    
+    startPlaybackWithRetry() {
         // Update icon to show intended state first
         this.updateAudioIcon();
-        
-        // Don't try to create AudioContext immediately - wait for user interaction
-        // This avoids the console warning about AudioContext not being allowed to start
         
         // Try to play immediately
         this.play();
         
-        // Also set up multiple fallback attempts
+        // Set up fallback attempts for cross-page continuity
         const attemptPlay = () => {
             if (!this.isPlaying) {
                 this.play();
             }
         };
         
-        // Try on various user interactions
+        // Try on various user interactions (for navigation continuity)
         ['click', 'touchstart', 'touchend', 'keydown', 'mousemove', 'scroll'].forEach(event => {
             document.addEventListener(event, attemptPlay, { once: true });
         });
@@ -80,7 +114,6 @@ class AudioController {
         // Also try after a delay
         setTimeout(attemptPlay, 500);
         setTimeout(attemptPlay, 1000);
-        setTimeout(attemptPlay, 2000);
     }
     
     createAudioElement() {
@@ -120,14 +153,14 @@ class AudioController {
         // Check localStorage for audio preferences
         const audioEnabled = localStorage.getItem('audioEnabled');
         const savedVolume = localStorage.getItem('audioVolume');
+        const hasEverPlayed = localStorage.getItem('hasEverPlayed');
         
-        // Default to playing (true) unless explicitly disabled
-        if (audioEnabled === null) {
-            // First visit - default to playing
+        // Only continue playing if user has explicitly played music before
+        if (hasEverPlayed === 'true' && audioEnabled === 'true') {
             this.isPlaying = true;
-            localStorage.setItem('audioEnabled', 'true');
         } else {
-            this.isPlaying = audioEnabled === 'true';
+            // First-time visitors or users who paused - default to stopped
+            this.isPlaying = false;
         }
         
         // Set volume level
@@ -140,7 +173,7 @@ class AudioController {
                 this.volumeLevels.ambient;
         }
         
-        // Update UI to reflect state
+        // Update UI to reflect current state
         this.updateAudioIcon();
     }
     
@@ -164,37 +197,21 @@ class AudioController {
         });
     }
     
-    shouldAutoPlay() {
-        // Mark as visited
-        if (!localStorage.getItem('hasVisited')) {
-            localStorage.setItem('hasVisited', 'true');
-        }
-        
-        // Check if user has explicitly set audio preference
-        const audioEnabled = localStorage.getItem('audioEnabled');
-        
-        // If coming from landing page with audio enabled
-        if (sessionStorage.getItem('landing_audio_enabled') === 'true') {
-            sessionStorage.removeItem('landing_audio_enabled');
-            return true;
-        }
-        
-        // Default to true (playing) if no preference set
-        if (audioEnabled === null) {
-            localStorage.setItem('audioEnabled', 'true');
-            return true;
-        }
-        
-        return audioEnabled === 'true';
-    }
+    // Removed shouldAutoPlay() - we never want auto-play
+    // Music only starts when user explicitly clicks play button
     
     play() {
-        if (!this.audio || this.isPlaying) return;
+        if (!this.audio) return;
         
         // Ensure audio is set up properly
         this.audio.muted = false;
         this.audio.volume = 0;
         this.audio.loop = true;
+        
+        // Reset audio to start if it ended
+        if (this.audio.ended) {
+            this.audio.currentTime = 0;
+        }
         
         // Try to play
         const playPromise = this.audio.play();
@@ -203,26 +220,30 @@ class AudioController {
             playPromise
                 .then(() => {
                     this.isPlaying = true;
+                    // Mark that user has explicitly played music at least once
+                    localStorage.setItem('hasEverPlayed', 'true');
                     this.fadeIn();
                     this.savePreferences();
                     this.updateAudioIcon();
+                    console.log('Audio started playing');
                 })
                 .catch(error => {
-                    // Silent fail - audio will start on user interaction
-                    // Don't retry automatically to avoid console spam
-                    console.log('Audio autoplay prevented by browser - will start on user interaction');
+                    console.log('Audio play failed:', error.message);
+                    this.isPlaying = false;
+                    this.updateAudioIcon();
                 });
         }
     }
     
     pause() {
-        if (!this.audio || !this.isPlaying) return;
+        if (!this.audio) return;
         
         this.fadeOut(() => {
             this.audio.pause();
             this.isPlaying = false;
             this.savePreferences();
             this.updateAudioIcon();
+            console.log('Audio paused');
         });
     }
     
@@ -297,13 +318,12 @@ class AudioController {
     }
     
     listenForLandingPageSignal() {
-        // Listen for message from landing page
+        // Listen for message from landing page (but don't auto-play)
         window.addEventListener('message', (event) => {
             if (event.data && event.data.type === 'landingAudioState') {
-                if (event.data.audioEnabled) {
-                    this.play();
-                    this.setContextVolume('ambient');
-                }
+                // Just update volume settings, but don't auto-play
+                // User must still click play button explicitly
+                this.setContextVolume('ambient');
             }
         });
     }
@@ -319,14 +339,14 @@ class AudioController {
             // Audio is playing, show the "on" icon (with sound waves)
             iconOn.style.display = 'block';
             iconOff.style.display = 'none';
-            audioButton.setAttribute('aria-label', 'Mute audio');
-            audioButton.title = 'Mute background music';
+            audioButton.setAttribute('aria-label', 'Pause audio');
+            audioButton.title = 'Pause background music';
             audioButton.classList.add('playing');
         } else {
-            // Audio is muted, show the "off" icon (muted speaker)
+            // Audio is paused, show the "off" icon (muted speaker)
             iconOn.style.display = 'none';
             iconOff.style.display = 'block';
-            audioButton.setAttribute('aria-label', 'Unmute audio');
+            audioButton.setAttribute('aria-label', 'Play audio');
             audioButton.title = 'Play background music';
             audioButton.classList.remove('playing');
         }

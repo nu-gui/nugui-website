@@ -20,32 +20,7 @@
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    /* Custom styles for the support page to align with the Apple design system */
-    .hero-section {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 80px 20px;
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-        color: #FFFFFF; /* White text for main heading */
-    }
-    .hero-section .text-gradient {
-        background: -webkit-linear-gradient(45deg, var(--color-accent), var(--color-accent-secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-width: 48rem;
-        margin: 0 auto 30px;
-        color: #FFFFFF; /* White text for description */
-        opacity: 0.9;
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -69,11 +44,7 @@
         margin: 0 auto;
         color: var(--color-text-secondary);
     }
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
+    /* Card grid styles are now in layout.css - using feature-cards-grid for 3-column layout */
     .support-card {
         background-color: var(--color-background);
         border-radius: 20px;
@@ -308,7 +279,7 @@
             </p>
         </div>
         
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="support-card">
                 <h3>Documentation</h3>
                 <p>Browse our comprehensive documentation and guides.</p>
