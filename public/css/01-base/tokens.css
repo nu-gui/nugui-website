@@ -34,7 +34,7 @@
 }
 
 /* Light Theme Override */
-html[data-theme="light"] {
+body[data-theme="light"] {
   /* Text Colors - Light Theme */
   --text-hero: #111322;
   --text-body: #222638;

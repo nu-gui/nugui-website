@@ -12,6 +12,9 @@ const ROUTE_THEME = {
   '/support'        : 'NU-CCS-product-2'    // Gold/Amber (moved from /partner-program)
 };
 
+// Production flag - set to false to disable debug logging
+const DEBUG = false;
+
 function applyPageTheme() {
   // Wait for body to be available
   if (!document.body) {
@@ -21,14 +24,22 @@ function applyPageTheme() {
   
   const path = (location.pathname || '/home').replace(/\/$/, '') || '/home';
   const themeId = ROUTE_THEME[path] || 'NU-DATA-product-1';
+  
+  // Use consistent data attribute strategy - apply both to same element
   document.body.setAttribute('data-theme-id', themeId);
-  console.log('Applied theme:', themeId, 'for path:', path);
+  
+  if (DEBUG) {
+    console.log('Applied theme:', themeId, 'for path:', path);
+  }
+  
   setAccentContrast();
 }
 
 function toggleTheme() {
-  const html = document.documentElement;
-  html.dataset.theme = (html.dataset.theme === 'light') ? '' : 'light';
+  // Use body consistently for theme attributes
+  const body = document.body;
+  const currentTheme = body.dataset.theme;
+  body.dataset.theme = (currentTheme === 'light') ? '' : 'light';
   setAccentContrast();
 }
 
@@ -38,7 +49,22 @@ function setAccentContrast() {
     const c1 = cs.getPropertyValue('--accent').trim();
     const c2 = cs.getPropertyValue('--accent-2').trim();
     
-    if (!c1 || !c2) return;
+    // Fallback values for missing or invalid accent colors
+    const fallbackAccent = '#007bff';
+    const fallbackAccent2 = '#0056b3';
+    
+    // Check for missing or invalid values (must be a valid hex color)
+    const isValidHex = c => /^#[0-9A-Fa-f]{6}$/.test(c);
+    
+    let accent = isValidHex(c1) ? c1 : fallbackAccent;
+    let accent2 = isValidHex(c2) ? c2 : fallbackAccent2;
+    
+    if (!isValidHex(c1) && DEBUG) {
+      console.warn(`Accent color '--accent' is missing or invalid. Using fallback: ${fallbackAccent}`);
+    }
+    if (!isValidHex(c2) && DEBUG) {
+      console.warn(`Accent color '--accent-2' is missing or invalid. Using fallback: ${fallbackAccent2}`);
+    }
     
     const hexToRgb = h => {
       const x = h.replace('#', '');
@@ -53,7 +79,7 @@ function setAccentContrast() {
       return 0.2126 * t[0] + 0.7152 * t[1] + 0.0722 * t[2];
     };
     
-    const mid = [0, 1, 2].map(i => Math.round((hexToRgb(c1)[i] + hexToRgb(c2)[i]) / 2));
+    const mid = [0, 1, 2].map(i => Math.round((hexToRgb(accent)[i] + hexToRgb(accent2)[i]) / 2));
     const L = luminance(mid);
     const contrastWithWhite = (1.05) / (L + 0.05);
     const contrastWithBlack = (L + 0.05) / (0.05);
@@ -61,7 +87,9 @@ function setAccentContrast() {
     
     document.documentElement.style.setProperty('--accent-hero-text', best);
   } catch (e) {
-    console.error('Error setting accent contrast:', e);
+    if (DEBUG) {
+      console.error('Error setting accent contrast:', e);
+    }
   }
 }
 
