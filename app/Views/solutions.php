@@ -167,11 +167,11 @@ function toggleDetails(id) {
 </script>
 
 <!-- Hero Section -->
-<section class="hero-section hero-solutions">
+<section class="hero-section hero-solutions hero">
     <div class="max-w-7xl">
         <h1>
             Telecom Solutions That
-            <span class="text-gradient">Scale With You</span>
+            <span class="accent" data-text="Scale With You">Scale With You</span>
         </h1>
         <p>
             From startup MVNOs to tier‑1 carriers, we power telecommunications success with <strong>carrier‑grade platforms</strong> 

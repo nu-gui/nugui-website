@@ -74,6 +74,7 @@
             <div class="globalnav-item globalnav-item-theme">
                 <button class="globalnav-link globalnav-link-theme" 
                         id="theme-switcher-nav" 
+                        data-theme-toggle
                         aria-label="Toggle theme"
                         title="Switch between light and dark theme">
                     <span class="globalnav-image-theme">

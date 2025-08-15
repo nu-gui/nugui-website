@@ -1,0 +1,64 @@
+/**
+ * Product Theme Palettes
+ * Each theme is bound to logo filename prefixes for route-based theming
+ */
+
+/* NU-DATA Product Themes - Purple/Violet */
+body[data-theme-id^="NU-DATA"] {
+  --grad-1: #260741;
+  --grad-2: #370B53;
+  --grad-3: #8B6CB5;
+  --accent: #8B6CB5;
+  --accent-2: #A88ADB;
+  --surface-950: #02001C;
+}
+
+/* NU-CCS Product Themes - Gold/Amber */
+body[data-theme-id^="NU-CCS"] {
+  --grad-1: #351F15;
+  --grad-2: #513115;
+  --grad-3: #BFA06D;
+  --accent: #BFA06D;
+  --accent-2: #E4CFA1;
+  --surface-950: #030119;
+}
+
+/* NU-CRON Product Themes - Teal/Cyan */
+body[data-theme-id^="NU-CRON"] {
+  --grad-1: #003236;
+  --grad-2: #001B28;
+  --grad-3: #3A928F;
+  --accent: #3A928F;
+  --accent-2: #6FBFB7;
+  --surface-950: #00041B;
+}
+
+/* NU-GUI Product Themes - Blue */
+body[data-theme-id^="NU-GUI"] {
+  --grad-1: #1D1B52;
+  --grad-2: #100E37;
+  --grad-3: #4B78B1;
+  --accent: #4B78B1;
+  --accent-2: #7AB7E4;
+  --surface-950: #02021E;
+}
+
+/* NU-SIP Product Themes - Green */
+body[data-theme-id^="NU-SIP"] {
+  --grad-1: #002D16;
+  --grad-2: #001717;
+  --grad-3: #34A874;
+  --accent: #34A874;
+  --accent-2: #90CA9E;
+  --surface-950: #000319;
+}
+
+/* NU-SMS Product Themes - Orange/Red */
+body[data-theme-id^="NU-SMS"] {
+  --grad-1: #430101;
+  --grad-2: #2E0000;
+  --grad-3: #EC5A21;
+  --accent: #EC5A21;
+  --accent-2: #FBA776;
+  --surface-950: #1C0000;
+}

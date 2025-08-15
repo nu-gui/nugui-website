@@ -128,11 +128,11 @@ $this->setVar('twitterDescription', 'Expert telecom consultation, free trial set
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section hero">
     <div class="max-w-7xl">
         <h1>
             Let's
-            <span class="text-gradient">Connect</span>
+            <span class="accent" data-text="Connect">Connect</span>
         </h1>
         <p>
             Ready to transform your business with innovative technology solutions? Our team of experts is here to help you succeed.
