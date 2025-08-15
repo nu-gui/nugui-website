@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="<?= base_url('css/hero-sections-unified.css?v=' . time()) ?>">
     <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
     <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/forms-dark-mode.css?v=' . time()) ?>">
     
     <!-- Master Card Styling System - All card types with animations and effects -->
     <link rel="stylesheet" href="<?= base_url('css/cards-master.css?v=' . time()) ?>">
