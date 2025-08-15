@@ -25,6 +25,11 @@
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
+    /* Add rounded bottom corners to main container */
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    /* Ensure clean edges */
+    background-clip: padding-box;
 }
 
 /* Force white text for all hero content */
@@ -54,7 +59,7 @@
     opacity: 0.95;
 }
 
-/* Subtle overlay for depth */
+/* Subtle overlay for depth - with matching rounded corners */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -65,6 +70,9 @@
     background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
     pointer-events: none;
     z-index: 1;
+    /* Match the rounded bottom corners */
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 .hero-section > * {
@@ -286,6 +294,37 @@
 }
 
 /* ============================================
+   ENSURE CLEAN ROUNDED EDGES
+   ============================================ */
+/* Remove any background bleed from parent containers */
+.hero-section {
+    /* Isolate the hero section */
+    isolation: isolate;
+    /* Ensure smooth edges */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Add pseudo-element to hide any sharp corners underneath */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px; /* Slight overlap to hide any gaps */
+    height: 52px; /* Slightly more than radius */
+    background: var(--color-background, #FFFFFF);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Dark mode adjustment for the bottom mask */
+[data-theme="dark"] .hero-section::after {
+    background: var(--color-background, #121212);
+}
+
+/* ============================================
    FORCE THEME INDEPENDENCE
    ============================================ */
 /* Override any theme-specific changes to hero sections */
@@ -293,6 +332,9 @@
 [data-theme="dark"] .hero-section {
     /* Colors remain the same regardless of theme */
     color: #FFFFFF !important;
+    /* Ensure rounded corners are maintained */
+    border-bottom-left-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
 }
 
 [data-theme="light"] .hero-section h1,
@@ -317,6 +359,18 @@
 @media (max-width: 768px) {
     .hero-section {
         padding: 80px 20px 60px 20px;
+        /* Slightly smaller radius on mobile for better proportion */
+        border-bottom-left-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+    }
+    
+    .hero-section::before {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    
+    .hero-section::after {
+        height: 32px; /* Match the smaller radius */
     }
     
     .hero-section h1 {
