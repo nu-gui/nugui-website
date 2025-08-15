@@ -1,0 +1,574 @@
+/**
+ * NUGUI Unified Hero Section System
+ * Theme-independent hero sections with rounded corners and gradient animations
+ * Combines best features from all hero CSS files
+ */
+
+/* ============================================
+   ANIMATION KEYFRAMES
+   ============================================ */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 
+            0 15px 50px -10px rgba(0, 162, 232, 0.4),
+            0 20px 40px -15px rgba(0, 0, 0, 0.5),
+            inset 0 2px 4px rgba(255, 255, 255, 0.2),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 15px 60px -10px rgba(0, 162, 232, 0.6),
+            0 25px 50px -15px rgba(0, 0, 0, 0.6),
+            inset 0 2px 6px rgba(255, 255, 255, 0.3),
+            inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* ============================================
+   SHARED HERO SECTION BASE STYLES
+   ============================================ */
+.hero-section {
+    position: relative;
+    padding: 120px 20px 100px 20px !important;
+    text-align: center !important;
+    color: #FFFFFF !important;
+    
+    /* Each page MUST define its own background */
+    
+    /* Shared animation - only gradientShift */
+    animation: gradientShift 15s ease infinite;
+    
+    /* Rounded corners */
+    border-bottom-left-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
+    background-clip: padding-box;
+    
+    /* Allow glow to show */
+    overflow: visible;
+    
+    /* NO FALLBACK SHADOW - Page-specific styles will set this */
+    
+    /* Performance optimization */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    
+    /* Clipping mask for rounded corners */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 100%);
+}
+
+/* REMOVED: Overlaying pseudo-elements that were creating multiple layers and causing flickering */
+
+/* Ensure content is properly positioned */
+.hero-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================
+   HERO TYPOGRAPHY - ALWAYS WHITE
+   ============================================ */
+.hero-section h1,
+.hero-section h2,
+.hero-section h3,
+.hero-section p,
+.hero-section strong,
+.hero-section em,
+.hero-section span:not(.text-gradient) {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    max-width: 48rem;
+    margin: 0 auto 30px;
+    opacity: 0.95;
+}
+
+/* Text gradient styling - Base (will be overridden by page-specific styles) */
+.hero-section .text-gradient {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+/* ============================================
+   DEFAULT HERO GRADIENT (CATCH-ALL)
+   ============================================ */
+
+/* Default gradient for any page without specific styling */
+body .hero-section {
+    background: linear-gradient(-45deg, 
+        #667eea,  /* Purple */
+        #764ba2,  /* Deep Purple */
+        #f093fb,  /* Pink */
+        #f5576c,  /* Red-Pink */
+        #667eea   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    box-shadow: 
+        0 15px 50px -10px rgba(102, 126, 234, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ============================================
+   PAGE-SPECIFIC HERO GRADIENTS
+   ============================================ */
+
+/* HOME PAGE - Deep Ocean Blue with Animation */
+body.page-home .hero-section,
+body.page-page-home .hero-section {
+    background: linear-gradient(-45deg, 
+        #003d82,  /* Deep Ocean Blue */
+        #004494,  /* Royal Blue */
+        #0056b3,  /* Strong Blue */
+        #1e6ba8,  /* Ocean Blue */
+        #003d82   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Clean box-shadow for home page */
+    box-shadow: 
+        0 15px 50px -10px rgba(0, 86, 179, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-home .text-gradient,
+.page-page-home .text-gradient {
+    color: #ffeb3b !important;
+    -webkit-text-fill-color: #ffeb3b !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* PRODUCTS PAGE - Deep Purple Innovation */
+body.page-products .hero-section {
+    background: linear-gradient(-45deg,
+        #4a148c,  /* Deep Purple */
+        #6a1b9a,  /* Purple */
+        #7b1fa2,  /* Medium Purple */
+        #8e24aa,  /* Light Purple */
+        #4a148c   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Clean box-shadow for products page */
+    box-shadow: 
+        0 15px 50px -10px rgba(74, 20, 140, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-products .text-gradient {
+    color: #00e676 !important;
+    -webkit-text-fill-color: #00e676 !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* SOLUTIONS PAGE - Forest Green Growth */
+body.page-solutions .hero-section,
+body.page-page-solutions .hero-section {
+    background: linear-gradient(-45deg,
+        #1b5e20,  /* Dark Green */
+        #2e7d32,  /* Forest Green */
+        #388e3c,  /* Green */
+        #43a047,  /* Light Green */
+        #1b5e20   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Remove glowPulse to prevent background interference */
+    box-shadow: 
+        0 15px 50px -10px rgba(27, 94, 32, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-solutions .text-gradient,
+.page-page-solutions .text-gradient {
+    color: #ffeb3b !important;
+    -webkit-text-fill-color: #ffeb3b !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ABOUT PAGE - Deep Teal Heritage */
+body.page-about .hero-section,
+body.page-page-about .hero-section {
+    background: linear-gradient(-45deg,
+        #004d40,  /* Dark Teal */
+        #00695c,  /* Teal */
+        #00796b,  /* Medium Teal */
+        #00897b,  /* Light Teal */
+        #004d40   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Clean box-shadow for about page */
+    box-shadow: 
+        0 15px 50px -10px rgba(0, 77, 64, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-about .text-gradient,
+.page-page-about .text-gradient {
+    color: #ff6f00 !important;
+    -webkit-text-fill-color: #ff6f00 !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* CONTACT PAGE - Sunset Orange Warmth */
+body.page-contact .hero-section,
+body.page-page-contact .hero-section {
+    background: linear-gradient(-45deg,
+        #e65100,  /* Deep Orange */
+        #ef6c00,  /* Orange */
+        #f57c00,  /* Medium Orange */
+        #fb8c00,  /* Light Orange */
+        #e65100   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Remove glowPulse to prevent background interference */
+    box-shadow: 
+        0 15px 50px -10px rgba(230, 81, 0, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-contact .text-gradient,
+.page-page-contact .text-gradient {
+    color: #18ffff !important;
+    -webkit-text-fill-color: #18ffff !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* SUPPORT PAGE - Crimson Red Assistance */
+body.page-support .hero-section,
+body.page-page-support .hero-section {
+    background: linear-gradient(-45deg,
+        #b71c1c,  /* Dark Red */
+        #c62828,  /* Red */
+        #d32f2f,  /* Medium Red */
+        #e53935,  /* Light Red */
+        #b71c1c   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Remove glowPulse to prevent background interference */
+    box-shadow: 
+        0 15px 50px -10px rgba(183, 28, 28, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-support .text-gradient,
+.page-page-support .text-gradient {
+    color: #ffeb3b !important;
+    -webkit-text-fill-color: #ffeb3b !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* PARTNER PAGE - Royal Gold Premium */
+body.page-partner-program .hero-section,
+body.page-page-partner-program .hero-section {
+    background: linear-gradient(-45deg,
+        #f57f17,  /* Dark Amber */
+        #f9a825,  /* Amber */
+        #ffb300,  /* Gold */
+        #ffc107,  /* Light Gold */
+        #f57f17   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Remove glowPulse to prevent background interference */
+    box-shadow: 
+        0 15px 50px -10px rgba(245, 127, 23, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* BLOG PAGE - Knowledge Purple */
+body.page-blog .hero-section,
+body.page-page-blog .hero-section {
+    background: linear-gradient(-45deg,
+        #6a1b9a,  /* Purple */
+        #8e24aa,  /* Medium Purple */
+        #9c27b0,  /* Material Purple */
+        #ab47bc,  /* Light Purple */
+        #6a1b9a   /* Back to start */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+    /* Clean box-shadow for blog page */
+    box-shadow: 
+        0 15px 50px -10px rgba(106, 27, 154, 0.4),
+        0 20px 40px -15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-partner-program .text-gradient,
+.page-page-partner-program .text-gradient {
+    color: #4a148c !important;
+    -webkit-text-fill-color: #4a148c !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.page-blog .text-gradient,
+.page-page-blog .text-gradient {
+    color: #64ffda !important;
+    -webkit-text-fill-color: #64ffda !important;
+    background: none !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   HERO BUTTONS
+   ============================================ */
+.hero-section .btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.hero-section .btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF !important;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.hero-section .btn--primary,
+.hero-section .btn-primary {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-section .btn--primary:hover,
+.hero-section .btn-primary:hover {
+    background: rgba(0, 162, 232, 0.9);
+    border-color: rgba(0, 162, 232, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 162, 232, 0.4);
+}
+
+.hero-section .btn--secondary,
+.hero-section .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hero-section .btn--secondary:hover,
+.hero-section .btn-secondary:hover {
+    background: rgba(255, 193, 7, 0.9);
+    border-color: rgba(255, 193, 7, 1);
+    color: #1a1a1a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 193, 7, 0.4);
+}
+
+.hero-section .btn:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   HERO STATS
+   ============================================ */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-stat-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-top: 0.25rem;
+}
+
+/* ============================================
+   FORCE THEME INDEPENDENCE
+   ============================================ */
+[data-theme="light"] .hero-section,
+[data-theme="dark"] .hero-section {
+    color: #FFFFFF !important;
+    border-bottom-left-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
+}
+
+[data-theme="light"] .hero-section h1,
+[data-theme="light"] .hero-section p,
+[data-theme="light"] .hero-section strong,
+[data-theme="dark"] .hero-section h1,
+[data-theme="dark"] .hero-section p,
+[data-theme="dark"] .hero-section strong {
+    color: #FFFFFF !important;
+}
+
+[data-theme="light"] .hero-section .text-gradient,
+[data-theme="dark"] .hero-section .text-gradient {
+    opacity: 1 !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 80px 20px 60px 20px;
+        border-bottom-left-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+    }
+    
+    .hero-section::before,
+    .hero-mesh-overlay {
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-section .btn-group {
+        flex-direction: column;
+    }
+    
+    .hero-section .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-stats {
+        gap: 2rem;
+    }
+    
+    .hero-stat-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 60px 15px 50px 15px;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-section p {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    .hero-section {
+        animation: none;
+    }
+    
+    .hero-section .btn:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .hero-section {
+        border: 2px solid #FFFFFF;
+    }
+    
+    .hero-section .btn {
+        border-width: 3px;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+    .hero-section {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 20px;
+    }
+    
+    .hero-section h1,
+    .hero-section p {
+        color: #000000 !important;
+        text-shadow: none;
+    }
+    
+    .hero-mesh-overlay {
+        display: none;
+    }
+}

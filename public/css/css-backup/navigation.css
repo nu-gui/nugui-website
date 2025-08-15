@@ -1,0 +1,709 @@
+/**
+ * Unified Navigation CSS
+ * Apple-style navigation with forced dark theme and header controls
+ * Combines globalnav-apple.css, navigation-dark-only.css, and header-controls.css
+ */
+
+/* ============================================
+   GLOBAL NAVIGATION BASE
+   ============================================ */
+
+.globalnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  height: 44px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Force dark theme navigation - overrides any theme settings */
+.globalnav,
+[data-theme="light"] .globalnav,
+[data-theme="dark"] .globalnav {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Body padding to account for fixed header */
+body {
+  padding-top: 44px;
+}
+
+.globalnav.scrolled,
+[data-theme="light"] .globalnav.scrolled,
+[data-theme="dark"] .globalnav.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ============================================
+   NAVIGATION CONTENT CONTAINER
+   ============================================ */
+
+.globalnav-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 22px;
+  height: 100%;
+}
+
+.globalnav-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 8px;
+}
+
+/* ============================================
+   NAVIGATION ITEMS
+   ============================================ */
+
+.globalnav-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.globalnav-item-apple {
+  margin-right: 24px;
+}
+
+/* Header Controls - Push to right side */
+.globalnav-item-audio,
+.globalnav-item-theme,
+.globalnav-item-cta {
+  flex-shrink: 0;
+}
+
+.globalnav-item-audio {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.globalnav-item-theme {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.globalnav-item-cta {
+  margin-left: 8px;
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   ============================================ */
+
+.globalnav-link {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 8px;
+  color: rgba(245, 245, 247, 0.88);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+}
+
+/* Force dark theme link colors */
+.globalnav-link,
+[data-theme="light"] .globalnav-link,
+[data-theme="dark"] .globalnav-link {
+  color: rgba(245, 245, 247, 0.88);
+}
+
+.globalnav-link:hover,
+[data-theme="light"] .globalnav-link:hover,
+[data-theme="dark"] .globalnav-link:hover {
+  color: rgba(245, 245, 247, 1);
+  background: rgba(245, 245, 247, 0.1);
+}
+
+.globalnav-link:active,
+[data-theme="light"] .globalnav-link:active,
+[data-theme="dark"] .globalnav-link:active {
+  background: rgba(245, 245, 247, 0.15);
+}
+
+/* Focus states for accessibility */
+.globalnav-link:focus-visible,
+[data-theme="light"] .globalnav-link:focus-visible,
+[data-theme="dark"] .globalnav-link:focus-visible {
+  outline: 2px solid rgba(0, 162, 232, 0.8);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   LOGO AND BRAND
+   ============================================ */
+
+.globalnav-link-apple {
+  padding: 0 8px;
+  margin: 0;
+}
+
+.globalnav-image-apple img {
+  opacity: 0.88;
+  transition: opacity 0.3s ease;
+}
+
+.globalnav-link-apple:hover .globalnav-image-apple img {
+  opacity: 1;
+}
+
+.globalnav-logo {
+  height: 32px;
+  width: auto;
+  max-height: 32px;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+.globalnav-logo:hover {
+  opacity: 0.8;
+}
+
+/* Force dark logo display in navigation */
+.globalnav .theme-logo-dark,
+[data-theme="light"] .globalnav .theme-logo-dark,
+[data-theme="dark"] .globalnav .theme-logo-dark {
+  display: block;
+}
+
+.globalnav .theme-logo-light,
+[data-theme="light"] .globalnav .theme-logo-light,
+[data-theme="dark"] .globalnav .theme-logo-light {
+  display: none;
+}
+
+/* Ensure dark logo (NUGUI-2) has proper visibility */
+.globalnav img[src*="NUGUI-2"],
+.globalnav img[src*="NUGUI-icon-2"],
+[data-theme="light"] .globalnav img[src*="NUGUI-2"],
+[data-theme="light"] .globalnav img[src*="NUGUI-icon-2"],
+[data-theme="dark"] .globalnav img[src*="NUGUI-2"],
+[data-theme="dark"] .globalnav img[src*="NUGUI-icon-2"] {
+  filter: none;
+  opacity: 1;
+}
+
+.globalnav-image-apple picture {
+  display: contents;
+}
+
+.globalnav-image-apple picture img {
+  height: 32px;
+  width: auto;
+  max-height: 32px;
+  object-fit: contain;
+}
+
+/* ============================================
+   HEADER CONTROLS (THEME & AUDIO)
+   ============================================ */
+
+.globalnav-link-theme,
+.globalnav-link-audio {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  width: 32px;
+  height: 32px;
+  color: rgba(245, 245, 247, 0.88);
+}
+
+.globalnav-link-theme:hover,
+.globalnav-link-audio:hover {
+  opacity: 1;
+  background: rgba(245, 245, 247, 0.1);
+  color: rgba(245, 245, 247, 1);
+}
+
+.globalnav-link-theme:active,
+.globalnav-link-audio:active {
+  transform: scale(0.95);
+}
+
+.globalnav-link-theme:focus-visible,
+.globalnav-link-audio:focus-visible {
+  outline: 2px solid rgba(0, 162, 232, 0.8);
+  outline-offset: 2px;
+}
+
+/* Icon animations */
+.globalnav-image-theme svg,
+.globalnav-image-audio svg {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.globalnav-link-theme:hover .globalnav-image-theme svg {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.globalnav-link-theme:active .globalnav-image-theme svg {
+  transform: rotate(360deg) scale(0.9);
+}
+
+.globalnav-link-audio:hover .globalnav-image-audio svg {
+  transform: scale(1.15);
+}
+
+/* Theme icon colors */
+.theme-icon-light {
+  color: #FFD700;
+}
+
+.theme-icon-dark {
+  color: #B8C5D6;
+}
+
+/* Audio control states */
+.audio-icon-on,
+.audio-icon-off {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+@keyframes audioPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.globalnav-link-audio.playing .globalnav-image-audio {
+  animation: audioPulse 2s ease-in-out infinite;
+}
+
+.globalnav-link-audio.playing {
+  opacity: 1;
+}
+
+.globalnav-link-audio:not(.playing) {
+  opacity: 0.6;
+}
+
+/* Volume indicator */
+.volume-indicator {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-success);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.globalnav-link-audio.playing .volume-indicator {
+  opacity: 1;
+}
+
+/* ============================================
+   CTA BUTTON (WHATSAPP)
+   ============================================ */
+
+.globalnav-link-cta {
+  background: rgba(0, 162, 232, 0.1);
+  border: 1px solid rgba(0, 162, 232, 0.3);
+  color: rgba(0, 162, 232, 1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.globalnav-link-cta:hover {
+  background: rgba(0, 162, 232, 0.2);
+  border-color: rgba(0, 162, 232, 0.5);
+}
+
+.globalnav-image-cta svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================
+   LINK TEXT
+   ============================================ */
+
+.globalnav-link-text {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* ============================================
+   ACTIVE STATES
+   ============================================ */
+
+.globalnav-link.active,
+.globalnav-link.current,
+[data-theme="light"] .globalnav-link.active,
+[data-theme="light"] .globalnav-link.current,
+[data-theme="dark"] .globalnav-link.active,
+[data-theme="dark"] .globalnav-link.current {
+  color: rgba(245, 245, 247, 1);
+  background: rgba(245, 245, 247, 0.08);
+}
+
+.globalnav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: #007aff;
+  border-radius: 1px;
+}
+
+/* ============================================
+   MOBILE MENU BUTTON
+   ============================================ */
+
+.globalnav-item-menu {
+  display: none;
+}
+
+.globalnav-link-menu {
+  padding: 0 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(245, 245, 247, 0.88);
+}
+
+.globalnav-link-menu:hover {
+  color: rgba(245, 245, 247, 1);
+  background: rgba(245, 245, 247, 0.1);
+}
+
+.globalnav-image-menu svg {
+  width: 18px;
+  height: 18px;
+}
+
+.globalnav-image-menu span {
+  background: rgba(245, 245, 247, 0.88);
+}
+
+/* ============================================
+   MOBILE MENU
+   ============================================ */
+
+.globalnav-menu {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-dropdown);
+}
+
+.globalnav-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.globalnav-menu-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 22px;
+}
+
+.globalnav-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.globalnav-menu-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+}
+
+.globalnav-menu-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.globalnav-menu-link {
+  display: block;
+  color: rgba(245, 245, 247, 0.88);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.globalnav-menu-link:hover {
+  color: rgba(245, 245, 247, 1);
+  background: rgba(245, 245, 247, 0.05);
+}
+
+.globalnav-menu-link-cta {
+  background: rgba(0, 162, 232, 0.1);
+  border: 1px solid rgba(0, 162, 232, 0.3);
+  color: rgba(0, 162, 232, 1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.globalnav-menu-link-cta:hover {
+  background: rgba(0, 162, 232, 0.2);
+  border-color: rgba(0, 162, 232, 0.5);
+}
+
+/* Mobile menu controls */
+.globalnav-menu-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+.globalnav-menu-controls button {
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(245, 245, 247, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: rgba(245, 245, 247, 0.88);
+}
+
+.globalnav-menu-controls button:hover {
+  background: rgba(245, 245, 247, 0.2);
+  color: rgba(245, 245, 247, 1);
+}
+
+/* ============================================
+   MENU ANIMATION
+   ============================================ */
+
+.globalnav-menu-open .globalnav-image-menu #globalnav-menutrigger-bread-top {
+  transform: translateY(3px) rotate(45deg);
+  transform-origin: 50% 50%;
+}
+
+.globalnav-menu-open .globalnav-image-menu #globalnav-menutrigger-bread-bottom {
+  transform: translateY(-3px) rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+
+/* ============================================
+   SCROLL EFFECTS
+   ============================================ */
+
+.globalnav.globalnav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ============================================
+   SVG ICONS
+   ============================================ */
+
+.globalnav svg {
+  fill: currentColor;
+  color: inherit;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .globalnav-content {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Enhanced dark mobile navigation */
+  .globalnav,
+  [data-theme="light"] .globalnav,
+  [data-theme="dark"] .globalnav {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  .globalnav-menu,
+  [data-theme="light"] .globalnav-menu,
+  [data-theme="dark"] .globalnav-menu {
+    background: rgba(0, 0, 0, 0.98);
+  }
+  
+  /* Hide desktop navigation items */
+  .globalnav-item:not(.globalnav-item-apple):not(.globalnav-item-menu) {
+    display: none;
+  }
+  
+  /* Show mobile menu button */
+  .globalnav-item-menu {
+    display: flex;
+  }
+  
+  .globalnav-content {
+    padding: 0 16px;
+  }
+  
+  .globalnav-menu {
+    left: 0;
+    right: 0;
+  }
+  
+  .globalnav-menu-content {
+    padding: 20px 16px;
+  }
+  
+  /* Mobile header controls */
+  .globalnav-item-theme,
+  .globalnav-item-audio,
+  .globalnav-item-cta {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  
+  .globalnav-link-theme,
+  .globalnav-link-audio,
+  .globalnav-link-cta {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .globalnav-content {
+    padding: 0 12px;
+  }
+  
+  .globalnav-menu-content {
+    padding: 16px 12px;
+  }
+  
+  /* Scale down logo on very small screens */
+  .globalnav-logo {
+    height: 28px;
+    max-height: 28px;
+  }
+  
+  .globalnav-menu-list {
+    gap: 12px;
+  }
+  
+  .globalnav-menu-item {
+    padding-bottom: 12px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & MOTION
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .globalnav-link {
+    color: white;
+  }
+  
+  .globalnav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .globalnav-menu-link {
+    color: white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .globalnav,
+  .globalnav-link,
+  .globalnav-menu,
+  .globalnav-image-menu svg *,
+  .globalnav-image-theme svg,
+  .globalnav-image-audio svg {
+    transition: none;
+  }
+  
+  .globalnav-link-audio.playing .globalnav-image-audio {
+    animation: none;
+  }
+}
+
+/* ============================================
+   SMOOTH THEME TRANSITIONS
+   ============================================ */
+
+* {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease,
+              color 0.3s ease;
+}
+
+/* Prevent transition on page load */
+.no-transition * {
+  transition: none;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .globalnav {
+    display: none;
+  }
+}

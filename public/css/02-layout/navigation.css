@@ -1,0 +1,528 @@
+/**
+ * NUGUI Unified Navigation System
+ * Apple-style navigation with forced dark theme and integrated controls
+ * Combines globalnav-apple.css + navigation-dark-only.css + header-controls.css
+ */
+
+/* ========================================
+   BASE NAVIGATION STRUCTURE
+   ======================================== */
+.globalnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed, 9999);
+  height: 44px;
+  /* Force dark theme always */
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Body padding for fixed header */
+body {
+  padding-top: 44px;
+}
+
+/* Scrolled state - darker background */
+.globalnav.scrolled {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Hidden state for scroll */
+.globalnav.globalnav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ========================================
+   NAVIGATION CONTAINER
+   ======================================== */
+.globalnav-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 22px;
+  height: 100%;
+}
+
+.globalnav-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 8px;
+}
+
+/* ========================================
+   NAVIGATION ITEMS
+   ======================================== */
+.globalnav-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.globalnav-item-apple {
+  margin-right: 24px;
+}
+
+/* ========================================
+   NAVIGATION LINKS
+   ======================================== */
+.globalnav-link {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 8px;
+  /* Force light text for dark nav */
+  color: rgba(245, 245, 247, 0.88) !important;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+}
+
+.globalnav-link:hover {
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.1) !important;
+}
+
+.globalnav-link:active {
+  background: rgba(245, 245, 247, 0.15) !important;
+}
+
+.globalnav-link:focus-visible {
+  outline: 2px solid rgba(0, 162, 232, 0.8);
+  outline-offset: 2px;
+}
+
+/* Active/Current page indicator */
+.globalnav-link.active,
+.globalnav-link.current {
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.08) !important;
+}
+
+.globalnav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: #007aff;
+  border-radius: 1px;
+}
+
+/* ========================================
+   LOGO HANDLING
+   ======================================== */
+.globalnav-link-apple {
+  padding: 0 8px;
+  margin: 0;
+}
+
+.globalnav-logo {
+  height: 32px;
+  width: auto;
+  max-height: 32px;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
+}
+
+.globalnav-logo:hover {
+  opacity: 0.8;
+}
+
+/* Force dark logo (NUGUI-2) in navigation */
+.globalnav .theme-logo-dark {
+  display: block !important;
+}
+
+.globalnav .theme-logo-light {
+  display: none !important;
+}
+
+/* Override theme-specific logo rules */
+[data-theme="light"] .globalnav .theme-logo-dark,
+[data-theme="dark"] .globalnav .theme-logo-dark {
+  display: block !important;
+}
+
+[data-theme="light"] .globalnav .theme-logo-light,
+[data-theme="dark"] .globalnav .theme-logo-light {
+  display: none !important;
+}
+
+/* ========================================
+   HEADER CONTROLS
+   ======================================== */
+
+/* Push controls to the right */
+.globalnav-item-audio {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.globalnav-item-theme {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.globalnav-item-cta {
+  margin-left: 8px;
+}
+
+/* Control button styles */
+.globalnav-link-theme,
+.globalnav-link-audio {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  width: 32px;
+  height: 32px;
+  color: rgba(245, 245, 247, 0.88) !important;
+}
+
+.globalnav-link-theme:hover,
+.globalnav-link-audio:hover {
+  opacity: 1;
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.1) !important;
+}
+
+.globalnav-link-theme:active,
+.globalnav-link-audio:active {
+  transform: scale(0.95);
+}
+
+/* Icon animations */
+.globalnav-image-theme svg,
+.globalnav-image-audio svg {
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.globalnav-link-theme:hover .globalnav-image-theme svg {
+  transform: rotate(180deg) scale(1.1);
+}
+
+.globalnav-link-audio:hover .globalnav-image-audio svg {
+  transform: scale(1.15);
+}
+
+/* Theme icon colors */
+.theme-icon-light {
+  color: #FFD700;
+}
+
+.theme-icon-dark {
+  color: #B8C5D6;
+}
+
+/* Audio control states */
+@keyframes audioPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.globalnav-link-audio.playing .globalnav-image-audio {
+  animation: audioPulse 2s ease-in-out infinite;
+}
+
+.globalnav-link-audio.playing {
+  opacity: 1;
+}
+
+.globalnav-link-audio:not(.playing) {
+  opacity: 0.6;
+}
+
+/* ========================================
+   CTA BUTTON (WhatsApp)
+   ======================================== */
+.globalnav-link-cta {
+  background: rgba(0, 162, 232, 0.1) !important;
+  border: 1px solid rgba(0, 162, 232, 0.3) !important;
+  color: rgba(0, 162, 232, 1) !important;
+  border-radius: 12px;
+  padding: 0 12px;
+  height: 28px;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+}
+
+.globalnav-link-cta:hover {
+  background: #25D366 !important;
+  border-color: #25D366 !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+.globalnav-image-cta svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ========================================
+   MOBILE MENU
+   ======================================== */
+.globalnav-item-menu {
+  display: none;
+}
+
+.globalnav-link-menu {
+  padding: 0 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(245, 245, 247, 0.88) !important;
+}
+
+.globalnav-link-menu:hover {
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.1) !important;
+}
+
+.globalnav-image-menu svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Menu hamburger lines */
+.globalnav-image-menu span {
+  background: rgba(245, 245, 247, 0.88) !important;
+}
+
+/* Mobile menu overlay */
+.globalnav-menu {
+  position: fixed;
+  top: 44px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-dropdown, 9998);
+}
+
+.globalnav-menu.open,
+.globalnav-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.globalnav-menu-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 22px;
+}
+
+.globalnav-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.globalnav-menu-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-bottom: 16px;
+}
+
+.globalnav-menu-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.globalnav-menu-link {
+  display: block;
+  color: rgba(245, 245, 247, 0.88) !important;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+}
+
+.globalnav-menu-link:hover {
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.05) !important;
+}
+
+.globalnav-menu-link-cta {
+  background: #007aff;
+  color: white !important;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.globalnav-menu-link-cta:hover {
+  background: #0056b3 !important;
+  color: white !important;
+}
+
+/* Menu animation */
+.globalnav-menu-open .globalnav-image-menu #globalnav-menutrigger-bread-top {
+  transform: translateY(3px) rotate(45deg);
+  transform-origin: 50% 50%;
+}
+
+.globalnav-menu-open .globalnav-image-menu #globalnav-menutrigger-bread-bottom {
+  transform: translateY(-3px) rotate(-45deg);
+  transform-origin: 50% 50%;
+}
+
+/* ========================================
+   RESPONSIVE BEHAVIOR
+   ======================================== */
+@media (max-width: 1024px) {
+  .globalnav-content {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide desktop navigation items */
+  .globalnav-item:not(.globalnav-item-apple):not(.globalnav-item-menu):not(.globalnav-item-theme):not(.globalnav-item-audio) {
+    display: none;
+  }
+  
+  /* Show mobile menu button */
+  .globalnav-item-menu {
+    display: flex;
+  }
+  
+  .globalnav-content {
+    padding: 0 16px;
+  }
+  
+  .globalnav {
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .globalnav-menu {
+    background: rgba(0, 0, 0, 0.98) !important;
+  }
+  
+  .globalnav-menu-content {
+    padding: 20px 16px;
+  }
+  
+  /* Smaller control buttons on mobile */
+  .globalnav-item-theme,
+  .globalnav-item-audio,
+  .globalnav-item-cta {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  
+  .globalnav-link-theme,
+  .globalnav-link-audio,
+  .globalnav-link-cta {
+    width: 28px;
+    height: 28px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .globalnav-content {
+    padding: 0 12px;
+  }
+  
+  .globalnav-menu-content {
+    padding: 16px 12px;
+  }
+  
+  /* Scale down logo on very small screens */
+  .globalnav-logo {
+    height: 28px;
+    max-height: 28px;
+  }
+  
+  .globalnav-menu-list {
+    gap: 12px;
+  }
+  
+  .globalnav-menu-item {
+    padding-bottom: 12px;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & REDUCED MOTION
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .globalnav,
+  .globalnav-link,
+  .globalnav-menu,
+  .globalnav-image-menu svg * {
+    transition: none;
+  }
+  
+  .globalnav-link-theme:hover .globalnav-image-theme svg {
+    transform: none;
+  }
+  
+  .globalnav-link-audio.playing .globalnav-image-audio {
+    animation: none;
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST MODE
+   ======================================== */
+@media (prefers-contrast: high) {
+  .globalnav-link {
+    color: white !important;
+  }
+  
+  .globalnav-link:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+  
+  .globalnav-menu-link {
+    color: white !important;
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  .globalnav {
+    display: none;
+  }
+  
+  body {
+    padding-top: 0;
+  }
+}

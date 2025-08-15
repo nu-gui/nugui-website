@@ -6,7 +6,10 @@
             <div class="globalnav-item globalnav-item-apple">
                 <a href="<?= base_url(); ?>" class="globalnav-link globalnav-link-apple" aria-label="NuGui">
                     <span class="globalnav-image-apple">
-                        <img src="<?= base_url('assets/images/NUGUI-2.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo - Dark Version" class="globalnav-logo" style="filter: brightness(1) !important;">
+                        <!-- Dark theme logo (NUGUI-2) -->
+                        <img src="<?= base_url('assets/images/NUGUI-2.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo" class="globalnav-logo theme-logo-dark">
+                        <!-- Light theme logo (NUGUI-1) -->
+                        <img src="<?= base_url('assets/images/NUGUI-1.png') ?>?cb=<?= date('YmdHis') ?>" alt="NU GUI Logo" class="globalnav-logo theme-logo-light">
                     </span>
                 </a>
             </div>
@@ -48,7 +51,43 @@
                 </a>
             </div>
 
-            <!-- Search/CTA -->
+            <!-- Audio Controls -->
+            <div class="globalnav-item globalnav-item-audio">
+                <button class="globalnav-link globalnav-link-audio" 
+                        id="audio-control-nav" 
+                        aria-label="Play audio"
+                        title="Play background music">
+                    <span class="globalnav-image-audio">
+                        <!-- Playing Icon (with sound waves) -->
+                        <svg class="audio-icon-on" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                        </svg>
+                        <!-- Paused/Stopped Icon (play button) -->
+                        <svg class="audio-icon-off" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="display: block;">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Theme Switcher -->
+            <div class="globalnav-item globalnav-item-theme">
+                <button class="globalnav-link globalnav-link-theme" 
+                        id="theme-switcher-nav" 
+                        aria-label="Toggle theme"
+                        title="Switch between light and dark theme">
+                    <span class="globalnav-image-theme">
+                        <svg class="theme-icon-light" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg class="theme-icon-dark" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+
+            <!-- WhatsApp CTA -->
             <div class="globalnav-item globalnav-item-cta">
                 <a href="https://wa.me/message/TGGYMYT6YAI5O1" 
                    target="_blank"

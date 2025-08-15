@@ -22,51 +22,35 @@
     <link rel="canonical" href="<?= base_url(uri_string()) ?>">
     <title><?= $this->renderSection('title') ? $this->renderSection('title') . ' | ' : '' ?>NU GUI - Enterprise Telecom Solutions</title>
     
-    <!-- Tailwind CSS with Organized Theme System -->
+    <!-- NEW UNIFIED CSS STRUCTURE -->
+    <!-- 01-BASE: Reset, Variables, Typography -->
+    <link rel="stylesheet" href="<?= base_url('css/01-base/reset.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/01-base/variables.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/01-base/typography.css?v=' . time()) ?>">
+    
+    <!-- 02-LAYOUT: Layout system and Navigation -->
+    <link rel="stylesheet" href="<?= base_url('css/02-layout/layout.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/02-layout/navigation.css?v=' . time()) ?>">
+    
+    <!-- 03-COMPONENTS: UI Components -->
+    <link rel="stylesheet" href="<?= base_url('css/03-components/hero-sections.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/cards.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/buttons.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/forms.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/03-components/footer.css?v=' . time()) ?>">
+    
+    <!-- 04-UTILITIES: Animations and Helper Classes -->
+    <link rel="stylesheet" href="<?= base_url('css/04-utilities/animations.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/04-utilities/utilities.css?v=' . time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('css/04-utilities/theme.css?v=' . time()) ?>">
+    
+    <!-- 04-UTILITIES: Product themes -->
+    <link rel="stylesheet" href="<?= base_url('css/04-utilities/product-themes.css?v=' . time()) ?>">
+    
+    <!-- Tailwind CSS (keeping for now until full migration) -->
     <link rel="stylesheet" href="<?= base_url('assets/css/tailwind.css?v=' . time()) ?>">
     
-    <!-- Core Apple-Inspired CSS Framework -->
-    <link rel="stylesheet" href="<?= base_url('css/reset.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/variables.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/globalnav-apple.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/main.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/utilities-apple.css') ?>">
     
-    <!-- Shared Animations - Centralized to avoid duplication -->
-    <link rel="stylesheet" href="<?= base_url('css/animations.css?v=' . time()) ?>">
-    
-    <!-- Product Colors and Page Gradients -->
-    <link rel="stylesheet" href="<?= base_url('css/product-colors.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/page-gradients.css') ?>">
-    
-    <!-- Theme and Asset Configuration -->
-    <link rel="stylesheet" href="<?= base_url('css/theme-images.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/theme-assets.css') ?>">
-    
-    <!-- Unified Button System - Single source for all button styles with consistent animations -->
-    <link rel="stylesheet" href="<?= base_url('css/buttons-unified.css?v=' . time()) ?>">
-    <link rel="stylesheet" href="<?= base_url('css/hero-sections.css?v=' . time()) ?>">
-    <link rel="stylesheet" href="<?= base_url('css/forms-enhanced.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('css/forms-futuristic.css') ?>">
-    
-    <!-- Master Card Styling System - All card types with animations and effects -->
-    <link rel="stylesheet" href="<?= base_url('css/cards-master.css?v=' . time()) ?>">
-    
-    <!-- Fix for rounded corners with gradient borders -->
-    <link rel="stylesheet" href="<?= base_url('css/cards-rounded-fix.css?v=' . time()) ?>">
-    
-    <!-- Improved Typography System - Better font sizes and responsive scaling -->
-    <link rel="stylesheet" href="<?= base_url('css/typography-improved.css?v=' . time()) ?>">
-    
-    <!-- Existing CSS for enhanced features -->
-    <link rel="preload" href="<?= base_url('css/modern-ui.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<?= base_url('css/utilities.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- Fallback for browsers without JavaScript -->
-    <noscript>
-        <link rel="stylesheet" href="<?= base_url('css/modern-ui.css') ?>">
-        <link rel="stylesheet" href="<?= base_url('css/utilities.css') ?>">
-    </noscript>
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-1.png') ?>" class="favicon-light">
     <link rel="icon" type="image/png" href="<?= base_url('assets/images/NUGUI-icon-2.png') ?>" class="favicon-dark">
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
@@ -100,6 +84,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    
+    <!-- Critical resource preloads for instant navigation -->
+    <link rel="preload" href="<?= base_url('js/page-preloader.js') ?>" as="script">
+    <link rel="preload" href="<?= base_url('js/audio-controller.js') ?>" as="script">
+    <link rel="preload" href="<?= base_url('js/theme-controller.js') ?>" as="script">
+    <link rel="preload" href="<?= base_url('assets/images/NUGUI-2.png') ?>" as="image">
+    <link rel="preload" href="<?= base_url('assets/sounds/nugui-ambient-sound.mp3') ?>" as="audio">
+    
+    <!-- Prefetch critical pages for instant navigation -->
+    <link rel="prefetch" href="<?= base_url('/home') ?>">
+    <link rel="prefetch" href="<?= base_url('/solutions') ?>">
+    <link rel="prefetch" href="<?= base_url('/about') ?>">
+    <link rel="prefetch" href="<?= base_url('/contact') ?>">
 
     <?= $this->renderSection('styles') ?>
 </head>
@@ -109,6 +106,15 @@
     $pageClass = 'page-' . str_replace(['/', '_'], '-', strtolower($currentPage));
 ?>
 <body class="<?= $pageClass ?> <?= $bodyClass ?? '' ?>">
+    <script>
+        // Apply theme from localStorage or system preference
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <?= $this->include('templates/header-apple') ?>
 
     <main>
@@ -129,6 +135,36 @@
     
     <!-- Page Gradient Enhancement -->
     <script src="<?= base_url('js/page-gradients.js?v=' . time()) ?>"></script>
+    
+    <!-- Theme Controller -->
+    <script src="<?= base_url('js/theme-controller.js?v=' . time()) ?>"></script>
+    
+    <!-- Audio Controller -->
+    <script src="<?= base_url('js/audio-controller.js?v=' . time()) ?>"></script>
+    
+    <!-- Page Preloader for instant navigation -->
+    <script src="<?= base_url('js/page-preloader.js?v=' . time()) ?>"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for enhanced caching and offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('🎯 Service Worker registered successfully:', registration.scope);
+                        
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            console.log('🔄 Service Worker update found');
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
     
     <!-- Global Site Schema -->
     <script type="application/ld+json">

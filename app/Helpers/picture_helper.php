@@ -26,17 +26,29 @@ if (!function_exists('picture_element')) {
             $attrString .= ' ' . $key . '="' . esc($value) . '"';
         }
         
-        // Generate picture element with prefers-color-scheme media queries
-        $html = '<picture>';
-        $html .= '<source media="(prefers-color-scheme: dark)" srcset="' . $darkPath . '">';
-        $html .= '<source media="(prefers-color-scheme: light)" srcset="' . $lightPath . '">';
-        $html .= '<img src="' . $lightPath . '" alt="' . esc($alt) . '"';
+        // Generate two img tags - one for light theme, one for dark theme
+        // These will be shown/hidden via CSS based on data-theme attribute
+        $html = '';
+        
+        // Dark theme image (icon-2)
+        $html .= '<img src="' . $darkPath . '" alt="' . esc($alt) . '"';
         if ($class) {
-            $html .= ' class="' . esc($class) . '"';
+            $html .= ' class="' . esc($class) . ' theme-image-dark"';
+        } else {
+            $html .= ' class="theme-image-dark"';
         }
         $html .= $attrString;
         $html .= '>';
-        $html .= '</picture>';
+        
+        // Light theme image (icon-1)
+        $html .= '<img src="' . $lightPath . '" alt="' . esc($alt) . '"';
+        if ($class) {
+            $html .= ' class="' . esc($class) . ' theme-image-light"';
+        } else {
+            $html .= ' class="theme-image-light"';
+        }
+        $html .= $attrString;
+        $html .= '>';
         
         return $html;
     }

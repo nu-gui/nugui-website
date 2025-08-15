@@ -16,24 +16,7 @@
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    /* Custom styles for the partner program page */
-    .hero-section {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 80px 20px;
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-w-3xl mx-auto;
-        color: var(--color-text-secondary);
-        margin-bottom: 30px;
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -55,11 +38,7 @@
         max-w-3xl mx-auto;
         color: var(--color-text-secondary);
     }
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
+    /* Card grid styles are now in layout.css - using feature-cards-grid for 3-column layout */
     /* Card styles moved to cards-standardized.css for consistency */
     .how-it-works-steps {
         display: flex;
@@ -244,12 +223,12 @@
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section hero-partner">
+<section class="hero-section">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            Partner with <span class="text-gradient" style="color: #7B2D99 !important;">NU GUI</span>
+        <h1>
+            Partner with <span class="text-gradient">NU GUI</span>
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             Join a partner network focused on <strong>outcomes</strong>—reliable communications, measurable ROI, and scalable growth for your customers.<br>
             We collaborate with carriers, resellers, system integrators, and technology providers <strong>worldwide</strong>, with particularly <strong>strong relationships across Africa and India</strong>.
         </p>
@@ -266,7 +245,7 @@
         <div class="section-header">
             <h2>Who Partners with NU GUI?</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="benefit-card">
                 <h3>Carriers & Operators (Tier 1 & 2)</h3>
                 <p>Expand routing options, add redundancy, and unlock real-time cost and quality insights.</p>
@@ -294,7 +273,7 @@
         <div class="section-header">
             <h2>Why Partner with NU GUI</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="benefit-card">
                 <h3>Carrier-Grade Reliability</h3>
                 <p>Built-in failover and resilient routing.</p>
@@ -325,7 +304,7 @@
         <div class="section-header">
             <h2>Partner Program Tiers</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="benefit-card">
                 <h3>Registered — Get started</h3>
                 <p>Access to product overview sessions and partner newsletters. Light-touch support for early opportunities.</p>
@@ -496,7 +475,7 @@
             <h2>Regional Strength: Africa & India</h2>
             <p>We work closely with partners across <strong>Africa and India</strong>, supporting market entry and scale with:</p>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="benefit-card">
                 <h3>Local Routing Expertise</h3>
                 <p>Local routing expertise & coverage through regional partners.</p>

@@ -14,13 +14,7 @@ $this->setVar('twitterDescription', 'Latest telecom trends, technical guides, an
 ?>
 
 <style>
-    .blog-hero {
-        background: linear-gradient(120deg, var(--color-background) 60%, var(--color-accent-secondary) 100%);
-        padding: 100px 20px 80px 20px;
-        border-radius: 0 0 48px 48px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        text-align: center;
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .blog-category {
         background: var(--color-surface);
         border-radius: 16px;
@@ -64,7 +58,7 @@ $this->setVar('twitterDescription', 'Latest telecom trends, technical guides, an
 </style>
 
 <!-- Blog Hero Section -->
-<section class="blog-hero">
+<section class="hero-section">
     <div class="max-w-7xl mx-auto">
         <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1;">
             Telecom Industry <span class="text-gradient">Insights & Resources</span>

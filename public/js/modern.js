@@ -242,7 +242,8 @@ class NuGuiWebsite {
   setupPerformanceOptimizations() {
     // Preload critical resources
     const criticalLinks = [
-      '/css/main.css',
+      '/css/02-layout/layout.css',
+      '/css/02-layout/navigation.css',
       '/js/modern.js'
     ];
 

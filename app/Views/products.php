@@ -28,12 +28,10 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
 <!-- Product Grid -->
 <section style="padding: var(--spacing-5xl) 0; background: var(--color-background);">
     <div class="container" style="max-width: 1024px;">
-        <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-3xl);">
+        <div class="product-cards-grid">
             
             <!-- NU SIP Product -->
-            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
-                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
-                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+            <div class="product-card">
                 <div style="text-align: center; margin-bottom: var(--spacing-xl);">
                     <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
                         <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
@@ -74,9 +72,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
             </div>
 
             <!-- NU SMS Product -->
-            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
-                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
-                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+            <div class="product-card">
                 <div style="text-align: center; margin-bottom: var(--spacing-xl);">
                     <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-success), #4ade80); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
                         <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
@@ -117,9 +113,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
             </div>
 
             <!-- NU CCS Product -->
-            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
-                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
-                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+            <div class="product-card">
                 <div style="text-align: center; margin-bottom: var(--spacing-xl);">
                     <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-secondary), #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
                         <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
@@ -160,9 +154,7 @@ $this->setVar('twitterDescription', 'Carrier-grade VoIP, SMS gateway, call contr
             </div>
 
             <!-- NU DATA Product -->
-            <div class="product-card" style="background: var(--color-surface); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); box-shadow: var(--shadow-sm); transition: all var(--transition-base);" 
-                 onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-lg)'"
-                 onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+            <div class="product-card">
                 <div style="text-align: center; margin-bottom: var(--spacing-xl);">
                     <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--color-warning), #f59e0b); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg);">
                         <svg width="40" height="40" fill="white" viewBox="0 0 24 24">

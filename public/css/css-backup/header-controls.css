@@ -1,0 +1,221 @@
+/**
+ * Header Controls Styling
+ * Theme switcher and audio controls for the navigation bar
+ */
+
+/* Control Items Container - Push controls to the right */
+.globalnav-item-audio,
+.globalnav-item-theme,
+.globalnav-item-cta {
+    flex-shrink: 0;
+}
+
+/* Create control group that auto-aligns right */
+.globalnav-item-audio {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.globalnav-item-theme {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.globalnav-item-cta {
+    margin-left: 8px;
+}
+
+.globalnav-link-theme,
+.globalnav-link-audio {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    width: 32px;
+    height: 32px;
+}
+
+.globalnav-link-theme:hover,
+.globalnav-link-audio:hover {
+    opacity: 1;
+    background: rgba(128, 128, 128, 0.1);
+}
+
+.globalnav-link-theme:active,
+.globalnav-link-audio:active {
+    transform: scale(0.95);
+}
+
+/* Icon animations */
+.globalnav-image-theme svg,
+.globalnav-image-audio svg {
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.globalnav-link-theme:hover .globalnav-image-theme svg {
+    transform: rotate(180deg) scale(1.1);
+}
+
+.globalnav-link-theme:active .globalnav-image-theme svg {
+    transform: rotate(360deg) scale(0.9);
+}
+
+.globalnav-link-audio:hover .globalnav-image-audio svg {
+    transform: scale(1.15);
+}
+
+/* Theme icon colors */
+.theme-icon-light {
+    color: #FFD700;
+}
+
+.theme-icon-dark {
+    color: #B8C5D6;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .globalnav-link-theme,
+[data-theme="dark"] .globalnav-link-audio {
+    color: #FFFFFF;
+}
+
+[data-theme="dark"] .globalnav-link-theme:hover,
+[data-theme="dark"] .globalnav-link-audio:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Subtle pulse animation for audio when playing */
+@keyframes audioPulse {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.globalnav-link-audio.playing .globalnav-image-audio {
+    animation: audioPulse 2s ease-in-out infinite;
+}
+
+.globalnav-link-audio.playing {
+    opacity: 1;
+}
+
+.globalnav-link-audio:not(.playing) {
+    opacity: 0.6;
+}
+
+/* WhatsApp CTA Button */
+.globalnav-link-cta {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.globalnav-link-cta:hover {
+    background: rgba(37, 211, 102, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .globalnav-item-theme,
+    .globalnav-item-audio,
+    .globalnav-item-cta {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+    
+    .globalnav-link-theme,
+    .globalnav-link-audio,
+    .globalnav-link-cta {
+        width: 28px;
+        height: 28px;
+        padding: 4px;
+    }
+}
+
+/* Accessibility improvements */
+.globalnav-link-theme:focus-visible,
+.globalnav-link-audio:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Smooth theme transition for entire page */
+* {
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease,
+                color 0.3s ease;
+}
+
+/* Prevent transition on page load */
+.no-transition * {
+    transition: none !important;
+}
+
+/* Audio control states */
+.audio-icon-on,
+.audio-icon-off {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+/* Volume indicator (optional visual feedback) */
+.volume-indicator {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-success);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.globalnav-link-audio.playing .volume-indicator {
+    opacity: 1;
+}
+
+/* Mobile menu integration */
+@media (max-width: 768px) {
+    .globalnav-menu-list {
+        position: relative;
+    }
+    
+    .globalnav-menu-controls {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        border-top: 1px solid var(--color-border);
+        margin-top: 20px;
+    }
+    
+    .globalnav-menu-controls button {
+        padding: 10px;
+        border-radius: 8px;
+        background: rgba(128, 128, 128, 0.1);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .globalnav-menu-controls button:hover {
+        background: rgba(128, 128, 128, 0.2);
+    }
+}

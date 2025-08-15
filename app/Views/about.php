@@ -27,24 +27,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         color: var(--color-primary);
         letter-spacing: -0.01em;
     }
-    /* Custom styles for the about page to align with the Apple design system */
-    .hero-section {
-        background-color: var(--color-background);
-        color: var(--color-text-primary);
-        text-align: center;
-        padding: 80px 20px;
-    }
-    .hero-section h1 {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-        letter-spacing: -0.02em;
-    }
-    .hero-section p {
-        font-size: 1.5rem;
-        max-w-3xl mx-auto;
-        color: var(--color-text-secondary);
-    }
+    /* Hero styles are now in hero-sections.css - no inline overrides needed */
     .section {
         padding: 80px 20px;
         background-color: var(--color-background-secondary);
@@ -87,11 +70,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         line-height: 1.7;
         color: var(--color-text-secondary);
     }
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
+    /* Card grid styles are now in layout.css - using feature-cards-grid for 3-column layout */
     /* Card styles moved to cards-standardized.css for consistency */
     .team-card img {
         width: 120px;
@@ -138,12 +117,12 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
 </style>
 
 <!-- Hero Section -->
-<section class="hero-section hero-about">
+<section class="hero-section">
     <div class="max-w-7xl mx-auto">
-        <h1 style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.02em; line-height: 1.1; color: #FFFFFF;">
-            About <span class="text-gradient" style="background: linear-gradient(90deg, var(--color-primary), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; color: transparent;">NU GUI</span>
+        <h1>
+            About <span class="text-gradient">NU GUI</span>
         </h1>
-        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px; color: #FFFFFF; opacity: 0.9;">
+        <p style="font-size: 1.5rem; max-width: 48rem; margin: 0 auto 30px;">
             NU GUI helps carriers, resellers, and enterprises deliver <strong>reliable communications and data‑driven marketing at scale</strong>.<br>
             We focus on practical outcomes: <strong>better connectivity, lower cost per minute, stronger customer engagement, and clear reporting</strong>.
         </p>
@@ -162,11 +141,8 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             </div>
             <div>
                 <!-- Custom logo for about page: NUGUI-1 for light theme, NUGUI-2 for dark theme -->
-                <picture>
-                    <source media="(prefers-color-scheme: dark)" srcset="<?= base_url('assets/images/NUGUI-2.png') ?>">
-                    <source media="(prefers-color-scheme: light)" srcset="<?= base_url('assets/images/NUGUI-1.png') ?>">
-                    <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image">
-                </picture>
+                <img src="<?= base_url('assets/images/NUGUI-2.png') ?>" alt="NU GUI Logo" class="team-image theme-logo-dark" style="display: block;">
+                <img src="<?= base_url('assets/images/NUGUI-1.png') ?>" alt="NU GUI Logo" class="team-image theme-logo-light" style="display: none;">
             </div>
         </div>
     </div>
@@ -179,7 +155,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             <h2>What We Do</h2>
             <p>We provide platforms and services to <strong>route calls, send messages, run campaigns, and bill in real time</strong>—without complexity.</p>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="value-card">
                 <h3>Voice & Call Control</h3>
                 <p>VoIP, SBC/PBX, advanced routing, failover.</p>
@@ -207,7 +183,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
             <h2>How We Work</h2>
             <p>Values & principles that guide everything we do</p>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="value-card">
                 <h3>Reliability First</h3>
                 <p>Carrier‑grade platforms, built‑in failover, proactive support.</p>
@@ -238,7 +214,7 @@ $this->setVar('twitterDescription', 'Since 2018, focusing on practical outcomes:
         <div class="section-header">
             <h2>Leadership</h2>
         </div>
-        <div class="card-grid">
+        <div class="feature-cards-grid">
             <div class="team-card">
                 <?= picture_profile('wes', 'team-image') ?>
                 <h3>Wesley Burgess</h3>

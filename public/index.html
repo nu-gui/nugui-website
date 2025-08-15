@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NU GUI - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 50%, #1a1a2e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .header {
+            height: 250px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 40px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .header-left {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .header-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 40px;
+        }
+        
+        .header-info {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.5px;
+        }
+        
+        .main-content {
+            flex: 1;
+            background-image: 
+                radial-gradient(ellipse at center, rgba(0, 162, 232, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
+                url('/assets/images/background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: subtleZoom 20s ease-in-out infinite alternate;
+        }
+        
+        .footer {
+            height: 60px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        @keyframes subtleZoom {
+            0% { background-size: cover, cover, 100% auto; }
+            100% { background-size: cover, cover, 110% auto; }
+        }
+        
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        .welcome-section {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .welcome-section.show {
+            opacity: 1;
+        }
+        
+        .welcome-section h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.2em;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+        
+        .welcome-section p {
+            margin: 0;
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            animation: spin 2s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 162, 232, 0.8));
+        }
+        
+        .theme-selector {
+            display: none;
+            flex-direction: row;
+            gap: 20px;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+        
+        .theme-selector.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .theme-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-icon-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .theme-icon-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(0, 162, 232, 0.5);
+        }
+        
+        .theme-icon-btn.active {
+            background: rgba(0, 162, 232, 0.2);
+            border-color: rgba(0, 162, 232, 0.6);
+            box-shadow: 0 0 20px rgba(0, 162, 232, 0.4);
+        }
+        
+        .theme-icon-btn svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .theme-icon-btn:hover svg {
+            transform: rotate(180deg);
+        }
+        
+        .theme-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .theme-icon-sun {
+            color: #FFD700;
+        }
+        
+        .theme-icon-moon {
+            color: #B8C5D6;
+        }
+        
+        @keyframes glowingPulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(0, 162, 232, 0.8),
+                    0 0 40px rgba(0, 162, 232, 0.6),
+                    0 0 60px rgba(0, 162, 232, 0.4),
+                    inset 0 0 20px rgba(0, 162, 232, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(0, 162, 232, 1),
+                    0 0 60px rgba(0, 162, 232, 0.8),
+                    0 0 80px rgba(0, 162, 232, 0.6),
+                    inset 0 0 30px rgba(0, 162, 232, 0.3);
+            }
+        }
+        
+        .skip-button {
+            padding: 10px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .skip-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .audio-button {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .status {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-info" id="headerInfo">Initializing...</div>
+        
+        <div class="header-content">
+            <div class="header-left">
+                <div class="welcome-section" id="welcomeSection">
+                    <h1>Welcome to NU GUI</h1>
+                    <p>Loading amazing things...</p>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="logo-container">
+                    <img src="/assets/images/NUGUI-icon-1.png" alt="NU GUI" class="logo">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="theme-selector" id="themeSelector">
+                    <div class="theme-option" onclick="selectTheme('dark')">
+                        <div class="theme-icon-btn" id="darkBtn">
+                            <svg class="theme-icon-moon" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </div>
+                        <span class="theme-label">Dark</span>
+                    </div>
+                    
+                    <div class="theme-option" onclick="selectTheme('light')">
+                        <div class="theme-icon-btn" id="lightBtn">
+                            <svg class="theme-icon-sun" viewBox="0 0 24 24">
+                                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <span class="theme-label">Light</span>
+                    </div>
+                </div>
+                
+                <button class="audio-button" id="audioBtn" onclick="toggleAudio()">
+                    <span id="audioOn">🔊</span>
+                    <span id="audioOff" style="display:none;">🔇</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <!-- Background wallpaper only, no content -->
+    </div>
+    
+    <div class="footer">
+        <button class="skip-button" onclick="skipIntro()">Skip Intro</button>
+    </div>
+    
+    <audio id="bgAudio" loop preload="auto" autoplay>
+        <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="status" id="status">Status: Initializing...</div>
+    
+    <script>
+        let audio = document.getElementById('bgAudio');
+        let audioEnabled = true; // Start with audio enabled
+        let redirectTimer = null;
+        let currentTheme = 'dark'; // Start with dark theme as default
+        
+        function updateStatus(msg) {
+            const statusEl = document.getElementById('status');
+            const headerInfo = document.getElementById('headerInfo');
+            
+            if (statusEl) {
+                statusEl.textContent = 'Status: ' + msg;
+            }
+            if (headerInfo) {
+                headerInfo.textContent = msg;
+            }
+            console.log(msg);
+        }
+        
+        function toggleAudio() {
+            const audioOn = document.getElementById('audioOn');
+            const audioOff = document.getElementById('audioOff');
+            
+            if (audioEnabled) {
+                // Mute audio
+                audio.pause();
+                audioEnabled = false;
+                audioOn.style.display = 'none';
+                audioOff.style.display = 'block';
+                updateStatus('Audio muted');
+            } else {
+                // Play audio
+                audio.play().then(() => {
+                    audioEnabled = true;
+                    audioOn.style.display = 'block';
+                    audioOff.style.display = 'none';
+                    updateStatus('Audio playing');
+                }).catch(err => {
+                    updateStatus('Audio error: ' + err.message);
+                });
+            }
+        }
+        
+        function selectTheme(theme) {
+            currentTheme = theme;
+            
+            // Update active state
+            const darkBtn = document.getElementById('darkBtn');
+            const lightBtn = document.getElementById('lightBtn');
+            
+            if (theme === 'dark') {
+                darkBtn.classList.add('active');
+                lightBtn.classList.remove('active');
+            } else {
+                lightBtn.classList.add('active');
+                darkBtn.classList.remove('active');
+            }
+            
+            localStorage.setItem('theme', currentTheme);
+            updateStatus(`${theme === 'dark' ? 'Dark' : 'Light'} theme selected`);
+            
+            // Give user time to see their selection
+            setTimeout(() => {
+                goToHome();
+            }, 1000);
+        }
+        
+        function skipIntro() {
+            updateStatus('Skipping intro...');
+            goToHome();
+        }
+        
+        function goToHome() {
+            clearTimeout(redirectTimer);
+            
+            // Always set audio to enabled for next page
+            localStorage.setItem('audioEnabled', 'true');
+            sessionStorage.setItem('landing_audio_enabled', 'true');
+            
+            // Store current audio state
+            if (audioEnabled) {
+                localStorage.setItem('audioVolume', '0.15'); // Lower volume for main pages
+            }
+            
+            audio.pause();
+            updateStatus('Redirecting to home...');
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 500);
+        }
+        
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            updateStatus('Page loaded');
+            
+            // Set dark theme as default and mark it active
+            localStorage.setItem('theme', 'dark');
+            document.getElementById('darkBtn').classList.add('active');
+            
+            // Show welcome text immediately with fade-in
+            document.getElementById('welcomeSection').classList.add('show');
+            
+            // Set audio volume
+            audio.volume = 0.3;
+            
+            // Force audio to play by default
+            localStorage.setItem('audioEnabled', 'true');
+            localStorage.setItem('audioVolume', '0.3');
+            
+            // Audio autoplay with progressive enhancement
+            let audioStarted = false;
+            
+            const startAudioPlayback = () => {
+                if (audioStarted) return;
+                
+                // Set volume first
+                audio.volume = 0.3;
+                
+                // Try unmuted play first (works if user has interacted before)
+                audio.play().then(() => {
+                    audioStarted = true;
+                    audioEnabled = true;
+                    document.getElementById('audioOn').style.display = 'block';
+                    document.getElementById('audioOff').style.display = 'none';
+                    updateStatus('Welcome to NU GUI');
+                }).catch(() => {
+                    // Try muted autoplay (usually works)
+                    audio.muted = true;
+                    audio.play().then(() => {
+                        // Unmute after successful start
+                        setTimeout(() => {
+                            audio.muted = false;
+                            audioStarted = true;
+                            audioEnabled = true;
+                            document.getElementById('audioOn').style.display = 'block';
+                            document.getElementById('audioOff').style.display = 'none';
+                            updateStatus('Welcome to NU GUI');
+                        }, 10);
+                    }).catch(() => {
+                        // Last resort: wait for interaction
+                        updateStatus('Welcome to NU GUI - Click for audio');
+                        
+                        const enableOnInteraction = () => {
+                            if (!audioStarted) {
+                                audio.muted = false;
+                                audio.play();
+                                audioStarted = true;
+                                audioEnabled = true;
+                                document.getElementById('audioOn').style.display = 'block';
+                                document.getElementById('audioOff').style.display = 'none';
+                                updateStatus('Welcome to NU GUI');
+                            }
+                        };
+                        
+                        document.addEventListener('click', enableOnInteraction, { once: true });
+                        document.addEventListener('touchstart', enableOnInteraction, { once: true });
+                    });
+                });
+            };
+            
+            // Try multiple times with different strategies
+            startAudioPlayback();
+            setTimeout(startAudioPlayback, 100);
+            setTimeout(startAudioPlayback, 500);
+            
+            // Show theme selector after 3 seconds
+            setTimeout(() => {
+                document.getElementById('themeSelector').classList.add('show');
+                updateStatus('Select your viewing preference');
+                
+                // Auto-continue with dark theme after 5 seconds if no selection
+                setTimeout(() => {
+                    const selector = document.getElementById('themeSelector');
+                    if (selector && selector.classList.contains('show')) {
+                        // No selection made, continue with dark theme
+                        updateStatus('Continuing with dark theme...');
+                        
+                        // Redirect after showing status
+                        setTimeout(() => {
+                            goToHome();
+                        }, 1000);
+                    }
+                }, 5000);
+            }, 3000);
+            
+            // Extended redirect timer (10 seconds total)
+            redirectTimer = setTimeout(() => {
+                updateStatus('Auto-redirecting...');
+                goToHome();
+            }, 10000);
+            
+            updateStatus('Welcome to NU GUI');
+        });
+    </script>
+</body>
+</html>

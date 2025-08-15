@@ -19,15 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add mesh overlay to hero sections for depth
-    const heroSections = document.querySelectorAll('.hero-section');
-    heroSections.forEach(hero => {
-        if (!hero.querySelector('.hero-mesh-overlay')) {
-            const meshOverlay = document.createElement('div');
-            meshOverlay.className = 'hero-mesh-overlay';
-            hero.appendChild(meshOverlay);
-        }
-    });
+    // REMOVED: Mesh overlay was causing background layer conflicts
+    // The hero-mesh-overlay was creating an additional layer that interfered with backgrounds
     
     // Dynamic gradient based on scroll position (optional enhancement)
     if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {

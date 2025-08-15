@@ -1,0 +1,185 @@
+/**
+ * Select Dropdown Fix for Support Page
+ * Resolves overlay and visibility issues with select elements
+ */
+
+/* ============================================
+   GENERAL SELECT FIXES
+   ============================================ */
+.form-group select {
+    /* Reset any problematic styles */
+    position: relative !important;
+    z-index: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    width: 100% !important;
+    
+    /* Ensure proper appearance */
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    
+    /* Clean background */
+    background-color: rgba(255, 255, 255, 1) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 10px 6px !important;
+    
+    /* Padding and spacing */
+    padding: 12px 40px 12px 16px !important;
+    
+    /* Border and styling */
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    
+    /* Text styling */
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    color: #1f2937 !important;
+    
+    /* Transitions */
+    transition: all 0.3s ease !important;
+    
+    /* Ensure it's clickable */
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Remove any ::before or ::after pseudo elements that might cause overlay */
+.form-group select::before,
+.form-group select::after {
+    display: none !important;
+}
+
+/* Ensure parent form-group doesn't have overlaying elements */
+.form-group {
+    position: relative;
+}
+
+.form-group::before,
+.form-group::after {
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* Focus state */
+.form-group select:focus {
+    outline: none !important;
+    border-color: #00A2E8 !important;
+    box-shadow: 0 0 0 3px rgba(0, 162, 232, 0.1) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* Hover state */
+.form-group select:hover {
+    border-color: #00A2E8 !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+/* ============================================
+   DARK MODE SELECT FIXES
+   ============================================ */
+[data-theme="dark"] .form-group select {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .form-group select:focus {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .form-group select:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .form-group select option {
+    background-color: #2a2a2a !important;
+    color: #FFFFFF !important;
+    padding: 8px !important;
+}
+
+/* ============================================
+   SUPPORT PAGE SPECIFIC FIXES
+   ============================================ */
+.page-support .form-group select,
+.page-page-support .form-group select {
+    /* Ensure selects are above any decorative elements */
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Remove any overlay from track-interaction class */
+.track-interaction {
+    position: relative !important;
+    z-index: auto !important;
+}
+
+.track-interaction::before,
+.track-interaction::after {
+    display: none !important;
+}
+
+/* Specific fix for support_product and support_priority */
+#support_product,
+#support_priority {
+    /* Extra specificity to ensure these rules apply */
+    position: relative !important;
+    z-index: 10 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    
+    /* Ensure clean appearance */
+    background-clip: padding-box !important;
+    -webkit-background-clip: padding-box !important;
+}
+
+/* Fix for any parent containers that might be causing issues */
+.support-form .form-group,
+.page-support .form-group,
+.page-page-support .form-group {
+    overflow: visible !important;
+    position: relative !important;
+    z-index: auto !important;
+}
+
+/* Ensure labels don't overlap */
+.form-group label {
+    position: relative !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* ============================================
+   REMOVE CONFLICTING ANIMATIONS
+   ============================================ */
+.form-group select,
+.form-group select * {
+    animation: none !important;
+    -webkit-animation: none !important;
+}
+
+/* Remove any filters that might cause visual issues */
+.form-group select {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ============================================
+   MOBILE RESPONSIVENESS
+   ============================================ */
+@media (max-width: 768px) {
+    .form-group select {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 14px 40px 14px 16px !important;
+    }
+}

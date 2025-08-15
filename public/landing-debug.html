@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Debug Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #0f0;
+        }
+        .debug-panel {
+            background: #000;
+            border: 1px solid #0f0;
+            padding: 20px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .test-button {
+            background: #00A2E8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background: #0082BB;
+        }
+        #console-output {
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        .status-ok { color: #0f0; }
+        .status-error { color: #f00; }
+        .status-warning { color: #ff0; }
+    </style>
+</head>
+<body>
+    <h1>Landing Page Debug Test</h1>
+    
+    <div class="debug-panel">
+        <h2>Test Controls</h2>
+        <button class="test-button" onclick="testAudio()">Test Audio</button>
+        <button class="test-button" onclick="testThemeButton()">Show Theme Button</button>
+        <button class="test-button" onclick="testRedirect()">Test Redirect</button>
+        <button class="test-button" onclick="testSkipButton()">Test Skip Function</button>
+        <button class="test-button" onclick="clearConsole()">Clear Console</button>
+    </div>
+
+    <div class="debug-panel">
+        <h2>Audio Test</h2>
+        <audio id="testAudio" controls>
+            <source src="/assets/sounds/electric-relaxed-tone.mp3" type="audio/mpeg">
+        </audio>
+        <div id="audio-status"></div>
+    </div>
+
+    <div class="debug-panel">
+        <h2>Theme Switcher Test</h2>
+        <button id="themeSwitcher" style="display:none; padding: 10px 20px; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%); border: 2px solid rgba(255,255,255,0.2); color: white;">
+            🌓 Choose Your Theme
+        </button>
+    </div>
+
+    <div class="debug-panel">
+        <h2>Console Output</h2>
+        <pre id="console-output"></pre>
+    </div>
+
+    <script>
+        const output = document.getElementById('console-output');
+        const audioStatus = document.getElementById('audio-status');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'status-error' : type === 'warning' ? 'status-warning' : 'status-ok';
+            output.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearConsole() {
+            output.innerHTML = '';
+            log('Console cleared', 'info');
+        }
+
+        // Test audio
+        function testAudio() {
+            log('Testing audio playback...', 'info');
+            const audio = document.getElementById('testAudio');
+            
+            audio.addEventListener('loadeddata', () => {
+                log('Audio loaded successfully', 'info');
+                audioStatus.innerHTML = '<span class="status-ok">✓ Audio file loaded</span>';
+            });
+            
+            audio.addEventListener('error', (e) => {
+                log('Audio error: ' + e.message, 'error');
+                audioStatus.innerHTML = '<span class="status-error">✗ Audio error</span>';
+            });
+            
+            audio.play().then(() => {
+                log('Audio playing successfully', 'info');
+                audioStatus.innerHTML += '<br><span class="status-ok">✓ Audio playing</span>';
+            }).catch(err => {
+                log('Audio play failed: ' + err.message, 'error');
+                audioStatus.innerHTML += '<br><span class="status-error">✗ Play failed: ' + err.message + '</span>';
+            });
+        }
+
+        // Test theme button
+        function testThemeButton() {
+            log('Showing theme button...', 'info');
+            const button = document.getElementById('themeSwitcher');
+            button.style.display = 'block';
+            
+            button.onclick = () => {
+                log('Theme button clicked!', 'info');
+                alert('Theme switcher works!');
+            };
+            
+            setTimeout(() => {
+                log('Hiding theme button after 3 seconds', 'warning');
+                button.style.display = 'none';
+            }, 3000);
+        }
+
+        // Test redirect
+        function testRedirect() {
+            log('Testing redirect in 3 seconds...', 'warning');
+            setTimeout(() => {
+                log('Would redirect to /home now', 'info');
+                if (confirm('Redirect to /home?')) {
+                    window.location.href = '/home';
+                }
+            }, 3000);
+        }
+
+        // Test skip function
+        function testSkipButton() {
+            log('Testing skip functionality...', 'info');
+            log('Skip would:', 'info');
+            log('  1. Stop audio', 'info');
+            log('  2. Clear timers', 'info');
+            log('  3. Redirect to /home', 'info');
+            
+            if (confirm('Simulate skip and go to /home?')) {
+                const audio = document.getElementById('testAudio');
+                audio.pause();
+                log('Audio paused', 'info');
+                window.location.href = '/home';
+            }
+        }
+
+        // Test on load
+        window.addEventListener('DOMContentLoaded', () => {
+            log('=== Debug Page Loaded ===', 'info');
+            log('Testing environment...', 'info');
+            
+            // Check audio file
+            fetch('/assets/sounds/electric-relaxed-tone.mp3', { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        log('✓ Audio file exists at /assets/sounds/electric-relaxed-tone.mp3', 'info');
+                    } else {
+                        log('✗ Audio file not found', 'error');
+                    }
+                })
+                .catch(err => {
+                    log('✗ Error checking audio file: ' + err.message, 'error');
+                });
+            
+            // Check browser capabilities
+            log('Browser audio support: ' + (typeof Audio !== 'undefined' ? 'Yes' : 'No'), 'info');
+            log('SessionStorage support: ' + (typeof sessionStorage !== 'undefined' ? 'Yes' : 'No'), 'info');
+            
+            // Check if we can create audio
+            try {
+                const testAudio = new Audio();
+                log('✓ Can create Audio objects', 'info');
+            } catch (e) {
+                log('✗ Cannot create Audio objects: ' + e.message, 'error');
+            }
+        });
+    </script>
+</body>
+</html>

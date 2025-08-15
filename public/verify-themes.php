@@ -19,8 +19,8 @@ function esc($str) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Theme Implementation</title>
-    <link rel="stylesheet" href="/css/variables.css">
-    <link rel="stylesheet" href="/css/theme-images.css">
+    <link rel="stylesheet" href="/css/01-base/variables.css">
+    <link rel="stylesheet" href="/css/theme.css">
     <style>
         body {
             font-family: system-ui, -apple-system, sans-serif;

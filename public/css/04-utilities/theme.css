@@ -1,0 +1,495 @@
+/**
+ * NUGUI Theme System
+ * Complete theme management with color variables and image switching
+ * Preserves all critical fixes from theme-overrides.css
+ */
+
+/* ========================================
+   THEME COLOR VARIABLES
+   ======================================== */
+
+/* Force Light Theme */
+[data-theme="light"] {
+  /* PRIMARY BLUES - Light Theme (Vibrant) */
+  --color-primary: #00A2E8 !important;
+  --color-primary-light: #33B5ED !important;
+  --color-primary-dark: #0082BB !important;
+  --color-secondary: #97C9F6 !important;
+  --color-accent: #FFC107 !important;
+  --color-accent-secondary: #FF6B35 !important;
+  
+  /* Text Colors - Light Theme */
+  --color-text-primary: #1a1a1a !important;
+  --color-text-secondary: #4a4a4a !important;
+  --color-text-tertiary: #757575 !important;
+  
+  /* Background Colors - Light Theme */
+  --color-background: #FFFFFF !important;
+  --color-background-secondary: #F7F9FB !important;
+  --color-background-tertiary: #FAFBFC !important;
+  
+  /* Surface Colors */
+  --color-surface: #FFFFFF !important;
+  --color-surface-secondary: #F5F5F7 !important;
+  
+  /* Border Colors - Light Theme */
+  --color-border: #E0E0E0 !important;
+  --color-separator: #E0E0E0 !important;
+  
+  /* Status Colors */
+  --color-error: #EF4444 !important;
+  --color-success: #22C55E !important;
+  --color-warning: #F59E0B !important;
+  --color-info: #3B82F6 !important;
+  
+  /* Product Colors - Light Theme */
+  --color-gold-ccs: #C6A564 !important;
+  --color-gold-ccs-light: #E4C48E !important;
+  --color-gold-ccs-dark: #AF8F4C !important;
+  
+  --color-purple-data: #8E67CC !important;
+  --color-purple-data-light: #B79CEB !important;
+  --color-purple-data-dark: #6D4DA8 !important;
+  
+  --color-green-sip: #5FB673 !important;
+  --color-green-sip-light: #A4D79B !important;
+  --color-green-sip-dark: #348E4E !important;
+  
+  --color-orange-sms: #E87D4E !important;
+  --color-orange-sms-light: #F5B097 !important;
+  --color-orange-sms-dark: #CF5B24 !important;
+  
+  /* Color scheme */
+  color-scheme: light !important;
+}
+
+/* Force Dark Theme */
+[data-theme="dark"] {
+  /* PRIMARY BLUES - Dark Theme (muted) */
+  --color-primary: #2F69B3 !important;
+  --color-primary-light: #5AB4F1 !important;
+  --color-primary-dark: #1E3A7A !important;
+  --color-secondary: #5AB4F1 !important;
+  --color-accent: #AF8F4C !important;
+  --color-accent-secondary: #CF5B24 !important;
+  
+  /* Text Colors - Dark Theme */
+  --color-text-primary: #FFFFFF !important;
+  --color-text-secondary: #CCCCCC !important;
+  --color-text-tertiary: #999999 !important;
+  
+  /* Background Colors - Dark Theme */
+  --color-background: #121212 !important;
+  --color-background-secondary: #1E1E1E !important;
+  --color-background-tertiary: #252525 !important;
+  
+  /* Surface Colors */
+  --color-surface: #1A1A1A !important;
+  --color-surface-secondary: #242424 !important;
+  
+  /* Border Colors - Dark Theme */
+  --color-border: #333333 !important;
+  --color-separator: #333333 !important;
+  
+  /* Status Colors */
+  --color-error: #EF4444 !important;
+  --color-success: #22C55E !important;
+  --color-warning: #F59E0B !important;
+  --color-info: #3B82F6 !important;
+  
+  /* Product Colors - Dark Theme */
+  --color-gold-ccs: #C6A564 !important;
+  --color-gold-ccs-light: #806633 !important;
+  --color-gold-ccs-dark: #FFD700 !important;
+  
+  --color-purple-data: #8E67CC !important;
+  --color-purple-data-light: #4F3A7F !important;
+  --color-purple-data-dark: #B79CEB !important;
+  
+  --color-green-sip: #5FB673 !important;
+  --color-green-sip-light: #1E6132 !important;
+  --color-green-sip-dark: #A4D79B !important;
+  
+  --color-orange-sms: #E87D4E !important;
+  --color-orange-sms-light: #A84215 !important;
+  --color-orange-sms-dark: #F5B097 !important;
+  
+  /* Color scheme */
+  color-scheme: dark !important;
+}
+
+/* ========================================
+   THEME-SPECIFIC BODY STYLES
+   ======================================== */
+
+[data-theme="light"] body,
+.light-theme body {
+  background-color: #FFFFFF !important;
+  color: #1d1d1f !important;
+}
+
+[data-theme="dark"] body,
+.dark-theme body {
+  background-color: #121212 !important;
+  color: #FFFFFF !important;
+}
+
+/* ========================================
+   NAVIGATION THEME OVERRIDES
+   ======================================== */
+
+/* Navigation ALWAYS uses DARK theme styling regardless of site theme */
+.globalnav {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.globalnav.scrolled {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.globalnav-link {
+  color: rgba(245, 245, 247, 0.88) !important;
+}
+
+.globalnav-link:hover {
+  color: rgba(245, 245, 247, 1) !important;
+  background: rgba(245, 245, 247, 0.1) !important;
+}
+
+/* Mobile menu also uses dark theme styling always */
+.globalnav-menu {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.globalnav-menu-link {
+  color: rgba(245, 245, 247, 0.88) !important;
+}
+
+.globalnav-menu-link:hover {
+  color: rgba(245, 245, 247, 1) !important;
+}
+
+/* ========================================
+   LOGO AND IMAGE SWITCHING
+   ======================================== */
+
+/* Light theme - show light versions */
+[data-theme="light"] .theme-logo-dark,
+[data-theme="light"] .theme-image-dark {
+  display: none !important;
+}
+
+[data-theme="light"] .theme-logo-light,
+[data-theme="light"] .theme-image-light {
+  display: block !important;
+}
+
+/* Dark theme - show dark versions */
+[data-theme="dark"] .theme-logo-dark,
+[data-theme="dark"] .theme-image-dark {
+  display: block !important;
+}
+
+[data-theme="dark"] .theme-logo-light,
+[data-theme="dark"] .theme-image-light {
+  display: none !important;
+}
+
+/* Default state before theme is set */
+.theme-image-light {
+  display: block;
+}
+
+.theme-image-dark {
+  display: none;
+}
+
+/* Center product icons in cards */
+.product-icon.theme-image-light,
+.product-icon.theme-image-dark {
+  margin: 0 auto;
+  display: block;
+}
+
+/* Ensure only one icon shows at a time and is centered */
+.feature-card .product-icon,
+.solution-card .product-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+/* Product solution images */
+[data-theme="light"] .product-solution-image img[src*="dark"] {
+  display: none !important;
+}
+
+[data-theme="light"] .product-solution-image img[src*="light"] {
+  display: block !important;
+}
+
+[data-theme="dark"] .product-solution-image img[src*="light"] {
+  display: none !important;
+}
+
+[data-theme="dark"] .product-solution-image img[src*="dark"] {
+  display: block !important;
+}
+
+/* Product icons that need inversion in light theme */
+[data-theme="light"] .product-icon-wrapper img[src*="dark"],
+[data-theme="light"] .product-icon-wrapper img[src*="DARK"] {
+  filter: invert(1) !important;
+}
+
+[data-theme="light"] .product-icon-wrapper img[src*="light"],
+[data-theme="light"] .product-icon-wrapper img[src*="LIGHT"] {
+  filter: none !important;
+}
+
+/* ========================================
+   SECTION BACKGROUNDS
+   ======================================== */
+
+[data-theme="light"] .section {
+  background-color: #FFFFFF !important;
+  color: #1d1d1f !important;
+}
+
+[data-theme="dark"] .section {
+  background-color: #121212 !important;
+  color: #FFFFFF !important;
+}
+
+/* ========================================
+   CARD THEME STYLES
+   ======================================== */
+
+[data-theme="light"] .card {
+  background: #f5f5f7 !important;
+  color: #1d1d1f !important;
+  border-color: #d2d2d7 !important;
+}
+
+[data-theme="dark"] .card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Solution cards */
+[data-theme="light"] .solution-card {
+  background: #FFFFFF !important;
+  border: 1px solid #d2d2d7 !important;
+  color: #1d1d1f !important;
+}
+
+[data-theme="light"] .solution-card h3 {
+  color: #1d1d1f !important;
+}
+
+[data-theme="light"] .solution-card p {
+  color: #86868b !important;
+}
+
+[data-theme="dark"] .solution-card {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .solution-card h3 {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .solution-card p {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ========================================
+   BUTTON THEME STYLES
+   ======================================== */
+
+[data-theme="light"] .btn {
+  background: #0066cc !important;
+  color: #FFFFFF !important;
+  border-color: #0066cc !important;
+}
+
+[data-theme="light"] .btn:hover {
+  background: #0051a3 !important;
+  border-color: #0051a3 !important;
+}
+
+[data-theme="light"] .btn--outline {
+  background: transparent !important;
+  color: #0066cc !important;
+  border-color: #0066cc !important;
+}
+
+[data-theme="light"] .btn--outline:hover {
+  background: #0066cc !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .btn {
+  background: #2F69B3 !important;
+  color: #FFFFFF !important;
+  border-color: #2F69B3 !important;
+}
+
+[data-theme="dark"] .btn:hover {
+  background: #5AB4F1 !important;
+  border-color: #5AB4F1 !important;
+}
+
+[data-theme="dark"] .btn--outline {
+  background: transparent !important;
+  color: #5AB4F1 !important;
+  border-color: #5AB4F1 !important;
+}
+
+[data-theme="dark"] .btn--outline:hover {
+  background: #5AB4F1 !important;
+  color: #121212 !important;
+}
+
+/* ========================================
+   THEME SWITCHER
+   ======================================== */
+
+.theme-switcher {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.theme-switcher:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.theme-switcher svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-text-primary);
+  transition: transform 0.3s ease;
+}
+
+.theme-switcher:hover svg {
+  transform: rotate(180deg);
+}
+
+/* Hide/show appropriate icon based on theme */
+[data-theme="light"] .theme-switcher .moon-icon {
+  display: block;
+}
+
+[data-theme="light"] .theme-switcher .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-switcher .moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-switcher .sun-icon {
+  display: block;
+}
+
+/* ========================================
+   ROOT COLOR SCHEME
+   ======================================== */
+
+:root {
+  color-scheme: light dark;
+}
+
+/* ========================================
+   ACCESSIBILITY - PREFERS COLOR SCHEME
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Apply dark theme colors by default if user prefers dark */
+    --color-primary: #2F69B3;
+    --color-primary-light: #5AB4F1;
+    --color-primary-dark: #1E3A7A;
+    --color-secondary: #5AB4F1;
+    --color-accent: #AF8F4C;
+    --color-accent-secondary: #CF5B24;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #CCCCCC;
+    --color-text-tertiary: #999999;
+    --color-background: #121212;
+    --color-background-secondary: #1E1E1E;
+    --color-background-tertiary: #252525;
+    --color-surface: #1A1A1A;
+    --color-surface-secondary: #242424;
+    --color-border: #333333;
+    --color-separator: #333333;
+  }
+  
+  body:not([data-theme]) {
+    background-color: #121212;
+    color: #FFFFFF;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    /* Apply light theme colors by default if user prefers light */
+    --color-primary: #00A2E8;
+    --color-primary-light: #33B5ED;
+    --color-primary-dark: #0082BB;
+    --color-secondary: #97C9F6;
+    --color-accent: #FFC107;
+    --color-accent-secondary: #FF6B35;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #4a4a4a;
+    --color-text-tertiary: #757575;
+    --color-background: #FFFFFF;
+    --color-background-secondary: #F7F9FB;
+    --color-background-tertiary: #FAFBFC;
+    --color-surface: #FFFFFF;
+    --color-surface-secondary: #F5F5F7;
+    --color-border: #E0E0E0;
+    --color-separator: #E0E0E0;
+  }
+  
+  body:not([data-theme]) {
+    background-color: #FFFFFF;
+    color: #1d1d1f;
+  }
+}
+
+/* ========================================
+   SMOOTH TRANSITIONS
+   ======================================== */
+
+body,
+.section,
+.card,
+.btn,
+.form-input,
+input,
+textarea,
+select {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
