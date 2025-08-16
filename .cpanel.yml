@@ -39,16 +39,16 @@ deployment:
     # Copy environment file
     - if [ -f "$REPOPATH/.env.production" ]; then /bin/cp $REPOPATH/.env.production $APPPATH/.env; elif [ -f "$REPOPATH/env.production" ]; then /bin/cp $REPOPATH/env.production $APPPATH/.env; fi
     
-    # Set permissions
+    # Set permissions (using 775 for better security while maintaining write access)
     - chmod 600 $APPPATH/.env 2>/dev/null || true
     - chmod 755 $APPPATH/spark 2>/dev/null || true
     - chmod -R 755 $APPPATH/app
     - chmod -R 755 $APPPATH/system
     - chmod -R 775 $APPPATH/writable
-    - chmod -R 777 $APPPATH/writable/cache
-    - chmod -R 777 $APPPATH/writable/logs
-    - chmod -R 777 $APPPATH/writable/session
-    - chmod -R 777 $APPPATH/writable/uploads
+    - chmod -R 775 $APPPATH/writable/cache
+    - chmod -R 775 $APPPATH/writable/logs
+    - chmod -R 775 $APPPATH/writable/session
+    - chmod -R 775 $APPPATH/writable/uploads
     
     # Deploy public files
     - find $PUBLICPATH -mindepth 1 -name '.well-known' -prune -o -type f -exec rm -f {} + 2>/dev/null || true
