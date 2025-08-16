@@ -60,6 +60,7 @@ deployment:
     - /bin/cp $REPOPATH/public/robots.txt $PUBLICPATH/ 2>/dev/null || true
     - /bin/cp $REPOPATH/public/favicon.ico $PUBLICPATH/ 2>/dev/null || true
     - /bin/cp $REPOPATH/public/.htaccess $PUBLICPATH/ 2>/dev/null || true
+    - /bin/cp $REPOPATH/public/landing.html $PUBLICPATH/ 2>/dev/null || true
     
     # Create secure index.php
     - echo '<?php' > $PUBLICPATH/index.php
